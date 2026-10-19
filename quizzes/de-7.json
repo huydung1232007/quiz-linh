@@ -2,7 +2,7 @@
   {
     "id": "q-python-co-ban",
     "code": "PY-05",
-    "title": "Bộ 50 Câu Hỏi Trắc Nghiệm Ôn Tập Python – Các Khái Niệm Cơ Bản",
+    "title": "Các Khái Niệm Cơ Bản",
     "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về các khái niệm cơ bản trong Python: kiểu dữ liệu, toán tử, ép kiểu, biểu thức logic, độ ưu tiên toán tử và truy vết code.",
     "duration": 50,
     "questions": [
