@@ -1,561 +1,415 @@
 [
   {
-    "id": "q-python-conditions-50",
-    "code": "PY-COND-50",
-    "title": "test",
-    "desc": "Ôn tập giá trị bool, toán tử logic, if/elif/else, điều kiện lồng nhau và biểu thức điều kiện rút gọn.",
-    "duration": 60,
-    "createdAt": "2026-10-19",
+    "id": "q-python-tuple-set-dict",
+    "code": "PY-02",
+    "title": "Tuple, Set và Dictionary",
+    "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về Tuple, Set, Dictionary và các kỹ thuật xử lý nâng cao trong Python.",
+    "duration": 50,
     "questions": [
       {
-        "text": "Trong ngôn ngữ lập trình Python, hai giá trị thuộc kiểu dữ liệu logic (bool) được viết đúng cú pháp là:",
+        "text": "Cho đoạn chương trình sau:\nA = (10)\nB = (10,)\nprint(type(A) == type(B), type(B))\nKết quả in ra màn hình là gì?",
         "options": [
-          "true và false",
-          "True và False",
-          "TRUE và FALSE",
-          "1 và 0"
+          "True <class 'tuple'>",
+          "False <class 'tuple'>",
+          "False <class 'int'>",
+          "True <class 'int'>"
         ],
         "correct": 1,
-        "explain": "Python viết hai giá trị logic bằng True và False, phân biệt chữ hoa chữ thường."
+        "explain": "Trong Python, để khai báo một Tuple chỉ có duy nhất một phần tử, bắt buộc phải có dấu phẩy đứng sau phần tử đó như B = (10,). Nếu viết A = (10), dấu ngoặc đơn chỉ đóng vai trò là dấu ngoặc nhóm biểu thức toán học nên A có kiểu số nguyên (int), còn B có kiểu tuple. Do đó type(A) == type(B) là False và type(B) là <class 'tuple'>."
       },
       {
-        "text": "Cho biến x = 15. Biểu thức nào sau đây dùng để kiểm tra xem x có bằng 15 hay không?",
-        "options": [
-          "x = 15",
-          "x == 15",
-          "x := 15",
-          "x === 15"
-        ],
-        "correct": 1,
-        "explain": "Toán tử == dùng để so sánh bằng; dấu = dùng để gán giá trị."
+        "text": "Cho T = (5, 10, 15, 20, 25). Giá trị của biểu thức T[1] + T[-2] là bao nhiêu?",
+        "options": ["30", "25", "35", "40"],
+        "correct": 0,
+        "explain": "Tuple hỗ trợ truy xuất phần tử bằng chỉ số dương (từ trái sang phải, bắt đầu từ 0) và chỉ số âm (từ phải sang trái, bắt đầu từ -1). Ta có T[1] = 10 và T[-2] = 20. Vậy T[1] + T[-2] = 10 + 20 = 30."
       },
       {
-        "text": "Cho đoạn chương trình sau:\n\n```python\na = 7\nb = 12\nkq = (a >= b)\n```\n\nGiá trị của biến kq sau khi thực hiện đoạn chương trình trên là:",
-        "options": [
-          "True",
-          "False",
-          "7",
-          "Chương trình báo lỗi."
-        ],
-        "correct": 1,
-        "explain": "7 >= 12 là sai nên biểu thức trả về False."
-      },
-      {
-        "text": "Thứ tự ưu tiên thực hiện của các toán tử logic trong Python (khi không có dấu ngoặc tròn) từ cao xuống thấp là:",
-        "options": [
-          "and → or → not",
-          "not → or → and",
-          "not → and → or",
-          "Thực hiện từ trái sang phải, ba toán tử có cùng mức ưu tiên."
-        ],
+        "text": "Cho Tuple lồng nhau A = ((1, 2), (3, 4, 5), (6, 7)). Giá trị của biểu thức A[1][2] + A[-1][0] là bao nhiêu?",
+        "options": ["9", "10", "11", "12"],
         "correct": 2,
-        "explain": "Thứ tự ưu tiên là not, rồi and, rồi or."
+        "explain": "Phần tử A[1] là tuple con (3, 4, 5), nên A[1][2] là phần tử ở chỉ số 2 của tuple con này, bằng 5. Phần tử A[-1] là tuple con cuối cùng (6, 7), nên A[-1][0] bằng 6. Tổng hai giá trị là 5 + 6 = 11."
       },
       {
-        "text": "Cho biểu thức logic:\n\nx = not True or False\n\nGiá trị của biến x là:",
-        "options": [
-          "True",
-          "False",
-          "None",
-          "Chương trình báo lỗi cú pháp."
-        ],
-        "correct": 1,
-        "explain": "not True thành False; False or False cho kết quả False."
+        "text": "Cho đoạn chương trình sau:\nT = (4, 2, 7, 2, 9, 2)\nprint(len(T), T.count(2), T.index(7))\nKết quả in ra màn hình là gì?",
+        "options": ["6 3 3", "5 3 2", "6 2 2", "6 3 2"],
+        "correct": 3,
+        "explain": "len(T) trả về tổng số phần tử của Tuple T, bằng 6. T.count(2) đếm số lần xuất hiện của giá trị 2 trong T, bằng 3. T.index(7) trả về chỉ số xuất hiện đầu tiên của giá trị 7 trong T, bằng 2."
       },
       {
-        "text": "Từ khóa nào được sử dụng trong Python để kiểm tra thêm một điều kiện mới khi điều kiện của câu lệnh if phía trước bị sai (False)?",
+        "text": "Cho đoạn chương trình sau:\nA = (1, 2)\nB = A * 2 + (3,)\nprint(B)\nKết quả in ra màn hình là gì?",
         "options": [
-          "else if",
-          "elseif",
-          "elif",
-          "otherwise"
-        ],
-        "correct": 2,
-        "explain": "Trong Python, từ khóa kiểm tra điều kiện tiếp theo là elif."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nn = 10\nif n < 5:\n    n = n + 20\nprint(n)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "10",
-          "30",
-          "5",
-          "Không in ra gì cả."
+          "(1, 2, 1, 2, 3)",
+          "(2, 4, 3)",
+          "(1, 2, 3, 1, 2, 3)",
+          "Chương trình báo lỗi vì Tuple không hỗ trợ toán tử + và *."
         ],
         "correct": 0,
-        "explain": "Điều kiện 10 < 5 sai nên thân if không chạy, n vẫn bằng 10."
+        "explain": "Toán tử * lặp lại Tuple A hai lần tạo ra Tuple mới (1, 2, 1, 2). Sau đó toán tử + nối Tuple này với Tuple một phần tử (3,) tạo ra Tuple mới (1, 2, 1, 2, 3)."
       },
       {
-        "text": "Câu lệnh điều kiện nào sau đây được viết đúng cú pháp trong Python?",
+        "text": "Cho đoạn chương trình sau:\nT = (3, 1, 4, 2)\nS = sorted(T)\nprint(type(S), S)\nKết quả in ra màn hình là gì?",
         "options": [
-          "if a > 0 then:",
-          "if (a = 5):",
-          "if a != 0:",
-          "if a > 0"
+          "<class 'tuple'> (1, 2, 3, 4)",
+          "<class 'NoneType'> None",
+          "<class 'list'> [1, 2, 3, 4]",
+          "Chương trình báo lỗi vì Tuple không thể sắp xếp."
         ],
         "correct": 2,
-        "explain": "Cú pháp đúng là if a != 0: với dấu hai chấm ở cuối."
+        "explain": "Tuple không có phương thức T.sort() vì Tuple là bất biến, nhưng hàm tích hợp sẵn sorted(T) nhận bất kỳ đối tượng khả duyệt nào và luôn trả về một danh sách mới (list) chứa các phần tử đã được sắp xếp tăng dần."
       },
       {
-        "text": "Trong Python, những câu lệnh nào được tính là thuộc cùng một nhánh của cấu trúc if?",
-        "options": [
-          "Các câu lệnh được đặt bên trong cặp dấu ngoặc nhọn {{ }}.",
-          "Các câu lệnh nằm giữa hai từ khóa begin và end.",
-          "Các câu lệnh liên tiếp nhau có cùng mức thụt đầu dòng (indentation) bên dưới dòng if:.",
-          "Chỉ duy nhất một dòng lệnh ngay sát dưới dòng if:."
-        ],
-        "correct": 2,
-        "explain": "Các lệnh trong cùng một nhánh có cùng mức thụt đầu dòng."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\nm = 8\ny = 1 if m > 10 else 0\n```\n\nGiá trị của biến y sau khi chạy đoạn code trên là:",
-        "options": [
-          "1",
-          "0",
-          "8",
-          "False"
-        ],
+        "text": "Cho T = (10, 20, 30, 40). Câu lệnh nào sau đây sẽ gây ra lỗi TypeError khi thực thi?",
+        "options": ["T = T + (50,)", "T[1] = 25", "x = T[1:3]", "a, b, c, d = T"],
         "correct": 1,
-        "explain": "m > 10 sai nên biểu thức điều kiện rút gọn lấy giá trị sau else là 0."
+        "explain": "Tuple là kiểu dữ liệu bất biến (immutable), không thể thay đổi, thêm hoặc xóa trực tiếp phần tử. Lệnh T[1] = 25 cố tình gán lại phần tử tại chỉ số 1 nên gây ra lỗi TypeError."
       },
       {
-        "text": "Cho đoạn chương trình sau:\n\n```python\na = 4\nb = 6\nc = 2\nx = (a + c == b) and (b % a != 2)\n```\n\nGiá trị của biến x là:",
+        "text": "Cho đoạn chương trình sử dụng kỹ thuật unpacking sau:\nT = (10, 20, 30, 40, 50)\na, *b, c = T\nprint(a + c, b)\nKết quả in ra màn hình là gì?",
         "options": [
-          "True",
-          "False",
-          "2",
-          "Chương trình báo lỗi."
-        ],
-        "correct": 1,
-        "explain": "a + c = 6 bằng b, nhưng b % a = 2 nên điều kiện != 2 sai; True and False là False."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\np = 3\nq = 5\nr = 10\nkq = (p > q) or (r // q == 2) and (p + q < r)\n```\n\nGiá trị của biến kq là:",
-        "options": [
-          "True",
-          "False",
-          "1",
-          "0"
-        ],
-        "correct": 0,
-        "explain": "p > q sai; vế (r // q == 2) and (p + q < r) là True, nên toàn biểu thức True."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nx = 5\ny = 8\nz = not (x < y and y < 10) or (x * 2 == 10)\n```\n\nGiá trị của biến z là:",
-        "options": [
-          "True",
-          "False",
-          "10",
-          "Chương trình báo lỗi."
-        ],
-        "correct": 0,
-        "explain": "x < y và y < 10 đều đúng; not của True là False, nhưng x * 2 == 10 đúng, nên kết quả True."
-      },
-      {
-        "text": "Cho biến n = 7. Giá trị của biểu thức 3 < n <= 7 và biểu thức 3 < n < 7 lần lượt là:",
-        "options": [
-          "True và True",
-          "True và False",
-          "False và True",
-          "False và False"
-        ],
-        "correct": 1,
-        "explain": "3 < 7 <= 7 đúng; 3 < 7 < 7 sai."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\na = 12\nif a % 5 == 0:\n    a = a + 3\nelse:\n    a = a - 2\nprint(a)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "15",
-          "10",
-          "12",
-          "13"
-        ],
-        "correct": 1,
-        "explain": "12 % 5 khác 0 nên nhánh else chạy, a = 12 - 2 = 10."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nx = 14\nif x > 10:\n    x = x - 5\nif x < 12:\n    x = x + 3\nprint(x)\n```\n\nGiá trị của x được in ra màn hình là:",
-        "options": [
-          "9",
-          "12",
-          "17",
-          "14"
-        ],
-        "correct": 1,
-        "explain": "if đầu tiên đổi x thành 9; if thứ hai cũng đúng nên x thành 12."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\nx = 14\nif x > 10:\n    x = x - 5\nelif x < 12:\n    x = x + 3\nprint(x)\n```\n\nGiá trị của x được in ra màn hình là:",
-        "options": [
-          "9",
-          "12",
-          "17",
-          "14"
-        ],
-        "correct": 0,
-        "explain": "Điều kiện x > 10 đúng, x được đổi thành 9; nhánh elif không được xét nữa."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nscore = 75\nif score >= 85:\n    grade = \"A\"\nelif score >= 70:\n    grade = \"B\"\nelif score >= 50:\n    grade = \"C\"\nelse:\n    grade = \"D\"\n```\n\nGiá trị của biến grade sau khi thực hiện đoạn chương trình là:",
-        "options": [
-          "\"A\"",
-          "\"B\"",
-          "\"C\"",
-          "\"D\""
-        ],
-        "correct": 1,
-        "explain": "75 không đạt 85 nhưng đạt 70, nên grade là B."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nk = 4\nm = 10\nif k * 3 > m:\n    m = m + k\n    k = k - 1\nprint(m - k)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "6",
-          "10",
-          "11",
-          "9"
-        ],
-        "correct": 2,
-        "explain": "4 * 3 > 10 đúng; m thành 14, k thành 3, kết quả 14 - 3 = 11."
-      },
-      {
-        "text": "Cho đoạn chương trình chú ý kỹ mức thụt lề:\n\n```python\na = 5\nb = 2\nif a < b:\n    a = a + 10\nb = b + 10\nprint(a, b)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "5 2",
-          "15 12",
-          "5 12",
-          "15 2"
-        ],
-        "correct": 2,
-        "explain": "a < b sai nên a vẫn là 5; b = b + 10 thành 12."
-      },
-      {
-        "text": "Để kiểm tra một số nguyên n có phải là số chẵn và lớn hơn 0 hay không, biểu thức điều kiện nào sau đây là đúng?",
-        "options": [
-          "n % 2 == 0 or n > 0",
-          "n // 2 == 0 and n > 0",
-          "n % 2 == 0 and n > 0",
-          "n % 2 != 0 and n >= 0"
-        ],
-        "correct": 2,
-        "explain": "Số chẵn cần n % 2 == 0 và lớn hơn 0 cần n > 0; phải dùng and."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\nx = 0\nif x:\n    print(\"Yes\")\nelse:\n    print(\"No\")\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "Yes",
-          "No",
-          "0",
-          "Chương trình báo lỗi vì x không phải kiểu bool."
-        ],
-        "correct": 1,
-        "explain": "Giá trị 0 được xem là False trong điều kiện if, nên in No."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\na = 9\nb = 4\nc = a // b + a % b\nkq = (c >= 3) and not (a % 3 == 0)\n```\n\nGiá trị của biến kq là:",
-        "options": [
-          "True",
-          "False",
-          "3",
-          "0"
-        ],
-        "correct": 1,
-        "explain": "c = 9 // 4 + 9 % 4 = 2 + 1 = 3; c >= 3 đúng nhưng 9 % 3 == 0, nên not(...) sai và kết quả False."
-      },
-      {
-        "text": "Cho biểu thức:\n\nkq = 10 - 4 * 2 == 2 and 5 + 3 > 8\n\nGiá trị của biến kq là:",
-        "options": [
-          "True",
-          "False",
-          "2",
-          "Chương trình báo lỗi."
-        ],
-        "correct": 0,
-        "explain": "10 - 4 * 2 = 2 nên so sánh đầu đúng; 5 + 3 > 8 sai; True and False là False."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\nx = -3\nif x:\n    y = 10\nelse:\n    y = 20\nprint(y)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "10",
-          "20",
-          "-3",
-          "Chương trình báo lỗi."
-        ],
-        "correct": 1,
-        "explain": "Số nguyên -3 là giá trị truthy vì khác 0, nên y = 10."
-      },
-      {
-        "text": "Cho đoạn chương trình có cấu trúc rẽ nhánh lồng nhau:\n\n```python\na = 15\nb = 20\nif a > 10:\n    if b > 25:\n        res = 1\n    else:\n        res = 2\nelse:\n    res = 3\nprint(res)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "1",
-          "2",
-          "3",
-          "Chương trình báo lỗi."
-        ],
-        "correct": 2,
-        "explain": "a > 10 đúng và b > 25 sai, nên nhánh else bên trong gán res = 2."
-      },
-      {
-        "text": "Cho đoạn chương trình sau (chú ý thứ tự các điều kiện):\n\n```python\nd = 85\nif d >= 50:\n    xep_loai = \"Dat\"\nelif d >= 70:\n    xep_loai = \"Kha\"\nelif d >= 85:\n    xep_loai = \"Gioi\"\nelse:\n    xep_loai = \"Khong dat\"\nprint(xep_loai)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "Gioi",
-          "Kha",
-          "Dat",
-          "Khong dat"
-        ],
-        "correct": 0,
-        "explain": "d >= 50 đúng ngay ở nhánh đầu tiên, vì vậy xep_loai là Dat; các elif sau không được xét."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nx = 6\ny = 10\nif x * 2 > y:\n    x = x + 2\n    if x == y:\n        y = y + 5\n    else:\n        y = y - 2\nprint(x, y)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "8 8",
-          "8 15",
-          "6 10",
-          "8 10"
-        ],
-        "correct": 2,
-        "explain": "x * 2 = 12 > 10 nên x thành 8; x == 10 sai nên y thành 8 - 2 = 8."
-      },
-      {
-        "text": "Cho đoạn chương trình tìm giá trị lớn nhất:\n\n```python\na = 12\nb = 19\nc = 15\nm = a\nif b > m:\n    m = b\nif c > m:\n    m = c\nprint(m)\n```\n\nSau khi chạy chương trình, giá trị được in ra màn hình là:",
-        "options": [
-          "12",
-          "15",
-          "19",
-          "Chương trình báo lỗi."
+          "60 (20, 30, 40)",
+          "30 [30, 40, 50]",
+          "Chương trình báo lỗi ValueError.",
+          "60 [20, 30, 40]"
         ],
         "correct": 3,
-        "explain": "Giá trị lớn nhất trong 12, 19, 15 là 19."
+        "explain": "Biến a nhận phần tử đầu 10, biến c nhận phần tử cuối 50. Biến có dấu sao *b gom các phần tử ở giữa thành một danh sách (list) b = [20, 30, 40]. Do đó a + c = 10 + 50 = 60."
       },
       {
-        "text": "Cho đoạn chương trình sau:\n\n```python\na = 5\nb = 5\nif a > b:\n    c = 1\nelif a == b:\n    c = 2\nif a >= b:\n    c = c + 3\nprint(c)\n```\n\nKết quả in ra màn hình là:",
+        "text": "Cho đoạn chương trình sau:\nA = {}\nB = set()\nprint(type(A), type(B))\nKết quả in ra màn hình là gì?",
         "options": [
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "correct": 1,
-        "explain": "a == b đúng nên c = 2; điều kiện a >= b cũng đúng nên c = 2 + 3 = 5."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nx = 10\nif x == 10:\n    print(\"A\", end=\" \")\n    if x < 15:\n        print(\"B\", end=\" \")\n    elif x > 5:\n        print(\"C\", end=\" \")\nelse:\n    print(\"D\", end=\" \")\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "A B C",
-          "A B",
-          "A C",
-          "B"
-        ],
-        "correct": 1,
-        "explain": "x == 10 đúng nên in A; x < 15 đúng nên in B; elif không chạy."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\na = 3\nb = 7\nx = a if a > b else (b - a if b > 5 else b + a)\n```\n\nGiá trị của biến x là:",
-        "options": [
-          "3",
-          "4",
-          "10",
-          "7"
-        ],
-        "correct": 2,
-        "explain": "a > b sai; b > 5 đúng nên x = b - a = 4."
-      },
-      {
-        "text": "Đoạn chương trình nào sau đây gặp lỗi cú pháp (SyntaxError) ngay khi bắt đầu chạy?",
-        "options": [
-          "if 5 > 3: print(\"OK\")",
-          "if (5 > 3) and (2 < 4): print(\"OK\")",
-          "if 5 > 3 and < 10: print(\"OK\")",
-          "if 3 < 5 < 10: print(\"OK\")"
+          "<class 'dict'> <class 'set'>",
+          "<class 'set'> <class 'set'>",
+          "<class 'dict'> <class 'dict'>",
+          "<class 'tuple'> <class 'set'>"
         ],
         "correct": 0,
-        "explain": "Phương án C thiếu toán hạng sau and, gây SyntaxError."
+        "explain": "Cặp dấu ngoặc nhọn rỗng {} mặc định dùng để khởi tạo một Dictionary rỗng (dict), không phải Set rỗng. Để tạo Set rỗng, cần gọi hàm set()."
       },
       {
-        "text": "Cho đoạn chương trình:\n\n```python\nn = 18\nif n % 2 == 0:\n    if n % 3 == 0:\n        s = \"Chia het cho 6\"\n    else:\n        s = \"Chan nhung khong chia het cho 3\"\nelse:\n    s = \"So le\"\n```\n\nGiá trị của biến s sau khi thực hiện là:",
-        "options": [
-          "\"Chia het cho 6\"",
-          "\"Chan nhung khong chia het cho 3\"",
-          "\"So le\"",
-          "Chương trình báo lỗi."
-        ],
+        "text": "Cho S = {4, 2, 4, 1, 2, 3, 4}. print(len(S), 2 in S)\nKết quả in ra màn hình là gì?",
+        "options": ["7 True", "4 False", "4 True", "3 True"],
         "correct": 2,
-        "explain": "18 chia hết cho 2 và 3 nên s = 'Chia het cho 6'."
+        "explain": "Set là tập hợp chỉ lưu trữ các phần tử duy nhất. Các giá trị trùng lặp bị loại bỏ nên S chỉ còn {1, 2, 3, 4}. Do đó len(S) = 4 và 2 in S trả về True."
       },
       {
-        "text": "Cho đoạn chương trình sau:\n\n```python\nx = 4\ny = 0\nif y != 0 and x / y > 1:\n    ket_qua = \"Hop le\"\nelse:\n    ket_qua = \"Khong hop le\"\nprint(ket_qua)\n```\n\nKhi chạy đoạn chương trình trên, điều gì sẽ xảy ra?",
-        "options": [
-          "Chương trình báo lỗi chia cho 0 (ZeroDivisionError).",
-          "Chương trình in ra Hop le.",
-          "Chương trình in ra Khong hop le.",
-          "Chương trình báo lỗi cú pháp (SyntaxError)."
-        ],
-        "correct": 2,
-        "explain": "y != 0 sai nên Python short-circuit, không tính x / y; nhánh else in Khong hop le."
-      },
-      {
-        "text": "Ngược lại với Câu 35, nếu ta đổi thứ tự hai vế của toán tử and như sau:\n\n```python\nx = 4\ny = 0\nif x / y > 1 and y != 0:\n    print(\"Hop le\")\nelse:\n    print(\"Khong hop le\")\n```\n\nKết quả khi chạy chương trình là:",
-        "options": [
-          "In ra Khong hop le.",
-          "In ra Hop le.",
-          "Chương trình dừng và báo lỗi ZeroDivisionError khi chạy.",
-          "Chương trình không in gì cả nhưng không báo lỗi."
-        ],
-        "correct": 2,
-        "explain": "Python tính vế trái x / y > 1 trước, gây ZeroDivisionError trước khi kiểm tra y != 0."
-      },
-      {
-        "text": "Cho đoạn chương trình tính cước vận chuyển theo khối lượng w (kg):\n\n```python\nw = 7\nif w <= 2:\n    phi = 15\nelif w <= 5:\n    phi = 25\nelif w <= 10:\n    phi = 40\nelse:\n    phi = 60\n```\n\nGiá trị của biến phi là:",
-        "options": [
-          "15",
-          "25",
-          "40",
-          "60"
-        ],
-        "correct": 2,
-        "explain": "w = 7 không <= 2 hoặc <= 5 nhưng <= 10, nên phi = 40."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\na = 10\nb = 20\nc = 30\nif a > b or b < c and a > c:\n    x = 1\nelse:\n    x = 2\n```\n\nGiá trị của biến x sau khi chạy đoạn chương trình là:",
-        "options": [
-          "1",
-          "2",
-          "10",
-          "30"
-        ],
+        "text": "Cho S = {10, 20, 30}. Câu lệnh nào dưới đây sẽ gây ra lỗi khi chạy chương trình?",
+        "options": ["S.add(40)", "print(S[0])", "print(len(S))", "print(20 in S)"],
         "correct": 1,
-        "explain": "Điều kiện a > b sai; b < c đúng nhưng a > c sai, nên False or (True and False) là False và x = 2."
+        "explain": "Set là tập hợp không có thứ tự vị trí (unordered), do đó Set không hỗ trợ truy cập phần tử qua chỉ số (index). Lệnh print(S[0]) gây ra lỗi TypeError."
       },
       {
-        "text": "Cho đoạn chương trình:\n\n```python\na = 10\nb = 20\nc = 30\nif a < b or b < c and a > c:\n    x = 1\nelse:\n    x = 2\n```\n\nGiá trị của biến x sau khi chạy đoạn chương trình là:",
-        "options": [
-          "1",
-          "2",
-          "0",
-          "Chương trình báo lỗi."
-        ],
+        "text": "Cho đoạn chương trình sau:\nS = {1, 2}\nS.add(3)\nS.update([2, 4, 5])\nprint(len(S), sum(S))\nKết quả in ra màn hình là gì?",
+        "options": ["5 15", "6 17", "5 17", "4 12"],
         "correct": 0,
-        "explain": "a < b đúng nên toàn điều kiện or đúng; x = 1."
+        "explain": "S ban đầu {1, 2}. Thêm 3 thành {1, 2, 3}. Cập nhật [2, 4, 5] thành {1, 2, 3, 4, 5}. Số phần tử là 5, tổng là 1 + 2 + 3 + 4 + 5 = 15."
       },
       {
-        "text": "Cho đoạn chương trình:\n\n```python\nu = 8\nv = 3\nif u % 2 == 0:\n    u = u // 2\n    if u > v:\n        v = v + u\nelse:\n    v = v - 1\nprint(u + v)\n```\n\nKết quả in ra màn hình là:",
+        "text": "Phát biểu nào sau đây là đúng khi so sánh hai phương thức xóa phần tử S.remove(x) và S.discard(x) của một Set S?",
         "options": [
-          "11",
-          "7",
-          "15",
-          "10"
-        ],
-        "correct": 0,
-        "explain": "u = 8 đổi thành 4; 4 > 3 đúng nên v = 3 + 4 = 7; in u + v = 11."
-      },
-      {
-        "text": "Một phương trình bậc nhất có dạng ax + b = 0 (với a, b đã được gán giá trị số thực). Đoạn chương trình nào sau đây biện luận đúng nghiệm của phương trình?",
-        "options": [
-          "```python\nif a == 0:\n    print(\"Vo nghiem\")\nelse:\n    print(\"Nghiem x =\", -b / a)\n```",
-          "```python\nif a == 0 and b == 0:\n    print(\"Vo so nghiem\")\nelif a == 0 and b != 0:\n    print(\"Vo nghiem\")\nelse:\n    print(\"Nghiem x =\", -b / a)\n```",
-          "```python\nif a != 0:\n    print(\"Nghiem x =\", -b / a)\nelif b == 0:\n    print(\"Vo nghiem\")\nelse:\n    print(\"Vo so nghiem\")\n```",
-          "```python\nif a == 0:\n    if b == 0:\n        print(\"Vo nghiem\")\n    else:\n        print(\"Vo so nghiem\")\nelse:\n    print(\"Nghiem x =\", -b / a)\n```"
-        ],
-        "correct": 1,
-        "explain": "Phương án B xét đủ ba trường hợp: a = 0, b = 0 (vô số nghiệm), a = 0, b != 0 (vô nghiệm), và a != 0 (một nghiệm)."
-      },
-      {
-        "text": "Cho đoạn chương trình:\n\n```python\nx = 5\ny = 12\nif x > 3:\n    if y < 10:\n        x = x + 1\nelse:\n    x = x + 10\nprint(x)\n```\n\nGiá trị của x in ra màn hình là:",
-        "options": [
-          "5",
-          "6",
-          "15",
-          "16"
-        ],
-        "correct": 0,
-        "explain": "x > 3 đúng nhưng y < 10 sai; x không đổi và else gắn với if ngoài không chạy."
-      },
-      {
-        "text": "Cho đoạn chương trình kiểm tra năm nhuận đối với biến year:\n\n```python\nyear = 1900\nif (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):\n    ket_qua = \"Nam nhuan\"\nelse:\n    ket_qua = \"Nam thuong\"\nprint(ket_qua)\n```\n\nKết quả in ra màn hình và giá trị chân lý của hai vế quanh toán tử or lần lượt là:",
-        "options": [
-          "Nam nhuan (Vế trái False, vế phải True)",
-          "Nam thuong (Vế trái False, vế phải False)",
-          "Nam nhuan (Vế trái True, vế phải False)",
-          "Nam thuong (Vế trái True, vế phải False)"
-        ],
-        "correct": 1,
-        "explain": "Năm 1900 không chia hết cho 400; tuy chia hết cho 4 nhưng chia hết cho 100 nên vế phải sai. Kết quả là năm thường."
-      },
-      {
-        "text": "Cho đoạn chương trình tính tiền điện bậc thang (đơn giản hóa) cho số kWh tiêu thụ kwh:\n\n```python\nkwh = 120\nif kwh <= 50:\n    tien = kwh * 1.5\nelif kwh <= 100:\n    tien = 50 * 1.5 + (kwh - 50) * 2.0\nelse:\n    tien = 50 * 1.5 + 50 * 2.0 + (kwh - 100) * 3.0\nprint(int(tien))\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "360",
-          "235",
-          "215",
-          "175"
-        ],
-        "correct": 1,
-        "explain": "Tiền điện = 50×1.5 + 50×2 + 20×3 = 75 + 100 + 60 = 235."
-      },
-      {
-        "text": "Cho đoạn chương trình biến đổi ba biến a, b, c:\n\n```python\na = 6\nb = 4\nc = 9\nif a > b:\n    a, b = b, a\nif b > c:\n    b, c = c, b\nif a > b:\n    a, b = b, a\nprint(a, b, c)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "9 6 4",
-          "4 6 9",
-          "4 9 6",
-          "6 4 9"
-        ],
-        "correct": 1,
-        "explain": "Ba lần đổi chỗ đưa ba giá trị về thứ tự tăng dần: 4, 6, 9."
-      },
-      {
-        "text": "Cho ba số dương a = 3, b = 4, c = 8. Đoạn chương trình sau kiểm tra xem a, b, c có tạo thành độ dài 3 cạnh của một tam giác hay không:\n\n```python\na, b, c = 3, 4, 8\nif (a + b > c) and (a + c > b) and (b + c > a):\n    if a == b == c:\n        loai = \"Deu\"\n    elif a == b or b == c or a == c:\n        loai = \"Can\"\n    else:\n        loai = \"Thuong\"\nelse:\n    loai = \"Khong phai tam giac\"\nprint(loai)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "Deu",
-          "Can",
-          "Thuong",
-          "Khong phai tam giac"
+          "S.remove(x) xóa tất cả phần tử trong S, còn S.discard(x) chỉ xóa phần tử x.",
+          "S.discard(x) sẽ báo lỗi KeyError nếu x không có trong S, còn S.remove(x) thì không báo lỗi.",
+          "Cả hai phương thức đều trả về giá trị x sau khi xóa khỏi tập hợp S.",
+          "Nếu x không tồn tại trong S, S.remove(x) sẽ báo lỗi KeyError, còn S.discard(x) không báo lỗi và giữ nguyên S."
         ],
         "correct": 3,
-        "explain": "3 + 4 > 8 sai nên ba số không tạo thành tam giác."
+        "explain": "Cả hai phương thức đều xóa phần tử x, nhưng nếu x không tồn tại, remove() phát sinh lỗi KeyError còn discard() âm thầm bỏ qua."
       },
       {
-        "text": "(Nâng cao) Trong Python, toán tử and và or khi thao tác trên các giá trị không phải bool sẽ trả về chính giá trị của toán hạng quyết định kết quả (chứ không ép kiểu sang True/False). Cho đoạn chương trình:\n\n```python\na = 0\nb = 5\nc = 8\nx = a or b and c\nif x > 6:\n    y = x - b\nelse:\n    y = x + b\nprint(x, y)\n```\n\nKết quả in ra màn hình là:",
+        "text": "Cho đoạn chương trình sau:\nS = {10, 20, 30}\nS.discard(40)\nS.remove(20)\nprint(len(S), 20 in S)\nKết quả in ra màn hình là gì?",
         "options": [
-          "True 6",
-          "5 10",
-          "8 3",
-          "0 5"
+          "Chương trình báo lỗi KeyError ở dòng S.discard(40).",
+          "2 False",
+          "3 False",
+          "2 True"
+        ],
+        "correct": 1,
+        "explain": "discard(40) không gây lỗi dù 40 không có trong S. remove(20) xóa thành công 20, S còn lại {10, 30}. Len(S) = 2 và 20 in S là False."
+      },
+      {
+        "text": "Cho hai tập hợp A = {1, 2, 3, 4} và B = {3, 4, 5, 6}. Kết quả của phép toán (A & B) và (A - B) lần lượt là gì?",
+        "options": [
+          "{1, 2, 3, 4, 5, 6} và {1, 2}",
+          "{3, 4} và {5, 6}",
+          "{3, 4} và {1, 2}",
+          "{1, 2, 5, 6} và {3, 4}"
         ],
         "correct": 2,
-        "explain": "and có ưu tiên cao hơn or: 0 or (5 and 8) trả về 8; 8 > 6 nên y = 8 - 5 = 3."
+        "explain": "Phép giao A & B lấy các phần tử chung là {3, 4}. Phép hiệu A - B lấy các phần tử thuộc A nhưng không thuộc B là {1, 2}."
       },
       {
-        "text": "(Nâng cao) Cho đoạn chương trình có nhiều nhánh biến đổi biến liên tiếp:\n\n```python\nx = 7\ny = 4\nz = 2\nif x % y >= z:\n    x = x - y\n    if y // z == 2 and not (x < z):\n        y = y + x\n        if y % 3 == 1:\n            z = z + y\n        else:\n            z = z * 2\n    else:\n        y = y - x\nelif x + y > 10:\n    z = 100\nprint(x, y, z)\n```\n\nKết quả in ra màn hình là:",
+        "text": "Cho đoạn chương trình sau:\nA = {1, 2, 3}\nB = {2, 3, 4}\nC = A ^ B\nprint(len(C), sum(C))\nKết quả in ra màn hình là gì?",
+        "options": ["2 5", "4 10", "2 6", "1 1"],
+        "correct": 0,
+        "explain": "Toán tử ^ là phép hiệu đối xứng (symmetric_difference), loại bỏ phần giao {2, 3}, kết quả C = {1, 4}. Len(C) = 2, sum(C) = 5."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nA = {1, 2, 3}\nB = {3, 4, 5}\nC = A.union(B)\nD = A.intersection(B)\nprint(len(A), len(C), len(D))\nKết quả in ra màn hình là gì?",
+        "options": ["5 5 1", "1 5 1", "3 6 1", "3 5 1"],
+        "correct": 3,
+        "explain": "A giữ nguyên len(A) = 3. C là phép hợp có độ dài 5. D là phép giao gồm {3} có độ dài 1."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nA = {1, 2, 3, 4}\nB = {3, 4, 5}\nX = A.difference_update(B)\nprint(X, A)\nKết quả in ra màn hình là gì?",
         "options": [
-          "3 7 9",
-          "3 7 4",
-          "3 1 2",
-          "7 4 100"
+          "{1, 2} {1, 2, 3, 4}",
+          "None {1, 2}",
+          "{1, 2} {1, 2}",
+          "None {1, 2, 3, 4}"
+        ],
+        "correct": 1,
+        "explain": "Phương thức difference_update cập nhật trực tiếp trên A (loại bỏ các phần tử của B khỏi A) và trả về giá trị None."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"a\": 10, \"b\": 20, \"a\": 30, \"c\": 20}\nprint(len(D), D[\"a\"])\nKết quả in ra màn hình là gì?",
+        "options": ["4 10", "4 30", "3 30", "2 30"],
+        "correct": 2,
+        "explain": "Khóa trong Dictionary là duy nhất. Khóa 'a' lặp lại nên giá trị 30 ghi đè lên 10. D có 3 phần tử ('a': 30, 'b': 20, 'c': 20) và D['a'] = 30."
+      },
+      {
+        "text": "Khai báo Dictionary nào sau đây sẽ gây ra lỗi TypeError: unhashable type khi chạy chương trình?",
+        "options": [
+          "D = {[1, 2]: \"List\"}",
+          "D = {(1, 2): \"Tuple\"}",
+          "D = {1: [1, 2]}",
+          "D = {\"key\": {1, 2}}"
         ],
         "correct": 0,
-        "explain": "x % y = 3 >= 2; x thành 3, y // z = 2 và not(3 < 2) đúng; y thành 7, y % 3 = 1 nên z thành 9."
+        "explain": "Khóa của Dictionary phải thuộc kiểu bất biến (hashable). Kiểu list [1, 2] là khả biến nên gây ra lỗi TypeError."
       },
       {
-        "text": "(Nâng cao) Cần chú ý bẫy về so sánh mắt xích (chained comparisons) trong Python. Cho đoạn chương trình:\n\n```python\na = 5\nb = 3\np = (a > b == False)\nq = ((a > b) == False)\nprint(p, q)\n```\n\nKết quả in ra màn hình là:",
+        "text": "Cho đoạn chương trình sau:\nD = {\"x\": 5, \"y\": 10}\nprint(D.get(\"x\", 0), D.get(\"z\", 100), D.get(\"w\"))\nKết quả in ra màn hình là gì?",
         "options": [
-          "False False",
-          "True True",
-          "False True",
-          "True False"
-        ],
-        "correct": 0,
-        "explain": "a > b là True nhưng b == False là False; chained comparison cho p=False. q là (True == False), cũng False."
-      },
-      {
-        "text": "(Nâng cao) Cho đoạn chương trình kết hợp biểu thức điều kiện rút gọn lồng nhau và cập nhật biến:\n\n```python\na = 4\nb = 9\nc = 6\nd = (a + b if a * 2 > b else b - a) if (c % a == 2 and b // a == 2) else (a * c)\nif d >= 5:\n    a = d if d % 2 == 0 else d + 1\n    b = a // 2 if a > 6 else a * 2\nprint(d, a, b)\n```\n\nKết quả in ra màn hình là:",
-        "options": [
-          "13 14 7",
-          "5 5 9",
-          "24 24 12",
-          "5 6 12"
+          "5 0 0",
+          "Chương trình báo lỗi KeyError vì khóa \"z\" và \"w\" không tồn tại.",
+          "0 100 None",
+          "5 100 None"
         ],
         "correct": 3,
-        "explain": "Điều kiện của d đúng nhưng a*2 > b sai nên d = b-a = 5; d lẻ nên a = 6, rồi b = a*2 = 12."
+        "explain": "Phương thức D.get(key, default) trả về giá trị của key nếu có, nếu không trả về default (hoặc None nếu không truyền default)."
+      },
+      {
+        "text": "Cho D = {\"toan\": 8, \"ly\": 9}. Câu lệnh nào sau đây gây ra lỗi KeyError?",
+        "options": [
+          "D[\"hoa\"] = 10",
+          "print(D[\"hoa\"])",
+          "print(D.get(\"hoa\"))",
+          "print(\"hoa\" in D)"
+        ],
+        "correct": 1,
+        "explain": "Truy xuất giá trị bằng cú pháp ngoặc vuông D['hoa'] khi khóa chưa tồn tại sẽ phát sinh lỗi KeyError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {1: 10, 2: 20, 3: 30}\nprint(2 in D, 20 in D, 20 in D.values())\nKết quả in ra màn hình là gì?",
+        "options": [
+          "True False True",
+          "True True True",
+          "False True True",
+          "True False False"
+        ],
+        "correct": 0,
+        "explain": "Toán tử in trên Dictionary kiểm tra trên các khóa (keys). 2 là khóa (True), 20 là giá trị không phải khóa (False), 20 in D.values() là True."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"a\": 1, \"b\": 2}\nD[\"a\"] = 5\nD.update({\"b\": 4, \"c\": 3})\nprint(len(D), sum(D.values()))\nKết quả in ra màn hình là gì?",
+        "options": ["3 8", "4 15", "3 12", "2 9"],
+        "correct": 2,
+        "explain": "D sau các bước cập nhật thành {'a': 5, 'b': 4, 'c': 3}. Độ dài là 3, tổng giá trị là 5 + 4 + 3 = 12."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"a\": 10, \"b\": 20, \"c\": 30}\nx = D.pop(\"b\")\ny = D.pop(\"d\", 5)\nprint(x + y, len(D))\nKết quả in ra màn hình là gì?",
+        "options": [
+          "Chương trình báo lỗi KeyError vì không có khóa \"d\".",
+          "25 2",
+          "20 2",
+          "25 3"
+        ],
+        "correct": 1,
+        "explain": "D.pop('b') xóa và trả về 20. D.pop('d', 5) trả về giá trị mặc định 5 vì 'd' không tồn tại. Tổng x + y = 25, len(D) = 2."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"x\": 1, \"y\": 2, \"z\": 3}\ndel D[\"y\"]\nitem = D.popitem()\nprint(item, D)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "('x', 1) {'z': 3}",
+          "3 {'x': 1}",
+          "'z' {'x': 1}",
+          "('z', 3) {'x': 1}"
+        ],
+        "correct": 3,
+        "explain": "del xóa 'y', D còn lại {'x': 1, 'z': 3}. popitem() xóa và trả về cặp phần tử thêm vào sau cùng dưới dạng tuple ('z', 3)."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"a\": 2, \"b\": 4, \"c\": 6}\ns = \"\"\nfor x in D:\n    s += x\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "abc",
+          "12",
+          "Chương trình báo lỗi TypeError.",
+          "a2b4c6"
+        ],
+        "correct": 0,
+        "explain": "Duyệt trực tiếp Dictionary bằng for x in D sẽ duyệt qua các khóa (keys). Các khóa là 'a', 'b', 'c' nối lại thành 'abc'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"a\": 2, \"b\": 3, \"c\": 4}\ntotal = 0\nfor k, v in D.items():\n    if v % 2 == 0:\n        total += v\nprint(total)\nKết quả in ra màn hình là gì?",
+        "options": ["9", "2", "6", "5"],
+        "correct": 2,
+        "explain": "D.items() trả về các cặp (key, value). Các giá trị chẵn là 2 và 4, tổng là 6."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = dict(a=1, b=2)\nD.clear()\nD[\"c\"] = 5\nprint(D)\nKết quả in ra màn hình là gì?",
+        "options": ["{'a': 1, 'b': 2, 'c': 5}", "{'c': 5}", "{}", "Chương trình báo lỗi."],
+        "correct": 1,
+        "explain": "clear() xóa sạch từ điển thành {}. Sau đó gán D['c'] = 5, kết quả là {'c': 5}."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {1: 2, 2: 3, 3: 1}\nx = D[D[1]] + D[3]\nprint(x)\nKết quả in ra màn hình là gì?",
+        "options": ["3", "5", "2", "4"],
+        "correct": 3,
+        "explain": "D[1] = 2, tiếp theo D[D[1]] = D[2] = 3. D[3] = 1. Tổng x = 3 + 1 = 4."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nL = [1, 2, 1, 3, 2, 1]\nT = tuple(set(L))\nprint(type(T), len(T), sum(T))\nKết quả in ra màn hình là gì?",
+        "options": [
+          "<class 'tuple'> 3 6",
+          "<class 'set'> 3 6",
+          "<class 'tuple'> 6 10",
+          "<class 'list'> 3 6"
+        ],
+        "correct": 0,
+        "explain": "set(L) loại bỏ trùng lặp thành {1, 2, 3}, tuple(...) chuyển thành tuple (1, 2, 3). Kiểu là tuple, độ dài 3, tổng 6."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nT = (1, [2, 3], 4)\nT[1].append(5)\nprint(T)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "Chương trình báo lỗi TypeError vì Tuple không cho phép thay đổi dữ liệu.",
+          "(1, [2, 3], 4, 5)",
+          "(1, [2, 3, 5], 4)",
+          "(1, [5], 4)"
+        ],
+        "correct": 2,
+        "explain": "Bản thân Tuple T là bất biến, nhưng phần tử T[1] là một List (khả biến). Lệnh append(5) tác động vào bên trong List đó nên hợp lệ."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {(1, 2): 10, (2, 1): 20}\nD[(1, 2)] += 5\nprint(len(D), D[(1, 2)] + D[(2, 1)])\nKết quả in ra màn hình là gì?",
+        "options": [
+          "1 35",
+          "2 35",
+          "2 30",
+          "Chương trình báo lỗi vì Tuple không thể làm khóa của Dictionary."
+        ],
+        "correct": 1,
+        "explain": "Tuple chứa số nguyên là bất biến và được dùng làm khóa. (1, 2) và (2, 1) là hai khóa khác nhau (len = 2). Tổng giá trị là 15 + 20 = 35."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nT = (5, 2, 8, 1, 4)\nx = max(T) - min(T) + sum(T[:3])\nprint(x)\nKết quả in ra màn hình là gì?",
+        "options": ["27", "18", "14", "22"],
+        "correct": 3,
+        "explain": "max(T) = 8, min(T) = 1. T[:3] là (5, 2, 8) có tổng là 15. Kết quả x = 8 - 1 + 15 = 22."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns1 = set(\"abracadabra\")\ns2 = set(\"alacazam\")\nprint(len(s1), len(s1 - s2))\nKết quả in ra màn hình là gì?",
+        "options": ["5 3", "11 3", "5 2", "6 3"],
+        "correct": 0,
+        "explain": "s1 gồm 5 ký tự phân biệt. s1 - s2 loại bỏ 'a', 'c', còn lại 3 ký tự {'b', 'r', 'd'}."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"a\": [1, 2], \"b\": [3, 4]}\nD[\"a\"].append(5)\nD[\"b\"] = [6]\nprint(sum(D[\"a\"]) + sum(D[\"b\"]))\nKết quả in ra màn hình là gì?",
+        "options": ["21", "15", "14", "9"],
+        "correct": 2,
+        "explain": "D['a'] thành [1, 2, 5] (tổng 8), D['b'] thành [6] (tổng 6). Tổng chung là 8 + 6 = 14."
+      },
+      {
+        "text": "Phát biểu nào sau đây là sai khi so sánh bốn kiểu dữ liệu list, tuple, set và dict trong Python?",
+        "options": [
+          "list và tuple đều cho phép truy cập phần tử thông qua chỉ số nguyên (index).",
+          "set và tuple đều là các kiểu dữ liệu bất biến (immutable), không thể thêm hoặc xóa phần tử.",
+          "set không chứa các phần tử trùng lặp, còn list và tuple cho phép các phần tử trùng lặp.",
+          "Các khóa (keys) của dict cũng không được phép trùng lặp giống như các phần tử của set."
+        ],
+        "correct": 1,
+        "explain": "Bản thân set là kiểu dữ liệu khả biến (mutable), ta có thể thêm/xóa phần tử của set bằng các phương thức như add() hay remove()."
+      },
+      {
+        "text": "Câu lệnh khởi tạo tập hợp Set nào sau đây sẽ gây ra lỗi TypeError khi thực thi?",
+        "options": [
+          "S = {1, \"Python\", (2, 3)}",
+          "S = set([1, 2, 2, 3])",
+          "S = set((10, 20))",
+          "S = {1, 2, [3, 4]}"
+        ],
+        "correct": 3,
+        "explain": "Các phần tử bên trong một set bắt buộc phải bất biến. Phần tử [3, 4] là list (khả biến) nên gây ra lỗi TypeError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\npairs = [(1, 3), (2, 4), (3, 1), (4, 2)]\ns = 0\nfor x, y in pairs:\n    if x > y:\n        s += x - y\n    else:\n        s += y\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": ["11", "10", "8", "12"],
+        "correct": 0,
+        "explain": "Duyệt qua các tuple: (1,3) cộng 3; (2,4) cộng 4; (3,1) cộng 3-1=2; (4,2) cộng 4-2=2. Tổng s = 3 + 4 + 2 + 2 = 11."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"banana\"\nD = {}\nfor ch in s:\n    D[ch] = D.get(ch, 0) + 1\nprint(len(D), D[\"a\"] - D[\"b\"])\nKết quả in ra màn hình là gì?",
+        "options": ["6 2", "3 2", "3 3", "3 1"],
+        "correct": 1,
+        "explain": "D đếm tần suất: {'b': 1, 'a': 3, 'n': 2}. len(D) = 3. D['a'] - D['b'] = 3 - 1 = 2."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nS = set()\nfor i in range(1, 8):\n    S.add(i % 3)\nprint(len(S), sum(S))\nKết quả in ra màn hình là gì?",
+        "options": ["7 7", "3 6", "3 3", "4 6"],
+        "correct": 2,
+        "explain": "i % 3 với i từ 1 đến 7 chỉ nhận các giá trị 0, 1, 2. Set S = {0, 1, 2}, độ dài 3, tổng 3."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {1: 10, 2: 25, 3: 15, 4: 30}\nres = 0\nfor k in D:\n    if k % 2 == 0 and D[k] > 20:\n        res += D[k]\n    else:\n        res += k\nprint(res)\nKết quả in ra màn hình là gì?",
+        "options": ["55", "80", "65", "59"],
+        "correct": 3,
+        "explain": "k=1: cộng 1; k=2: chẵn và D[2]>20 nên cộng 25; k=3: cộng 3; k=4: chẵn và D[4]>20 nên cộng 30. Tổng res = 1 + 25 + 3 + 30 = 59."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nT = ((1, 2, 3), (4, 5), (6, 7, 8, 9))\ns = 0\nfor sub in T:\n    if len(sub) >= 3:\n        s += sub[-1]\n    else:\n        s += sub[0]\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": ["16", "17", "12", "11"],
+        "correct": 0,
+        "explain": "Tuple 1 (len 3) cộng 3; Tuple 2 (len 2) cộng 4; Tuple 3 (len 4) cộng 9. Tổng s = 3 + 4 + 9 = 16."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nA = {1, 2, 3, 4, 5}\nB = {2, 4, 6}\nfor x in B:\n    if x in A:\n        A.remove(x)\n    else:\n        A.add(x)\nprint(len(A), sum(A))\nKết quả in ra màn hình là gì?",
+        "options": ["3 9", "4 15", "5 15", "4 9"],
+        "correct": 1,
+        "explain": "Thao tác trên mô phỏng hiệu đối xứng: loại bỏ 2 và 4, thêm 6. A thành {1, 3, 5, 6}, độ dài 4, tổng 15."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {}\nfor i in range(1, 6):\n    D[i % 2] = D.get(i % 2, 0) + i\nprint(D[0], D[1])\nKết quả in ra màn hình là gì?",
+        "options": ["9 6", "4 5", "6 9", "6 15"],
+        "correct": 2,
+        "explain": "Khóa 0 cộng các số chẵn (2+4=6). Khóa 1 cộng các số lẻ (1+3+5=9). Kết quả in ra là 6 9."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nD = {\"x\": 1, \"y\": 2, \"z\": 3}\nR = {}\nfor k, v in D.items():\n    R[v] = k\nprint(R[2], len(R))\nKết quả in ra màn hình là gì?",
+        "options": ["y 3", "2 3", "x 3", "Chương trình báo lỗi KeyError."],
+        "correct": 0,
+        "explain": "Đảo ngược khóa và giá trị tạo thành R = {1: 'x', 2: 'y', 3: 'z'}. R[2] là 'y', len(R) = 3."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình thao tác trên Tuple lồng nhau và unpacking như sau:\nT = ([1, 2], [3, 4], [5, 6])\na, *b = T\na.append(10)\nb[0][1] = 20\nT[2].pop(0)\ns = sum(T[0]) + sum(T[1]) + sum(T[2])\nprint(s, len(b))\nKết quả in ra màn hình là gì?",
+        "options": ["42 2", "41 2", "42 3", "Chương trình báo lỗi vì Tuple không thể thay đổi."],
+        "correct": 0,
+        "explain": "Tổng các phần tử trong các list sau khi thao tác lần lượt là 13, 23 và 6. Tổng s = 42, len(b) = 2."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình sử dụng các phép toán tập hợp sau:\nA = {1, 2, 3, 4, 6}\nB = {2, 4, 5, 6}\nC = (A - B) | (B - A)\nD = A & B\nprint(len(C), sum(C), max(D))\nKết quả in ra màn hình là gì?",
+        "options": ["3 9 6", "4 11 6", "3 10 6", "2 4 6"],
+        "correct": 0,
+        "explain": "C = {1, 3, 5} có độ dài 3, tổng 9. D = {2, 4, 6} có giá trị lớn nhất là 6."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình xử lý Dictionary qua nhiều bước sau:\nD = {\"a\": 3, \"b\": 1, \"c\": 4, \"d\": 2}\nkeys = [\"a\", \"b\", \"e\", \"c\"]\nfor k in keys:\n    if k in D:\n        if D[k] % 2 == 1:\n            D[k] += D.pop(\"d\", 1)\n        else:\n            del D[k]\n    else:\n        D[k] = len(D)\nprint(len(D), sum(D.values()))\nKết quả in ra màn hình là gì?",
+        "options": ["4 11", "3 11", "3 10", "4 10"],
+        "correct": 2,
+        "explain": "Sau các vòng lặp, từ điển D còn lại {'a': 5, 'b': 2, 'e': 3}, có 3 khóa và tổng giá trị là 10."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình kết hợp Tuple, Set và Dictionary như sau:\nrecords = [(\"A\", 2), (\"B\", 3), (\"A\", 2), (\"B\", 5), (\"C\", 2), (\"A\", 4)]\nunique_rec = set(records)\nD = {}\nfor name, val in unique_rec:\n    D[name] = D.get(name, 0) + val\nres = [k for k, v in D.items() if v >= 6]\nprint(len(unique_rec), D[\"A\"], len(res))\nKết quả in ra màn hình là gì?",
+        "options": ["5 6 2", "6 8 2", "5 8 2", "5 6 1"],
+        "correct": 0,
+        "explain": "Set unique_rec có 5 phần tử. Tổng giá trị của 'A' là 6. Có 2 khóa có tổng >= 6 là A và B."
       }
     ]
   }
