@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz cuối kì</title>
+    <title>quiz cuối kì - Huy Dũng & Em Bô</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Thư viện tô màu cú pháp Python (Prism.js Dark Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         
@@ -30,10 +32,23 @@
             width: 85px;
         }
 
-        /* GIỮ NGUYÊN KHOẢNG TRẮNG VÀ XUỐNG DÒNG CHO CODE PYTHON */
+        /* Giữ nguyên thụt lề và khoảng trắng cho code Python */
         .preserve-space {
             white-space: pre-wrap;
-            font-family: 'Plus Jakarta Sans', monospace, sans-serif;
+            font-family: 'Fira Code', Consolas, Monaco, monospace, sans-serif;
+        }
+
+        /* Tùy chỉnh khung code block tối giống VS Code */
+        pre.code-box {
+            background-color: #1e1e1e !important;
+            color: #d4d4d8 !important;
+            padding: 14px 18px !important;
+            border-radius: 6px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 8px 0;
+            border: 1px solid #333;
         }
 
         .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -224,8 +239,8 @@
                         </button>
                     </div>
 
-                    <!-- THÊM CLASS preserve-space ĐỂ GIỮ NGUYÊN THỤT LỀ CODE PYTHON -->
-                    <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed preserve-space py-2"></div>
+                    <!-- Khu vực nội dung câu hỏi -->
+                    <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed py-2"></div>
 
                     <div id="exam-options-list" class="space-y-3"></div>
 
@@ -387,10 +402,14 @@
         </div>
     </div>
 
+    <!-- Thư viện Prism.js hỗ trợ tô sáng cú pháp Python -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
     <!-- JAVASCRIPT -->
     <script>
-        const STORAGE_KEY = 'quizmaster_vn_quizzes_v4';
-        const STATS_KEY = 'quizmaster_vn_stats_v4';
+        const STORAGE_KEY = 'quizmaster_vn_quizzes_v5';
+        const STATS_KEY = 'quizmaster_vn_stats_v5';
 
         const DEFAULT_QUIZZES = [
             {
@@ -789,7 +808,14 @@
                 const total = this.examQuestions.length;
 
                 document.getElementById('exam-question-counter').textContent = `Câu hỏi ${this.currentQIndex + 1} / ${total}`;
-                document.getElementById('exam-question-text').textContent = q.text;
+                
+                // Tự động bọc code vào khung code tối chuẩn màu nếu có lệnh python hoặc xuống dòng
+                const textEl = document.getElementById('exam-question-text');
+                if (q.text.includes('\n') || q.text.includes('=') || q.text.includes('print')) {
+                    textEl.innerHTML = `<pre class="code-box"><code class="language-python">${this.escapeHtml(q.text)}</code></pre>`;
+                } else {
+                    textEl.innerHTML = `<div class="preserve-space">${this.escapeHtml(q.text)}</div>`;
+                }
 
                 const isFlagged = this.flaggedQuestions.has(this.currentQIndex);
                 document.getElementById('exam-flag-btn').className = isFlagged 
@@ -831,6 +857,11 @@
                     textarea.value = this.questionNotes[this.currentQIndex] || '';
                     document.getElementById('note-char-count').textContent = `${textarea.value.length} ký tự`;
                 }
+
+                // Tô sáng cú pháp Python
+                if (window.Prism) {
+                    Prism.highlightAll();
+                }
             },
 
             selectOption(optIdx) {
@@ -865,6 +896,12 @@
                 const score10 = ((correctCount / total) * 10).toFixed(1);
                 const elapsedSec = Math.max(1, Math.floor((Date.now() - this.startTime) / 1000));
                 const elapsedStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`;
+
+                fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ playerName: this.playerName || 'Ẩn danh', quizCode: this.activeQuiz?.code || 'QUIZ', score: score10, correct: correctCount, total, timeSpent: elapsedStr })
+                }).catch(err => {});
 
                 this.stats.attempts++;
                 this.stats.totalScore += parseFloat(score10);
