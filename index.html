@@ -539,7 +539,7 @@
                     if (['TEXTAREA', 'INPUT'].includes(document.activeElement.tagName)) return;
 
                     const key = e.key.toUpperCase();
-                    if (['A', 'B', 'C', 'D'].includes(key)) {
+                    if (/^[A-Z]$/.test(key) && this.examQuestions[this.currentQIndex]?.options && key.charCodeAt(0) - 65 < this.examQuestions[this.currentQIndex].options.length) {
                         this.selectOption(key.charCodeAt(0) - 65);
                     } else if (e.key === 'ArrowRight') {
                         this.nextQuestion();
@@ -874,7 +874,7 @@
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 ${q.options.map((optText, optIdx) => {
-                    const letter = ['A', 'B', 'C', 'D', 'E', 'F'][optIdx] || String.fromCharCode(65 + optIdx);
+                    const letter = String.fromCharCode(65 + optIdx);
                     return `
                         <div class="flex items-center gap-2">
                             <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} onchange="app.editorQuestions[${idx}].correct =${optIdx}" title="Chọn làm đáp án đúng">
@@ -890,6 +890,27 @@
         </div>
     `;
 }).join('');
+            },
+
+            // Thêm đáp án cho câu hỏi trong trình soạn đề (tối đa 26 lựa chọn A-Z)
+            addEditorOption(questionIndex) {
+                const q = this.editorQuestions[questionIndex];
+                if (!q) return;
+                if (!Array.isArray(q.options)) q.options = ['', '', '', ''];
+                if (q.options.length >= 26) return alert('Mỗi câu tối đa 26 đáp án (A-Z).');
+                q.options.push('');
+                this.renderEditorQuestions();
+            },
+
+            // Xóa đáp án và cập nhật chỉ số đáp án đúng
+            removeEditorOption(questionIndex, optionIndex) {
+                const q = this.editorQuestions[questionIndex];
+                if (!q || !Array.isArray(q.options)) return;
+                if (q.options.length <= 2) return alert('Mỗi câu cần có ít nhất 2 đáp án.');
+                q.options.splice(optionIndex, 1);
+                if (q.correct === optionIndex) q.correct = 0;
+                else if (q.correct > optionIndex) q.correct--;
+                this.renderEditorQuestions();
             },
 
             addEmptyQuestion() {
@@ -1021,7 +1042,26 @@
                 if (!quiz) return;
 
                 this.activeQuiz = quiz;
-                this.examQuestions = this.pendingCustomQuestions || JSON.parse(JSON.stringify(quiz.questions));
+                this.examQuestions = (this.pendingCustomQuestions || JSON.parse(JSON.stringify(quiz.questions || []))).map(q => {
+                    const item = { ...q };
+                    if (!Array.isArray(item.options)) {
+                        if (item.options && typeof item.options === 'object') {
+                            item.options = Object.keys(item.options).sort().map(k => item.options[k]);
+                        } else {
+                            item.options = [];
+                        }
+                    }
+                    // Hỗ trợ correct là chỉ số 0-based hoặc chữ cái A/B/C...
+                    if (typeof item.correct === 'string' && /^[A-Z]$/i.test(item.correct.trim())) {
+                        item.correct = item.correct.trim().toUpperCase().charCodeAt(0) - 65;
+                    } else if (typeof item.correct === 'string' && item.correct.trim() !== '' && !Number.isNaN(Number(item.correct))) {
+                        item.correct = Number(item.correct);
+                    }
+                    if (!Number.isInteger(item.correct) || item.correct < 0 || item.correct >= item.options.length) item.correct = 0;
+                    item.text = item.text ?? item.question ?? '';
+                    item.explain = item.explain ?? item.explanation ?? '';
+                    return item;
+                });
                 this.userAnswers = {};
                 this.flaggedQuestions = new Set();
                 this.questionNotes = {};
@@ -1065,6 +1105,12 @@
 
             renderExamQuestion() {
                 const q = this.examQuestions[this.currentQIndex];
+                if (!q) {
+                    document.getElementById('exam-question-text').textContent = 'Không tìm thấy câu hỏi. Hãy kiểm tra dữ liệu JSON.';
+                    document.getElementById('exam-options-list').innerHTML = '';
+                    return;
+                }
+                if (!Array.isArray(q.options)) q.options = [];
                 const total = this.examQuestions.length;
 
                 document.getElementById('exam-question-counter').textContent = `Câu hỏi ${this.currentQIndex + 1} / ${total}`;
@@ -1084,7 +1130,7 @@
 
                 const selected = this.userAnswers[this.currentQIndex];
                 document.getElementById('exam-options-list').innerHTML = q.options.map((opt, idx) => {
-                    const letter = ['A', 'B', 'C', 'D'][idx];
+                    const letter = String.fromCharCode(65 + idx);
                     const active = selected === idx;
                     return `
                         <div onclick="app.selectOption(${idx})" class="p-4 border cursor-pointer transition flex items-center gap-4 ${
@@ -1140,6 +1186,7 @@
 
             submitExam(auto = false) {
                 const total = this.examQuestions.length;
+                if (total === 0) return alert('Đề thi chưa có câu hỏi hợp lệ. Hãy kiểm tra file JSON.');
                 const answered = Object.keys(this.userAnswers).length;
                 if (!auto && answered < total && !confirm(`Bạn mới làm ${answered}/${total} câu. Nộp bài sớm?`)) return;
 
@@ -1188,7 +1235,7 @@
                                     let style = 'border-zinc-200 bg-zinc-50 text-zinc-700';
                                     if (oIdx === q.correct) style = 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold';
                                     else if (oIdx === userAns && !isCorrect) style = 'border-rose-400 bg-rose-50 text-rose-900 line-through';
-                                    return `<div class="p-3 border ${style} preserve-space">${['A','B','C','D'][oIdx]}.${this.escapeHtml(opt)}</div>`;
+                                    return `<div class="p-3 border ${style} preserve-space">${String.fromCharCode(65 + oIdx)}. ${this.escapeHtml(opt)}</div>`;
                                 }).join('')}
                             </div>
                             ${q.explain ? `<div class="text-xs text-zinc-600 bg-zinc-50 p-3.5 border border-zinc-200 preserve-space"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <b>Giải thích:</b> ${this.escapeHtml(q.explain)}</div>` : ''}
