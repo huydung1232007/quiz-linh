@@ -41,8 +41,8 @@
 
         /* Tùy chỉnh khung code block tối giống VS Code */
         pre.code-box, pre.code-box code {
-            white-space: pre-wrap !important; /* Ép buộc tự động xuống dòng */
-            word-break: break-word !important; /* Cắt từ nếu quá dài tránh tràn khung */
+            white-space: pre-wrap !important;
+            word-break: break-word !important;
         }
         
         pre.code-box {
@@ -193,10 +193,10 @@
                     </div>
                 </div>
 
-                <!-- ==================== BANNER TIẾP TỤC LÀM BÀI ==================== -->
-                <div id="resume-banner" class="hidden mb-8 bg-[#1b1d1f] text-white p-6 border-l-4 border-amber-500 shadow-md flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                <!-- BANNER TIẾP TỤC BÀI LÀM (AUTO-SAVE) -->
+                <div id="resume-banner" class="hidden mb-8 bg-[#1b1d1f] text-white p-6 border-l-4 border-emerald-500 shadow-md flex-col md:flex-row items-start md:items-center justify-between gap-5">
                     <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-amber-500">BÀI THI ĐANG DANG DỞ</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-400">BÀI THI ĐANG DANG DỞ</span>
                         <h3 class="text-base font-bold text-white mt-1" id="resume-quiz-title">Tên Đề Thi</h3>
                         <p class="text-xs text-zinc-400 mt-1">Hệ thống đã tự động lưu lại toàn bộ câu trả lời, ghi chú và thời gian làm bài của bạn.</p>
                     </div>
@@ -209,7 +209,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- ================================================================= -->
 
                 <div id="quiz-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
@@ -281,15 +280,24 @@
                         <div class="text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Thời gian còn lại</div>
                         <div id="exam-timer" class="text-3xl font-mono font-bold mt-1 text-white">45:00</div>
                     </div>
+                    
                     <div class="space-y-2">
                         <div class="flex items-center justify-between text-xs text-zinc-600 bg-zinc-50 px-3.5 py-2.5 border border-zinc-200">
                             <span>Đảo thứ tự câu</span>
-                            <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold"><i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay</button>
+                            <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold hover:underline"><i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay</button>
                         </div>
-                        <button onclick="app.toggleNoteModal()" class="w-full py-2.5 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold uppercase border border-zinc-300 flex items-center justify-center gap-2">
-                            <i class="fa-regular fa-note-sticky text-amber-500"></i> <span id="note-btn-label">Mở Ghi Chú (0)</span>
-                        </button>
+                        
+                        <!-- HAI NÚT: GHI CHÚ VÀ CHẠY CODE -->
+                        <div class="flex gap-2">
+                            <button onclick="app.toggleNoteModal()" class="flex-1 py-2.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-[10px] font-bold uppercase border border-zinc-300 flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-regular fa-note-sticky text-amber-500"></i> <span id="note-btn-label">Note (0)</span>
+                            </button>
+                            <button onclick="app.openPythonRunner()" class="flex-1 py-2.5 bg-[#212326] hover:bg-black text-white text-[10px] font-bold uppercase border border-zinc-800 flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-terminal text-emerald-400"></i> Chạy Code
+                            </button>
+                        </div>
                     </div>
+
                     <div>
                         <div class="flex justify-between text-xs font-bold uppercase text-zinc-500 mb-3">
                             <span>Bảng câu hỏi</span>
@@ -374,6 +382,49 @@
         </div>
     </div>
 
+    <!-- ==================== MODAL PYTHON RUNNER (THÊM MỚI TẠI ĐÂY) ==================== -->
+    <div id="modal-python-runner" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60] hidden items-center justify-center p-4">
+        <div class="bg-white max-w-4xl w-full flex flex-col shadow-2xl border border-zinc-200 h-[85vh] sm:h-[75vh]">
+            <!-- Header Modal -->
+            <div class="flex items-center justify-between border-b border-zinc-200 px-6 py-4 bg-zinc-50">
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-python text-xl text-emerald-600"></i>
+                    <h3 class="text-sm font-bold uppercase tracking-widest text-zinc-900">Python Code Runner</h3>
+                </div>
+                <button onclick="app.closePythonRunner()" class="text-zinc-400 hover:text-zinc-900 transition"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            
+            <!-- Vùng Editor & IO -->
+            <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
+                <!-- Vùng Trái: Code Editor -->
+                <div class="w-full md:w-2/3 p-5 flex flex-col border-b md:border-b-0 md:border-r border-zinc-200">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Code Python (Chỉnh sửa tùy ý)</label>
+                    <textarea id="py-code-input" class="w-full flex-1 p-4 bg-[#1e1e1e] text-[#d4d4d8] font-mono text-sm focus:outline-none resize-none border border-zinc-800 rounded-lg custom-scroll whitespace-pre" spellcheck="false" placeholder="Nhập code Python vào đây..."></textarea>
+                </div>
+                <!-- Vùng Phải: Input & Output -->
+                <div class="w-full md:w-1/3 p-5 flex flex-col bg-zinc-50 space-y-4">
+                    <div class="flex flex-col">
+                        <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Đầu vào (Lệnh input)</label>
+                        <textarea id="py-stdin" class="w-full h-24 p-3 bg-white border border-zinc-300 text-xs font-mono focus:outline-none focus:border-zinc-900 resize-none rounded-lg custom-scroll whitespace-pre" placeholder="Nếu code có lệnh input(), hãy nhập dữ liệu tại đây. Mỗi dòng tương ứng 1 lệnh input()..."></textarea>
+                    </div>
+                    <div class="flex-1 flex flex-col min-h-[12rem]">
+                        <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Đầu ra (Output)</label>
+                        <pre id="py-output" class="w-full flex-1 p-3 bg-zinc-900 text-emerald-400 border border-zinc-800 text-xs font-mono overflow-auto rounded-lg custom-scroll whitespace-pre-wrap"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Buttons -->
+            <div class="px-6 py-4 border-t border-zinc-200 bg-zinc-50 flex justify-end gap-3">
+                <button onclick="document.getElementById('py-output').textContent=''" class="px-5 py-2.5 border border-zinc-300 text-zinc-600 text-xs font-bold uppercase tracking-wider hover:border-zinc-900 transition">Xóa Output</button>
+                <button onclick="app.runPythonCode()" class="px-6 py-2.5 bg-[#1b1d1f] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-2 shadow-md">
+                    <i class="fa-solid fa-play text-emerald-400"></i> Chạy Code
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- =================================================================================== -->
+
     <!-- MODAL NHẬP TÊN -->
     <div id="modal-player-name" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white max-w-md w-full p-8 space-y-6 shadow-2xl border border-zinc-200">
@@ -426,21 +477,26 @@
         </div>
     </div>
 
-    <!-- Thư viện Prism.js hỗ trợ tô sáng cú pháp Python -->
+    <!-- THƯ VIỆN BÊN NGOÀI -->
+    <!-- Prism.js: Tô sáng cú pháp -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    
+    <!-- Skulpt: Engine chạy code Python trực tiếp trên trình duyệt -->
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        const STORAGE_KEY = 'quizmaster_vn_quizzes_v5';
-        const STATS_KEY = 'quizmaster_vn_stats_v5';
-        const PROGRESS_KEY = 'quizmaster_vn_progress_v5'; // Khóa lưu tiến độ
+        const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
+        const STATS_KEY = 'quizmaster_vn_stats_v6';
+        const PROGRESS_KEY = 'quizmaster_vn_progress_v6';
 
         const DEFAULT_QUIZZES = [
             {
                 id: 'q-py-01',
                 code: 'PY-01',
-                title: '50 Câu Trắc Nghiệm Ôn Tập Python – Chủ Đề Hàm',
+                title: '50 Câu Trắc Nghiệm Ôn Tập Python',
                 desc: 'Hệ thống câu hỏi ôn tập hàm Python từ cơ bản đến nâng cao.',
                 duration: 45,
                 isServer: true,
@@ -479,6 +535,9 @@
 
                 window.addEventListener('keydown', (e) => {
                     if (document.getElementById('view-exam').classList.contains('hidden')) return;
+                    // Không kích hoạt phím tắt khi đang nhập liệu vào note hoặc code runner
+                    if (['TEXTAREA', 'INPUT'].includes(document.activeElement.tagName)) return;
+
                     const key = e.key.toUpperCase();
                     if (['A', 'B', 'C', 'D'].includes(key)) {
                         this.selectOption(key.charCodeAt(0) - 65);
@@ -516,7 +575,77 @@
                 document.addEventListener('mouseup', () => { isDragging = false; });
             },
 
-            // ---------------- HÀM LƯU TIẾN ĐỘ ----------------
+            // ---------------- TÍNH NĂNG PYTHON RUNNER ----------------
+            openPythonRunner() {
+                document.getElementById('modal-python-runner').classList.replace('hidden', 'flex');
+                
+                // Trích xuất tự động code từ câu hỏi hiện tại để đỡ phải gõ lại
+                const q = this.examQuestions[this.currentQIndex];
+                const codeInput = document.getElementById('py-code-input');
+                if (q && (q.text.includes('\n') || q.text.includes('='))) {
+                    // Loại bỏ dòng văn bản thông thường (nếu có)
+                    const lines = q.text.split('\n');
+                    const codeLines = lines.filter(l => !l.toLowerCase().includes('cho đoạn chương trình') && !l.toLowerCase().includes('kết quả in ra'));
+                    codeInput.value = codeLines.join('\n').trim();
+                } else {
+                    codeInput.value = 'print("Xin chào từ Em Bô!")';
+                }
+                
+                document.getElementById('py-output').textContent = '';
+                document.getElementById('py-stdin').value = '';
+            },
+
+            closePythonRunner() {
+                document.getElementById('modal-python-runner').classList.replace('flex', 'hidden');
+            },
+
+            runPythonCode() {
+                const code = document.getElementById('py-code-input').value;
+                const outputEl = document.getElementById('py-output');
+                const stdinStr = document.getElementById('py-stdin').value;
+                
+                outputEl.textContent = 'Đang chạy...\n';
+                
+                const inputLines = stdinStr.split('\n');
+                let inputCursor = 0;
+
+                // Cấu hình môi trường chạy Python bằng Skulpt
+                Sk.configure({
+                    output: function(text) {
+                        outputEl.textContent += text;
+                    },
+                    read: function(x) {
+                        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                            throw "File not found: '" + x + "'";
+                        return Sk.builtinFiles["files"][x];
+                    },
+                    inputfun: function(promptStr) {
+                        return new Promise((resolve) => {
+                            if (inputCursor < inputLines.length && inputLines[inputCursor] !== undefined) {
+                                resolve(inputLines[inputCursor++]); // Đọc dữ liệu từ ô Input
+                            } else {
+                                // Nếu hết dữ liệu ở ô input thì bật prompt của trình duyệt
+                                const val = prompt(promptStr || 'Nhập input cho Python:');
+                                resolve(val !== null ? val : '');
+                            }
+                        });
+                    },
+                    execLimit: 5000 // Chống lặp vô hạn (Giới hạn 5 giây)
+                });
+
+                // Thực thi code
+                Sk.misceval.asyncToPromise(() => {
+                    outputEl.textContent = ''; // Xóa chữ Đang chạy
+                    return Sk.importMainWithBody("<stdin>", false, code, true);
+                }).then(() => {
+                    // Chạy thành công
+                }, (err) => {
+                    outputEl.textContent += '\n[LỖI] ' + err.toString();
+                });
+            },
+            // ---------------------------------------------------------
+
+            // LƯU TIẾN ĐỘ TỰ ĐỘNG
             saveProgress() {
                 if (!this.activeQuiz) return;
                 const progress = {
@@ -586,8 +715,8 @@
                 localStorage.removeItem(PROGRESS_KEY);
                 this.checkSavedProgress();
             },
-            // ------------------------------------------------
 
+            // CÁC HÀM XỬ LÝ GIAO DIỆN
             toggleNoteModal() {
                 const box = document.getElementById('floating-note-box');
                 this.isNoteOpen = !this.isNoteOpen;
@@ -604,7 +733,7 @@
                 const count = Object.keys(this.questionNotes).length;
                 const label = document.getElementById('note-btn-label');
                 if (label) {
-                    label.textContent = count > 0 ? `Ghi Chú (${count} câu có note)` : `Mở Ghi Chú (0)`;
+                    label.textContent = count > 0 ? `Note (${count})` : `Note (0)`;
                 }
             },
 
@@ -691,7 +820,6 @@
                     </div>
                 `).join('');
 
-                // Kiểm tra tiến độ đang lưu
                 this.checkSavedProgress();
             },
 
@@ -911,7 +1039,7 @@
                 this.timerInterval = setInterval(() => {
                     this.timerSeconds--;
                     updateDisplay();
-                    this.saveProgress(); // TỰ ĐỘNG LƯU MỖI GIÂY
+                    this.saveProgress();
 
                     if (this.timerSeconds <= 0) {
                         clearInterval(this.timerInterval);
@@ -927,7 +1055,7 @@
 
                 document.getElementById('exam-question-counter').textContent = `Câu hỏi ${this.currentQIndex + 1} / ${total}`;
                 
-                // Tự động bọc code vào khung code tối chuẩn màu nếu có lệnh python hoặc xuống dòng
+                // Bọc code vào khung code tối chuẩn màu Prism.js
                 const textEl = document.getElementById('exam-question-text');
                 if (q.text.includes('\n') || q.text.includes('=') || q.text.includes('print')) {
                     textEl.innerHTML = `<pre class="code-box"><code class="language-python">${this.escapeHtml(q.text)}</code></pre>`;
@@ -976,7 +1104,6 @@
                     document.getElementById('note-char-count').textContent = `${textarea.value.length} ký tự`;
                 }
 
-                // Tô sáng cú pháp Python
                 if (window.Prism) {
                     Prism.highlightAll();
                 }
@@ -1003,7 +1130,7 @@
                 if (!auto && answered < total && !confirm(`Bạn mới làm ${answered}/${total} câu. Nộp bài sớm?`)) return;
 
                 clearInterval(this.timerInterval);
-                localStorage.removeItem(PROGRESS_KEY); // XÓA TIẾN ĐỘ KHI ĐÃ NỘP BÀI THÀNH CÔNG
+                localStorage.removeItem(PROGRESS_KEY); // Xóa tiến độ
 
                 let correctCount = 0;
                 const wrongQuestions = [];
