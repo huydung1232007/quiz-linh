@@ -2,7 +2,7 @@
   {
     "id": "q-python-01",
     "code": "PY-01",
-    "title": "Ôn Tập Python – Chủ Đề Hàm (50 Câu)",
+    "title": "Hàm",
     "desc": "Hệ thống 50 câu hỏi trắc nghiệm ôn tập về hàm trong Python từ cơ bản đến nâng cao.",
     "duration": 45,
     "questions": [
