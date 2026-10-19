@@ -59,6 +59,17 @@
         .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
         .custom-scroll::-webkit-scrollbar-track { background: #f4f4f4; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #222529; }
+
+        /* Hộp xác nhận nộp bài tùy chỉnh */
+        .confirm-overlay { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(15, 18, 24, .58); backdrop-filter: blur(7px); animation: confirmFade .18s ease-out; }
+        .confirm-overlay.hidden { display: none; }
+        .confirm-card { width: min(100%, 430px); overflow: hidden; border: 1px solid rgba(255,255,255,.65); border-radius: 22px; background: #fff; box-shadow: 0 24px 80px rgba(0,0,0,.24); animation: confirmRise .22s ease-out; }
+        .confirm-icon { width: 54px; height: 54px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 17px; background: #fff4df; color: #b7791f; font-size: 22px; }
+        .confirm-btn { border-radius: 12px; padding: 12px 17px; font-size: 13px; font-weight: 700; transition: transform .15s, background .15s; }
+        .confirm-btn:active { transform: scale(.98); }
+        @keyframes confirmFade { from { opacity: 0 } to { opacity: 1 } }
+        @keyframes confirmRise { from { opacity: 0; transform: translateY(10px) scale(.98) } to { opacity: 1; transform: translateY(0) scale(1) } }
+        @media (prefers-reduced-motion: reduce) { .confirm-overlay, .confirm-card { animation: none; } }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-zinc-900 selection:text-white overflow-x-hidden">
@@ -473,6 +484,29 @@
                         <button onclick="app.copyShareLink()" class="px-4 py-2.5 bg-[#1b1d1f] text-white text-xs font-bold">Copy</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HỘP XÁC NHẬN NỘP BÀI ĐẸP -->
+    <div id="custom-confirm" class="confirm-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+        <div class="confirm-card">
+            <div class="p-6 sm:p-7">
+                <div class="flex items-start gap-4">
+                    <div class="confirm-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+                    <div class="min-w-0 pt-1">
+                        <h3 id="confirm-title" class="text-lg font-extrabold tracking-tight text-zinc-900">Bạn muốn nộp bài?</h3>
+                        <p id="confirm-message" class="mt-2 text-sm leading-6 text-zinc-500">Bạn vẫn còn câu chưa trả lời. Bạn có chắc muốn nộp bài ngay bây giờ không?</p>
+                    </div>
+                </div>
+                <div class="mt-5 rounded-xl border border-amber-100 bg-amber-50 px-4 py-3 flex items-center gap-3">
+                    <i class="fa-solid fa-circle-info text-amber-600"></i>
+                    <p id="confirm-hint" class="text-xs leading-5 text-amber-900">Bạn có thể quay lại làm tiếp trước khi nộp bài.</p>
+                </div>
+            </div>
+            <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-2 border-t border-zinc-100 bg-zinc-50/80 px-6 py-4">
+                <button id="confirm-cancel" type="button" class="confirm-btn border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100">Quay lại làm bài</button>
+                <button id="confirm-accept" type="button" class="confirm-btn bg-[#212326] text-white hover:bg-black"><i class="fa-solid fa-paper-plane mr-2"></i>Nộp bài ngay</button>
             </div>
         </div>
     </div>
@@ -1184,11 +1218,41 @@
             nextQuestion() { if (this.currentQIndex < this.examQuestions.length - 1) { this.currentQIndex++; this.renderExamQuestion(); } },
             jumpToQuestion(idx) { this.currentQIndex = idx; this.renderExamQuestion(); },
 
+            showConfirm(message, onAccept, answered = 0, total = 0) {
+                const modal = document.getElementById('custom-confirm');
+                const messageEl = document.getElementById('confirm-message');
+                const hintEl = document.getElementById('confirm-hint');
+                const acceptBtn = document.getElementById('confirm-accept');
+                const cancelBtn = document.getElementById('confirm-cancel');
+                messageEl.textContent = message;
+                hintEl.textContent = total ? `Đã trả lời ${answered}/${total} câu • Còn ${Math.max(0, total - answered)} câu chưa làm.` : 'Bạn có thể quay lại trước khi xác nhận.';
+                modal.classList.remove('hidden');
+                const close = () => {
+                    modal.classList.add('hidden');
+                    acceptBtn.removeEventListener('click', accept);
+                    cancelBtn.removeEventListener('click', cancel);
+                    modal.removeEventListener('click', backdrop);
+                    document.removeEventListener('keydown', keydown);
+                };
+                const accept = () => { close(); onAccept(); };
+                const cancel = () => close();
+                const backdrop = (e) => { if (e.target === modal) cancel(); };
+                const keydown = (e) => { if (e.key === 'Escape') cancel(); if (e.key === 'Enter') accept(); };
+                acceptBtn.addEventListener('click', accept);
+                cancelBtn.addEventListener('click', cancel);
+                modal.addEventListener('click', backdrop);
+                document.addEventListener('keydown', keydown);
+                cancelBtn.focus();
+            },
+
             submitExam(auto = false) {
                 const total = this.examQuestions.length;
                 if (total === 0) return alert('Đề thi chưa có câu hỏi hợp lệ. Hãy kiểm tra file JSON.');
-                const answered = Object.keys(this.userAnswers).length;
-                if (!auto && answered < total && !confirm(`Bạn mới làm ${answered}/${total} câu. Nộp bài sớm?`)) return;
+                const answered = Object.keys(this.userAnswers).filter(k => this.userAnswers[k] !== undefined && this.userAnswers[k] !== null).length;
+                if (!auto && answered < total) {
+                    this.showConfirm(`Bạn mới làm ${answered}/${total} câu. Bạn có chắc muốn nộp bài sớm không?`, () => this.submitExam(true), answered, total);
+                    return;
+                }
 
                 clearInterval(this.timerInterval);
                 localStorage.removeItem(PROGRESS_KEY); // Xóa tiến độ
