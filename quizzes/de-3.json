@@ -1,0 +1,351 @@
+[
+  {
+    "id": "q-python-01",
+    "code": "PY-01",
+    "title": "Ôn Tập Python – Chủ Đề Hàm (50 Câu)",
+    "desc": "Hệ thống 50 câu hỏi trắc nghiệm ôn tập về hàm trong Python từ cơ bản đến nâng cao.",
+    "duration": 45,
+    "questions": [
+      {
+        "text": "Từ khóa nào sau đây được sử dụng để bắt đầu định nghĩa một hàm thông thường trong Python?",
+        "options": ["func", "def", "function", "define"],
+        "correct": 1,
+        "explain": "Trong Python, từ khóa chuẩn để khai báo một hàm có tên là def (viết tắt của define), theo sau là tên hàm, cặp dấu ngoặc tròn chứa danh sách tham số và dấu hai chấm :."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef tinh_tong(a, b):\n    return a + b\nx = tinh_tong(3, 5)\nPhát biểu nào sau đây phân biệt đúng giữa tham số (parameter) và đối số (argument)?",
+        "options": [
+          "a, b là tham số trong định nghĩa hàm; 3, 5 là đối số truyền vào khi gọi hàm.",
+          "3, 5 là tham số trong định nghĩa hàm; a, b là đối số truyền vào khi gọi hàm.",
+          "tinh_tong là tham số, còn x là đối số.",
+          "Cả a, b và 3, 5 đều chỉ được gọi là đối số, Python không có khái niệm tham số."
+        ],
+        "correct": 0,
+        "explain": "Các biến a, b nằm trong phần khai báo đầu hàm def tinh_tong(a, b): được gọi là tham số hình thức (parameters). Còn các giá trị cụ thể 3, 5 truyền vào trong lời gọi hàm tinh_tong(3, 5) được gọi là đối số thực sự (arguments)."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef in_thong_bao(x):\n    y = x * 2\nkq = in_thong_bao(10)\nprint(kq)\nCho biết kết quả in ra màn hình.",
+        "options": ["20", "10", "None", "Chương trình xảy ra lỗi vì hàm không có lệnh return."],
+        "correct": 2,
+        "explain": "Trong Python, một hàm không bắt buộc phải có câu lệnh return. Nếu hàm kết thúc mà không gặp lệnh return nào, Python sẽ tự động trả về giá trị đặc biệt là None."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef kiem_tra(n):\n    if n > 0:\n        return n * 2\n    return n - 1\n    return n + 10\nprint(kiem_tra(-3))\nCho biết kết quả in ra màn hình.",
+        "options": ["-6", "7", "None", "-4"],
+        "correct": 3,
+        "explain": "Khi gọi kiem_tra(-3), tham số n = -3. Điều kiện n > 0 là False, nên chương trình thực hiện lệnh return n - 1, trả về -3 - 1 = -4 rồi thoát khỏi hàm ngay lập tức."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef f(x):\n    return x + 2\ndef g(y):\n    return f(y) * 3\nprint(g(4))\nCho biết kết quả in ra màn hình.",
+        "options": ["18", "14", "12", "9"],
+        "correct": 0,
+        "explain": "Gọi g(4) với y = 4. Bên trong g(4), gọi f(4) nhận giá trị 4 + 2 = 6. Sau đó g(4) tính 6 * 3 = 18 và trả về 18."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef tinh(a, b=3):\n    return a ** b\nprint(tinh(2), tinh(2, 4))\nCho biết kết quả in ra màn hình.",
+        "options": ["6 8", "8 16", "9 16", "8 8"],
+        "correct": 1,
+        "explain": "Lời gọi tinh(2) dùng b mặc định bằng 3, trả về 2^3 = 8. Lời gọi tinh(2, 4) truyền b = 4, trả về 2^4 = 16."
+      },
+      {
+        "text": "Cho định nghĩa hàm sau:\ndef phan_du(a, b):\n    return a - b\nLời gọi hàm truyền đối số theo tên (keyword arguments) phan_du(b=10, a=3) trả về giá trị bao nhiêu?",
+        "options": ["7", "13", "-7", "Chương trình báo lỗi vì truyền sai thứ tự a và b."],
+        "correct": 2,
+        "explain": "Khi truyền đối số theo tên, thứ tự không quan trọng: b = 10 và a = 3. Biểu thức a - b tính 3 - 10 = -7."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nprint(ket_qua(5))\ndef ket_qua(x):\n    return x + 1\nĐoạn chương trình trên xảy ra điều gì khi thực thi?",
+        "options": [
+          "In ra màn hình số 6.",
+          "In ra màn hình None.",
+          "Báo lỗi SyntaxError vì hàm không được đặt ở cuối chương trình.",
+          "Báo lỗi NameError vì gọi hàm ket_qua trước khi hàm đó được định nghĩa."
+        ],
+        "correct": 3,
+        "explain": "Python thực thi từ trên xuống dưới. Tại dòng print(ket_qua(5)), hàm ket_qua chưa được định nghĩa nên phát sinh lỗi NameError."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng biểu thức lambda sau:\nf = lambda x, y: x * 2 + y\nprint(f(3, 4))\nCho biết kết quả in ra màn hình.",
+        "options": ["14", "10", "11", "24"],
+        "correct": 1,
+        "explain": "Với x = 3, y = 4, biểu thức x * 2 + y cho kết quả 3 * 2 + 4 = 10."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef hoan_vi(a, b):\n    return b, a\nx = hoan_vi(10, 20)\nprint(type(x), x)\nCho biết kết quả in ra màn hình.",
+        "options": [
+          "<class 'tuple'> (20, 10)",
+          "<class 'list'> [20, 10]",
+          "<class 'int'> 20",
+          "Chương trình báo lỗi vì lệnh return chỉ được trả về 1 giá trị."
+        ],
+        "correct": 0,
+        "explain": "Khi return nhiều giá trị cách nhau bằng dấu phẩy, Python tự động đóng gói chúng thành một tuple (20, 10)."
+      },
+      {
+        "text": "Khai báo đầu hàm nào sau đây là không hợp lệ (gây lỗi SyntaxError) trong Python?",
+        "options": [
+          "def ham(a, b=1, c=2):",
+          "def ham(a=1, b=2, c=3):",
+          "def ham(a=1, b, c=2):",
+          "def ham(a, b, c=3):"
+        ],
+        "correct": 2,
+        "explain": "Tham số không có giá trị mặc định (b) không được phép đặt sau tham số có giá trị mặc định (a=1)."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef tinh(a, b=2, c=3):\n    return a + b * c\nprint(tinh(1, c=4))\nCho biết kết quả in ra màn hình.",
+        "options": ["13", "7", "11", "9"],
+        "correct": 3,
+        "explain": "Với a = 1, b lấy mặc định là 2, c = 4. Biểu thức: 1 + 2 * 4 = 9."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nx = 10\ndef thay_doi(x):\n    x = x + 5\n    return x\ny = thay_doi(x)\nprint(x, y)\nCho biết kết quả in ra màn hình.",
+        "options": ["15 15", "10 15", "10 10", "Chương trình báo lỗi vì biến x trùng tên."],
+        "correct": 1,
+        "explain": "Biến cục bộ x trong hàm tăng lên 15 và trả về y = 15, còn biến toàn cục x ngoài hàm vẫn giữ nguyên giá trị 10."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nx = 10\ndef tang():\n    global x\n    x = x + 5\n    return x * 2\nkq = tang()\nprint(x, kq)\nCho biết kết quả in ra màn hình.",
+        "options": ["15 30", "10 30", "30 30", "15 20"],
+        "correct": 0,
+        "explain": "Từ khóa global x giúp cập nhật biến toàn cục x thành 15. Giá trị trả về là 15 * 2 = 30."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 5\ndef ham():\n    a = a + 1\n    return a\nprint(ham())\nĐoạn chương trình trên xảy ra điều gì khi thực thi?",
+        "options": [
+          "In ra màn hình số 6.",
+          "In ra màn hình số 5.",
+          "Báo lỗi UnboundLocalError vì biến cục bộ a được sử dụng trước khi gán giá trị.",
+          "Báo lỗi SyntaxError."
+        ],
+        "correct": 2,
+        "explain": "Vì có phép gán a = ... trong hàm mà thiếu global, Python xem a là biến cục bộ và báo lỗi UnboundLocalError khi dùng a trước khi gán."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng từ khóa nonlocal sau:\ndef ngoai():\n    x = 5\n    def trong():\n        nonlocal x\n        x += 3\n    trong()\n    return x\nprint(ngoai())\nCho biết kết quả in ra màn hình.",
+        "options": ["5", "3", "Chương trình báo lỗi vì không được định nghĩa hàm bên trong hàm.", "8"],
+        "correct": 3,
+        "explain": "Từ khóa nonlocal x cho phép hàm con trong() sửa đổi trực tiếp biến x của hàm bao ngoài ngoai(), nâng giá trị từ 5 lên 8."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef tong(*args):\n    s = 0\n    for x in args:\n        if x % 2 == 0:\n            s += x\n    return s\nprint(tong(1, 2, 3, 4, 6))\nCho biết kết quả in ra màn hình.",
+        "options": ["16", "12", "10", "Chương trình báo lỗi vì truyền quá nhiều đối số."],
+        "correct": 1,
+        "explain": "args gom các số thành tuple (1, 2, 3, 4, 6). Tổng các số chẵn là 2 + 4 + 6 = 12."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef thong_tin(**kwargs):\n    return len(kwargs) + kwargs.get(\"tuoi\", 0)\nprint(thong_tin(ten=\"An\", tuoi=19, lop=\"KT\"))\nCho biết kết quả in ra màn hình.",
+        "options": ["22", "19", "3", "21"],
+        "correct": 0,
+        "explain": "kwargs có 3 phần tử (len = 3), và giá trị của 'tuoi' là 19. Tổng là 3 + 19 = 22."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng round() và eval():\nx = eval(\"2 + 3 * 4\")\ny = round(3.678, 1)\nprint(x, y)\nCho biết kết quả in ra màn hình.",
+        "options": ["20 3.7", "14 3.6", "14 3.7", "\"2 + 3 * 4\" 3.7"],
+        "correct": 2,
+        "explain": "eval tính biểu thức ra 14, round làm tròn 3.678 đến 1 chữ số thập phân thành 3.7."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng module math sau:\nimport math\nx = math.sqrt(16) + math.fabs(-3) + math.pow(2, 3)\nprint(type(x), x)\nCho biết kết quả in ra màn hình.",
+        "options": [
+          "<class 'int'> 15",
+          "<class 'float'> 7.0",
+          "<class 'int'> 7",
+          "<class 'float'> 15.0"
+        ],
+        "correct": 3,
+        "explain": "Các hàm math trả về kiểu float: 4.0 + 3.0 + 8.0 = 15.0 (kiểu float)."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nfrom math import sqrt, fabs\nx = sqrt(25) + fabs(-7)\nprint(int(x))\nCho biết kết quả in ra màn hình.",
+        "options": ["12", "12.0", "18", "18.0"],
+        "correct": 0,
+        "explain": "x = 5.0 + 7.0 = 12.0. Hàm int(12.0) chuyển thành số nguyên 12."
+      },
+      {
+        "text": "Cho đoạn chương trình so sánh pow() và **:\nfrom math import pow\na = pow(2, 3)\nb = 2 ** 3\nprint(type(a) == type(b), a == b)\nCho biết kết quả in ra màn hình.",
+        "options": ["True True", "False True", "False False", "True False"],
+        "correct": 1,
+        "explain": "math.pow trả về float (8.0), ** trả về int (8). Khác kiểu (False) nhưng bằng giá trị (True)."
+      },
+      {
+        "text": "Cho đoạn chương trình xử lý thời gian với datetime:\nfrom datetime import datetime\nd = datetime(2026, 10, 5)\nprint(d.strftime(\"%d/%m/%Y\"))\nCho biết kết quả in ra màn hình.",
+        "options": ["2026/10/05", "10/05/2026", "05/10/2026", "5/10/26"],
+        "correct": 2,
+        "explain": "Định dạng %d/%m/%Y cho ra ngày 05, tháng 10, năm 2026 dạng 05/10/2026."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef kiem_tra(x):\n    print(\"A\", end=\" \")\n    if x == 0:\n        exit()\n    print(\"B\", end=\" \")\nkiem_tra(1)\nkiem_tra(0)\nkiem_tra(2)\nCho biết kết quả in ra màn hình.",
+        "options": ["A B A B A B", "A B A B", "A B A A B", "A B A"],
+        "correct": 3,
+        "explain": "Lần gọi thứ hai với x = 0 gọi exit() dừng toàn bộ chương trình, nên màn hình chỉ in 'A B A'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef cap_nhat(ds):\n    ds.append(4)\n    ds = [10, 20]\n    ds.append(30)\nA = [1, 2, 3]\ncap_nhat(A)\nprint(A)\nCho biết kết quả in ra màn hình.",
+        "options": ["[1, 2, 3, 4]", "[10, 20, 30]", "[1, 2, 3]", "[1, 2, 3, 4, 30]"],
+        "correct": 0,
+        "explain": "ds.append(4) làm thay đổi trực tiếp danh sách A thành [1, 2, 3, 4]. Lệnh gán ds = [10, 20] làm mất liên kết với A."
+      },
+      {
+        "text": "Với hàm bien_doi(x, y=2) có nội dung:\nif x % y == 0: return x // y\nelse: return x + y\nGiá trị của biểu thức bien_doi(10) + bien_doi(7, 3) là bao nhiêu?",
+        "options": ["12", "15", "7", "22"],
+        "correct": 1,
+        "explain": "bien_doi(10) trả về 10 // 2 = 5. bien_doi(7, 3) trả về 7 + 3 = 10. Tổng là 5 + 10 = 15."
+      },
+      {
+        "text": "Với hàm bien_doi ở trên, giá trị trả về của bien_doi(bien_doi(9, 3), 4) là bao nhiêu?",
+        "options": ["3", "16", "7", "0"],
+        "correct": 2,
+        "explain": "bien_doi(9, 3) trả về 9 // 3 = 3. Tiếp theo bien_doi(3, 4) trả về 3 + 4 = 7."
+      },
+      {
+        "text": "Cho k = 2 và hàm:\ndef tinh_toan(n):\n    global k\n    if n <= 1: return k\n    k += 1\n    return n + tinh_toan(n - 2)\nChạy print(tinh_toan(1)), kết quả in ra là gì?",
+        "options": ["2", "1", "3", "0"],
+        "correct": 0,
+        "explain": "Với n = 1 thỏa mãn n <= 1, hàm lập tức trả về giá trị hiện tại của k là 2."
+      },
+      {
+        "text": "Với đoạn code ở Câu 28, khởi tạo lại k = 2 và thực hiện x = tinh_toan(5), giá trị của x là bao nhiêu?",
+        "options": ["10", "11", "9", "12"],
+        "correct": 3,
+        "explain": "Quá trình đệ quy làm k tăng từ 2 lên 4. Kết quả tính toán: tinh_toan(5) = 5 + tinh_toan(3) = 5 + (3 + 4) = 12."
+      },
+      {
+        "text": "Ngay sau khi lệnh x = tinh_toan(5) ở Câu 29 thực thi xong, giá trị biến toàn cục k là bao nhiêu?",
+        "options": ["2", "4", "5", "3"],
+        "correct": 1,
+        "explain": "Biến k đã được tăng 2 lần trong quá trình đệ quy (từ 2 lên 4)."
+      },
+      {
+        "text": "Cho đoạn chương trình đệ quy sau:\ndef de_quy(n):\n    if n == 0: return 1\n    return 2 * de_quy(n - 1) - 1\nprint(de_quy(3))\nCho biết kết quả in ra màn hình.",
+        "options": ["5", "7", "1", "3"],
+        "correct": 2,
+        "explain": "de_quy(0) = 1, de_quy(1) = 1, và duy trì bằng 1 cho mọi n >= 0."
+      },
+      {
+        "text": "Cho đoạn chương trình:\ndef f(n, k=2):\n    if n <= 0: return 0\n    return k + f(n - k, k + 1)\nprint(f(5))\nCho biết kết quả in ra màn hình.",
+        "options": ["5", "4", "6", "9"],
+        "correct": 0,
+        "explain": "f(5, 2) = 2 + f(3, 3) = 2 + 3 + f(0, 4) = 5 + 0 = 5."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef in_nguoc(n):\n    if n > 0:\n        print(n, end=\" \")\n        in_nguoc(n - 2)\n        print(n, end=\" \")\nin_nguoc(4)\nCho biết kết quả in ra màn hình.",
+        "options": ["4 2", "2 4", "4 2 0 0 2 4", "4 2 2 4"],
+        "correct": 3,
+        "explain": "In lần lượt theo chiều đi vào và quay lui, cho kết quả '4 2 2 4'."
+      },
+      {
+        "text": "Cho đoạn chương trình:\ndef ap_dung(ham, x):\n    return ham(x) + ham(x + 1)\nkq = ap_dung(lambda a: a ** 2, 2)\nprint(kq)\nCho biết kết quả in ra màn hình.",
+        "options": ["10", "13", "25", "7"],
+        "correct": 1,
+        "explain": "Tính ham(2) + ham(3) = 2^2 + 3^2 = 4 + 9 = 13."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nm = 3\nf = lambda x: x * m\nm = 5\nprint(f(4))\nCho biết kết quả in ra màn hình.",
+        "options": ["12", "7", "20", "Chương trình báo lỗi vì biến m không phải là tham số."],
+        "correct": 2,
+        "explain": "Biến m được tra cứu tại thời điểm gọi hàm (late binding). Khi gọi f(4), m đã được gán bằng 5, kết quả 4 * 5 = 20."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef buoc_1(x): return x + 3\ndef buoc_2(x):\n    if x % 2 == 0: return buoc_1(x)\n    return x * 2\ns = 0\nfor i in range(1, 4): s += buoc_2(i)\nprint(s)\nCho biết kết quả in ra màn hình.",
+        "options": ["13", "12", "15", "10"],
+        "correct": 0,
+        "explain": "Vòng lặp cộng dồn các giá trị: i=1 -> 2; i=2 -> 5; i=3 -> 6. Tổng s = 2 + 5 + 6 = 13."
+      },
+      {
+        "text": "Cho đoạn chương trình:\ndef xu_ly(a, b):\n    while a > b:\n        a = a - b\n        b = b + 1\n    return a + b\nprint(xu_ly(11, 2))\nCho biết kết quả in ra màn hình.",
+        "options": ["8", "6", "12", "7"],
+        "correct": 3,
+        "explain": "Sau các lượt lặp, ta dừng lại khi a=2, b=5. Tổng a + b = 2 + 5 = 7."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef gop(a, b):\n    print(a + b, end=\" \")\nkq = gop(2, 3)\nprint(kq)\nCho biết kết quả in ra màn hình.",
+        "options": ["5 5", "5 None", "5", "None 5"],
+        "correct": 1,
+        "explain": "Hàm in ra '5 ' và trả về None do không có return. Dòng sau in tiếp 'None'."
+      },
+      {
+        "text": "Cho đoạn chương trình đệ quy sau:\ndef fib_bien_the(n):\n    if n <= 1: return n + 1\n    return fib_bien_the(n - 1) + fib_bien_the(n - 2)\nprint(fib_bien_the(3))\nCho biết kết quả in ra màn hình.",
+        "options": ["2", "3", "5", "4"],
+        "correct": 2,
+        "explain": "fib(0)=1, fib(1)=2, fib(2)=3, fib(3) = 3 + 2 = 5."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef tao_ham(k):\n    return lambda x: x + k\nf1 = tao_ham(2)\nf2 = tao_ham(5)\nprint(f1(10) + f2(10))\nCho biết kết quả in ra màn hình.",
+        "options": ["20", "24", "30", "27"],
+        "correct": 3,
+        "explain": "f1(10) = 12, f2(10) = 15. Tổng là 12 + 15 = 27."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef loc_chuoi(s, buoc=2):\n    kq = \"\"\n    for i in range(0, len(s), buoc):\n        if s[i].isupper(): kq += s[i].lower()\n        else: kq += s[i].upper()\n    return kq\nprint(loc_chuoi(\"PyThOn\"))\nCho biết kết quả in ra màn hình.",
+        "options": ["ptO", "PTO", "pTo", "pYtHoN"],
+        "correct": 0,
+        "explain": "Duyệt các chỉ số 0, 2, 4 tương ứng với 'P', 'T', 'o', qua hàm chuyển đổi ta được 'ptO'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef tinh(a, b, c): return a + b - c\nprint(tinh(1, b=2, 3))\nĐoạn chương trình trên cho kết quả nào?",
+        "options": [
+          "0",
+          "Báo lỗi SyntaxError vì truyền đối số vị trí đứng sau đối số theo tên.",
+          "Báo lỗi TypeError vì truyền thiếu đối số c.",
+          "6"
+        ],
+        "correct": 1,
+        "explain": "Đối số vị trí '3' đứng sau đối số theo tên 'b=2' gây ra lỗi cú pháp SyntaxError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef kiem_tra(a, b=5): return a + b\nprint(kiem_tra(3, a=2))\nĐoạn chương trình trên xảy ra lỗi gì?",
+        "options": [
+          "Không có lỗi, chương trình in ra 5.",
+          "Không có lỗi, chương trình in ra 8.",
+          "Lỗi TypeError vì tham số a nhận nhiều giá trị cùng lúc.",
+          "Lỗi SyntaxError vì đối số theo tên đặt ở cuối."
+        ],
+        "correct": 2,
+        "explain": "Tham số a nhận đồng thời giá trị 3 (vị trí) và 2 (tên), gây lỗi TypeError."
+      },
+      {
+        "text": "Cho đoạn chương trình kết hợp danh sách lambda:\nops = [lambda x: x + 1, lambda x: x * 2, lambda x: x - 3]\nval = 4\nfor f in ops: val = f(val)\nprint(val)\nCho biết kết quả in ra màn hình.",
+        "options": ["5", "9", "11", "7"],
+        "correct": 3,
+        "explain": "val = 4 -> qua hàm 1 thành 5 -> qua hàm 2 thành 10 -> qua hàm 3 thành 7."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndef tim_kiem(ds, k):\n    for i in range(len(ds)):\n        if ds[i] > k: return i\n    else: return -1\nprint(tim_kiem([2, 4, 6, 8], 5), tim_kiem([1, 2, 3], 5))\nCho biết kết quả in ra màn hình.",
+        "options": ["2 -1", "6 -1", "2 None", "3 -1"],
+        "correct": 0,
+        "explain": "Chỉ số đầu tiên có phần tử > 5 ở danh sách 1 là 2; danh sách 2 không có trả về -1."
+      },
+      {
+        "text": "Cho đoạn chương trình với tham số mặc định là danh sách:\ndef them_phan_tu(x, ds=[]):\n    ds.append(x)\n    return ds\na = them_phan_tu(1)\nb = them_phan_tu(2, [10])\nc = them_phan_tu(3)\nprint(c)\nCho biết kết quả in ra màn hình.",
+        "options": ["[3]", "[1, 2, 3]", "[1, 3]", "[10, 2, 3]"],
+        "correct": 2,
+        "explain": "Tham số mặc định ds=[] chỉ được tạo một lần duy nhất. Lần gọi c tiếp tục dùng chung danh sách [1] và thêm 3 thành [1, 3]."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình đệ quy sau:\ndef tinh_de_quy(n, step=1):\n    if n <= 0: return step\n    if n % 2 == 1: return n + tinh_de_quy(n - step, step + 1)\n    else: return tinh_de_quy(n // 2, step) + step\nprint(tinh_de_quy(6))\nCho biết kết quả in ra màn hình.",
+        "options": ["8", "10", "7", "9"],
+        "correct": 1,
+        "explain": "Truy vết qua các tầng đệ quy tính toán trả về kết quả cuối cùng là 10."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình:\ndef h(x, y=2, z=1):\n    if x >= y: return x - y + z\n    return x * y + z\na = h(3)\nb = h(a, y=4, z=a)\nc = h(b, h(2, 3), 2)\nprint(a, b, c)\nCho biết kết quả in ra màn hình.",
+        "options": ["2 10 4", "2 4 11", "5 10 5", "2 10 5"],
+        "correct": 3,
+        "explain": "Tính toán lần lượt: a = 2, b = 10, c = 5, in ra '2 10 5'."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình phạm vi biến global/nonlocal:\nx = 10\ndef ngoai(y):\n    x = y + 2\n    def trong(z):\n        nonlocal x\n        global k\n        x += z\n        k = x - y\n        return k\n    k = 1\n    res = trong(3)\n    return x + res\nk = 0\nans = ngoai(4)\nprint(ans, x, k)\nCho biết kết quả in ra màn hình.",
+        "options": ["14 10 5", "14 9 5", "10 10 1", "14 10 1"],
+        "correct": 0,
+        "explain": "ans = 14, biến toàn cục x = 10, biến toàn cục k = 5."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình hàm bậc cao và đệ quy:\ndef bien_doi(ds, f, g):\n    if len(ds) == 0: return 0\n    dau = ds[0]\n    if dau % 2 == 0: return f(dau) + bien_doi(ds[1:], g, f)\n    else: return g(dau) + bien_doi(ds[1:], f, g)\nA = [2, 3, 2, 1]\nkq = bien_doi(A, lambda x: x * 2, lambda x: x - 1)\nprint(kq)\nCho biết kết quả in ra màn hình.",
+        "options": ["14", "10", "11", "15"],
+        "correct": 2,
+        "explain": "Các phần tử chẵn làm đảo vị trí hàm f và g. Tổng kết quả tính toán là 11."
+      }
+    ]
+  }
+]
