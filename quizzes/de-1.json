@@ -2,7 +2,7 @@
   {
     "id": "q-python-conditions-50",
     "code": "PY-COND-50",
-    "title": "50 câu trắc nghiệm – Cấu trúc rẽ nhánh và điều kiện Python",
+    "title": "Cấu Trúc Rẽ Nhánh",
     "desc": "Ôn tập giá trị bool, toán tử logic, if/elif/else, điều kiện lồng nhau và biểu thức điều kiện rút gọn.",
     "duration": 60,
     "createdAt": "2026-10-19",
