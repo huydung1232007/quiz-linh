@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>quiz cuối kì</title>
+    <title>quiz cuối kì</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -15,7 +15,7 @@
             color: #212529;
         }
 
-        /* Họa tiết bản vẽ kiến trúc mờ ở góc trang giống ảnh mẫu */
+        /* Họa tiết bản vẽ kiến trúc mờ ở góc trang */
         .blueprint-bg {
             background-image: 
                 linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
@@ -23,7 +23,7 @@
             background-size: 32px 32px;
         }
 
-        /* Thanh sọc chéo trang trí dưới tiêu đề giống ảnh */
+        /* Thanh sọc chéo trang trí dưới tiêu đề */
         .hatch-pattern {
             background: repeating-linear-gradient(
                 -45deg,
@@ -43,7 +43,7 @@
 </head>
 <body class="min-h-screen flex flex-col selection:bg-zinc-900 selection:text-white overflow-x-hidden">
 
-    <!-- THANH CÔNG CỤ NỔI BÊN TRÁI (Giống hệt ảnh mẫu) -->
+    <!-- THANH CÔNG CỤ NỔI BÊN TRÁI -->
     <div class="fixed left-0 top-36 z-40 hidden xl:flex flex-col bg-[#1a1a1a] text-white border border-l-0 border-zinc-700 shadow-lg">
         <button onclick="app.showView('dashboard')" class="w-9 h-9 flex items-center justify-center hover:bg-zinc-800 transition border-b border-zinc-800" title="Trang chủ">
             <i class="fa-solid fa-layer-group text-xs"></i>
@@ -56,7 +56,7 @@
         </button>
     </div>
 
-    <!-- ==================== HEADER TỐI GIẢN PORTO ==================== -->
+    <!-- ==================== HEADER TỐI GIẢN ==================== -->
     <header class="bg-[#212326] text-white sticky top-0 z-30">
         <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
             <!-- Logo Trái -->
@@ -88,7 +88,7 @@
                 </a>
             </nav>
 
-            <!-- Icons Mạng Xã Hội / Thao tác Nhanh Bên Phải -->
+            <!-- Thao tác Nhanh Bên Phải -->
             <div class="flex items-center gap-4 text-xs text-zinc-400">
                 <button onclick="app.reloadServerQuizzes()" class="hover:text-white transition" title="Tải lại danh sách đề từ Server">
                     <i class="fa-solid fa-arrows-rotate"></i>
@@ -108,21 +108,12 @@
         <!-- ==================== VIEW 1: DASHBOARD ==================== -->
         <section id="view-dashboard">
             
-            <!-- KHỐI NỀN ĐEN PHÍA TRÊN & HERO CHIA ĐÔI (Giống hệt bố cục ảnh) -->
+            <!-- KHỐI NỀN ĐEN PHÍA TRÊN & HERO CHIA ĐÔI -->
             <div class="relative bg-[#212326] pb-32 pt-2 px-4 sm:px-10 lg:px-16">
                 
-                <!-- Mũi tên trái/phải trang trí hai bên rìa -->
-                <button onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" class="hidden lg:flex fixed-arrow left-4 top-1/2 -translate-y-1/2 absolute text-zinc-400 hover:text-white transition z-10">
-                    <i class="fa-solid fa-chevron-left text-sm"></i>
-                </button>
-                <button onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" class="hidden lg:flex fixed-arrow right-4 top-1/2 -translate-y-1/2 absolute text-zinc-400 hover:text-white transition z-10">
-                    <i class="fa-solid fa-chevron-right text-sm"></i>
-                </button>
-
-                <!-- Khung Hero chính -->
                 <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[480px] shadow-2xl overflow-hidden">
                     
-                    <!-- Nửa Trái: Nền Xám Kiến Trúc (#6c6e70) -->
+                    <!-- Nửa Trái: Nền Xám Kiến Trúc -->
                     <div class="lg:col-span-6 bg-[#6e7072] text-white p-8 sm:p-14 lg:p-16 flex flex-col justify-center space-y-5">
                         <div class="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-zinc-200">
                             <span><i class="fa-solid fa-folder-open mr-1"></i> Tự động đồng bộ <code class="font-mono">/quizzes</code></span>
@@ -142,7 +133,7 @@
                             </p>
                         </div>
 
-                        <!-- Ô nhập Mã Đề & Nút bấm Đen vuông vức giống nút GET STARTED -->
+                        <!-- Ô nhập Mã Đề -->
                         <div class="pt-3 flex flex-col sm:flex-row gap-2 max-w-md">
                             <input id="join-code-input" type="text" placeholder="Nhập Mã Đề (VD: DSA-01)..." 
                                 class="px-4 py-3.5 bg-white text-zinc-900 text-xs font-medium focus:outline-none w-full placeholder:text-zinc-400">
@@ -152,19 +143,17 @@
                         </div>
                     </div>
 
-                    <!-- Nửa Phải: Hình ảnh Studio Tối Giản -->
-                    <!-- Right: Minimalist Interior Image -->
-<div class="lg:col-span-6 relative min-h-[260px] bg-zinc-200">
-    <img src="lt1.jpg" alt="Studio" class="w-full h-full object-cover contrast-105 brightness-95">
-</div>
+                    <!-- Nửa Phải: Ảnh lt1.jpg -->
+                    <div class="lg:col-span-6 relative min-h-[260px] bg-zinc-200">
+                        <img src="lt1.jpg" alt="Studio" class="w-full h-full object-cover contrast-105 brightness-95">
+                    </div>
                 </div>
             </div>
 
-            <!-- ==================== 3 THẺ TRẮNG ĐÈ LÊN HERO (OVERLAP CARDS) ==================== -->
+            <!-- ==================== 3 THẺ TRẮNG ĐÈ LÊN HERO ==================== -->
             <div class="relative z-20 max-w-[1200px] mx-auto px-4 sm:px-6 -mt-24">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- Card 1 -->
                     <div onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" 
                          class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition duration-300 cursor-pointer">
                         <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-zinc-800">
@@ -172,11 +161,10 @@
                         </div>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Kho Đề Trắc Nghiệm</h3>
                         <p class="text-xs text-zinc-500 leading-relaxed">
-                            Hiện có <strong id="stat-total-quizzes" class="text-zinc-900">0</strong> bộ đề và <strong id="stat-total-questions" class="text-zinc-900">0</strong> câu hỏi được lưu trữ trực tiếp trong thư mục <code class="font-mono">/quizzes</code>.
+                            Hiện có <strong id="stat-total-quizzes" class="text-zinc-900">0</strong> bộ đề và <strong id="stat-total-questions" class="text-zinc-900">0</strong> câu hỏi trong thư mục <code class="font-mono">/quizzes</code>.
                         </p>
                     </div>
 
-                    <!-- Card 2 -->
                     <div onclick="app.openCreateQuiz()" 
                          class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition duration-300 cursor-pointer">
                         <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-zinc-800">
@@ -184,45 +172,36 @@
                         </div>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Thiết Kế & Soạn Đề</h3>
                         <p class="text-xs text-zinc-500 leading-relaxed">
-                            Tạo đề mới nhanh chóng bằng văn bản thô hoặc xuất ra file <code class="font-mono">.json</code> chuẩn cho dự án Vercel của bạn.
+                            Tạo đề mới nhanh chóng bằng văn bản thô hoặc xuất ra file <code class="font-mono">.json</code>.
                         </p>
                     </div>
 
-                    <!-- Card 3 -->
                     <div class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition duration-300">
                         <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-zinc-800">
                             <i class="fa-solid fa-chart-column text-3xl"></i>
                         </div>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Hiệu Suất & Điểm Số</h3>
                         <p class="text-xs text-zinc-500 leading-relaxed">
-                            Đã hoàn thành <strong id="stat-total-attempts" class="text-zinc-900">0</strong> lượt làm bài với điểm số trung bình đạt <strong id="stat-avg-score" class="text-zinc-900">0.0</strong> / 10 điểm.
+                            Đã hoàn thành <strong id="stat-total-attempts" class="text-zinc-900">0</strong> lượt làm bài với điểm trung bình <strong id="stat-avg-score" class="text-zinc-900">0.0</strong>.
                         </p>
                     </div>
 
                 </div>
-
-                <!-- Chấm tròn điều hướng (Carousel Dots giống ảnh) -->
-                <div class="flex items-center justify-center gap-1.5 mt-6">
-                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-800"></span>
-                    <span class="w-1.5 h-1.5 rounded-full border border-zinc-400"></span>
-                </div>
             </div>
 
-            <!-- ==================== KHỐI GIỚI THIỆU BẤT ĐỐI XỨNG ("You need space for better living") ==================== -->
+            <!-- ==================== KHỐI GIỚI THIỆU (lt2.jpg & lt3.jpg) ==================== -->
             <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-20 blueprint-bg">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                     
-                    <!-- 2 Ảnh So Le Bên Trái -->
                     <div class="lg:col-span-6 grid grid-cols-12 gap-5 items-end">
-    <div class="col-span-7">
-    <img src="lt2.jpg" alt="Space 1" class="w-full h-64 object-cover">
-</div>
-<div class="col-span-5 -mb-6">
-    <img src="lt3.jpg" alt="Space 2" class="w-full h-40 object-cover">
-</div>
-</div>
+                        <div class="col-span-7">
+                            <img src="lt2.jpg" alt="Space 1" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="col-span-5 -mb-6">
+                            <img src="lt3.jpg" alt="Space 2" class="w-full h-40 object-cover">
+                        </div>
+                    </div>
 
-                    <!-- Nội Dung Chữ & Chữ Chìm "QUIZ PLACE" Bên Phải -->
                     <div class="lg:col-span-6 relative pt-6 lg:pt-0">
                         <div class="text-[64px] sm:text-[90px] font-extrabold text-zinc-100 leading-none select-none pointer-events-none absolute -top-6 left-0 tracking-tighter z-0">
                             YOUR PLACE
@@ -232,14 +211,14 @@
                                 HỆ THỐNG LUYỆN THI TRẮC NGHIỆM
                             </div>
                             <h2 class="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
-                                I LOVE YOU <3.
+                                I LOVE YOU &lt;3.
                             </h2>
                             <div class="hatch-pattern"></div>
                             <p class="text-sm text-zinc-600 leading-relaxed pt-1">
                                 Làm tập trung, không được tra <code class="font-mono bg-zinc-100 px-1.5 py-0.5 text-zinc-800">gemini</code>, <code class="font-mono bg-zinc-100 px-1.5 py-0.5 text-zinc-800">chatgpt</code> nhenn.
                             </p>
                             <p class="text-xs text-zinc-400 leading-relaxed">
-                                Hỗ trợ phím tắt bàn phím (A, B, C, D, ←, →), đếm ngược thời gian thực, đảo câu hỏi ngẫu nhiên và chia sẻ đề trực tiếp qua đường dẫn mã hóa.
+                                Hỗ trợ phím tắt bàn phím (A, B, C, D, ←, →), đếm ngược thời gian thực và ghi chú linh hoạt.
                             </p>
                             <div class="pt-2 flex flex-wrap gap-3">
                                 <button onclick="app.openCreateQuiz()" class="px-6 py-3 bg-[#212326] hover:bg-black text-white text-[11px] font-bold uppercase tracking-[0.15em] transition">
@@ -256,7 +235,7 @@
                 </div>
             </div>
 
-            <!-- ==================== DANH SÁCH BỘ ĐỀ TRẮC NGHIỆM ==================== -->
+            <!-- ==================== DANH SÁCH BỘ ĐỀ ==================== -->
             <div id="quiz-section" class="max-w-[1200px] mx-auto px-4 sm:px-6 pb-24 pt-6 border-t border-zinc-100">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
                     <div>
@@ -270,7 +249,6 @@
                     </div>
                 </div>
 
-                <!-- Grid Danh Sách Đề -->
                 <div id="quiz-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
 
@@ -282,7 +260,7 @@
                 <div>
                     <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">QUIZ ARCHITECT</span>
                     <h2 id="editor-page-title" class="text-2xl font-bold text-zinc-900 mt-0.5">Tạo Bộ Đề Trắc Nghiệm Mới</h2>
-                    <p class="text-xs text-zinc-500 mt-1">Soạn câu hỏi, sau đó tải file <code class="font-mono">.json</code> về và bỏ vào thư mục <code class="font-mono">quizzes/</code> trên Vercel</p>
+                    <p class="text-xs text-zinc-500 mt-1">Soạn câu hỏi, sau đó tải file <code class="font-mono">.json</code> về và bỏ vào thư mục <code class="font-mono">quizzes/</code></p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                     <button onclick="app.showView('dashboard')" class="px-4 py-2.5 border border-zinc-300 text-zinc-700 hover:border-zinc-900 text-xs font-bold uppercase tracking-wider transition">
@@ -297,7 +275,6 @@
                 </div>
             </div>
 
-            <!-- Metadata Form -->
             <div class="bg-white p-6 border border-zinc-200 shadow-sm grid grid-cols-1 md:grid-cols-4 gap-5">
                 <div class="md:col-span-2">
                     <label class="block text-[11px] font-bold text-zinc-700 uppercase tracking-wider mb-1.5">Tên bộ đề thi *</label>
@@ -321,7 +298,6 @@
                 </div>
             </div>
 
-            <!-- Questions Container -->
             <div id="editor-questions-list" class="space-y-5"></div>
 
             <button onclick="app.addEmptyQuestion()" class="w-full py-4 border-2 border-dashed border-zinc-300 hover:border-zinc-900 text-zinc-600 hover:text-zinc-900 font-bold text-xs uppercase tracking-widest transition flex items-center justify-center gap-2 bg-white">
@@ -332,6 +308,7 @@
         <!-- ==================== VIEW 3: EXAM ROOM ==================== -->
         <section id="view-exam" class="hidden max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+                
                 <!-- Left: Question Area -->
                 <div class="lg:col-span-3 bg-white border border-zinc-200 shadow-sm p-8 space-y-6">
                     <div class="flex items-center justify-between border-b border-zinc-100 pb-5">
@@ -344,13 +321,10 @@
                         </button>
                     </div>
 
-                    <!-- Question Text -->
                     <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed whitespace-pre-line py-2"></div>
 
-                    <!-- Options List -->
                     <div id="exam-options-list" class="space-y-3"></div>
 
-                    <!-- Navigation Buttons -->
                     <div class="flex items-center justify-between pt-6 border-t border-zinc-100">
                         <button onclick="app.prevQuestion()" id="btn-prev-q" class="px-5 py-2.5 border border-zinc-300 text-xs font-bold uppercase tracking-wider text-zinc-700 hover:border-zinc-900 transition">
                             <i class="fa-solid fa-arrow-left mr-1.5"></i> Câu trước
@@ -364,18 +338,24 @@
                     </div>
                 </div>
 
-                <!-- Right: Timer & Palette -->
+                <!-- Right: Timer & Palette & Note Button -->
                 <div class="bg-white border border-zinc-200 shadow-sm p-6 space-y-6 sticky top-28">
                     <div class="text-center p-5 bg-[#212326] text-white">
                         <div class="text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Thời gian còn lại</div>
                         <div id="exam-timer" class="text-3xl font-mono font-bold mt-1 text-white">15:00</div>
                     </div>
 
-                    <!-- Shuffle Controls -->
-                    <div class="flex items-center justify-between text-xs text-zinc-600 bg-zinc-50 px-3.5 py-2.5 border border-zinc-200">
-                        <span>Đảo thứ tự câu</span>
-                        <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold hover:underline">
-                            <i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay
+                    <!-- Shuffle Controls & Nút Mở Ghi Chú -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs text-zinc-600 bg-zinc-50 px-3.5 py-2.5 border border-zinc-200">
+                            <span>Đảo thứ tự câu</span>
+                            <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold hover:underline">
+                                <i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay
+                            </button>
+                        </div>
+                        
+                        <button onclick="app.toggleNoteModal()" class="w-full py-2.5 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-wider border border-zinc-300 transition flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-note-sticky text-amber-500"></i> <span id="note-btn-label">Mở Ghi Chú (0)</span>
                         </button>
                     </div>
 
@@ -438,7 +418,6 @@
                 </div>
             </div>
 
-            <!-- Detailed Answer Review -->
             <div class="space-y-4">
                 <h3 class="text-lg font-bold text-zinc-900 uppercase tracking-wider">Chi tiết đáp án & Giải thích</h3>
                 <div id="result-review-list" class="space-y-4"></div>
@@ -447,7 +426,7 @@
 
     </main>
 
-    <!-- FOOTER TỐI GIẢN -->
+    <!-- FOOTER -->
     <footer class="bg-[#212326] text-zinc-400 text-xs py-8 px-6 border-t border-zinc-800 mt-auto">
         <div class="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="font-bold text-white tracking-tight">Hí nô<span class="font-light text-zinc-400">em bô</span> — Huy Dũng</div>
@@ -455,30 +434,62 @@
         </div>
     </footer>
 
-    <!-- ==================== MODAL 1: BULK IMPORT ==================== -->
+    <!-- ==================== HỘP GHI CHÚ NỔI DI CHUYỂN ĐƯỢC ==================== -->
+    <div id="floating-note-box" class="fixed top-28 right-12 z-50 hidden w-80 bg-white border-2 border-zinc-900 shadow-2xl select-none">
+        <div id="note-header-drag" class="bg-[#1b1d1f] text-white px-4 py-2.5 flex items-center justify-between cursor-move">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+                <i class="fa-regular fa-note-sticky text-amber-400"></i> 
+                <span>Ghi chú - Câu <span id="note-current-q-num">1</span></span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span id="note-save-status" class="text-[10px] text-zinc-400">Đã lưu</span>
+                <button onclick="app.toggleNoteModal()" class="text-zinc-400 hover:text-white text-sm px-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-3 bg-white space-y-2">
+            <textarea id="floating-note-textarea" oninput="app.saveCurrentNote(this.value)" rows="4" 
+                placeholder="Nhập ghi chú, công thức hoặc mẹo nhớ cho câu này..." 
+                class="w-full p-2.5 border border-zinc-200 text-xs focus:outline-none focus:border-zinc-900 resize-none bg-zinc-50"></textarea>
+            <div class="text-[10px] text-zinc-400 flex justify-between items-center">
+                <span>💡 Kéo thanh đen phía trên để di chuyển.</span>
+                <span id="note-char-count">0 ký tự</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL NHẬP TÊN THÍ SINH ==================== -->
+    <div id="modal-player-name" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white max-w-md w-full p-8 space-y-6 shadow-2xl border border-zinc-200">
+            <div class="space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Xác thực thí sinh</span>
+                <h3 class="text-lg font-bold text-zinc-900">Nhập tên của bạn để bắt đầu</h3>
+                <p class="text-xs text-zinc-500">Tên của bạn sẽ được lưu lại để ghi nhận kết quả bài thi.</p>
+            </div>
+            
+            <input id="custom-player-name-input" type="text" placeholder="Nhập họ và tên..." 
+                class="w-full px-4 py-3 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900 transition">
+                
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="app.closeNameModal(false)" class="px-5 py-2.5 border border-zinc-200 text-xs font-bold uppercase tracking-wider text-zinc-600 hover:border-zinc-900 transition">
+                    Hủy
+                </button>
+                <button onclick="app.closeNameModal(true)" class="px-6 py-2.5 bg-[#1b1d1f] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition">
+                    Vào Thi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL BULK & SHARE ==================== -->
     <div id="modal-bulk" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white max-w-2xl w-full p-8 space-y-5 shadow-2xl border border-zinc-200">
             <div class="flex items-center justify-between border-b border-zinc-100 pb-4">
                 <h3 class="text-lg font-bold text-zinc-900 uppercase tracking-wider">Nhập nhanh câu hỏi bằng Văn bản</h3>
                 <button onclick="app.closeModal('modal-bulk')" class="text-zinc-400 hover:text-zinc-900"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <div class="text-xs text-zinc-600 bg-zinc-50 p-4 border border-zinc-200 space-y-1">
-                <p class="font-bold text-zinc-900">Quy tắc định dạng (Mỗi câu cách nhau 1 dòng trống):</p>
-                <p>• Đặt dấu <code>*</code> ở đầu đáp án đúng (VD: <code>*B. O(log n)</code>) HOẶC thêm dòng <code>Đáp án: B</code> ở cuối câu.</p>
-                <p>• Có thể thêm dòng <code>Giải thích: ...</code> để hiển thị lời giải sau khi nộp bài.</p>
-            </div>
-            <textarea id="bulk-textarea" rows="10" class="w-full p-4 border border-zinc-300 text-sm font-mono focus:outline-none focus:border-zinc-900" placeholder="Câu 1: Thuật toán tìm kiếm nhị phân có độ phức tạp là?
-A. O(n)
-*B. O(log n)
-C. O(n^2)
-D. O(1)
-Giải thích: Chia đôi mảng sau mỗi bước lặp.
-
-Câu 2: Thanh ghi nào trong MIPS luôn có giá trị bằng 0?
-*A. $zero
-B. $sp
-C. $ra
-D. $v0"></textarea>
+            <textarea id="bulk-textarea" rows="10" class="w-full p-4 border border-zinc-300 text-sm font-mono focus:outline-none focus:border-zinc-900" placeholder="Câu 1: ..."></textarea>
             <div class="flex justify-end gap-3">
                 <button onclick="app.closeModal('modal-bulk')" class="px-5 py-2.5 border border-zinc-300 text-xs font-bold uppercase tracking-wider">Hủy</button>
                 <button onclick="app.parseBulkText()" class="px-6 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black">Tách Câu Hỏi</button>
@@ -486,42 +497,31 @@ D. $v0"></textarea>
         </div>
     </div>
 
-    <!-- ==================== MODAL 2: SHARE & EXPORT QUIZ ==================== -->
     <div id="modal-share" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white max-w-lg w-full p-8 space-y-6 shadow-2xl border border-zinc-200">
             <div class="flex items-center justify-between border-b border-zinc-100 pb-4">
                 <h3 class="text-base font-bold text-zinc-900 uppercase tracking-wider">Xuất File JSON & Chia Sẻ Đề</h3>
                 <button onclick="app.closeModal('modal-share')" class="text-zinc-400 hover:text-zinc-900"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-
             <div class="space-y-4">
-                <!-- Method 1: JSON File for Vercel /quizzes folder -->
                 <div class="p-5 bg-zinc-50 border border-zinc-200 flex items-center justify-between gap-4">
                     <div>
-                        <div class="text-xs font-bold text-zinc-900 uppercase tracking-wider">Cách 1: Tải File .JSON (Đưa lên Vercel)</div>
-                        <p class="text-xs text-zinc-600 mt-1">Tải file này về và bỏ vào thư mục <code>quizzes/</code> trong dự án Vercel của bạn.</p>
+                        <div class="text-xs font-bold text-zinc-900 uppercase tracking-wider">Cách 1: Tải File .JSON</div>
                     </div>
-                    <button id="btn-download-json" class="px-5 py-3 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black whitespace-nowrap">
-                        <i class="fa-solid fa-download mr-1"></i> Tải JSON
-                    </button>
+                    <button id="btn-download-json" class="px-5 py-3 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black whitespace-nowrap">Tải JSON</button>
                 </div>
-
-                <!-- Method 2: Magic URL -->
                 <div class="p-5 bg-zinc-50 border border-zinc-200 space-y-2">
-                    <div class="text-xs font-bold text-zinc-900 uppercase tracking-wider">Cách 2: Gửi Link Trực Tiếp Ngay Lập Tức</div>
-                    <p class="text-xs text-zinc-600">Toàn bộ câu hỏi được mã hóa vào link này. Bạn bè bấm vào link là làm bài được ngay!</p>
+                    <div class="text-xs font-bold text-zinc-900 uppercase tracking-wider">Cách 2: Gửi Link Trực Tiếp</div>
                     <div class="flex gap-2 pt-2">
                         <input id="share-url-input" type="text" readonly class="flex-1 px-3 py-2.5 bg-white border border-zinc-300 text-xs font-mono text-zinc-700">
-                        <button onclick="app.copyShareLink()" class="px-4 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black whitespace-nowrap">
-                            Copy Link
-                        </button>
+                        <button onclick="app.copyShareLink()" class="px-4 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black whitespace-nowrap">Copy Link</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== JAVASCRIPT LOGIC (GIỮ NGUYÊN 100% TÍNH NĂNG) ==================== -->
+    <!-- ==================== JAVASCRIPT ==================== -->
     <script>
         const STORAGE_KEY = 'quizmaster_vn_quizzes_v3';
         const STATS_KEY = 'quizmaster_vn_stats_v3';
@@ -541,41 +541,6 @@ D. $v0"></textarea>
                         options: ['O(1)', 'O(log n)', 'O(n)', 'O(n log n)'],
                         correct: 1,
                         explain: 'Skip List sử dụng nhiều tầng danh sách liên kết giúp bỏ qua các phần tử, đạt độ phức tạp trung bình O(log n).'
-                    },
-                    {
-                        text: 'Trong thuật toán tìm đường đi ngắn nhất A* (A-Star), hàm đánh giá f(n) được tính theo công thức nào?',
-                        options: ['f(n) = g(n) - h(n)', 'f(n) = g(n) + h(n)', 'f(n) = h(n) / g(n)', 'f(n) = g(n) * h(n)'],
-                        correct: 1,
-                        explain: 'f(n) = g(n) + h(n), trong đó g(n) là chi phí thực tế từ điểm đầu đến n, còn h(n) là hàm heuristic ước lượng chi phí từ n đến đích.'
-                    },
-                    {
-                        text: 'Cấu trúc dữ liệu nào hoạt động theo nguyên lý LIFO (Last In, First Out)?',
-                        options: ['Queue (Hàng đợi)', 'Stack (Ngăn xếp)', 'Heap (Đống)', 'Hash Table (Bảng băm)'],
-                        correct: 1,
-                        explain: 'Stack (Ngăn xếp) tuân theo nguyên lý Vào sau - Ra trước (LIFO).'
-                    }
-                ]
-            },
-            {
-                id: 'q-mips-02',
-                code: 'MIPS-02',
-                title: 'Kiến trúc máy tính & Hợp ngữ MIPS',
-                desc: 'Kiểm tra kiến thức về thanh ghi, bộ nhớ và tập lệnh MIPS cơ bản.',
-                duration: 10,
-                createdAt: '2026-10-19',
-                isServer: true,
-                questions: [
-                    {
-                        text: 'Trong kiến trúc MIPS 32-bit, mỗi lệnh máy (instruction) có kích thước cố định là bao nhiêu byte?',
-                        options: ['1 byte', '2 bytes', '4 bytes', '8 bytes'],
-                        correct: 2,
-                        explain: 'Tất cả các lệnh trong MIPS 32-bit đều có độ dài cố định là 32 bits = 4 bytes.'
-                    },
-                    {
-                        text: 'Lệnh nào sau đây dùng để nạp một từ 32-bit (word) từ bộ nhớ RAM vào thanh ghi trong MIPS?',
-                        options: ['sw', 'lw', 'li', 'la'],
-                        correct: 1,
-                        explain: 'lw (Load Word) nạp 4 bytes từ địa chỉ bộ nhớ vào thanh ghi.'
                     }
                 ]
             }
@@ -587,7 +552,7 @@ D. $v0"></textarea>
             editingQuizId: null,
             editorQuestions: [],
 
-            // Exam Runtime State
+            // Trạng thái phòng thi & Ghi chú nổi
             activeQuiz: null,
             examQuestions: [],
             userAnswers: {},
@@ -596,12 +561,12 @@ D. $v0"></textarea>
             timerSeconds: 0,
             timerInterval: null,
             startTime: 0,
+            questionNotes: {}, // Lưu note theo { indexCâu: "nội dung" }
+            isNoteOpen: false,
 
             async init() {
                 const savedStats = localStorage.getItem(STATS_KEY);
-                if (savedStats) {
-                    try { this.stats = JSON.parse(savedStats); } catch (e) {}
-                }
+                if (savedStats) { try { this.stats = JSON.parse(savedStats); } catch (e) {} }
 
                 await this.reloadServerQuizzes(false);
                 this.checkUrlSharedQuiz();
@@ -610,14 +575,76 @@ D. $v0"></textarea>
                     if (document.getElementById('view-exam').classList.contains('hidden')) return;
                     const key = e.key.toUpperCase();
                     if (['A', 'B', 'C', 'D'].includes(key)) {
-                        const idx = key.charCodeAt(0) - 65;
-                        this.selectOption(idx);
+                        this.selectOption(key.charCodeAt(0) - 65);
                     } else if (e.key === 'ArrowRight') {
                         this.nextQuestion();
                     } else if (e.key === 'ArrowLeft') {
                         this.prevQuestion();
                     }
                 });
+
+                // Kích hoạt tính năng kéo thả hộp ghi chú bằng chuột
+                const box = document.getElementById('floating-note-box');
+                const header = document.getElementById('note-header-drag');
+                let isDragging = false, startX, startY, initialX, initialY;
+
+                header.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    const rect = box.getBoundingClientRect();
+                    initialX = rect.left;
+                    initialY = rect.top;
+                    box.style.right = 'auto';
+                    box.style.left = initialX + 'px';
+                    box.style.top = initialY + 'px';
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+                    box.style.left = (initialX + dx) + 'px';
+                    box.style.top = (initialY + dy) + 'px';
+                });
+
+                document.addEventListener('mouseup', () => { isDragging = false; });
+            },
+
+            toggleNoteModal() {
+                const box = document.getElementById('floating-note-box');
+                this.isNoteOpen = !this.isNoteOpen;
+                if (this.isNoteOpen) {
+                    box.classList.remove('hidden');
+                    document.getElementById('floating-note-textarea').focus();
+                } else {
+                    box.classList.add('hidden');
+                }
+                this.updateNoteButtonLabel();
+            },
+
+            updateNoteButtonLabel() {
+                const count = Object.keys(this.questionNotes).length;
+                const label = document.getElementById('note-btn-label');
+                if (label) {
+                    label.textContent = count > 0 ? `Ghi Chú (${count} câu có note)` : `Mở Ghi Chú (0)`;
+                }
+            },
+
+            saveCurrentNote(val) {
+                if (val.trim() === '') {
+                    delete this.questionNotes[this.currentQIndex];
+                } else {
+                    this.questionNotes[this.currentQIndex] = val;
+                }
+                document.getElementById('note-char-count').textContent = `${val.length} ký tự`;
+                const statusEl = document.getElementById('note-save-status');
+                if (statusEl) {
+                    statusEl.textContent = 'Đang lưu...';
+                    setTimeout(() => { statusEl.textContent = 'Đã lưu'; }, 400);
+                }
+                this.updateNoteButtonLabel();
             },
 
             async reloadServerQuizzes(showAlert = true) {
@@ -626,13 +653,7 @@ D. $v0"></textarea>
 
                 const saved = localStorage.getItem(STORAGE_KEY);
                 let localQuizzes = [];
-                if (saved) {
-                    try {
-                        localQuizzes = JSON.parse(saved).filter(q => !q.isServer);
-                    } catch (e) {
-                        localQuizzes = [];
-                    }
-                }
+                if (saved) { try { localQuizzes = JSON.parse(saved).filter(q => !q.isServer); } catch (e) {} }
 
                 let serverQuizzes = [];
                 try {
@@ -643,30 +664,16 @@ D. $v0"></textarea>
                             serverQuizzes = data.map(q => ({ ...q, isServer: true }));
                         }
                     }
-                } catch (err) {
-                    console.warn('Chưa kết nối được /api/quizzes:', err);
-                }
+                } catch (err) {}
 
                 const serverKeys = new Set(serverQuizzes.map(q => q.id || q.code));
-                const merged = [
-                    ...serverQuizzes,
-                    ...localQuizzes.filter(q => !serverKeys.has(q.id) && !serverKeys.has(q.code))
-                ];
-
-                this.quizzes = merged.length > 0 ? merged : DEFAULT_QUIZZES;
+                this.quizzes = [...serverQuizzes, ...localQuizzes.filter(q => !serverKeys.has(q.id) && !serverKeys.has(q.code))];
+                if (this.quizzes.length === 0) this.quizzes = DEFAULT_QUIZZES;
                 this.saveToStorage();
                 this.renderDashboard();
 
                 if (statusEl) {
-                    statusEl.innerHTML = serverQuizzes.length > 0
-                        ? `<i class="fa-solid fa-check mr-1"></i>Đã đồng bộ ${serverQuizzes.length} đề Cloud`
-                        : `Chế độ đề mặc định`;
-                }
-
-                if (showAlert) {
-                    alert(serverQuizzes.length > 0
-                        ? `Đã đồng bộ thành công ${serverQuizzes.length} bộ đề từ thư mục quizzes/ trên Vercel!`
-                        : 'Không tìm thấy đề nào mới từ /api/quizzes.');
+                    statusEl.innerHTML = serverQuizzes.length > 0 ? `<i class="fa-solid fa-check mr-1"></i>Đã đồng bộ ${serverQuizzes.length} đề Cloud` : `Chế độ đề mặc định`;
                 }
             },
 
@@ -680,14 +687,11 @@ D. $v0"></textarea>
                     document.getElementById(`view-${v}`).classList.add('hidden');
                 });
                 document.getElementById(`view-${viewName}`).classList.remove('hidden');
-                if (viewName !== 'exam' && this.timerInterval) {
-                    clearInterval(this.timerInterval);
-                }
+                if (viewName !== 'exam' && this.timerInterval) clearInterval(this.timerInterval);
                 if (viewName === 'dashboard') this.renderDashboard();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             },
 
-            // ==================== DASHBOARD ====================
             renderDashboard() {
                 const query = (document.getElementById('search-quiz')?.value || '').toLowerCase();
                 const grid = document.getElementById('quiz-grid');
@@ -699,44 +703,22 @@ D. $v0"></textarea>
                 const avg = this.stats.attempts ? (this.stats.totalScore / this.stats.attempts).toFixed(1) : '0.0';
                 document.getElementById('stat-avg-score').textContent = avg;
 
-                const filtered = this.quizzes.filter(q => 
-                    (q.title || '').toLowerCase().includes(query) || 
-                    (q.code && q.code.toLowerCase().includes(query))
-                );
+                const filtered = this.quizzes.filter(q => (q.title || '').toLowerCase().includes(query) || (q.code && q.code.toLowerCase().includes(query)));
 
                 grid.innerHTML = filtered.map(q => `
                     <div class="bg-white border border-zinc-200 p-7 hover:border-zinc-900 transition flex flex-col justify-between group">
                         <div>
                             <div class="flex items-center justify-between gap-2 mb-4">
-                                <div class="flex items-center gap-2">
-                                    <span class="px-2.5 py-1 bg-zinc-100 text-zinc-900 font-mono text-[11px] font-bold tracking-wider">
-                                        #${this.escapeHtml(q.code || 'QUIZ')}
-                                    </span>
-                                    ${q.isServer ? `<span class="px-2 py-0.5 bg-zinc-900 text-white text-[10px] font-bold uppercase tracking-wider">Cloud</span>` : ''}
-                                </div>
-                                <span class="text-xs text-zinc-400 font-medium">
-                                    <i class="fa-regular fa-clock mr-1"></i>${q.duration || 15}p • ${(q.questions || []).length} câu
-                                </span>
+                                <span class="px-2.5 py-1 bg-zinc-100 text-zinc-900 font-mono text-[11px] font-bold">#${this.escapeHtml(q.code || 'QUIZ')}</span>
+                                <span class="text-xs text-zinc-400"><i class="fa-regular fa-clock mr-1"></i>${q.duration || 15}p • ${(q.questions || []).length} câu</span>
                             </div>
                             <h4 class="font-bold text-lg text-zinc-900 line-clamp-1 group-hover:underline">${this.escapeHtml(q.title)}</h4>
-                            <p class="text-xs text-zinc-500 mt-2 line-clamp-2 leading-relaxed">${this.escapeHtml(q.desc || 'Không có mô tả.')}</p>
+                            <p class="text-xs text-zinc-500 mt-2 line-clamp-2">${this.escapeHtml(q.desc || '')}</p>
                         </div>
-
                         <div class="pt-5 mt-6 border-t border-zinc-100 flex items-center justify-between gap-2">
-                            <button onclick="app.startQuiz('${q.id}')" class="flex-1 py-2.5 px-4 bg-[#212326] hover:bg-black text-white text-[11px] font-bold uppercase tracking-[0.15em] transition">
-                                Vào Thi
-                            </button>
-                            <button onclick="app.openShareModal('${q.id}')" class="w-9 h-9 border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 text-xs transition" title="Tải JSON / Chia sẻ link">
-                                <i class="fa-solid fa-share-nodes"></i>
-                            </button>
-                            <button onclick="app.openEditQuiz('${q.id}')" class="w-9 h-9 border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 text-xs transition" title="Xem / Chỉnh sửa đề">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            ${!q.isServer ? `
-                                <button onclick="app.deleteQuiz('${q.id}')" class="w-9 h-9 border border-zinc-200 text-rose-600 hover:border-rose-600 text-xs transition" title="Xóa đề cá nhân">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            ` : ''}
+                            <button onclick="app.startQuiz('${q.id}')" class="flex-1 py-2.5 px-4 bg-[#212326] hover:bg-black text-white text-[11px] font-bold uppercase tracking-[0.15em] transition">Vào Thi</button>
+                            <button onclick="app.openShareModal('${q.id}')" class="w-9 h-9 border border-zinc-200 text-zinc-600 hover:border-zinc-900 text-xs"><i class="fa-solid fa-share-nodes"></i></button>
+                            <button onclick="app.openEditQuiz('${q.id}')" class="w-9 h-9 border border-zinc-200 text-zinc-600 hover:border-zinc-900 text-xs"><i class="fa-solid fa-pen"></i></button>
                         </div>
                     </div>
                 `).join('');
@@ -744,23 +726,12 @@ D. $v0"></textarea>
 
             joinByCode() {
                 const raw = document.getElementById('join-code-input').value.trim();
-                if (!raw) return alert('Vui lòng nhập Mã Đề hoặc dán Link chia sẻ!');
-
-                if (raw.includes('#share=')) {
-                    const base64 = raw.split('#share=')[1];
-                    this.importFromBase64(base64);
-                    return;
-                }
-
+                if (!raw) return alert('Vui lòng nhập Mã Đề!');
                 const found = this.quizzes.find(q => (q.code || '').toUpperCase() === raw.toUpperCase());
-                if (found) {
-                    this.startQuiz(found.id);
-                } else {
-                    alert('Không tìm thấy mã đề "' + raw + '". Hãy kiểm tra lại Mã Đề hoặc bấm nút Đồng bộ Cloud ở trên!');
-                }
+                if (found) this.startQuiz(found.id);
+                else alert('Không tìm thấy mã đề "' + raw + '"!');
             },
 
-            // ==================== EDITOR & BULK IMPORT ====================
             openCreateQuiz() {
                 this.editingQuizId = null;
                 document.getElementById('editor-page-title').textContent = 'Tạo Bộ Đề Trắc Nghiệm Mới';
@@ -768,9 +739,7 @@ D. $v0"></textarea>
                 document.getElementById('edit-code').value = 'QM-' + Math.floor(1000 + Math.random() * 9000);
                 document.getElementById('edit-duration').value = 15;
                 document.getElementById('edit-desc').value = '';
-                this.editorQuestions = [
-                    { text: '', options: ['', '', '', ''], correct: 0, explain: '' }
-                ];
+                this.editorQuestions = [{ text: '', options: ['', '', '', ''], correct: 0, explain: '' }];
                 this.renderEditorQuestions();
                 this.showView('editor');
             },
@@ -779,7 +748,6 @@ D. $v0"></textarea>
                 const q = this.quizzes.find(item => item.id === id);
                 if (!q) return;
                 this.editingQuizId = q.id;
-                document.getElementById('editor-page-title').textContent = q.isServer ? 'Chỉnh Sửa Đề (Lưu bản mới để tải JSON)' : 'Chỉnh Sửa Bộ Đề';
                 document.getElementById('edit-title').value = q.title;
                 document.getElementById('edit-code').value = q.code || '';
                 document.getElementById('edit-duration').value = q.duration || 15;
@@ -790,34 +758,23 @@ D. $v0"></textarea>
             },
 
             renderEditorQuestions() {
-                const container = document.getElementById('editor-questions-list');
-                container.innerHTML = this.editorQuestions.map((q, idx) => `
-                    <div class="bg-white p-6 border border-zinc-200 shadow-sm space-y-4">
+                document.getElementById('editor-questions-list').innerHTML = this.editorQuestions.map((q, idx) => `
+                    <div class="bg-white p-6 border border-zinc-200 space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 bg-zinc-900 text-white font-bold text-xs uppercase tracking-wider">Câu hỏi ${idx + 1}</span>
-                            <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-600 font-semibold hover:underline">
-                                <i class="fa-solid fa-trash mr-1"></i> Xóa câu này
-                            </button>
+                            <span class="px-3 py-1 bg-zinc-900 text-white font-bold text-xs uppercase">Câu hỏi ${idx + 1}</span>
+                            <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-600 font-semibold">Xóa</button>
                         </div>
-                        <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="2" placeholder="Nhập nội dung câu hỏi..." 
-                            class="w-full p-3.5 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900">${this.escapeHtml(q.text)}</textarea>
-                        
+                        <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="2" class="w-full p-3 border border-zinc-300 text-sm">${this.escapeHtml(q.text)}</textarea>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             ${['A', 'B', 'C', 'D'].map((letter, optIdx) => `
                                 <div class="flex items-center gap-2">
-                                    <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} 
-                                        onchange="app.editorQuestions[${idx}].correct =${optIdx}" class="w-4 h-4 accent-zinc-900 cursor-pointer" title="Chọn làm đáp án đúng">
-                                    <span class="text-xs font-bold text-zinc-700 w-4">${letter}.</span>
-                                    <input type="text" value="${this.escapeHtml(q.options[optIdx] || '')}" 
-                                        oninput="app.editorQuestions[${idx}].options[${optIdx}] = this.value"
-                                        placeholder="Đáp án ${letter}" class="flex-1 px-3 py-2 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900">
+                                    <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} onchange="app.editorQuestions[${idx}].correct =${optIdx}">
+                                    <span class="text-xs font-bold">${letter}.</span>
+                                    <input type="text" value="${this.escapeHtml(q.options[optIdx] || '')}" oninput="app.editorQuestions[${idx}].options[${optIdx}] = this.value" class="flex-1 px-3 py-2 border border-zinc-300 text-sm">
                                 </div>
                             `).join('')}
                         </div>
-
-                        <input type="text" value="${this.escapeHtml(q.explain || '')}" 
-                            oninput="app.editorQuestions[${idx}].explain = this.value"
-                            placeholder="Giải thích đáp án (tùy chọn)..." class="w-full px-3.5 py-2 border border-zinc-200 bg-zinc-50 text-xs text-zinc-600 focus:outline-none focus:border-zinc-900">
+                        <input type="text" value="${this.escapeHtml(q.explain || '')}" oninput="app.editorQuestions[${idx}].explain = this.value" placeholder="Giải thích..." class="w-full px-3.5 py-2 border border-zinc-200 bg-zinc-50 text-xs">
                     </div>
                 `).join('');
             },
@@ -828,56 +785,44 @@ D. $v0"></textarea>
             },
 
             removeEditorQuestion(idx) {
-                if (this.editorQuestions.length <= 1) return alert('Đề thi phải có ít nhất 1 câu hỏi!');
+                if (this.editorQuestions.length <= 1) return alert('Ít nhất 1 câu!');
                 this.editorQuestions.splice(idx, 1);
                 this.renderEditorQuestions();
             },
 
             saveQuiz() {
                 const title = document.getElementById('edit-title').value.trim();
-                const code = document.getElementById('edit-code').value.trim().toUpperCase() || ('QM-' + Math.floor(1000 + Math.random() * 9000));
+                const code = document.getElementById('edit-code').value.trim().toUpperCase() || 'QM-01';
                 const duration = parseInt(document.getElementById('edit-duration').value) || 15;
                 const desc = document.getElementById('edit-desc').value.trim();
-
-                if (!title) return alert('Vui lòng nhập tên bộ đề thi!');
+                if (!title) return alert('Nhập tên đề!');
                 const validQuestions = this.editorQuestions.filter(q => q.text.trim() !== '');
-                if (validQuestions.length === 0) return alert('Vui lòng nhập ít nhất 1 câu hỏi có nội dung!');
 
-                let targetId = this.editingQuizId;
-                if (targetId) {
-                    const idx = this.quizzes.findIndex(q => q.id === targetId);
-                    if (idx > -1) {
-                        this.quizzes[idx] = { ...this.quizzes[idx], title, code, duration, desc, questions: validQuestions, isServer: false };
-                    }
-                } else {
-                    targetId = 'q-' + Date.now();
-                    this.quizzes.unshift({
-                        id: targetId,
-                        code,
-                        title,
-                        desc,
-                        duration,
-                        createdAt: new Date().toISOString().slice(0, 10),
-                        isServer: false,
-                        questions: validQuestions
-                    });
-                }
+                let targetId = this.editingQuizId || ('q-' + Date.now());
+                const quizObj = { id: targetId, code, title, desc, duration, isServer: false, questions: validQuestions };
+                const idx = this.quizzes.findIndex(q => q.id === targetId);
+                if (idx > -1) this.quizzes[idx] = quizObj;
+                else this.quizzes.unshift(quizObj);
 
                 this.saveToStorage();
                 this.showView('dashboard');
                 this.openShareModal(targetId);
             },
 
-            deleteQuiz(id) {
-                if (!confirm('Bạn có chắc muốn xóa bộ đề này khỏi trình duyệt?')) return;
-                this.quizzes = this.quizzes.filter(q => q.id !== id);
-                this.saveToStorage();
-                this.renderDashboard();
-            },
-
-            openBulkModal() {
-                document.getElementById('modal-bulk').classList.remove('hidden');
-                document.getElementById('modal-bulk').classList.add('flex');
+            openShareModal(id) {
+                const q = this.quizzes.find(item => item.id === id);
+                if (!q) return;
+                const base64 = btoa(unescape(encodeURIComponent(JSON.stringify(q))));
+                document.getElementById('share-url-input').value = `${window.location.origin}${window.location.pathname}#share=${base64}`;
+                document.getElementById('btn-download-json').onclick = () => {
+                    const blob = new Blob([JSON.stringify(q, null, 2)], { type: 'application/json' });
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = `${(q.code || 'quiz').toLowerCase()}.json`;
+                    a.click();
+                };
+                document.getElementById('modal-share').classList.remove('hidden');
+                document.getElementById('modal-share').classList.add('flex');
             },
 
             closeModal(id) {
@@ -885,127 +830,25 @@ D. $v0"></textarea>
                 document.getElementById(id).classList.remove('flex');
             },
 
-            parseBulkText() {
-                const raw = document.getElementById('bulk-textarea').value.trim();
-                if (!raw) return;
-
-                const blocks = raw.split(/\n\s*\n/);
-                const parsed = [];
-
-                blocks.forEach(block => {
-                    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
-                    if (lines.length < 2) return;
-
-                    let qText = lines[0].replace(/^Câu\s*\d+\s*[:.]\s*/i, '');
-                    let options = [];
-                    let correct = 0;
-                    let explain = '';
-
-                    for (let i = 1; i < lines.length; i++) {
-                        let line = lines[i];
-                        if (/^(Đáp án|Answer)\s*[:]/i.test(line)) {
-                            const ansChar = line.split(':')[1].trim().toUpperCase()[0];
-                            const idx = ['A', 'B', 'C', 'D'].indexOf(ansChar);
-                            if (idx > -1) correct = idx;
-                        } else if (/^(Giải thích|Explain)\s*[:]/i.test(line)) {
-                            explain = line.replace(/^(Giải thích|Explain)\s*[:]\s*/i, '');
-                        } else {
-                            let isCorrect = false;
-                            if (line.startsWith('*')) {
-                                isCorrect = true;
-                                line = line.substring(1).trim();
-                            }
-                            line = line.replace(/^[A-D][.:)]\s*/i, '');
-                            if (isCorrect) correct = options.length;
-                            if (options.length < 4) options.push(line);
-                        }
-                    }
-
-                    while (options.length < 4) options.push('');
-                    parsed.push({ text: qText, options, correct, explain });
-                });
-
-                if (parsed.length > 0) {
-                    if (this.editorQuestions.length === 1 && !this.editorQuestions[0].text.trim()) {
-                        this.editorQuestions = parsed;
-                    } else {
-                        this.editorQuestions.push(...parsed);
-                    }
-                    this.renderEditorQuestions();
-                    this.closeModal('modal-bulk');
-                    document.getElementById('bulk-textarea').value = '';
-                } else {
-                    alert('Không nhận diện được câu hỏi nào. Hãy kiểm tra lại định dạng!');
-                }
-            },
-
-            // ==================== SHARE & IMPORT (JSON + URL) ====================
-            openShareModal(id) {
-                const q = this.quizzes.find(item => item.id === id);
-                if (!q) return;
-
-                const exportObj = {
-                    id: q.id,
-                    code: q.code,
-                    title: q.title,
-                    desc: q.desc,
-                    duration: q.duration,
-                    createdAt: q.createdAt || new Date().toISOString().slice(0, 10),
-                    questions: q.questions
-                };
-
-                const jsonStr = JSON.stringify(exportObj);
-                const base64 = btoa(unescape(encodeURIComponent(jsonStr)));
-                const shareUrl = `${window.location.origin}${window.location.pathname}#share=${base64}`;
-
-                document.getElementById('share-url-input').value = shareUrl;
-                document.getElementById('btn-download-json').onclick = () => this.exportQuizJSON(exportObj);
-
-                document.getElementById('modal-share').classList.remove('hidden');
-                document.getElementById('modal-share').classList.add('flex');
-            },
-
             copyShareLink() {
                 const input = document.getElementById('share-url-input');
                 input.select();
                 navigator.clipboard.writeText(input.value);
-                alert('Đã sao chép Link đề thi! Bạn có thể gửi link này cho bạn bè làm ngay.');
+                alert('Đã copy Link!');
             },
 
             checkUrlSharedQuiz() {
-                const hash = window.location.hash;
-                if (hash && hash.startsWith('#share=')) {
-                    const base64 = hash.substring(7);
-                    this.importFromBase64(base64);
+                if (window.location.hash.startsWith('#share=')) {
+                    try {
+                        const shared = JSON.parse(decodeURIComponent(escape(atob(window.location.hash.substring(7)))));
+                        if (!this.quizzes.some(q => q.id === shared.id)) {
+                            this.quizzes.unshift(shared);
+                            this.saveToStorage();
+                        }
+                        this.startQuiz(shared.id);
+                    } catch (e) {}
                     history.replaceState(null, null, window.location.pathname);
                 }
-            },
-
-            importFromBase64(base64) {
-                try {
-                    const jsonStr = decodeURIComponent(escape(atob(base64)));
-                    const sharedQuiz = JSON.parse(jsonStr);
-                    if (!sharedQuiz.title || !Array.isArray(sharedQuiz.questions)) throw new Error('Invalid');
-
-                    const exists = this.quizzes.find(q => q.id === sharedQuiz.id);
-                    if (!exists) {
-                        this.quizzes.unshift(sharedQuiz);
-                        this.saveToStorage();
-                    }
-                    this.startQuiz(sharedQuiz.id);
-                } catch (err) {
-                    alert('Đường dẫn đề thi không hợp lệ hoặc bị cắt bớt!');
-                }
-            },
-
-            exportQuizJSON(quiz) {
-                const blob = new Blob([JSON.stringify(quiz, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                const safeName = (quiz.code || 'de-thi').toLowerCase().replace(/[^a-z0-9-_]/g, '');
-                a.download = `${safeName || 'de-thi'}.json`;
-                a.click();
             },
 
             importQuizJSON(event) {
@@ -1015,22 +858,14 @@ D. $v0"></textarea>
                 reader.onload = (e) => {
                     try {
                         const data = JSON.parse(e.target.result);
-                        const list = Array.isArray(data) ? data : [data];
-                        let count = 0;
-                        list.forEach(item => {
-                            if (item.title && Array.isArray(item.questions)) {
-                                item.id = item.id || ('q-' + Date.now() + '-' + count);
-                                this.quizzes.unshift(item);
-                                count++;
-                            }
+                        (Array.isArray(data) ? data : [data]).forEach((item, idx) => {
+                            item.id = item.id || ('q-' + Date.now() + idx);
+                            this.quizzes.unshift(item);
                         });
-                        if (count === 0) throw new Error('Invalid format');
                         this.saveToStorage();
                         this.renderDashboard();
-                        alert(`Đã nhập thành công ${count} bộ đề!`);
-                    } catch (err) {
-                        alert('File JSON không đúng định dạng đề thi!');
-                    }
+                        alert('Nhập JSON thành công!');
+                    } catch (err) { alert('File không hợp lệ!'); }
                 };
                 reader.readAsText(file);
             },
@@ -1040,33 +875,22 @@ D. $v0"></textarea>
                 const quiz = this.quizzes.find(q => q.id === id);
                 if (!quiz) return;
 
-                const savedName = localStorage.getItem('qm_player_name') || '';
-                const inputEl = document.getElementById('custom-player-name-input');
-                inputEl.value = savedName;
-
-                // Lưu lại quiz đang chuẩn bị làm
                 this.pendingQuizId = id;
                 this.pendingCustomQuestions = customQuestions;
-
-                // Mở Modal HTML tùy chỉnh thay cho prompt()
-                const modal = document.getElementById('modal-player-name');
-                modal.classList.replace('hidden', 'flex');
-                setTimeout(() => inputEl.focus(), 100);
-
-                // Lắng nghe phím Enter để submit nhanh
-                inputEl.onkeydown = (e) => {
-                    if (e.key === 'Enter') this.closeNameModal(true);
-                };
+                
+                const savedName = localStorage.getItem('qm_player_name') || '';
+                document.getElementById('custom-player-name-input').value = savedName;
+                document.getElementById('modal-player-name').classList.remove('hidden');
+                document.getElementById('modal-player-name').classList.add('flex');
+                setTimeout(() => document.getElementById('custom-player-name-input').focus(), 100);
             },
 
             closeNameModal(isConfirmed) {
                 const modal = document.getElementById('modal-player-name');
                 modal.classList.replace('flex', 'hidden');
+                if (!isConfirmed) return;
 
-                if (!isConfirmed) return; // Nếu bấm Hủy
-
-                const inputEl = document.getElementById('custom-player-name-input');
-                this.playerName = inputEl.value.trim() || 'Thí sinh ẩn danh';
+                this.playerName = document.getElementById('custom-player-name-input').value.trim() || 'Thí sinh ẩn danh';
                 localStorage.setItem('qm_player_name', this.playerName);
 
                 const quiz = this.quizzes.find(q => q.id === this.pendingQuizId);
@@ -1076,6 +900,7 @@ D. $v0"></textarea>
                 this.examQuestions = this.pendingCustomQuestions || JSON.parse(JSON.stringify(quiz.questions));
                 this.userAnswers = {};
                 this.flaggedQuestions = new Set();
+                this.questionNotes = {}; // Reset note khi bắt đầu đề mới
                 this.currentQIndex = 0;
                 this.timerSeconds = (quiz.duration || 15) * 60;
                 this.startTime = Date.now();
@@ -1084,10 +909,11 @@ D. $v0"></textarea>
                 this.showView('exam');
                 this.renderExamQuestion();
                 this.startTimer();
+                this.updateNoteButtonLabel();
             },
 
             shuffleActiveExam() {
-                if (!confirm('Đảo thứ tự câu hỏi sẽ làm mới lại lựa chọn hiện tại của bạn. Tiếp tục?')) return;
+                if (!confirm('Đảo thứ tự câu hỏi sẽ làm mới lựa chọn. Tiếp tục?')) return;
                 const shuffled = [...this.examQuestions].sort(() => Math.random() - 0.5);
                 this.startQuiz(this.activeQuiz.id, shuffled);
             },
@@ -1105,7 +931,7 @@ D. $v0"></textarea>
                     updateDisplay();
                     if (this.timerSeconds <= 0) {
                         clearInterval(this.timerInterval);
-                        alert('Hết giờ làm bài! Hệ thống sẽ tự động chấm điểm.');
+                        alert('Hết giờ làm bài!');
                         this.submitExam(true);
                     }
                 }, 1000);
@@ -1119,14 +945,12 @@ D. $v0"></textarea>
                 document.getElementById('exam-question-text').textContent = q.text;
 
                 const isFlagged = this.flaggedQuestions.has(this.currentQIndex);
-                const flagBtn = document.getElementById('exam-flag-btn');
-                flagBtn.className = isFlagged 
-                    ? 'px-4 py-2 border border-amber-500 bg-amber-50 text-xs font-bold text-amber-800 transition'
-                    : 'px-4 py-2 border border-zinc-200 text-xs font-semibold text-zinc-600 hover:border-zinc-900 transition';
+                document.getElementById('exam-flag-btn').className = isFlagged 
+                    ? 'px-4 py-2 border border-amber-500 bg-amber-50 text-xs font-bold text-amber-800'
+                    : 'px-4 py-2 border border-zinc-200 text-xs font-semibold text-zinc-600 hover:border-zinc-900';
 
                 const selected = this.userAnswers[this.currentQIndex];
-                const optionsEl = document.getElementById('exam-options-list');
-                optionsEl.innerHTML = q.options.map((opt, idx) => {
+                document.getElementById('exam-options-list').innerHTML = q.options.map((opt, idx) => {
                     const letter = ['A', 'B', 'C', 'D'][idx];
                     const active = selected === idx;
                     return `
@@ -1141,11 +965,9 @@ D. $v0"></textarea>
                     `;
                 }).join('');
 
-                const answeredCount = Object.keys(this.userAnswers).length;
-                document.getElementById('exam-answered-count').textContent = `${answeredCount}/${total} đã chọn`;
+                document.getElementById('exam-answered-count').textContent = `${Object.keys(this.userAnswers).length}/${total} đã chọn`;
 
-                const paletteEl = document.getElementById('exam-palette');
-                paletteEl.innerHTML = this.examQuestions.map((_, idx) => {
+                document.getElementById('exam-palette').innerHTML = this.examQuestions.map((_, idx) => {
                     const isCurrent = idx === this.currentQIndex;
                     const isAns = this.userAnswers[idx] !== undefined;
                     const isFlg = this.flaggedQuestions.has(idx);
@@ -1155,6 +977,14 @@ D. $v0"></textarea>
                     if (isCurrent) cls += ' ring-2 ring-offset-1 ring-zinc-900';
                     return `<button onclick="app.jumpToQuestion(${idx})" class="h-9 border text-xs font-bold transition ${cls}">${idx + 1}</button>`;
                 }).join('');
+
+                // Đồng bộ nội dung ghi chú cho câu hỏi hiện tại
+                document.getElementById('note-current-q-num').textContent = this.currentQIndex + 1;
+                const textarea = document.getElementById('floating-note-textarea');
+                if (textarea) {
+                    textarea.value = this.questionNotes[this.currentQIndex] || '';
+                    document.getElementById('note-char-count').textContent = `${textarea.value.length} ký tự`;
+                }
             },
 
             selectOption(optIdx) {
@@ -1163,71 +993,38 @@ D. $v0"></textarea>
             },
 
             toggleFlagCurrent() {
-                if (this.flaggedQuestions.has(this.currentQIndex)) {
-                    this.flaggedQuestions.delete(this.currentQIndex);
-                } else {
-                    this.flaggedQuestions.add(this.currentQIndex);
-                }
+                if (this.flaggedQuestions.has(this.currentQIndex)) this.flaggedQuestions.delete(this.currentQIndex);
+                else this.flaggedQuestions.add(this.currentQIndex);
                 this.renderExamQuestion();
             },
 
-            prevQuestion() {
-                if (this.currentQIndex > 0) {
-                    this.currentQIndex--;
-                    this.renderExamQuestion();
-                }
-            },
+            prevQuestion() { if (this.currentQIndex > 0) { this.currentQIndex--; this.renderExamQuestion(); } },
+            nextQuestion() { if (this.currentQIndex < this.examQuestions.length - 1) { this.currentQIndex++; this.renderExamQuestion(); } },
+            jumpToQuestion(idx) { this.currentQIndex = idx; this.renderExamQuestion(); },
 
-            nextQuestion() {
-                if (this.currentQIndex < this.examQuestions.length - 1) {
-                    this.currentQIndex++;
-                    this.renderExamQuestion();
-                }
-            },
-
-            jumpToQuestion(idx) {
-                this.currentQIndex = idx;
-                this.renderExamQuestion();
-            },
-
-            // ==================== SUBMIT & REVIEW ====================
             submitExam(auto = false) {
                 const total = this.examQuestions.length;
                 const answered = Object.keys(this.userAnswers).length;
-                if (!auto && answered < total) {
-                    if (!confirm(`Bạn mới làm ${answered}/${total} câu. Bạn có chắc chắn muốn nộp bài sớm?`)) return;
-                }
+                if (!auto && answered < total && !confirm(`Bạn mới làm ${answered}/${total} câu. Nộp bài sớm?`)) return;
 
                 clearInterval(this.timerInterval);
 
                 let correctCount = 0;
                 const wrongQuestions = [];
-
                 this.examQuestions.forEach((q, idx) => {
-                    if (this.userAnswers[idx] === q.correct) {
-                        correctCount++;
-                    } else {
-                        wrongQuestions.push(q);
-                    }
+                    if (this.userAnswers[idx] === q.correct) correctCount++;
+                    else wrongQuestions.push(q);
                 });
 
                 const score10 = ((correctCount / total) * 10).toFixed(1);
                 const elapsedSec = Math.max(1, Math.floor((Date.now() - this.startTime) / 1000));
                 const elapsedStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`;
-                
+
                 fetch('/api/submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        playerName: this.playerName || 'Ẩn danh',
-                        quizCode: this.activeQuiz?.code || 'QUIZ',
-                        quizTitle: this.activeQuiz?.title || 'Đề thi trắc nghiệm',
-                        score: score10,
-                        correct: correctCount,
-                        total: total,
-                        timeSpent: elapsedStr
-                    })
-                }).catch(err => console.warn('Không gửi được điểm về server:', err));
+                    body: JSON.stringify({ playerName: this.playerName || 'Ẩn danh', quizCode: this.activeQuiz?.code || 'QUIZ', score: score10, correct: correctCount, total, timeSpent: elapsedStr })
+                }).catch(err => {});
 
                 this.stats.attempts++;
                 this.stats.totalScore += parseFloat(score10);
@@ -1239,29 +1036,22 @@ D. $v0"></textarea>
                 document.getElementById('res-wrong').textContent = total - correctCount;
                 document.getElementById('res-time').textContent = elapsedStr;
 
-                const retryWrongBtn = document.getElementById('btn-retry-wrong');
+                document.getElementById('btn-retry-wrong').style.display = wrongQuestions.length > 0 ? 'inline-block' : 'none';
                 this.lastWrongQuestions = wrongQuestions;
-                retryWrongBtn.style.display = wrongQuestions.length > 0 ? 'inline-block' : 'none';
 
-                const reviewEl = document.getElementById('result-review-list');
-                reviewEl.innerHTML = this.examQuestions.map((q, idx) => {
+                document.getElementById('result-review-list').innerHTML = this.examQuestions.map((q, idx) => {
                     const userAns = this.userAnswers[idx];
                     const isCorrect = userAns === q.correct;
                     return `
                         <div class="bg-white p-6 border ${isCorrect ? 'border-zinc-200' : 'border-rose-300'} shadow-sm space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 ${isCorrect ? 'bg-zinc-900 text-white' : 'bg-rose-600 text-white'}">
-                                    Câu ${idx + 1}: ${isCorrect ? 'ĐÚNG' : 'SAI'}
-                                </span>
-                            </div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 ${isCorrect ? 'bg-zinc-900 text-white' : 'bg-rose-600 text-white'}">Câu ${idx + 1}: ${isCorrect ? 'ĐÚNG' : 'SAI'}</span>
                             <div class="font-medium text-zinc-900 text-sm sm:text-base">${this.escapeHtml(q.text)}</div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                                 ${q.options.map((opt, oIdx) => {
-                                    const letter = ['A', 'B', 'C', 'D'][oIdx];
                                     let style = 'border-zinc-200 bg-zinc-50 text-zinc-700';
                                     if (oIdx === q.correct) style = 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold';
                                     else if (oIdx === userAns && !isCorrect) style = 'border-rose-400 bg-rose-50 text-rose-900 line-through';
-                                    return `<div class="p-3 border ${style}">${letter}.${this.escapeHtml(opt)}</div>`;
+                                    return `<div class="p-3 border ${style}">${['A','B','C','D'][oIdx]}.${this.escapeHtml(opt)}</div>`;
                                 }).join('')}
                             </div>
                             ${q.explain ? `<div class="text-xs text-zinc-600 bg-zinc-50 p-3.5 border border-zinc-200"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <b>Giải thích:</b> ${this.escapeHtml(q.explain)}</div>` : ''}
@@ -1270,6 +1060,8 @@ D. $v0"></textarea>
                 }).join('');
 
                 this.showView('result');
+                // Tự động tắt hộp note nếu đang mở khi xem kết quả
+                if (this.isNoteOpen) this.toggleNoteModal();
             },
 
             retryCurrentQuiz(onlyWrong = false) {
@@ -1283,37 +1075,11 @@ D. $v0"></textarea>
 
             escapeHtml(str) {
                 if (!str) return '';
-                return String(str)
-                    .replace(/&/g, '&amp;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')
-                    .replace(/"/g, '&quot;');
+                return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
             }
         };
 
         window.addEventListener('DOMContentLoaded', () => app.init());
     </script>
-    <!-- ==================== MODAL NHẬP TÊN THÍ SINH (TÙY CHỈNH) ==================== -->
-<div id="modal-player-name" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-white max-w-md w-full p-8 space-y-6 shadow-2xl border border-zinc-200">
-        <div class="space-y-1">
-            <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Xác thực thí sinh</span>
-            <h3 class="text-lg font-bold text-zinc-900">Nhập tên của bạn để bắt đầu</h3>
-            <p class="text-xs text-zinc-500">Tên của bạn sẽ được lưu lại để ghi nhận kết quả bài thi.</p>
-        </div>
-        
-        <input id="custom-player-name-input" type="text" placeholder="Nhập họ và tên..." 
-            class="w-full px-4 py-3 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900 transition">
-            
-        <div class="flex justify-end gap-3 pt-2">
-            <button onclick="app.closeNameModal(false)" class="px-5 py-2.5 border border-zinc-200 text-xs font-bold uppercase tracking-wider text-zinc-600 hover:border-zinc-900 transition">
-                Hủy
-            </button>
-            <button onclick="app.closeNameModal(true)" class="px-6 py-2.5 bg-[#1b1d1f] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition">
-                Vào Thi
-            </button>
-        </div>
-    </div>
-</div>
 </body>
 </html>
