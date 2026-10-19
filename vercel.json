@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/quizzes.js": {
+      "includeFiles": "quizzes/**"
+    }
+  }
+}
