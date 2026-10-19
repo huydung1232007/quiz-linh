@@ -1,0 +1,476 @@
+[
+  {
+    "id": "q-python-co-ban",
+    "code": "PY-05",
+    "title": "Bộ 50 Câu Hỏi Trắc Nghiệm Ôn Tập Python – Các Khái Niệm Cơ Bản",
+    "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về các khái niệm cơ bản trong Python: kiểu dữ liệu, toán tử, ép kiểu, biểu thức logic, độ ưu tiên toán tử và truy vết code.",
+    "duration": 50,
+    "questions": [
+      {
+        "text": "Trong Python, hàm type(x) với x = 2026.0 sẽ trả về kết quả thuộc kiểu dữ liệu nào sau đây?",
+        "options": [
+          "<class 'int'>",
+          "<class 'float'>",
+          "<class 'complex'>",
+          "<class 'str'>"
+        ],
+        "correct": 1,
+        "explain": "Trong Python, bất kỳ số nào có chứa dấu chấm thập phân (dù phần thập phân bằng 0 như 2026.0) đều được lưu trữ dưới dạng số thực dấu phẩy động (float)."
+      },
+      {
+        "text": "Cho biến z = 3 - 4j. Kiểu dữ liệu của biến z trong Python là gì?",
+        "options": [
+          "complex",
+          "float",
+          "str",
+          "Lỗi cú pháp vì biến j chưa được khai báo."
+        ],
+        "correct": 0,
+        "explain": "Python hỗ trợ trực tiếp kiểu số phức (complex) dưới dạng a + bj, trong đó a là phần thực và b là phần ảo đứng liền trước ký hiệu đơn vị ảo j."
+      },
+      {
+        "text": "Tên biến (định danh) nào sau đây là hợp lệ trong Python?",
+        "options": [
+          "2_sinh_vien",
+          "diem-toan",
+          "_diem_so_1",
+          "class"
+        ],
+        "correct": 2,
+        "explain": "Tên biến không được bắt đầu bằng chữ số, không chứa dấu gạch ngang '-' và không được trùng với từ khóa của Python (như class). Do đó _diem_so_1 là hợp lệ."
+      },
+      {
+        "text": "Vì Python có phân biệt chữ hoa và chữ thường (case-sensitive), từ nào sau đây không phải là từ khóa (keyword) của Python và có thể dùng làm tên biến?",
+        "options": [
+          "return",
+          "False",
+          "None",
+          "true"
+        ],
+        "correct": 3,
+        "explain": "Các hằng từ khóa đặc biệt bắt đầu bằng chữ cái in hoa là True, False và None. Từ 'true' viết thường không phải là từ khóa nên có thể dùng làm tên biến."
+      },
+      {
+        "text": "Cách viết nào sau đây được dùng để tạo một ghi chú (comment) trên một dòng trong Python?",
+        "options": [
+          "Bắt đầu nội dung ghi chú bằng dấu thăng #.",
+          "Bắt đầu nội dung ghi chú bằng hai dấu gạch chéo //.",
+          "Bao quanh nội dung ghi chú bằng cặp ký hiệu /* ... */.",
+          "Bắt đầu nội dung ghi chú bằng hai dấu gạch ngang --."
+        ],
+        "correct": 0,
+        "explain": "Trong Python, dấu # dùng để tạo ghi chú một dòng."
+      },
+      {
+        "text": "Trong Python, cặp toán tử nào sau đây lần lượt biểu diễn phép chia lấy phần nguyên và phép lũy thừa?",
+        "options": [
+          "/ và ^",
+          "// và **",
+          "% và **",
+          "// và ^"
+        ],
+        "correct": 1,
+        "explain": "// là phép chia lấy phần nguyên và ** là phép lũy thừa trong Python."
+      },
+      {
+        "text": "Phát biểu nào sau đây phân biệt đúng giữa toán tử = và toán tử == trong Python?",
+        "options": [
+          "= dùng để so sánh bằng nhau giữa hai số, còn == dùng để so sánh hai chuỗi.",
+          "Cả = và == đều dùng để gán giá trị cho biến.",
+          "= là toán tử gán giá trị ở vế phải cho biến ở vế trái, còn == là toán tử so sánh bằng trả về True hoặc False.",
+          "== là toán tử gán giá trị, còn = là toán tử so sánh bằng."
+        ],
+        "correct": 2,
+        "explain": "= là phép gán giá trị, còn == là toán tử quan hệ so sánh bằng trả về giá trị kiểu bool."
+      },
+      {
+        "text": "Khi một biểu thức chứa cả ba toán tử logic not, and, or mà không có dấu ngoặc tròn, Python sẽ thực hiện theo thứ tự ưu tiên nào từ cao xuống thấp?",
+        "options": [
+          "and -> or -> not",
+          "Thực hiện lần lượt từ trái sang phải, toán tử nào đứng trước tính trước.",
+          "not -> or -> and",
+          "not -> and -> or"
+        ],
+        "correct": 3,
+        "explain": "Thứ tự ưu tiên của toán tử logic từ cao đến thấp là: not -> and -> or."
+      },
+      {
+        "text": "Giả sử chương trình thực hiện lệnh x = input(\"Nhap so: \") và người dùng gõ vào số 25 rồi nhấn Enter. Kiểu dữ liệu và giá trị của biến x ngay sau lệnh này là gì?",
+        "options": [
+          "Kiểu int, giá trị 25.",
+          "Kiểu str, giá trị \"25\".",
+          "Kiểu float, giá trị 25.0.",
+          "Kiểu bool, giá trị True."
+        ],
+        "correct": 1,
+        "explain": "Hàm input() trong Python 3 luôn trả về một chuỗi ký tự (str)."
+      },
+      {
+        "text": "Cho câu lệnh x = None. Kết quả của lệnh print(type(x)) là gì?",
+        "options": [
+          "<class 'NoneType'>",
+          "<class 'None'>",
+          "<class 'bool'>",
+          "<class 'void'>"
+        ],
+        "correct": 0,
+        "explain": "Hằng None thuộc kiểu dữ liệu NoneType trong Python."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 10\nb = 2\nx = a / b\ny = a // b\nprint(type(x), type(y))\nKết quả in ra màn hình là gì?",
+        "options": [
+          "<class 'int'> <class 'int'>",
+          "<class 'float'> <class 'float'>",
+          "<class 'float'> <class 'int'>",
+          "<class 'int'> <class 'float'>"
+        ],
+        "correct": 2,
+        "explain": "Phép chia / trong Python 3 luôn trả về float, còn phép chia nguyên // giữa các số nguyên trả về int."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 2\nb = 3\nc = 5\nx = a + b * c ** a // 4\nprint(x)\nGiá trị của biến x được in ra màn hình là bao nhiêu?",
+        "options": ["31", "56", "20.75", "20"],
+        "correct": 3,
+        "explain": "c**a = 25 -> 3*25 = 75 -> 75 // 4 = 18 -> 2 + 18 = 20."
+      },
+      {
+        "text": "Cho biểu thức x = 2 ** 2 ** 3. Giá trị của biến x là bao nhiêu?",
+        "options": ["256", "64", "12", "512"],
+        "correct": 0,
+        "explain": "Toán tử ** kết hợp từ phải sang trái: 2 ** (2 ** 3) = 2 ** 8 = 256."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = -3 ** 2\nb = (-3) ** 2\nprint(a, b)\nKết quả in ra màn hình là gì?",
+        "options": ["9 9", "-9 9", "-9 -9", "9 -9"],
+        "correct": 1,
+        "explain": "-3 ** 2 tương đương -(3**2) = -9, còn (-3)**2 = 9."
+      },
+      {
+        "text": "Cho đoạn chương trình có phép chia với số âm sau:\nq = -17 // 5\nr = -17 % 5\nprint(q, r)",
+        "options": ["-3 -2", "-3 2", "-4 3", "-4 -3"],
+        "correct": 2,
+        "explain": "-17 // 5 làm tròn xuống thành -4, phần dư r = -17 - (-4)*5 = 3."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 5\nb = 5.0\nc = \"5\"\nprint(a == b, a == c, a != c)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "False False True",
+          "True True False",
+          "Chương trình báo lỗi TypeError vì so sánh số với chuỗi.",
+          "True False True"
+        ],
+        "correct": 3,
+        "explain": "5 == 5.0 là True, 5 == '5' là False, 5 != '5' là True."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nx = True or False and not True\nprint(x)\nGiá trị của biến x là gì?",
+        "options": ["True", "False", "0", "None"],
+        "correct": 0,
+        "explain": "not True là False -> False and False là False -> True or False là True."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 4\nb = 7\nc = 2\nkq = a + c >= b or b % c == 1 and not a < c\nprint(kq)\nKết quả in ra màn hình là gì?",
+        "options": ["False", "True", "1", "Chương trình báo lỗi."],
+        "correct": 1,
+        "explain": "a + c >= b là 6 >= 7 (False), b % c == 1 là True, not(a < c) là True -> False or (True and True) = True."
+      },
+      {
+        "text": "Trong Python, ngoài kiểu bool, các giá trị thuộc kiểu khác cũng có tính đúng/sai (Truthy/Falsy) khi đặt trong biểu thức logic. Biểu thức chuyển kiểu nào sau đây trả về True?",
+        "options": [
+          "bool(0)",
+          "bool(\"\")",
+          "bool(\"False\")",
+          "bool(None)"
+        ],
+        "correct": 2,
+        "explain": "Chuỗi \"False\" không phải là chuỗi rỗng nên có tính Truthy, trả về True khi ép kiểu sang bool."
+      },
+      {
+        "text": "Trong Python, kiểu dữ liệu bool là lớp con của kiểu số nguyên int (với True tương ứng giá trị 1 và False tương ứng giá trị 0). Giá trị của biểu thức True + True * 3 - False là bao nhiêu?",
+        "options": ["True", "6", "Chương trình báo lỗi TypeError.", "4"],
+        "correct": 3,
+        "explain": "1 + 1 * 3 - 0 = 1 + 3 = 4."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = b = 5\nb = 8\nprint(a, b)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "5 8",
+          "8 8",
+          "5 5",
+          "Chương trình báo lỗi cú pháp ở dòng a = b = 5."
+        ],
+        "correct": 0,
+        "explain": "a và b cùng trỏ đến 5. Khi gán b = 8, chỉ có b thay đổi, a vẫn là 5."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng toán tử gán kết hợp sau:\nx = 4\nx *= 2 + 3\nprint(x)\nGiá trị của biến x sau khi thực hiện là bao nhiêu?",
+        "options": ["11", "20", "14", "9"],
+        "correct": 1,
+        "explain": "x *= (2 + 3) tương đương x = 4 * 5 = 20."
+      },
+      {
+        "text": "Cho hai biến số nguyên a = 6 (nhị phân 0110) và b = 3 (nhị phân 0011). Kết quả của phép toán trên bit a & b và a | b lần lượt là bao nhiêu?",
+        "options": [
+          "3 và 6",
+          "9 và 3",
+          "2 và 7",
+          "5 và 7"
+        ],
+        "correct": 2,
+        "explain": "6 & 3 = 2, 6 | 3 = 7."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nx = None\nprint(x is None, \"py\" in \"python\", \"Py\" not in \"python\")\nKết quả in ra màn hình là gì?",
+        "options": [
+          "True True False",
+          "False True True",
+          "True False True",
+          "True True True"
+        ],
+        "correct": 3,
+        "explain": "x is None là True, 'py' in 'python' là True, 'Py' not in 'python' là True."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nprint(1, 2, 3, sep=\"-\", end=\"!\")\nprint(4, 5, sep=\":\")\nKết quả in ra màn hình là gì?",
+        "options": [
+          "1-2-3!4:5",
+          "1-2-3! 4:5",
+          "1 - 2 - 3 ! 4 : 5",
+          "1-2-3\n4:5!"
+        ],
+        "correct": 0,
+        "explain": "sep quy định dấu phân cách, end='!' thay thế ký tự xuống dòng ở lệnh print thứ nhất, kết quả in ra liên tiếp là 1-2-3!4:5."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 3\nb = 5\na = a + b\nb = a - b\na = a - b\nprint(a, b)\nKết quả in ra màn hình là gì?",
+        "options": ["3 5", "5 3", "8 3", "5 8"],
+        "correct": 1,
+        "explain": "Thuật toán hoán đổi giá trị hai biến a và b không dùng biến tạm, kết quả in ra là 5 3."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng phép gán đồng thời (multiple assignment) sau:\na = 2\nb = 5\na, b = b, a + b\nprint(a, b)\nKết quả in ra màn hình là gì?",
+        "options": ["5 10", "2 7", "5 7", "7 5"],
+        "correct": 2,
+        "explain": "Tính toán vế phải trước: (5, 2 + 5) = (5, 7), sau đó gán đồng thời a = 5, b = 7."
+      },
+      {
+        "text": "Cho đoạn chương trình tách chữ số của một số nguyên dương có 3 chữ số như sau:\nn = 479\ntram = n // 100\nchuc = (n // 10) % 10\ndon_vi = n % 10\ns = tram + chuc * 2 + don_vi\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": ["20", "32", "29", "27"],
+        "correct": 3,
+        "explain": "tram = 4, chuc = 7, don_vi = 9 -> s = 4 + 7*2 + 9 = 27."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nx = 17\ny = 4\nx //= y - 1\ny %= x\nprint(x, y)\nKết quả in ra màn hình là gì?",
+        "options": ["5 4", "3 1", "5 1", "4 0"],
+        "correct": 0,
+        "explain": "x //= 3 -> x = 5; y %= 5 -> y = 4."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\nx = input()\ny = x * 2\nz = int(x) * 2\nprint(y, z)\nNếu người dùng nhập vào số 15 và nhấn Enter, kết quả in ra màn hình là gì?",
+        "options": ["30 30", "1515 30", "152 30", "1515 1515"],
+        "correct": 1,
+        "explain": "y là phép nhân chuỗi '15'*2 = '1515', z là phép nhân số 15*2 = 30."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = \"12\"\nb = \"3.5\"\nkq = int(a) + float(b)\nprint(type(kq), kq)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "<class 'str'> 123.5",
+          "<class 'int'> 15",
+          "<class 'float'> 15.5",
+          "Chương trình báo lỗi TypeError."
+        ],
+        "correct": 2,
+        "explain": "12 + 3.5 = 15.5 thuộc kiểu float."
+      },
+      {
+        "text": "Câu lệnh chuyển đổi kiểu dữ liệu nào sau đây sẽ gây ra lỗi ValueError khi thực thi?",
+        "options": [
+          "float(\"15\")",
+          "int(3.9)",
+          "str(20.26)",
+          "int(\"3.9\")"
+        ],
+        "correct": 3,
+        "explain": "Chuỗi '3.9' chứa dấu chấm không thể trực tiếp chuyển sang số nguyên bằng int(), gây ra ValueError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = int(4.8)\nb = float(2)\nc = str(a) + str(int(b))\nprint(c)\nKết quả in ra màn hình là gì?",
+        "options": ["42", "6", "52", "42.0"],
+        "correct": 0,
+        "explain": "a = 4, int(b) = 2 -> nối chuỗi '4' + '2' thành '42'."
+      },
+      {
+        "text": "Trong Python, các toán tử logic and và or trả về chính giá trị của toán hạng quyết định kết quả. Cho đoạn chương trình sau:\nx = 0 or 5\ny = 3 and 8\nz = 0 and 10\nprint(x, y, z)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "True True False",
+          "5 8 0",
+          "0 3 0",
+          "5 3 10"
+        ],
+        "correct": 1,
+        "explain": "0 or 5 trả về 5; 3 and 8 trả về 8; 0 and 10 trả về 0."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng toán tử dịch bit (<<, >>) và XOR bit (^) sau:\na = 3 << 2\nb = 15 >> 1\nc = a ^ b\nprint(a, b, c)\nKết quả in ra màn hình là gì?",
+        "options": ["6 7 1", "12 8 4", "12 7 11", "9 7 14"],
+        "correct": 2,
+        "explain": "a = 12, b = 7, c = 12 ^ 7 = 11."
+      },
+      {
+        "text": "Cho đoạn chương trình sử dụng lệnh del sau:\nx = 10\ny = x + 5\ndel x\nprint(x)\nKhi thực thi đoạn chương trình trên, điều gì sẽ xảy ra?",
+        "options": [
+          "Chương trình in ra 0.",
+          "Chương trình in ra None.",
+          "Chương trình báo lỗi SyntaxError.",
+          "Chương trình báo lỗi NameError ở dòng 4 vì biến x đã bị xóa khỏi bộ nhớ tên biến."
+        ],
+        "correct": 3,
+        "explain": "del x xóa biến x khỏi namespace, gọi print(x) gây ra NameError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 10\nb = 20\na + b = 30\nprint(a, b)\nĐoạn chương trình trên xảy ra lỗi gì?",
+        "options": [
+          "Lỗi cú pháp (SyntaxError) ở dòng 3 vì vế trái của phép gán = không được là một biểu thức số học.",
+          "Lỗi khi chạy (TypeError) ở dòng 3.",
+          "Lỗi khi chạy (ValueError) ở dòng 3.",
+          "Không có lỗi, chương trình in ra 10 20."
+        ],
+        "correct": 0,
+        "explain": "Vế trái của phép gán phải là biến, không thể là biểu thức a + b, gây ra SyntaxError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 5\n  b = 10\nprint(a + b)\nĐoạn chương trình trên xảy ra lỗi gì?",
+        "options": [
+          "Không có lỗi, chương trình in ra 15.",
+          "Lỗi thụt lề (IndentationError) ở dòng 2 vì thụt lề đầu dòng khi không nằm trong khối lệnh nào.",
+          "Lỗi NameError ở dòng 3.",
+          "Lỗi TypeError ở dòng 2."
+        ],
+        "correct": 1,
+        "explain": "Thụt lề không hợp lệ ngoài khối lệnh gây ra IndentationError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 12\nb = 3\nc = a // (b - 3)\nprint(c)\nPhát biểu nào sau đây mô tả đúng về đoạn chương trình trên?",
+        "options": [
+          "Chương trình báo lỗi cú pháp (SyntaxError) ở dòng 3.",
+          "Chương trình chạy bình thường và in ra 0.",
+          "Chương trình hợp lệ về cú pháp nhưng xảy ra lỗi khi chạy (ZeroDivisionError) ở dòng 3.",
+          "Chương trình xảy ra lỗi logic và in ra 4."
+        ],
+        "correct": 2,
+        "explain": "Mẫu số b - 3 = 0 dẫn đến lỗi ZeroDivisionError khi chạy."
+      },
+      {
+        "text": "Một sinh viên viết chương trình tính diện tích hình chữ nhật có chiều dài d = 6 và chiều rộng r = 4, nhưng lại viết nhầm công thức thành dien_tich = d + r * 2 nên chương trình chạy không báo lỗi và in ra 14 (thay vì kết quả đúng là 24). Lỗi này thuộc loại lỗi nào?",
+        "options": [
+          "Lỗi cú pháp (SyntaxError).",
+          "Lỗi khi chạy (Runtime Error).",
+          "Lỗi thụt lề (IndentationError).",
+          "Lỗi logic (Logic Error / Semantic Error)."
+        ],
+        "correct": 3,
+        "explain": "Chương trình chạy không báo lỗi nhưng sai kết quả do dùng sai công thức là lỗi logic."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 15\nb = 4\nx = (a % b) ** 2 + (a // b) * 2 - a / 5\nprint(type(x), x)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "<class 'float'> 12.0",
+          "<class 'int'> 12",
+          "<class 'float'> 15.0",
+          "<class 'int'> 15"
+        ],
+        "correct": 0,
+        "explain": "3**2 = 9; 3*2 = 6; 15/5 = 3.0 -> 9 + 6 - 3.0 = 12.0 (float)."
+      },
+      {
+        "text": "Cho đoạn chương trình kiểm tra cơ chế đánh giá ngắn mạch (short-circuit evaluation) sau:\na = 0\nb = 5\nx = (a != 0) and (b // a > 1)\ny = (b > 2) or (b // a > 1)\nprint(x, y)\nKết quả khi thực thi đoạn chương trình trên là gì?",
+        "options": [
+          "Chương trình báo lỗi ZeroDivisionError ở dòng 3 do thực hiện phép chia b // a.",
+          "False True",
+          "False False",
+          "Chương trình báo lỗi ZeroDivisionError ở dòng 4."
+        ],
+        "correct": 1,
+        "explain": "Đánh giá ngắn mạch giúp bỏ qua phần biểu thức gây lỗi chia cho 0, cho kết quả False True."
+      },
+      {
+        "text": "Cho đoạn chương trình có sử dụng chuỗi nhiều dòng (multiline string) và chú thích như sau:\nx = 5\n# x = x + 10\n\"\"\"\nx = x * 2\n\"\"\"\ny = str(x) * 2\nprint(int(y) + x)\nKết quả in ra màn hình là gì?",
+        "options": ["15", "315", "60", "110"],
+        "correct": 2,
+        "explain": "x = 5, y = '55' -> int('55') + 5 = 60."
+      },
+      {
+        "text": "Python cho phép viết các phép so sánh nối tiếp nhau (chained comparisons). Cho đoạn chương trình sau:\na = 3\nb = 5\nc = 4\np = a < b > c\nq = a < c <= b == 5\nr = a < b < c\nprint(p, q, r)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "True False False",
+          "False True False",
+          "Chương trình báo lỗi cú pháp ở dòng q = a < c <= b == 5.",
+          "True True False"
+        ],
+        "correct": 3,
+        "explain": "p tương đương (3 < 5) and (5 > 4) -> True; q tương đương 3 < 4 and 4 <= 5 and 5 == 5 -> True; r tương đương 3 < 5 and 5 < 4 -> False."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = 10\nb = 3\na += b * 2\nb = a // b - 1\na %= b\nprint(a, b)\nKết quả in ra màn hình là gì?",
+        "options": ["0 4", "1 4", "4 4", "2 5"],
+        "correct": 0,
+        "explain": "a = 16 -> b = 16 // 3 - 1 = 4 -> a = 16 % 4 = 0. Kết quả 0 4."
+      },
+      {
+        "text": "Cho bốn đoạn chương trình ngắn dưới đây: Đoạn 1: x = \"5\" + 5; Đoạn 2: x = int(\"12a\"); Đoạn 3: x = 10 / 0; Đoạn 4: 5 = x. Thứ tự tên lỗi phát sinh tương ứng của Đoạn 1, Đoạn 2, Đoạn 3 và Đoạn 4 là gì?",
+        "options": [
+          "ValueError, TypeError, ZeroDivisionError, SyntaxError",
+          "TypeError, SyntaxError, ZeroDivisionError, NameError",
+          "TypeError, ValueError, ZeroDivisionError, SyntaxError",
+          "SyntaxError, ValueError, ZeroDivisionError, TypeError"
+        ],
+        "correct": 2,
+        "explain": "Đoạn 1 lỗi TypeError, Đoạn 2 lỗi ValueError, Đoạn 3 lỗi ZeroDivisionError, Đoạn 4 lỗi SyntaxError."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình kết hợp độ ưu tiên của lũy thừa, dấu âm một ngôi và phép chia số âm như sau:\na = -2 ** 3 ** 2 // 100\nb = (-2 ** 2) % 3\nc = a + b\nprint(a, b, c)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "-5 1 -4",
+          "-6 2 -4",
+          "5 1 6",
+          "-6 -1 -7"
+        ],
+        "correct": 1,
+        "explain": "a = -512 // 100 = -6; b = -4 % 3 = 2; c = -6 + 2 = -4."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình có phép so sánh mắt xích đặc biệt như sau:\na = 5\nb = 3\nx = a > b == False\ny = (a > b) == False\nz = not a < b and b - 3 or a - b\nprint(x, y, z)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "False False 0",
+          "True False 2",
+          "False True 2",
+          "False False 2"
+        ],
+        "correct": 3,
+        "explain": "x tương đương (5 > 3) and (3 == False) -> False; y tương đương True == False -> False; z tính toán trả về 2."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình kết hợp ép kiểu, toán tử logic trả về giá trị và kiểm tra kiểu dữ liệu như sau:\na = \"\" or \"0\" and 0\nb = not a and \"Python\" or \"Java\"\nprint(type(a), a, b)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "<class 'int'> 0 Python",
+          "<class 'str'> 0 Java",
+          "<class 'bool'> False Python",
+          "<class 'int'> 0 Java"
+        ],
+        "correct": 0,
+        "explain": "a = 0 (int), b = 'Python'."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình kết hợp toán tử trên bit, phép gán đồng thời và toán tử gán kết hợp như sau:\nx = 5\ny = 3\nx, y = x ^ y, x & y\nx <<= y\ny += x // 2 + (x % 5 == 0)\nprint(x, y)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "12 8",
+          "6 4",
+          "12 7",
+          "10 6"
+        ],
+        "correct": 2,
+        "explain": "x = 6, y = 1 -> x = 12 -> y = 1 + 6 + 0 = 7. Kết quả 12 7."
+      }
+    ]
+  }
+]
