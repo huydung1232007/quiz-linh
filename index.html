@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster VN - Tạo & Chia Sẻ Đề Thi Trắc Nghiệm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="app.showView('dashboard')">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-slate-900 leading-none">QuizMaster <span class="text-indigo-600">VN</span></h1>
+                    <span class="text-xs text-slate-500">Tạo, Làm & Chia sẻ đề trắc nghiệm</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="app.showView('dashboard')" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
+                    <i class="fa-solid fa-house mr-1"></i> Trang chủ
+                </button>
+                <button onclick="app.openCreateQuiz()" class="px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm shadow-indigo-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> <span class="hidden sm:inline">Tạo Đề Mới</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- ==================== VIEW 1: DASHBOARD ==================== -->
+        <section id="view-dashboard" class="space-y-6">
+            <!-- Hero / Join by Code or File -->
+            <div class="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 max-w-xl">
+                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-semibold backdrop-blur-sm">
+                        <i class="fa-solid fa-bolt mr-1"></i> Làm đề thi trực tuyến miễn phí
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold">Vào phòng thi nhanh hoặc chia sẻ đề cho bạn bè</h2>
+                    <p class="text-indigo-100 text-sm">Bạn có thể nhập Mã Đề, dán Link chia sẻ, hoặc tải file đề `.json` từ bạn bè lên để làm bài ngay lập tức.</p>
+                </div>
+
+                <div class="w-full md:w-auto flex flex-col sm:flex-row gap-2 bg-white/10 p-2 rounded-xl backdrop-blur-md border border-white/20">
+                    <input id="join-code-input" type="text" placeholder="Nhập Mã Đề (VD:DSA-01)..." 
+                        class="px-4 py-2.5 rounded-lg bg-white text-slate-800 text-sm font-medium focus:outline-none w-full sm:w-56">
+                    <button onclick="app.joinByCode()" class="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-sm transition whitespace-nowrap">
+                        <i class="fa-solid fa-play mr-1"></i> Vào Thi
+                    </button>
+                    <label class="px-4 py-2.5 rounded-lg bg-white/20 hover:bg-white/30 text-white font-medium text-sm transition cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-1.5" title="Nhập đề từ file JSON">
+                        <i class="fa-solid fa-file-import"></i> Nhập JSON
+                        <input type="file" accept=".json" class="hidden" onchange="app.importQuizJSON(event)">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-medium">Tổng số bộ đề</div>
+                    <div id="stat-total-quizzes" class="text-2xl font-bold text-slate-900 mt-1">0</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-medium">Tổng số câu hỏi</div>
+                    <div id="stat-total-questions" class="text-2xl font-bold text-indigo-600 mt-1">0</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-medium">Số lượt đã làm</div>
+                    <div id="stat-total-attempts" class="text-2xl font-bold text-emerald-600 mt-1">0</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-medium">Điểm trung bình</div>
+                    <div id="stat-avg-score" class="text-2xl font-bold text-amber-500 mt-1">0.0</div>
+                </div>
+            </div>
+
+            <!-- Quiz List Header & Search -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <h3 class="text-lg font-bold text-slate-900">Danh sách bộ đề trắc nghiệm</h3>
+                <div class="relative w-full sm:w-72">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                    <input id="search-quiz" type="text" oninput="app.renderDashboard()" placeholder="Tìm theo tên hoặc mã đề..." 
+                        class="w-full pl-9 pr-4 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                </div>
+            </div>
+
+            <!-- Quiz Grid -->
+            <div id="quiz-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </section>
+
+        <!-- ==================== VIEW 2: CREATE / EDIT QUIZ ==================== -->
+        <section id="view-editor" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div>
+                    <h2 id="editor-page-title" class="text-xl font-bold text-slate-900">Tạo Bộ Đề Trắc Nghiệm Mới</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Thiết lập thông tin đề thi và danh sách câu hỏi bên dưới</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="app.openBulkModal()" class="px-3.5 py-2 rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-sm font-medium transition">
+                        <i class="fa-solid fa-bolt mr-1"></i> Nhập nhanh bằng Văn bản
+                    </button>
+                    <button onclick="app.saveQuiz()" class="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow-sm transition">
+                        <i class="fa-solid fa-floppy-disk mr-1"></i> Lưu & Lấy Link Chia Sẻ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Metadata Form -->
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Tên bộ đề thi *</label>
+                    <input id="edit-title" type="text" placeholder="VD: Ôn tập Cấu trúc dữ liệu & Giải thuật" 
+                        class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Mã Đề (Quiz Code)</label>
+                    <input id="edit-code" type="text" placeholder="VD: DSA-01" 
+                        class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Thời gian (Phút)</label>
+                    <input id="edit-duration" type="number" min="1" max="300" value="15" 
+                        class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div class="md:col-span-4">
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Mô tả ngắn</label>
+                    <input id="edit-desc" type="text" placeholder="Mô tả nội dung hoặc ghi chú cho thí sinh..." 
+                        class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="editor-questions-list" class="space-y-4"></div>
+
+            <button onclick="app.addEmptyQuestion()" class="w-full py-3.5 rounded-xl border-2 border-dashed border-slate-300 hover:border-indigo-500 text-slate-600 hover:text-indigo-600 font-semibold text-sm transition flex items-center justify-center gap-2 bg-white">
+                <i class="fa-solid fa-circle-plus"></i> Thêm Câu Hỏi Mới
+            </button>
+        </section>
+
+        <!-- ==================== VIEW 3: EXAM ROOM ==================== -->
+        <section id="view-exam" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+                <!-- Left: Question Area -->
+                <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                        <div>
+                            <span id="exam-quiz-title" class="text-xs font-semibold text-indigo-600 uppercase tracking-wider"></span>
+                            <h3 id="exam-question-counter" class="text-lg font-bold text-slate-900 mt-0.5">Câu hỏi 1 / 10</h3>
+                        </div>
+                        <button onclick="app.toggleFlagCurrent()" id="exam-flag-btn" class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:bg-slate-50 transition">
+                            <i class="fa-regular fa-flag mr-1"></i> Đánh dấu xem lại
+                        </button>
+                    </div>
+
+                    <!-- Question Text -->
+                    <div id="exam-question-text" class="text-base sm:text-lg font-medium text-slate-900 leading-relaxed whitespace-pre-line"></div>
+
+                    <!-- Options List -->
+                    <div id="exam-options-list" class="space-y-3"></div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                        <button onclick="app.prevQuestion()" id="btn-prev-q" class="px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium text-slate-700 hover:bg-slate-100 transition">
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Câu trước
+                        </button>
+                        <div class="text-xs text-slate-400 hidden sm:block">Mẹo: Dùng phím <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">A</kbd> <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">B</kbd> <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">C</kbd> <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">D</kbd> hoặc <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">←</kbd> <kbd class="px-1.5 py-0.5 bg-slate-100 rounded border">→</kbd></div>
+                        <button onclick="app.nextQuestion()" id="btn-next-q" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">
+                            Câu tiếp <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Timer & Palette -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-5 sticky top-24">
+                    <div class="text-center p-4 rounded-xl bg-slate-900 text-white">
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">Thời gian còn lại</div>
+                        <div id="exam-timer" class="text-3xl font-mono font-bold mt-1 text-amber-400">15:00</div>
+                        <div id="exam-player-display" class="text-xs text-slate-300 mt-1 truncate">Thí sinh: Khách</div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-medium text-slate-500 mb-2">
+                            <span>Bảng câu hỏi</span>
+                            <span id="exam-answered-count">0/0 đã chọn</span>
+                        </div>
+                        <div id="exam-palette" class="grid grid-cols-5 gap-2 max-h-60 overflow-y-auto custom-scroll p-1"></div>
+                    </div>
+
+                    <button onclick="app.submitExam()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition">
+                        <i class="fa-solid fa-paper-plane mr-1"></i> Nộp Bài Chấm Điểm
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 4: RESULT & REVIEW ==================== -->
+        <section id="view-result" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 text-center space-y-4">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-50 text-indigo-600 text-2xl">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Kết Quả Bài Thi</h2>
+                    <p id="result-quiz-title" class="text-sm text-slate-500 mt-1"></p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto pt-2">
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="text-xs text-slate-500">Điểm số (Hệ 10)</div>
+                        <div id="res-score" class="text-2xl font-bold text-indigo-600 mt-0.5">0.0</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+                        <div class="text-xs text-emerald-700">Số câu đúng</div>
+                        <div id="res-correct" class="text-2xl font-bold text-emerald-600 mt-0.5">0</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-rose-50 border border-rose-200">
+                        <div class="text-xs text-rose-700">Số câu sai</div>
+                        <div id="res-wrong" class="text-2xl font-bold text-rose-600 mt-0.5">0</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-amber-50 border border-amber-200">
+                        <div class="text-xs text-amber-700">Thời gian làm</div>
+                        <div id="res-time" class="text-2xl font-bold text-amber-600 mt-0.5">00:00</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    <button onclick="app.retryCurrentQuiz(false)" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Làm lại toàn bộ đề
+                    </button>
+                    <button id="btn-retry-wrong" onclick="app.retryCurrentQuiz(true)" class="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-medium transition">
+                        <i class="fa-solid fa-filter-circle-xmark mr-1"></i> Làm lại các câu sai
+                    </button>
+                    <button onclick="app.showView('dashboard')" class="px-4 py-2 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 text-sm font-medium transition">
+                        Về trang chủ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Answer Review -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-900">Chi tiết đáp án & Giải thích</h3>
+                <div id="result-review-list" class="space-y-4"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== MODAL 1: BULK IMPORT ==================== -->
+    <div id="modal-bulk" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-xl">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-slate-900">Nhập nhanh câu hỏi bằng Văn bản</h3>
+                <button onclick="app.closeModal('modal-bulk')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
+                <p class="font-semibold text-slate-800">Quy tắc định dạng (Mỗi câu cách nhau 1 dòng trống):</p>
+                <p>• Đặt dấu <code>*</code> ở đầu đáp án đúng (VD: <code>*B. O(log n)</code>) HOẶC thêm dòng <code>Đáp án: B</code> ở cuối câu.</p>
+                <p>• Có thể thêm dòng <code>Giải thích: ...</code> để hiển thị lời giải sau khi nộp bài.</p>
+            </div>
+            <textarea id="bulk-textarea" rows="10" class="w-full p-3 rounded-xl border border-slate-300 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Câu 1: Thuật toán tìm kiếm nhị phân có độ phức tạp là?
+A. O(n)
+*B. O(log n)
+C. O(n^2)
+D. O(1)
+Giải thích: Chia đôi mảng sau mỗi bước lặp.
+
+Câu 2: Thanh ghi nào trong MIPS luôn có giá trị bằng 0?
+*A. $zero
+B. $sp
+C. $ra
+D. $v0"></textarea>
+            <div class="flex justify-end gap-2">
+                <button onclick="app.closeModal('modal-bulk')" class="px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium">Hủy</button>
+                <button onclick="app.parseBulkText()" class="px-5 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700">Tách Câu Hỏi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 2: SHARE QUIZ ==================== -->
+    <div id="modal-share" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-xl">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-slate-900"><i class="fa-solid fa-share-nodes text-indigo-600 mr-1.5"></i> Chia sẻ đề thi cho bạn bè</h3>
+                <button onclick="app.closeModal('modal-share')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Method 1: Magic URL -->
+                <div class="p-4 rounded-xl bg-indigo-50 border border-indigo-100 space-y-2">
+                    <div class="text-xs font-bold text-indigo-900 uppercase">Cách 1: Gửi Link Trực Tiếp (Không cần cài đặt)</div>
+                    <p class="text-xs text-indigo-700">Toàn bộ câu hỏi được mã hóa vào link này. Bạn bè bấm vào link là làm bài được ngay trên mọi thiết bị!</p>
+                    <div class="flex gap-2 pt-1">
+                        <input id="share-url-input" type="text" readonly class="flex-1 px-3 py-2 rounded-lg bg-white border border-indigo-200 text-xs font-mono text-slate-700">
+                        <button onclick="app.copyShareLink()" class="px-3.5 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 whitespace-nowrap">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy Link
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Method 2: JSON File -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-slate-800 uppercase">Cách 2: Xuất File Đề (.JSON)</div>
+                        <p class="text-xs text-slate-500">Gửi file qua Zalo/Messenger/Telegram cho bạn bè.</p>
+                    </div>
+                    <button id="btn-download-json" class="px-3.5 py-2 rounded-lg bg-slate-800 text-white text-xs font-semibold hover:bg-slate-900 whitespace-nowrap">
+                        <i class="fa-solid fa-download mr-1"></i> Tải JSON
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        const STORAGE_KEY = 'quizmaster_vn_quizzes_v2';
+        const STATS_KEY = 'quizmaster_vn_stats_v2';
+
+        const DEFAULT_QUIZZES = [
+            {
+                id: 'q-dsa-01',
+                code: 'DSA-01',
+                title: 'Cấu trúc dữ liệu & Giải thuật (DSA)',
+                desc: 'Ôn tập độ phức tạp thuật toán, Danh sách liên kết, Cây nhị phân và Đồ thị A*.',
+                duration: 15,
+                createdAt: '2026-10-19',
+                questions: [
+                    {
+                        text: 'Độ phức tạp thời gian trung bình để tìm kiếm một phần tử trong Skip List có n phần tử là bao nhiêu?',
+                        options: ['O(1)', 'O(log n)', 'O(n)', 'O(n log n)'],
+                        correct: 1,
+                        explain: 'Skip List sử dụng nhiều tầng danh sách liên kết giúp bỏ qua các phần tử, đạt độ phức tạp trung bình O(log n).'
+                    },
+                    {
+                        text: 'Trong thuật toán tìm đường đi ngắn nhất A* (A-Star), hàm đánh giá f(n) được tính theo công thức nào?',
+                        options: ['f(n) = g(n) - h(n)', 'f(n) = g(n) + h(n)', 'f(n) = h(n) / g(n)', 'f(n) = g(n) * h(n)'],
+                        correct: 1,
+                        explain: 'f(n) = g(n) + h(n), trong đó g(n) là chi phí thực tế từ điểm đầu đến n, còn h(n) là hàm heuristic ước lượng chi phí từ n đến đích.'
+                    },
+                    {
+                        text: 'Cấu trúc dữ liệu nào hoạt động theo nguyên lý LIFO (Last In, First Out)?',
+                        options: ['Queue (Hàng đợi)', 'Stack (Ngăn xếp)', 'Heap (Đống)', 'Hash Table (Bảng băm)'],
+                        correct: 1,
+                        explain: 'Stack (Ngăn xếp) tuân theo nguyên lý Vào sau - Ra trước (LIFO).'
+                    }
+                ]
+            },
+            {
+                id: 'q-mips-02',
+                code: 'MIPS-02',
+                title: 'Kiến trúc máy tính & Hợp ngữ MIPS',
+                desc: 'Kiểm tra kiến thức về thanh ghi, bộ nhớ và tập lệnh MIPS cơ bản.',
+                duration: 10,
+                createdAt: '2026-10-19',
+                questions: [
+                    {
+                        text: 'Trong kiến trúc MIPS 32-bit, mỗi lệnh máy (instruction) có kích thước cố định là bao nhiêu byte?',
+                        options: ['1 byte', '2 bytes', '4 bytes', '8 bytes'],
+                        correct: 2,
+                        explain: 'Tất cả các lệnh trong MIPS 32-bit đều có độ dài cố định là 32 bits = 4 bytes.'
+                    },
+                    {
+                        text: 'Lệnh nào sau đây dùng để nạp một từ 32-bit (word) từ bộ nhớ RAM vào thanh ghi trong MIPS?',
+                        options: ['sw', 'lw', 'li', 'la'],
+                        correct: 1,
+                        explain: 'lw (Load Word) nạp 4 bytes từ địa chỉ bộ nhớ vào thanh ghi.'
+                    }
+                ]
+            }
+        ];
+
+        const app = {
+            quizzes: [],
+            stats: { attempts: 0, totalScore: 0 },
+            editingQuizId: null,
+            editorQuestions: [],
+
+            // Exam Runtime State
+            activeQuiz: null,
+            examQuestions: [],
+            userAnswers: {},
+            flaggedQuestions: new Set(),
+            currentQIndex: 0,
+            timerSeconds: 0,
+            timerInterval: null,
+            startTime: 0,
+
+            async init() {
+                // Load public quizzes from quizzes.json. This file can be updated without editing index.html.
+                let publicQuizzes = DEFAULT_QUIZZES;
+                try {
+                    const response = await fetch('./quizzes.json', { cache: 'no-store' });
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (Array.isArray(data) && data.every(q => q && q.id && Array.isArray(q.questions))) {
+                            publicQuizzes = data;
+                        } else {
+                            console.warn('quizzes.json không đúng định dạng; dùng đề dự phòng trong index.html.');
+                        }
+                    }
+                } catch (error) {
+                    // Opening index.html directly or a network error falls back to built-in sample quizzes.
+                    console.warn('Không tải được quizzes.json; dùng đề dự phòng trong index.html.', error);
+                }
+
+                // Public versions always take priority so changes on GitHub appear on other devices.
+                // Keep locally-created quizzes only when their IDs are not in the public file.
+                let localQuizzes = [];
+                try {
+                    const saved = localStorage.getItem(STORAGE_KEY);
+                    if (saved) {
+                        const parsed = JSON.parse(saved);
+                        if (Array.isArray(parsed)) localQuizzes = parsed;
+                    }
+                } catch (error) {
+                    console.warn('Dữ liệu đề lưu trên máy bị lỗi; sẽ tải lại từ nguồn công khai.', error);
+                }
+                const publicIds = new Set(publicQuizzes.map(q => q.id));
+                this.quizzes = [
+                    ...publicQuizzes,
+                    ...localQuizzes.filter(q => q && q.id && !publicIds.has(q.id))
+                ];
+                this.saveToStorage();
+
+                const savedStats = localStorage.getItem(STATS_KEY);
+                if (savedStats) {
+                    try { this.stats = JSON.parse(savedStats); } catch (_) { /* keep default stats */ }
+                }
+
+                // Check URL Hash for Shared Quiz (#share=...)
+                this.checkUrlSharedQuiz();
+
+                // Keyboard navigation for Exam Room
+                window.addEventListener('keydown', (e) => {
+                    if (document.getElementById('view-exam').classList.contains('hidden')) return;
+                    const key = e.key.toUpperCase();
+                    if (['A', 'B', 'C', 'D'].includes(key)) {
+                        const idx = key.charCodeAt(0) - 65;
+                        this.selectOption(idx);
+                    } else if (e.key === 'ArrowRight') {
+                        this.nextQuestion();
+                    } else if (e.key === 'ArrowLeft') {
+                        this.prevQuestion();
+                    }
+                });
+
+                this.renderDashboard();
+            },
+
+            saveToStorage() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(this.quizzes));
+                localStorage.setItem(STATS_KEY, JSON.stringify(this.stats));
+            },
+
+            showView(viewName) {
+                ['dashboard', 'editor', 'exam', 'result'].forEach(v => {
+                    document.getElementById(`view-${v}`).classList.add('hidden');
+                });
+                document.getElementById(`view-${viewName}`).classList.remove('hidden');
+                if (viewName !== 'exam' && this.timerInterval) {
+                    clearInterval(this.timerInterval);
+                }
+                if (viewName === 'dashboard') this.renderDashboard();
+            },
+
+            // ==================== DASHBOARD ====================
+            renderDashboard() {
+                const query = (document.getElementById('search-quiz')?.value || '').toLowerCase();
+                const grid = document.getElementById('quiz-grid');
+
+                // Stats
+                const totalQ = this.quizzes.reduce((sum, q) => sum + q.questions.length, 0);
+                document.getElementById('stat-total-quizzes').textContent = this.quizzes.length;
+                document.getElementById('stat-total-questions').textContent = totalQ;
+                document.getElementById('stat-total-attempts').textContent = this.stats.attempts;
+                const avg = this.stats.attempts ? (this.stats.totalScore / this.stats.attempts).toFixed(1) : '0.0';
+                document.getElementById('stat-avg-score').textContent = avg;
+
+                const filtered = this.quizzes.filter(q => 
+                    q.title.toLowerCase().includes(query) || 
+                    (q.code && q.code.toLowerCase().includes(query))
+                );
+
+                grid.innerHTML = filtered.map(q => `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 font-mono text-xs font-bold border border-indigo-100">
+                                    #${q.code || 'QUIZ'}
+                                </span>
+                                <span class="text-xs text-slate-400">
+                                    <i class="fa-regular fa-clock mr-1"></i>${q.duration} phút • ${q.questions.length} câu
+                                </span>
+                            </div>
+                            <h4 class="font-bold text-base text-slate-900 line-clamp-1">${this.escapeHtml(q.title)}</h4>
+                            <p class="text-xs text-slate-500 mt-1 line-clamp-2">${this.escapeHtml(q.desc || 'Không có mô tả.')}</p>
+                        </div>
+
+                        <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                            <button onclick="app.startQuiz('${q.id}')" class="flex-1 py-2 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition">
+                                <i class="fa-solid fa-play mr-1"></i> Làm Bài
+                            </button>
+                            <button onclick="app.openShareModal('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" title="Chia sẻ đề cho bạn bè">
+                                <i class="fa-solid fa-share-nodes"></i>
+                            </button>
+                            <button onclick="app.openEditQuiz('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" title="Chỉnh sửa đề">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button onclick="app.deleteQuiz('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-rose-500 hover:bg-rose-50 text-xs" title="Xóa đề">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            joinByCode() {
+                const raw = document.getElementById('join-code-input').value.trim();
+                if (!raw) return alert('Vui lòng nhập Mã Đề hoặc dán Link chia sẻ!');
+
+                // Check if user pasted a full share link
+                if (raw.includes('#share=')) {
+                    const base64 = raw.split('#share=')[1];
+                    this.importFromBase64(base64);
+                    return;
+                }
+
+                const found = this.quizzes.find(q => (q.code || '').toUpperCase() === raw.toUpperCase());
+                if (found) {
+                    this.startQuiz(found.id);
+                } else {
+                    alert('Không tìm thấy mã đề "' + raw + '" trong máy. Nếu bạn bè gửi đề cho bạn, hãy bảo họ bấm nút Chia Sẻ (Share) và gửi Link trực tiếp cho bạn nhé!');
+                }
+            },
+
+            // ==================== EDITOR & BULK IMPORT ====================
+            openCreateQuiz() {
+                this.editingQuizId = null;
+                document.getElementById('editor-page-title').textContent = 'Tạo Bộ Đề Trắc Nghiệm Mới';
+                document.getElementById('edit-title').value = '';
+                document.getElementById('edit-code').value = 'QM-' + Math.floor(1000 + Math.random() * 9000);
+                document.getElementById('edit-duration').value = 15;
+                document.getElementById('edit-desc').value = '';
+                this.editorQuestions = [
+                    { text: '', options: ['', '', '', ''], correct: 0, explain: '' }
+                ];
+                this.renderEditorQuestions();
+                this.showView('editor');
+            },
+
+            openEditQuiz(id) {
+                const q = this.quizzes.find(item => item.id === id);
+                if (!q) return;
+                this.editingQuizId = q.id;
+                document.getElementById('editor-page-title').textContent = 'Chỉnh Sửa Bộ Đề';
+                document.getElementById('edit-title').value = q.title;
+                document.getElementById('edit-code').value = q.code || '';
+                document.getElementById('edit-duration').value = q.duration || 15;
+                document.getElementById('edit-desc').value = q.desc || '';
+                this.editorQuestions = JSON.parse(JSON.stringify(q.questions));
+                this.renderEditorQuestions();
+                this.showView('editor');
+            },
+
+            renderEditorQuestions() {
+                const container = document.getElementById('editor-questions-list');
+                container.innerHTML = this.editorQuestions.map((q, idx) => `
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-800 font-bold text-xs">Câu hỏi ${idx + 1}</span>
+                            <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-500 hover:underline">
+                                <i class="fa-solid fa-trash mr-1"></i> Xóa câu này
+                            </button>
+                        </div>
+                        <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="2" placeholder="Nhập nội dung câu hỏi..." 
+                            class="w-full p-3 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">${this.escapeHtml(q.text)}</textarea>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            ${['A', 'B', 'C', 'D'].map((letter, optIdx) => `
+                                <div class="flex items-center gap-2">
+                                    <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} 
+                                        onchange="app.editorQuestions[${idx}].correct =${optIdx}" class="w-4 h-4 text-indigo-600 cursor-pointer" title="Chọn làm đáp án đúng">
+                                    <span class="text-xs font-bold text-slate-500 w-4">${letter}.</span>
+                                    <input type="text" value="${this.escapeHtml(q.options[optIdx] || '')}" 
+                                        oninput="app.editorQuestions[${idx}].options[${optIdx}] = this.value"
+                                        placeholder="Đáp án ${letter}" class="flex-1 px-3 py-1.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <input type="text" value="${this.escapeHtml(q.explain || '')}" 
+                            oninput="app.editorQuestions[${idx}].explain = this.value"
+                            placeholder="Giải thích đáp án (tùy chọn)..." class="w-full px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-600">
+                    </div>
+                `).join('');
+            },
+
+            addEmptyQuestion() {
+                this.editorQuestions.push({ text: '', options: ['', '', '', ''], correct: 0, explain: '' });
+                this.renderEditorQuestions();
+            },
+
+            removeEditorQuestion(idx) {
+                if (this.editorQuestions.length <= 1) return alert('Đề thi phải có ít nhất 1 câu hỏi!');
+                this.editorQuestions.splice(idx, 1);
+                this.renderEditorQuestions();
+            },
+
+            saveQuiz() {
+                const title = document.getElementById('edit-title').value.trim();
+                const code = document.getElementById('edit-code').value.trim().toUpperCase() || ('QM-' + Math.floor(1000 + Math.random() * 9000));
+                const duration = parseInt(document.getElementById('edit-duration').value) || 15;
+                const desc = document.getElementById('edit-desc').value.trim();
+
+                if (!title) return alert('Vui lòng nhập tên bộ đề thi!');
+                const validQuestions = this.editorQuestions.filter(q => q.text.trim() !== '');
+                if (validQuestions.length === 0) return alert('Vui lòng nhập ít nhất 1 câu hỏi có nội dung!');
+
+                let targetId = this.editingQuizId;
+                if (targetId) {
+                    const idx = this.quizzes.findIndex(q => q.id === targetId);
+                    if (idx > -1) {
+                        this.quizzes[idx] = { ...this.quizzes[idx], title, code, duration, desc, questions: validQuestions };
+                    }
+                } else {
+                    targetId = 'q-' + Date.now();
+                    this.quizzes.unshift({
+                        id: targetId,
+                        code,
+                        title,
+                        desc,
+                        duration,
+                        createdAt: new Date().toISOString().slice(0, 10),
+                        questions: validQuestions
+                    });
+                }
+
+                this.saveToStorage();
+                this.showView('dashboard');
+                this.openShareModal(targetId);
+            },
+
+            deleteQuiz(id) {
+                if (!confirm('Bạn có chắc muốn xóa bộ đề này?')) return;
+                this.quizzes = this.quizzes.filter(q => q.id !== id);
+                this.saveToStorage();
+                this.renderDashboard();
+            },
+
+            openBulkModal() {
+                document.getElementById('modal-bulk').classList.remove('hidden');
+                document.getElementById('modal-bulk').classList.add('flex');
+            },
+
+            closeModal(id) {
+                document.getElementById(id).classList.add('hidden');
+                document.getElementById(id).classList.remove('flex');
+            },
+
+            parseBulkText() {
+                const raw = document.getElementById('bulk-textarea').value.trim();
+                if (!raw) return;
+
+                const blocks = raw.split(/\n\s*\n/);
+                const parsed = [];
+
+                blocks.forEach(block => {
+                    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+                    if (lines.length < 2) return;
+
+                    let qText = lines[0].replace(/^Câu\s*\d+\s*[:.]\s*/i, '');
+                    let options = [];
+                    let correct = 0;
+                    let explain = '';
+
+                    for (let i = 1; i < lines.length; i++) {
+                        let line = lines[i];
+                        if (/^(Đáp án|Answer)\s*[:]/i.test(line)) {
+                            const ansChar = line.split(':')[1].trim().toUpperCase()[0];
+                            const idx = ['A', 'B', 'C', 'D'].indexOf(ansChar);
+                            if (idx > -1) correct = idx;
+                        } else if (/^(Giải thích|Explain)\s*[:]/i.test(line)) {
+                            explain = line.replace(/^(Giải thích|Explain)\s*[:]\s*/i, '');
+                        } else {
+                            let isCorrect = false;
+                            if (line.startsWith('*')) {
+                                isCorrect = true;
+                                line = line.substring(1).trim();
+                            }
+                            line = line.replace(/^[A-D][.:)]\s*/i, '');
+                            if (isCorrect) correct = options.length;
+                            if (options.length < 4) options.push(line);
+                        }
+                    }
+
+                    while (options.length < 4) options.push('');
+                    parsed.push({ text: qText, options, correct, explain });
+                });
+
+                if (parsed.length > 0) {
+                    if (this.editorQuestions.length === 1 && !this.editorQuestions[0].text.trim()) {
+                        this.editorQuestions = parsed;
+                    } else {
+                        this.editorQuestions.push(...parsed);
+                    }
+                    this.renderEditorQuestions();
+                    this.closeModal('modal-bulk');
+                    document.getElementById('bulk-textarea').value = '';
+                } else {
+                    alert('Không nhận diện được câu hỏi nào. Hãy kiểm tra lại định dạng!');
+                }
+            },
+
+            // ==================== SHARE & IMPORT (URL + JSON) ====================
+            openShareModal(id) {
+                const q = this.quizzes.find(item => item.id === id);
+                if (!q) return;
+
+                // Encode quiz into Base64 URL
+                const jsonStr = JSON.stringify(q);
+                const base64 = btoa(unescape(encodeURIComponent(jsonStr)));
+                const shareUrl = `${window.location.origin}${window.location.pathname}#share=${base64}`;
+
+                document.getElementById('share-url-input').value = shareUrl;
+                document.getElementById('btn-download-json').onclick = () => this.exportQuizJSON(q);
+
+                document.getElementById('modal-share').classList.remove('hidden');
+                document.getElementById('modal-share').classList.add('flex');
+            },
+
+            copyShareLink() {
+                const input = document.getElementById('share-url-input');
+                input.select();
+                navigator.clipboard.writeText(input.value);
+                alert('Đã sao chép Link đề thi! Bạn có thể gửi link này qua Messenger/Zalo cho bạn bè.');
+            },
+
+            checkUrlSharedQuiz() {
+                const hash = window.location.hash;
+                if (hash && hash.startsWith('#share=')) {
+                    const base64 = hash.substring(7);
+                    this.importFromBase64(base64);
+                    history.replaceState(null, null, window.location.pathname);
+                }
+            },
+
+            importFromBase64(base64) {
+                try {
+                    const jsonStr = decodeURIComponent(escape(atob(base64)));
+                    const sharedQuiz = JSON.parse(jsonStr);
+                    if (!sharedQuiz.title || !Array.isArray(sharedQuiz.questions)) throw new Error('Invalid');
+
+                    const exists = this.quizzes.find(q => q.id === sharedQuiz.id);
+                    if (!exists) {
+                        this.quizzes.unshift(sharedQuiz);
+                        this.saveToStorage();
+                    }
+                    this.startQuiz(sharedQuiz.id);
+                } catch (err) {
+                    alert('Đường dẫn đề thi không hợp lệ hoặc bị cắt bớt!');
+                }
+            },
+
+            exportQuizJSON(quiz) {
+                const blob = new Blob([JSON.stringify(quiz, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${quiz.code || 'de-thi'}.json`;
+                a.click();
+            },
+
+            importQuizJSON(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        if (!data.title || !Array.isArray(data.questions)) throw new Error('Invalid format');
+                        data.id = 'q-' + Date.now();
+                        this.quizzes.unshift(data);
+                        this.saveToStorage();
+                        this.renderDashboard();
+                        alert(`Đã nhập thành công đề "${data.title}"!`);
+                    } catch (err) {
+                        alert('File JSON không đúng định dạng đề thi!');
+                    }
+                };
+                reader.readAsText(file);
+            },
+
+            // ==================== EXAM ROOM ====================
+            startQuiz(id, customQuestions = null) {
+                const quiz = this.quizzes.find(q => q.id === id);
+                if (!quiz) return;
+
+                this.activeQuiz = quiz;
+                this.examQuestions = customQuestions || JSON.parse(JSON.stringify(quiz.questions));
+                this.userAnswers = {};
+                this.flaggedQuestions = new Set();
+                this.currentQIndex = 0;
+                this.timerSeconds = (quiz.duration || 15) * 60;
+                this.startTime = Date.now();
+
+                document.getElementById('exam-quiz-title').textContent = `${quiz.code} • ${quiz.title}`;
+                this.showView('exam');
+                this.renderExamQuestion();
+                this.startTimer();
+            },
+
+            startTimer() {
+                if (this.timerInterval) clearInterval(this.timerInterval);
+                const updateDisplay = () => {
+                    const m = String(Math.floor(this.timerSeconds / 60)).padStart(2, '0');
+                    const s = String(this.timerSeconds % 60).padStart(2, '0');
+                    document.getElementById('exam-timer').textContent = `${m}:${s}`;
+                };
+                updateDisplay();
+                this.timerInterval = setInterval(() => {
+                    this.timerSeconds--;
+                    updateDisplay();
+                    if (this.timerSeconds <= 0) {
+                        clearInterval(this.timerInterval);
+                        alert('Hết giờ làm bài! Hệ thống sẽ tự động chấm điểm.');
+                        this.submitExam(true);
+                    }
+                }, 1000);
+            },
+
+            renderExamQuestion() {
+                const q = this.examQuestions[this.currentQIndex];
+                const total = this.examQuestions.length;
+
+                document.getElementById('exam-question-counter').textContent = `Câu hỏi ${this.currentQIndex + 1} / ${total}`;
+                document.getElementById('exam-question-text').textContent = q.text;
+
+                // Flag state
+                const isFlagged = this.flaggedQuestions.has(this.currentQIndex);
+                const flagBtn = document.getElementById('exam-flag-btn');
+                flagBtn.className = isFlagged 
+                    ? 'px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50 text-xs font-semibold text-amber-700 transition'
+                    : 'px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:bg-slate-50 transition';
+
+                // Render Options
+                const selected = this.userAnswers[this.currentQIndex];
+                const optionsEl = document.getElementById('exam-options-list');
+                optionsEl.innerHTML = q.options.map((opt, idx) => {
+                    const letter = ['A', 'B', 'C', 'D'][idx];
+                    const active = selected === idx;
+                    return `
+                        <div onclick="app.selectOption(${idx})" class="p-4 rounded-xl border-2 cursor-pointer transition flex items-center gap-3.5 ${
+                            active ? 'border-indigo-600 bg-indigo-50/70' : 'border-slate-200 hover:border-indigo-300 bg-white'
+                        }">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${
+                                active ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700'
+                            }">${letter}</div>
+                            <div class="text-sm sm:text-base text-slate-800 flex-1">${this.escapeHtml(opt)}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Palette
+                const answeredCount = Object.keys(this.userAnswers).length;
+                document.getElementById('exam-answered-count').textContent = `${answeredCount}/${total} đã chọn`;
+
+                const paletteEl = document.getElementById('exam-palette');
+                paletteEl.innerHTML = this.examQuestions.map((_, idx) => {
+                    const isCurrent = idx === this.currentQIndex;
+                    const isAns = this.userAnswers[idx] !== undefined;
+                    const isFlg = this.flaggedQuestions.has(idx);
+                    let cls = 'bg-slate-100 text-slate-600 border-slate-200';
+                    if (isAns) cls = 'bg-indigo-600 text-white border-indigo-600';
+                    if (isFlg) cls = 'bg-amber-400 text-slate-900 border-amber-500';
+                    if (isCurrent) cls += ' ring-2 ring-offset-1 ring-indigo-600';
+                    return `<button onclick="app.jumpToQuestion(${idx})" class="h-9 rounded-lg border text-xs font-bold transition ${cls}">${idx + 1}</button>`;
+                }).join('');
+            },
+
+            selectOption(optIdx) {
+                this.userAnswers[this.currentQIndex] = optIdx;
+                this.renderExamQuestion();
+            },
+
+            toggleFlagCurrent() {
+                if (this.flaggedQuestions.has(this.currentQIndex)) {
+                    this.flaggedQuestions.delete(this.currentQIndex);
+                } else {
+                    this.flaggedQuestions.add(this.currentQIndex);
+                }
+                this.renderExamQuestion();
+            },
+
+            prevQuestion() {
+                if (this.currentQIndex > 0) {
+                    this.currentQIndex--;
+                    this.renderExamQuestion();
+                }
+            },
+
+            nextQuestion() {
+                if (this.currentQIndex < this.examQuestions.length - 1) {
+                    this.currentQIndex++;
+                    this.renderExamQuestion();
+                }
+            },
+
+            jumpToQuestion(idx) {
+                this.currentQIndex = idx;
+                this.renderExamQuestion();
+            },
+
+            // ==================== SUBMIT & REVIEW ====================
+            submitExam(auto = false) {
+                const total = this.examQuestions.length;
+                const answered = Object.keys(this.userAnswers).length;
+                if (!auto && answered < total) {
+                    if (!confirm(`Bạn mới làm ${answered}/${total} câu. Bạn có chắc chắn muốn nộp bài sớm?`)) return;
+                }
+
+                clearInterval(this.timerInterval);
+
+                let correctCount = 0;
+                const wrongQuestions = [];
+
+                this.examQuestions.forEach((q, idx) => {
+                    if (this.userAnswers[idx] === q.correct) {
+                        correctCount++;
+                    } else {
+                        wrongQuestions.push(q);
+                    }
+                });
+
+                const score10 = ((correctCount / total) * 10).toFixed(1);
+                const elapsedSec = Math.max(1, Math.floor((Date.now() - this.startTime) / 1000));
+                const elapsedStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`;
+
+                // Update stats
+                this.stats.attempts++;
+                this.stats.totalScore += parseFloat(score10);
+                this.saveToStorage();
+
+                // Populate Result View
+                document.getElementById('result-quiz-title').textContent = this.activeQuiz.title;
+                document.getElementById('res-score').textContent = score10;
+                document.getElementById('res-correct').textContent = correctCount;
+                document.getElementById('res-wrong').textContent = total - correctCount;
+                document.getElementById('res-time').textContent = elapsedStr;
+
+                const retryWrongBtn = document.getElementById('btn-retry-wrong');
+                this.lastWrongQuestions = wrongQuestions;
+                retryWrongBtn.style.display = wrongQuestions.length > 0 ? 'inline-block' : 'none';
+
+                // Render Review List
+                const reviewEl = document.getElementById('result-review-list');
+                reviewEl.innerHTML = this.examQuestions.map((q, idx) => {
+                    const userAns = this.userAnswers[idx];
+                    const isCorrect = userAns === q.correct;
+                    return `
+                        <div class="bg-white p-5 rounded-xl border ${isCorrect ? 'border-emerald-200' : 'border-rose-200'} shadow-sm space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold px-2.5 py-1 rounded ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                                    Câu ${idx + 1}: ${isCorrect ? 'ĐÚNG' : 'SAI'}
+                                </span>
+                            </div>
+                            <div class="font-medium text-slate-900 text-sm sm:text-base">${this.escapeHtml(q.text)}</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                                ${q.options.map((opt, oIdx) => {
+                                    const letter = ['A', 'B', 'C', 'D'][oIdx];
+                                    let style = 'border-slate-200 bg-slate-50 text-slate-700';
+                                    if (oIdx === q.correct) style = 'border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold';
+                                    else if (oIdx === userAns && !isCorrect) style = 'border-rose-400 bg-rose-50 text-rose-900 line-through';
+                                    return `<div class="p-2.5 rounded-lg border ${style}">${letter}.${this.escapeHtml(opt)}</div>`;
+                                }).join('')}
+                            </div>
+                            ${q.explain ? `<div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-200"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <b>Giải thích:</b> ${this.escapeHtml(q.explain)}</div>` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+                this.showView('result');
+            },
+
+            retryCurrentQuiz(onlyWrong = false) {
+                if (!this.activeQuiz) return;
+                if (onlyWrong && this.lastWrongQuestions?.length > 0) {
+                    this.startQuiz(this.activeQuiz.id, JSON.parse(JSON.stringify(this.lastWrongQuestions)));
+                } else {
+                    this.startQuiz(this.activeQuiz.id);
+                }
+            },
+
+            escapeHtml(str) {
+                if (!str) return '';
+                return String(str)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+</html>
