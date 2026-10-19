@@ -1,0 +1,361 @@
+[
+  {
+    "id": "q-python-string-chuyen-de",
+    "code": "PY-05",
+    "title": "Xử Lý Chuỗi",
+    "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về kiểu dữ liệu chuỗi (String) trong Python: cắt lát, phương thức chuỗi, định dạng, duyệt ký tự và các bài toán truy vết nâng cao.",
+    "duration": 50,
+    "questions": [
+      {
+        "text": "Cách khai báo chuỗi nào sau đây là không hợp lệ (gây lỗi SyntaxError) trong Python?",
+        "options": [
+          "s = 'Python 3'",
+          "s = 'Python 3\"",
+          "s = \"\"\"Python 3\"\"\"",
+          "s = \"It's Python\""
+        ],
+        "correct": 1,
+        "explain": "Trong Python, chuỗi ký tự có thể bao bởi nháy đơn, nháy kép hoặc ba nháy, nhưng dấu mở đầu và kết thúc bắt buộc phải cùng loại. Phương án B mở đầu bằng nháy đơn nhưng kết thúc bằng nháy kép gây ra lỗi SyntaxError."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns1 = \"\"\ns2 = \" \"\nprint(len(s1), len(s2), s1 == s2)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "0 1 False",
+          "0 0 True",
+          "1 1 False",
+          "0 1 True"
+        ],
+        "correct": 0,
+        "explain": "s1 là chuỗi rỗng (len = 0), s2 chứa 1 khoảng trắng (len = 1). s1 == s2 trả về False. Kết quả là 0 1 False."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"Python\"\ns[0] = \"J\"\nprint(s)\nĐoạn chương trình trên cho kết quả nào?",
+        "options": [
+          "In ra Jython.",
+          "In ra Python.",
+          "Báo lỗi TypeError vì chuỗi trong Python là kiểu dữ liệu bất biến (immutable).",
+          "Báo lỗi IndexError."
+        ],
+        "correct": 2,
+        "explain": "Chuỗi (str) trong Python là kiểu dữ liệu bất biến (immutable), không thể thay đổi trực tiếp từng ký tự thông qua phép gán chỉ số s[0] = 'J', gây ra lỗi TypeError."
+      },
+      {
+        "text": "Cho s = \"KyThuat\". Giá trị của biểu thức s[2] + s[-2] là gì?",
+        "options": ["\"ya\"", "\"Kt\"", "\"Tu\"", "\"Ta\""],
+        "correct": 3,
+        "explain": "s[2] là 'T' và s[-2] là 'a'. Phép cộng chuỗi tạo thành 'Ta'."
+      },
+      {
+        "text": "Cho s = \"LapTrinh\". Kết quả của phép cắt chuỗi s[3:6] là gì?",
+        "options": ["\"pTr\"", "\"Tri\"", "\"Trin\"", "\"apT\""],
+        "correct": 1,
+        "explain": "s[3:6] lấy các ký tự từ chỉ số 3 đến trước 6 (chỉ số 3, 4, 5) tương ứng với chuỗi 'Tri'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"TinHoc\"\nx = s[:3] + s[4:]\nprint(x)\nKết quả in ra màn hình là gì?",
+        "options": ["Tinoc", "TinHoc", "Tioc", "Tinhoc"],
+        "correct": 0,
+        "explain": "s[:3] là 'Tin', s[4:] là 'oc' (bỏ qua 'H' ở chỉ số 3). Nối lại ta được 'Tinoc'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\na = \"2\"\nb = \"3\"\ns = a * 2 + b\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": ["7", "43", "\"223\"", "\"2323\""],
+        "correct": 2,
+        "explain": "a * 2 tạo thành '22', nối với b ('3') tạo thành '223'."
+      },
+      {
+        "text": "Cho đoạn chương trình có chứa các ký tự thoát (escape characters) sau:\ns = \"A\\nB\\tC\\\\\"\nprint(len(s))\nKết quả in ra màn hình là gì?",
+        "options": ["9", "7", "5", "6"],
+        "correct": 3,
+        "explain": "Các cặp escape '\\n', '\\t', '\\\\` mỗi cặp được tính là 1 ký tự duy nhất. Chuỗi s có độ dài là 6."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"Python Programming\"\nprint(\"pro\" in s, \"Py\" not in s)\nKết quả in ra màn hình là gì?",
+        "options": ["False False", "True False", "False True", "True True"],
+        "correct": 0,
+        "explain": "'pro' không có trong s vì phân biệt hoa thường (s có 'Pro'), 'Py' có trong s nên 'Py' not in s là False. Kết quả False False."
+      },
+      {
+        "text": "Cho s = \"python programming\". Kết quả của hai phương thức s.capitalize() và s.upper() khác nhau như thế nào?",
+        "options": [
+          "s.capitalize() viết hoa chữ cái đầu của mọi từ, còn s.upper() viết hoa toàn bộ chuỗi.",
+          "s.capitalize() chỉ viết hoa ký tự đầu tiên của toàn chuỗi và viết thường các ký tự còn lại, còn s.upper() viết hoa toàn bộ các chữ cái trong chuỗi.",
+          "s.capitalize() viết hoa ký tự cuối cùng của chuỗi, còn s.upper() viết hoa ký tự đầu tiên.",
+          "Hai phương thức đều cho kết quả giống hệt nhau."
+        ],
+        "correct": 1,
+        "explain": "capitalize() viết hoa ký tự đầu tiên của cả chuỗi và viết thường phần còn lại, upper() viết hoa toàn bộ."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"ABCDEFGHIJ\"\nx = s[1:8:2]\nprint(x)\nCho biết kết quả in ra màn hình.",
+        "options": ["ACEG", "BDFHJ", "BDFH", "BCDEFGH"],
+        "correct": 2,
+        "explain": "s[1:8:2] lấy các chỉ số 1, 3, 5, 7 tương ứng với các ký tự 'B', 'D', 'F', 'H' (thu được BDFH)."
+      },
+      {
+        "text": "Cho đoạn chương trình cắt chuỗi nhiều lần sau:\ns = \"DaiHocBachKhoa\"\nx = s[-8:-2][::-1]\nprint(x)\nCho biết kết quả in ra màn hình.",
+        "options": ["BachKh", "aohKhc", "hKchab", "hKhcaB"],
+        "correct": 3,
+        "explain": "s[-8:-2] thu được 'BachKh', sau đó đảo ngược [::-1] thành 'hKhcaB'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"abracadabra\"\nprint(s.find(\"bra\"), s.rfind(\"bra\"), s.find(\"xyz\"))\nKết quả in ra màn hình là gì?",
+        "options": ["1 8 -1", "1 8 0", "2 2 -1", "1 9 -1"],
+        "correct": 0,
+        "explain": "find tìm thấy 'bra' đầu tiên ở chỉ số 1, rfind tìm thấy ở chỉ số 8, không tìm thấy 'xyz' trả về -1."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"aaaa\"\nprint(s.count(\"aa\"), s.count(\"aaa\"))\nKết quả in ra màn hình là gì?",
+        "options": ["3 2", "2 1", "2 2", "4 1"],
+        "correct": 1,
+        "explain": "count đếm không chồng lấp: 'aa' xuất hiện 2 lần, 'aaa' xuất hiện 1 lần."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"banana\"\nx = s.find(\"a\", 2)\nprint(x)\nCho biết giá trị in ra màn hình.",
+        "options": ["1", "2", "3", "5"],
+        "correct": 2,
+        "explain": "Tìm 'a' bắt đầu từ chỉ số 2 trở đi, ta gặp chữ 'a' đầu tiên ở chỉ số 3."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"  Python   is   easy  \"\na = s.split()\nprint(type(a), len(a), a[1])\nKết quả in ra màn hình là gì?",
+        "options": [
+          "<class 'str'> 3 is",
+          "<class 'list'> 7 \"\"",
+          "<class 'list'> 3 Python",
+          "<class 'list'> 3 is"
+        ],
+        "correct": 3,
+        "explain": "split() không đối số loại bỏ khoảng trắng thừa và tách thành list 3 từ ['Python', 'is', 'easy']. a[1] là 'is'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"10-20-30\"\nwords = s.split(\"-\")\nres = \":\".join(words)\nprint(len(words), res)\nKết quả in ra màn hình là gì?",
+        "options": ["3 10:20:30", "8 10:20:30", "3 1:0:2:0:3:0", "2 10:20:30"],
+        "correct": 0,
+        "explain": "split('-') tách thành list 3 phần tử, join nối lại bằng ':' thành '10:20:30'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"one one one\"\ns.replace(\"one\", \"two\")\nx = s.replace(\"one\", \"two\", 2)\nprint(s, \"|\", x)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "two two two | two two one",
+          "one one one | two two one",
+          "two two two | two two two",
+          "one one one | two one one"
+        ],
+        "correct": 1,
+        "explain": "Chuỗi bất biến nên s không đổi. replace với count=2 chỉ thay thế 2 chữ 'one' đầu tiên thành 'two'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"---Python---\"\nprint(s.lstrip(\"-\"), len(s.strip(\"-\")))\nKết quả in ra màn hình là gì?",
+        "options": ["---Python 6", "Python 6", "Python--- 6", "Python--- 9"],
+        "correct": 2,
+        "explain": "lstrip('-') xóa bên trái thành 'Python---', strip('-') xóa cả hai bên thành 'Python' có độ dài 6."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"file_bao_cao.pdf\"\na = s.startswith(\"file\")\nb = s.endswith(\".doc\")\nc = s.endswith(\"pdf\")\nprint(a, b, c)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "True False False",
+          "True True True",
+          "False False True",
+          "True False True"
+        ],
+        "correct": 3,
+        "explain": "startswith('file') là True, endswith('.doc') là False, endswith('pdf') là True."
+      },
+      {
+        "text": "Cho đoạn chương trình kiểm tra tính chất chuỗi sau:\ns1 = \"Python3\"\ns2 = \"2026\"\ns3 = \"Tin Hoc\"\nprint(s1.isalnum(), s2.isdigit(), s3.isalpha())\nKết quả in ra màn hình là gì?",
+        "options": ["True True False", "True True True", "False True False", "True False False"],
+        "correct": 0,
+        "explain": "isalnum() True, isdigit() True, isisalpha() False do chứa khoảng trắng."
+      },
+      {
+        "text": "Cho đoạn chương trình định dạng chuỗi sau:\nx = 3.14159\nn = 5\ns1 = \"x = %.2f\" % x\ns2 = f\"n = {n * 2}\"\nprint(s1, \"|\", s2)\nKết quả in ra màn hình là gì?",
+        "options": [
+          "x = 3.14159 | n = 10",
+          "x = 3.14 | n = 10",
+          "x = 3.14 | n = n * 2",
+          "x = 3.1 | n = 10"
+        ],
+        "correct": 1,
+        "explain": "%.2f làm tròn x thành 3.14, f-string tính n * 2 thành 10."
+      },
+      {
+        "text": "Cho đoạn chương trình kết hợp phương thức format() sau:\ns = \"{1} - {0} - {1}\".format(\"A\", \"B\")\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": ["A - B - A", "1 - 0 - 1", "B - A - B", "Chương trình báo lỗi IndexError."],
+        "correct": 2,
+        "explain": "index 1 là 'B', index 0 là 'A'. Kết quả là 'B - A - B'."
+      },
+      {
+        "text": "Cho đoạn chương trình kết hợp nhiều phương thức liên tiếp (method chaining) sau:\ns = \"  hello world  \"\nx = s.strip().upper().replace(\"L\", \"1\", 2)\nprint(x)\nCho biết giá trị của x được in ra màn hình.",
+        "options": ["HE11O WOR1D", "HELLO WORLD", "he11o world", "HE11O WORLD"],
+        "correct": 3,
+        "explain": "strip() -> upper() -> replace('L', '1', 2) chỉ thay 2 chữ L đầu thành 1, thu được HE11O WORLD."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \",a,b,c,\"\nL = s.split(\",\")\nprint(len(L), L[0] == \"\")\nKết quả in ra màn hình là gì?",
+        "options": ["5 True", "3 False", "3 True", "5 False"],
+        "correct": 0,
+        "explain": "split(',') giữ lại các phần tử rỗng ở đầu và cuối, tạo ra list 5 phần tử ['', 'a', 'b', 'c', '']. L[0] == '' là True."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"HeLLo PyTHoN\"\ncnt = 0\nfor ch in s:\n    if ch.isupper():\n        cnt += 1\nprint(cnt)\nKết quả in ra màn hình là gì?",
+        "options": ["6", "7", "5", "11"],
+        "correct": 1,
+        "explain": "Đếm chữ cái in hoa: H, L, L, P, T, H, N (tổng cộng 7 chữ)."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"K25A1B39\"\ntong = 0\nfor ch in s:\n    if ch.isdigit():\n        tong += int(ch)\nprint(tong)\nKết quả in ra màn hình là gì?",
+        "options": ["78", "5", "20", "11"],
+        "correct": 2,
+        "explain": "Cộng dồn các chữ số đơn lẻ: 2 + 5 + 1 + 3 + 9 = 20."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"abcbab\"\nd = 0\nfor i in range(len(s) - 1):\n    if s[i] != s[i + 1]:\n        d += 1\nprint(d)\nCho biết giá trị của biến d sau khi kết thúc đoạn chương trình.",
+        "options": ["4", "6", "3", "5"],
+        "correct": 3,
+        "explain": "Mọi cặp ký tự kề nhau đều khác nhau (5 cặp), do đó d = 5."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"aabbccaa\"\nres = \"\"\nfor i in range(len(s)):\n    if i == 0 or s[i] != s[i - 1]:\n        res += s[i]\nprint(res)\nKết quả in ra màn hình là gì?",
+        "options": ["abca", "abc", "aabbccaa", "bca"],
+        "correct": 0,
+        "explain": "Loại bỏ các ký tự trùng lặp liên tiếp, thu được 'abca'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"abccba\"\nk = 0\nfor i in range(len(s) // 2):\n    if s[i] == s[-1 - i]:\n        k += 2\nprint(k)\nKết quả in ra màn hình là gì?",
+        "options": ["3", "6", "12", "4"],
+        "correct": 1,
+        "explain": "Kiểm tra 3 cặp đối xứng qua tâm, cả 3 cặp đều khớp nên k tăng mỗi lần 2, tổng k = 6."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"programming\"\nout = \"\"\nfor i in range(0, len(s), 3):\n    out += s[i]\nprint(out)\nKết quả in ra màn hình là gì?",
+        "options": ["prgm", "porm", "pgmn", "pgmi"],
+        "correct": 2,
+        "explain": "Lấy các ký tự ở chỉ số bước nhảy 3: s[0]='p', s[3]='g', s[6]='m', s[9]='n' -> 'pgmn'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"computer\"\nres = \"\"\nfor ch in s:\n    if ch in \"aeiou\":\n        continue\n    res = ch + res\nprint(res)\nKết quả in ra màn hình là gì?",
+        "options": ["cmptr", "oue", "euo", "rtpmc"],
+        "correct": 3,
+        "explain": "Bỏ nguyên âm, đảo ngược các phụ âm bằng res = ch + res, thu được 'rtpmc'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"abcde\"\ni = 0\nkq = \"\"\nwhile i < len(s):\n    kq += s[i] * (i + 1)\n    i += 2\nprint(kq)\nKết quả in ra màn hình là gì?",
+        "options": ["accceeeee", "acccceeeee", "ace", "abbccc"],
+        "correct": 0,
+        "explain": "i nhận các giá trị 0, 2, 4 tương ứng nhân lặp các ký tự 'a'*1, 'c'*3, 'e'*5 -> 'accceeeee'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"abacaba\"\nc = 0\nfor i in range(len(s)):\n    if s[i:].startswith(\"aba\"):\n        c += 1\nprint(c)\nKết quả in ra màn hình là gì?",
+        "options": ["1", "2", "3", "4"],
+        "correct": 1,
+        "explain": "Đếm số lần xuất hiện 'aba' kể cả chồng lấp: xuất hiện ở chỉ số 0 và chỉ số 4 -> c = 2."
+      },
+      {
+        "text": "Cho đoạn chương trình kết hợp find() và cắt chuỗi sau:\nemail = \"sinhvien.bk@hcmut.edu.vn\"\np1 = email.find(\".\")\np2 = email.find(\"@\")\nprint(email[p1 + 1:p2])\nKết quả in ra màn hình là gì?",
+        "options": ["\".bk\"", "\"bk@\"", "\"bk\"", "\"hcmut\""],
+        "correct": 2,
+        "explain": "p1 là vị trí dấu chấm đầu tiên, p2 là vị trí '@'. Cắt giữa hai vị trí này thu được 'bk'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"ha noi - hue - sai gon\"\nparts = s.split(\" - \")\nres = \"\"\nfor w in parts:\n    res += w[0].upper()\nprint(res)\nKết quả in ra màn hình là gì?",
+        "options": ["HNHSG", "H-H-S", "hhs", "HHS"],
+        "correct": 3,
+        "explain": "split(' - ') tách thành ['ha noi', 'hue', 'sai gon']. Lấy chữ cái đầu viết hoa nối lại thành 'HHS'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"12345\"\nt = 0\nfor i in range(len(s) - 1):\n    t += int(s[i:i + 2])\nprint(t)\nKết quả in ra màn hình là gì?",
+        "options": ["114", "15", "69", "130"],
+        "correct": 0,
+        "explain": "Cộng các chuỗi 2 chữ số kề nhau: int('12') + int('23') + int('34') + int('45') = 12 + 23 + 34 + 45 = 114."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"a1b2c3d4\"\nout = \"\"\nfor i in range(0, len(s), 2):\n    out += s[i] * int(s[i + 1])\nprint(out)\nKết quả in ra màn hình là gì?",
+        "options": ["a1b2c3d4", "abbcccdddd", "abcd", "1234"],
+        "correct": 1,
+        "explain": "Nhân lặp ký tự theo chữ số đứng sau: 'a'*1 + 'b'*2 + 'c'*3 + 'd'*4 = 'abbcccdddd'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"banana\"\nwhile \"an\" in s:\n    s = s.replace(\"an\", \"\", 1)\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": ["bna", "bn", "ba", "a"],
+        "correct": 2,
+        "explain": "Xóa lần lượt từng chuỗi 'an' xuất hiện đầu tiên, sau 2 lần vòng lặp s trở thành 'ba'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns1 = \"abcdef\"\ns2 = \"azcxyf\"\ncnt = 0\nfor i in range(len(s1)):\n    if s1[i] == s2[i]:\n        cnt += i\nprint(cnt)\nKết quả in ra màn hình là gì?",
+        "options": ["3", "6", "8", "7"],
+        "correct": 3,
+        "explain": "Cộng dồn chỉ số i khi ký tự khớp nhau: i=0 ('a'), i=2 ('c'), i=5 ('f'). Tổng cnt = 0 + 2 + 5 = 7."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"python is very fun\"\nwords = s.split()\nfor i in range(len(words)):\n    if len(words[i]) > 3:\n        words[i] = words[i][::-1]\nprint(\" \".join(words))\nKết quả in ra màn hình là gì?",
+        "options": [
+          "nohtyp is yrev fun",
+          "nohtyp si yrev nuf",
+          "fun very is python",
+          "nohtyp is very fun"
+        ],
+        "correct": 0,
+        "explain": "Đảo ngược các từ có độ dài lớn hơn 3 ('python' -> 'nohtyp', 'very' -> 'yrev'), các từ khác giữ nguyên."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"Abc12dE3\"\nres = \"\"\nfor ch in s:\n    if ch.isupper():\n        res += ch.lower()\n    elif ch.islower():\n        res += ch.upper()\n    else:\n        res += \"*\"\nprint(res)\nKết quả in ra màn hình là gì?",
+        "options": ["aBC12De3", "aBC**De*", "Abc**dE*", "ABC**DE*"],
+        "correct": 1,
+        "explain": "Chữ hoa đổi thành thường, thường đổi thành hoa, số thay bằng '*'. Kết quả 'aBC**De*'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"a12b3c45d\"\ncnt = 0\nfor i in range(len(s) - 1):\n    if s[i].isalpha() and s[i + 1].isdigit():\n        cnt += int(s[i + 1])\nprint(cnt)\nKết quả in ra màn hình là gì?",
+        "options": ["15", "3", "8", "10"],
+        "correct": 2,
+        "explain": "Lấy chữ số đứng liền sau chữ cái: 'a1' (cộng 1), 'b3' (cộng 3), 'c4' (cộng 4). Tổng cnt = 1 + 3 + 4 = 8."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"abcdef\"\nfor i in range(1, 4):\n    s = s[i:] + s[:i]\nprint(s)\nKết quả in ra màn hình là gì?",
+        "options": ["defabc", "bcdefa", "fabcde", "abcdef"],
+        "correct": 3,
+        "explain": "Xoay trái chuỗi tổng cộng 1 + 2 + 3 = 6 vị trí (bằng đúng độ dài chuỗi), đưa chuỗi về nguyên trạng 'abcdef'."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ndata = \"an:8,binh:5,chi:9,dung:6\"\nitems = data.split(\",\")\ntong = 0\nfor item in items:\n    ten, diem = item.split(\":\")\n    if len(ten) >= 4:\n        tong += int(diem)\nprint(tong)\nKết quả in ra màn hình là gì?",
+        "options": ["11", "28", "14", "20"],
+        "correct": 0,
+        "explain": "Chỉ cộng điểm của những tên có độ dài >= 4 ('binh': 5, 'dung': 6), tổng = 5 + 6 = 11."
+      },
+      {
+        "text": "Cho đoạn chương trình sau:\ns = \"abacabad\"\nres = \"\"\nfor i in range(len(s)):\n    if s.count(s[i]) == 1:\n        res += str(i)\n    elif s.find(s[i]) == i:\n        res += s[i].upper()\nprint(res)\nKết quả in ra màn hình là gì?",
+        "options": ["ABCD", "AB3D7", "AB37", "A0B137"],
+        "correct": 2,
+        "explain": "Tần suất bằng 1 tại i=3 ('c') và i=7 ('d') -> nối '3', '7'. Lần xuất hiện đầu tiên tại i=0 ('a') và i=1 ('b') -> nối 'A', 'B'. Kết quả 'AB37'."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình cắt chuỗi động trong vòng lặp while như sau:\ns = \"ab#cd#ef#gh\"\nres = \"\"\nwhile \"#\" in s:\n    pos = s.find(\"#\")\n    res = s[:pos] + res\n    s = s[pos + 1:][::-1]\nres = s + res\nprint(res)\nKết quả in ra màn hình là gì?",
+        "options": ["ghefcdab", "fecdhgab", "feghdcab", "badcfehg"],
+        "correct": 1,
+        "explain": "Sau mỗi bước tách, phần đuôi bị đảo ngược trước khi lặp tiếp. Kết quả thu được là 'fecdhgab'."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình nén chuỗi (Run-Length Encoding) như sau:\ns = \"aaabbcdddda\"\nout = \"\"\ncnt = 1\nfor i in range(1, len(s)):\n    if s[i] == s[i - 1]:\n        cnt += 1\n    else:\n        if cnt > 1:\n            out += s[i - 1] + str(cnt)\n        else:\n            out += s[i - 1]\n        cnt = 1\nout += s[-1] + str(cnt)\nprint(out)\nKết quả in ra màn hình là gì?",
+        "options": ["a3b2c1d4a1", "a3b2cd4a", "a3b2cd4", "a3b2cd4a1"],
+        "correct": 3,
+        "explain": "Do dòng cuối cộng trực tiếp s[-1] kèm str(cnt) mà không kiểm tra cnt > 1, ký tự 'a' cuối vẫn gắn kèm số 1 -> 'a3b2cd4a1'."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình biến đổi danh sách các từ trong chuỗi như sau:\ns = \"aba xyx mnm pq\"\nwords = s.split()\nres = []\nfor i in range(len(words)):\n    w = words[i]\n    if w == w[::-1]:\n        w = w.replace(w[0], str(i), 1)\n    else:\n        w = w.upper()\n    res.append(w)\nprint(\"-\".join(res))\nKết quả in ra màn hình là gì?",
+        "options": [
+          "0b0-1y1-2n2-PQ",
+          "aba-xyx-mnm-PQ",
+          "0ba-1yx-2nm-PQ",
+          "1ba-2yx-3nm-PQ"
+        ],
+        "correct": 2,
+        "explain": "Các từ đối xứng bị thay thế ký tự đầu tiên bằng chỉ số i (với count=1): 'aba' -> '0ba', 'xyx' -> '1yx', 'mnm' -> '2nm'. Từ không đối xứng in hoa 'PQ'. Nối lại bằng '-'."
+      },
+      {
+        "text": "[Nâng cao] Cho đoạn chương trình có hai vòng lặp lồng nhau xử lý hai chuỗi như sau:\ns1 = \"abcb\"\ns2 = \"bcab\"\ntotal = 0\nfor i in range(len(s1)):\n    for j in range(i, len(s2)):\n        if s1[i] == s2[j]:\n            total += (j - i + 1)\n            break\nprint(total)\nKết quả in ra màn hình là gì?",
+        "options": ["7", "6", "8", "4"],
+        "correct": 0,
+        "explain": "i=0: khớp j=2, cộng (2-0+1)=3; i=1: khớp j=3, cộng (3-1+1)=3; i=2: không khớp; i=3: khớp j=3, cộng (3-3+1)=1. Tổng total = 3 + 3 + 0 + 1 = 7."
+      }
+    ]
+  }
+]
