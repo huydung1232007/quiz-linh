@@ -1039,20 +1039,48 @@ D. $v0"></textarea>
             startQuiz(id, customQuestions = null) {
                 const quiz = this.quizzes.find(q => q.id === id);
                 if (!quiz) return;
+
                 const savedName = localStorage.getItem('qm_player_name') || '';
-                const playerName = prompt('Nhập tên của bạn để lưu điểm làm bài:', savedName);
-                if (playerName === null) return;
-                this.playerName = playerName.trim() || 'Thí sinh ẩn danh';
+                const inputEl = document.getElementById('custom-player-name-input');
+                inputEl.value = savedName;
+
+                // Lưu lại quiz đang chuẩn bị làm
+                this.pendingQuizId = id;
+                this.pendingCustomQuestions = customQuestions;
+
+                // Mở Modal HTML tùy chỉnh thay cho prompt()
+                const modal = document.getElementById('modal-player-name');
+                modal.classList.replace('hidden', 'flex');
+                setTimeout(() => inputEl.focus(), 100);
+
+                // Lắng nghe phím Enter để submit nhanh
+                inputEl.onkeydown = (e) => {
+                    if (e.key === 'Enter') this.closeNameModal(true);
+                };
+            },
+
+            closeNameModal(isConfirmed) {
+                const modal = document.getElementById('modal-player-name');
+                modal.classList.replace('flex', 'hidden');
+
+                if (!isConfirmed) return; // Nếu bấm Hủy
+
+                const inputEl = document.getElementById('custom-player-name-input');
+                this.playerName = inputEl.value.trim() || 'Thí sinh ẩn danh';
                 localStorage.setItem('qm_player_name', this.playerName);
+
+                const quiz = this.quizzes.find(q => q.id === this.pendingQuizId);
+                if (!quiz) return;
+
                 this.activeQuiz = quiz;
-                this.examQuestions = customQuestions || JSON.parse(JSON.stringify(quiz.questions));
+                this.examQuestions = this.pendingCustomQuestions || JSON.parse(JSON.stringify(quiz.questions));
                 this.userAnswers = {};
                 this.flaggedQuestions = new Set();
                 this.currentQIndex = 0;
                 this.timerSeconds = (quiz.duration || 15) * 60;
                 this.startTime = Date.now();
 
-                document.getElementById('exam-quiz-title').textContent = `${quiz.code || 'QUIZ'} • ${quiz.title}`;
+                document.getElementById('exam-quiz-title').textContent = `${quiz.code || 'QUIZ'} — ${quiz.title}`;
                 this.showView('exam');
                 this.renderExamQuestion();
                 this.startTimer();
