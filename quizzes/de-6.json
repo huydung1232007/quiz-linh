@@ -1,0 +1,516 @@
+[
+  {
+    "id": "q-python-matplotlib-chuyen-de",
+    "code": "PY-04",
+    "title": "Matplotlib",
+    "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về thư viện Matplotlib, biểu đồ 2D, tùy chỉnh trục, subplot và các bài toán phân tích hình học nâng cao.",
+    "duration": 50,
+    "questions": [
+      {
+        "text": "Trong ngôn ngữ lập trình Python, cú pháp chuẩn và phổ biến nhất được sử dụng để nạp mô-đun vẽ biểu đồ 2D của thư viện Matplotlib với tên viết tắt plt là gì?",
+        "options": [
+          "import matplotlib as plt",
+          "import matplotlib.pyplot as plt",
+          "from matplotlib import plt",
+          "import pyplot.matplotlib as plt"
+        ],
+        "correct": 1,
+        "explain": "Mô-đun con chuyên cung cấp giao diện vẽ biểu đồ tương tự MATLAB nằm bên trong thư viện matplotlib có tên là pyplot. Do đó, cú pháp chuẩn trong tài liệu học phần là nạp trực tiếp matplotlib.pyplot và đặt bí danh plt."
+      },
+      {
+        "text": "Khi kết hợp hai thư viện NumPy (bí danh np) và matplotlib.pyplot (bí danh plt) trong một chương trình vẽ biểu đồ khoa học, việc phân biệt vai trò của hai thư viện này như thế nào là chính xác nhất?",
+        "options": [
+          "NumPy dùng để tạo cửa sổ đồ họa và tô màu, còn matplotlib.pyplot dùng để tính trung bình cộng và căn bậc hai.",
+          "NumPy đảm nhận lưu trữ mảng dữ liệu số và tính toán toán học (như np.mean, np.sqrt), còn matplotlib.pyplot đảm nhận trực quan hóa dữ liệu đó thành các biểu đồ.",
+          "Cả hai thư viện có chức năng hoàn toàn giống nhau và có thể thay thế mọi hàm của nhau mà không cần sửa code.",
+          "matplotlib.pyplot chỉ hoạt động được với danh sách (list) thuần túy và không thể nhận mảng ndarray của NumPy."
+        ],
+        "correct": 1,
+        "explain": "Trong lập trình khoa học với Python, NumPy là thư viện nền tảng để khởi tạo mảng tọa độ và thực hiện các phép toán đại số, thống kê. Ngược lại, matplotlib.pyplot nhận các mảng dữ liệu đó làm đầu vào để dựng hình, tạo trục và hiển thị biểu đồ lên màn hình."
+      },
+      {
+        "text": "Điểm khác biệt cơ bản nhất về mặt hiển thị mặc định giữa hai lời gọi hàm plt.plot(x, y) và plt.scatter(x, y) khi truyền vào cùng hai mảng tọa độ x, y là gì?",
+        "options": [
+          "plt.plot(x, y) mặc định nối các điểm dữ liệu liên tiếp bằng đoạn thẳng tạo thành đường gấp khúc, còn plt.scatter(x, y) chỉ vẽ các điểm rời rạc tại từng tọa độ mà không nối chúng lại.",
+          "plt.plot(x, y) chỉ vẽ được tối đa 2 điểm, trong khi plt.scatter(x, y) vẽ được nhiều điểm.",
+          "plt.scatter(x, y) mặc định nối các điểm bằng đường nét đứt, còn plt.plot(x, y) vẽ biểu đồ hình cột.",
+          "plt.plot(x, y) tự động sắp xếp mảng x tăng dần trước khi vẽ, còn plt.scatter(x, y) giữ nguyên thứ tự."
+        ],
+        "correct": 0,
+        "explain": "Khi không chỉ định thêm chuỗi định dạng kiểu đánh dấu, hàm plt.plot(x, y) mặc định tạo biểu đồ đường bằng cách nối tuần tự các điểm. Trong khi đó, plt.scatter(x, y) chuyên dùng để tạo biểu đồ phân tán, hiển thị các dấu điểm độc lập."
+      },
+      {
+        "text": "Để thiết lập dòng chữ tiêu đề chính nằm ở phía trên biểu đồ và đặt tên nhãn cho trục hoành, người lập trình cần sử dụng cặp hàm nào sau đây của matplotlib.pyplot?",
+        "options": [
+          "plt.header() và plt.xaxis()",
+          "plt.title() và plt.xlabel()",
+          "plt.caption() và plt.xname()",
+          "plt.name() và plt.labelx()"
+        ],
+        "correct": 1,
+        "explain": "Theo quy ước chuẩn của matplotlib.pyplot, hàm plt.title() dùng để gắn tiêu đề, plt.xlabel() dùng để đặt nhãn cho trục hoành (trục x)."
+      },
+      {
+        "text": "Trong lời gọi hàm vẽ biểu đồ hình tròn plt.pie(sizes, labels=ten_nhom, autopct='%1.1f%%'), hai đối số labels và autopct có ý nghĩa lần lượt là gì?",
+        "options": [
+          "labels quy định màu sắc của từng quạt; autopct quy định bán kính của hình tròn.",
+          "labels truyền danh sách tên hiển thị cho từng phần quạt; autopct định dạng chuỗi hiển thị tỷ lệ phần trăm tự động tính trên mỗi phần quạt.",
+          "labels đặt tiêu đề cho toàn bộ cửa sổ; autopct tự động sắp xếp các hình quạt theo thứ tự tăng dần.",
+          "labels hiển thị số lượng phần tử; autopct dùng để tách các miếng quạt rời khỏi tâm hình tròn."
+        ],
+        "correct": 1,
+        "explain": "Đối số labels nhận danh sách tên nhãn cho từng mảnh hình quạt. autopct nhận chuỗi định dạng để Matplotlib tự động tính và in tỷ lệ phần trăm lên biểu đồ tròn."
+      },
+      {
+        "text": "Khi vẽ biểu đồ tần suất bằng hàm plt.hist(data, bins=10), đối số bins=10 có tác dụng gì đối với tập dữ liệu đầu vào data?",
+        "options": [
+          "Chỉ lấy đúng 10 phần tử đầu tiên của mảng data để đưa vào biểu đồ.",
+          "Chia miền giá trị từ nhỏ nhất đến lớn nhất của data thành 10 khoảng (thùng/nhóm) có độ rộng bằng nhau để đếm tần số xuất hiện.",
+          "Thiết lập chiều cao tối đa của cột cao nhất trong biểu đồ bằng 10 đơn vị.",
+          "Vẽ lặp lại cùng một biểu đồ tần suất đó 10 lần trên 10 cửa sổ khác nhau."
+        ],
+        "correct": 1,
+        "explain": "Biểu đồ Histogram chia khoảng biến thiên của dữ liệu thành 10 khoảng con liên tiếp (bins=10) và đếm tần số giá trị rơi vào từng khoảng."
+      },
+      {
+        "text": "Trong các hàm vẽ đường như plt.plot(), việc kết hợp ký hiệu màu sắc, kiểu điểm đánh dấu (marker) và kiểu nét vẽ (linestyle) nào sau đây tạo ra đường nét đứt màu đỏ với các điểm đánh dấu hình tròn?",
+        "options": ["'ro--'", "'bo-'", "'rs:'", "'g^--.'"],
+        "correct": 0,
+        "explain": "Chuỗi định dạng 'ro--' kết hợp màu đỏ (r), điểm tròn (o) và nét đứt (--)."
+      },
+      {
+        "text": "Khi người lập trình đã thêm đối số label='Duong xu huong' vào bên trong lệnh plt.plot(x, y, label='Duong xu huong'), cần phải gọi thêm lệnh nào tiếp theo để bảng chú thích (legend) thực sự xuất hiện trên biểu đồ?",
+        "options": ["plt.grid(True)", "plt.legend()", "plt.annotate()", "plt.text()"],
+        "correct": 1,
+        "explain": "Để hiển thị bảng chú thích chứa các nhãn label đã định nghĩa, bắt buộc phải gọi hàm plt.legend()."
+      },
+      {
+        "text": "Lệnh plt.axis('equal') thường được sử dụng khi vẽ hình tròn hoặc khi cần đánh giá trực quan khoảng cách Euclid giữa các điểm vì lệnh này có tác dụng gì?",
+        "options": [
+          "Ép trục hoành và trục tung có cùng tỷ lệ độ dài đơn vị hiển thị trên màn hình (1 đơn vị trên trục x dài bằng 1 đơn vị trên trục y).",
+          "Xóa toàn bộ các vạch chia và con số trên cả hai trục tọa độ.",
+          "Chuyển đổi hệ trục tọa độ Đề-các vuông góc sang hệ tọa độ cực.",
+          "Tự động dịch chuyển gốc tọa độ (0, 0) về chính giữa tâm màn hình."
+        ],
+        "correct": 0,
+        "explain": "plt.axis('equal') thiết lập tỷ lệ đơn vị hiển thị trên hai trục bằng nhau (aspect ratio = 1), giúp hình tròn không bị méo."
+      },
+      {
+        "text": "Để vẽ biểu đồ cột đứng (vertical bar chart) so sánh doanh thu giữa các tháng, hàm nào trong matplotlib.pyplot được sử dụng?",
+        "options": ["plt.pie()", "plt.bar()", "plt.scatter()", "plt.contour()"],
+        "correct": 1,
+        "explain": "Hàm plt.bar(x, height) dùng để vẽ biểu đồ cột đứng."
+      },
+      {
+        "text": "Cho đoạn mã Python sau đây. Hãy cho biết biểu đồ được tạo ra sẽ hiển thị như thế nào trên vùng vẽ?\nimport matplotlib.pyplot as plt\nx = [1, 2, 3, 4]\ny = [10, 20, 15, 25]\nplt.plot(x, y, 'bs:')\nplt.show()",
+        "options": [
+          "Chỉ hiển thị 4 điểm hình vuông màu xanh dương, không có đường nối giữa các điểm.",
+          "Hiển thị 4 điểm đánh dấu hình vuông màu xanh dương được nối với nhau bằng đường nét chấm (:).",
+          "Hiển thị đường nét liền màu đen đi qua 4 điểm hình tròn.",
+          "Hiển thị 4 cột đứng màu xanh dương tại các hoành độ 1, 2, 3, 4."
+        ],
+        "correct": 1,
+        "explain": "Chuỗi 'bs:' chỉ định màu xanh (b), hình vuông (s) và đường nét chấm (:)."
+      },
+      {
+        "text": "Khi chỉ truyền một danh sách duy nhất vào hàm plt.plot() như đoạn mã dưới đây, Matplotlib sẽ xác định tọa độ hoành độ x của các điểm như thế nào?\nimport matplotlib.pyplot as plt\nplt.plot([5, 15, 10, 20], 'ro-')\nplt.show()",
+        "options": [
+          "Hoành độ x được lấy tự động bằng chính các giá trị [5, 15, 10, 20].",
+          "Hoành độ x được sinh tự động theo chỉ số phần tử bắt đầu từ 0, tức là [0, 1, 2, 3].",
+          "Hoành độ x được sinh tự động bắt đầu từ 1, tức là [1, 2, 3, 4].",
+          "Chương trình báo lỗi TypeError vì hàm plt.plot() bắt buộc phải có đủ 2 mảng tọa độ."
+        ],
+        "correct": 1,
+        "explain": "Nếu chỉ truyền một mảng y duy nhất, Matplotlib tự động tạo mảng x là dãy chỉ số từ 0 đến N-1 ([0, 1, 2, 3])."
+      },
+      {
+        "text": "Xét lệnh chia vùng vẽ plt.subplot(2, 3, 5). Lệnh này tạo ra lưới vùng vẽ gồm bao nhiêu hàng, bao nhiêu cột và kích hoạt vùng vẽ ở vị trí nào?",
+        "options": [
+          "Lưới gồm 2 cột, 3 hàng; kích hoạt vùng vẽ thứ 5.",
+          "Lưới gồm 2 hàng, 3 cột (tổng cộng 6 ô); kích hoạt ô thứ 5 (nằm ở hàng thứ 2, cột thứ 2).",
+          "Lưới gồm 5 hàng, 3 cột; kích hoạt ô thứ 2.",
+          "Lưới gồm 2 hàng, 3 cột; kích hoạt ô nằm ở hàng thứ 1, cột thứ 3."
+        ],
+        "correct": 1,
+        "explain": "plt.subplot(2, 3, 5) tạo lưới 2 hàng 3 cột, kích hoạt ô số 5 (nằm ở hàng 2, cột 2)."
+      },
+      {
+        "text": "Cho đoạn mã vẽ nhiều biểu đồ con dưới đây. Sau khi thực thi, có tổng cộng bao nhiêu khung biểu đồ con thực sự xuất hiện trên cửa sổ hình vẽ?\nimport matplotlib.pyplot as plt\nplt.subplot(2, 2, 1)\nplt.plot([1, 2], [3, 4])\nplt.subplot(2, 2, 4)\nplt.scatter([1, 2], [4, 3])\nplt.show()",
+        "options": [
+          "Có 4 khung biểu đồ con đều được vẽ khung trục, trong đó 2 khung trống.",
+          "Chỉ có 2 khung biểu đồ con xuất hiện tại vị trí góc trên bên trái (ô 1) và góc dưới bên phải (ô 4).",
+          "Chỉ có 1 khung biểu đồ duy nhất chứa cả đường thẳng và các điểm phân tán.",
+          "Chương trình báo lỗi vì bỏ qua không gọi plt.subplot(2, 2, 2) và plt.subplot(2, 2, 3)."
+        ],
+        "correct": 1,
+        "explain": "Chỉ các ô được gọi tường minh bằng plt.subplot() mới xuất hiện trên cửa sổ hình vẽ (ô 1 và ô 4)."
+      },
+      {
+        "text": "Khi sử dụng hàm fig, ax = plt.subplots(2, 3), biến ax nhận được có cấu trúc như thế nào và làm sao để vẽ biểu đồ đường vào ô ở hàng đầu tiên, cột cuối cùng?",
+        "options": [
+          "ax là một đối tượng trục đơn lẻ; gọi ax.plot(x, y).",
+          "ax là mảng 2 chiều kích thước 2 x 3 chứa các đối tượng trục; gọi ax[0, 2].plot(x, y).",
+          "ax là mảng 2 chiều kích thước 2 x 3; gọi ax[1, 3].plot(x, y).",
+          "ax là mảng 1 chiều gồm 6 phần tử; gọi ax[3].plot(x, y)."
+        ],
+        "correct": 1,
+        "explain": "plt.subplots(2, 3) trả về mảng 2 chiều ax. Hàng đầu tiên là index 0, cột cuối cùng (cột 3) là index 2, nên truy cập qua ax[0, 2]."
+      },
+      {
+        "text": "Cho đoạn mã dưới đây viết trong một tệp kịch bản Python độc lập (script.py). Lệnh nào còn thiếu ở dòng cuối cùng để cửa sổ đồ họa chắc chắn được bật lên hiển thị cho người dùng?\nimport matplotlib.pyplot as plt\nx = [0, 1, 2, 3]\ny = [0, 1, 4, 9]\nplt.plot(x, y, 'g^-')\nplt.title('Do thi ham bac hai')",
+        "options": ["plt.display()", "plt.render()", "plt.show()", "plt.open()"],
+        "correct": 2,
+        "explain": "Để hiển thị cửa sổ đồ họa từ tệp kịch bản .py độc lập, bắt buộc phải gọi plt.show() ở cuối."
+      },
+      {
+        "text": "Quan sát đoạn mã dưới đây. Có bao nhiêu đường và bao nhiêu điểm rời rạc được vẽ trên cùng một hệ trục tọa độ?\nimport matplotlib.pyplot as plt\nx = [0, 10, 20]\ny1 = [5, 15, 10]\ny2 = [10, 5, 20]\nplt.plot(x, y1, 'b-')\nplt.plot(x, y2, 'r--')\nplt.plot(10, 10, 'go')\nplt.show()",
+        "options": [
+          "Hiển thị 3 đường gấp khúc trên 3 cửa sổ khác nhau.",
+          "Trên cùng một hệ trục tọa độ, hiển thị 2 đường gấp khúc (1 đường nét liền màu xanh dương, 1 đường nét đứt màu đỏ) và 1 điểm hình tròn màu xanh lá tại tọa độ (10, 10).",
+          "Chỉ hiển thị duy nhất 1 điểm hình tròn màu xanh lá tại (10, 10) vì lệnh plt.plot() sau sẽ xóa lệnh plt.plot() trước.",
+          "Hiển thị 3 đường nối tất cả các điểm lại với nhau."
+        ],
+        "correct": 1,
+        "explain": "Các lệnh vẽ gọi liên tiếp trước plt.show() sẽ vẽ chồng lên cùng một hệ trục tọa độ hiện hành."
+      },
+      {
+        "text": "Cho đoạn mã vẽ biểu đồ tròn dưới đây. Nhãn phần trăm hiển thị trên miếng quạt tương ứng với nhóm 'B' sẽ có chuỗi văn bản chính xác là gì?\nimport matplotlib.pyplot as plt\nsizes = [15, 30, 45, 10]\nlabels = ['A', 'B', 'C', 'D']\nplt.pie(sizes, labels=labels, autopct='%1.1f%%')\nplt.show()",
+        "options": ["30%", "30.0%", "0.3%", "30.00%"],
+        "correct": 1,
+        "explain": "Nhóm B chiếm 30/100 = 30%. Với định dạng '%1.1f%%', kết quả hiển thị là 30.0%."
+      },
+      {
+        "text": "Đoạn mã dưới đây kết hợp lệnh vẽ và thiết lập giới hạn trục. Những điểm nào trong danh sách dữ liệu sẽ nằm trong vùng nhìn thấy được của đồ thị?\nimport matplotlib.pyplot as plt\nx = [1, 3, 5, 7, 9]\ny = [2, 4, 6, 8, 10]\nplt.scatter(x, y)\nplt.xlim(2, 8)\nplt.ylim(3, 9)\nplt.show()",
+        "options": [
+          "Tất cả 5 điểm đều hiển thị đầy đủ trong khung đồ thị.",
+          "Chỉ có 3 điểm (3, 4), (5, 6) và (7, 8) nằm trong vùng hiển thị của đồ thị.",
+          "Chỉ có 2 điểm (1, 2) và (9, 10) nằm trong vùng hiển thị.",
+          "Không có điểm nào hiển thị vì xlim và ylim xóa dữ liệu cũ."
+        ],
+        "correct": 1,
+        "explain": "Giới hạn x từ 2 đến 8 và y từ 3 đến 9 loại bỏ điểm (1, 2) và (9, 10), chỉ giữ lại các điểm (3, 4), (5, 6), (7, 8)."
+      },
+      {
+        "text": "Khi sử dụng hàm plt.subplot2grid((3, 3), (1, 0), colspan=2, rowspan=2), vùng vẽ được tạo ra sẽ chiếm vị trí và kích thước như thế nào trên lưới 3 x 3?",
+        "options": [
+          "Bắt đầu tại hàng chỉ số 1, cột chỉ số 0; mở rộng sang ngang 2 cột và kéo dài xuống dưới 2 hàng (chiếm 4 ô ở góc dưới bên trái).",
+          "Bắt đầu tại hàng thứ 1, cột thứ 0; chỉ chiếm đúng 1 ô duy nhất.",
+          "Bắt đầu tại góc trên cùng bên trái (0, 0) và chiếm toàn bộ 3 hàng, 2 cột.",
+          "Bắt đầu tại hàng chỉ số 1, cột chỉ số 0; mở rộng 2 hàng sang ngang và 2 cột xuống dưới."
+        ],
+        "correct": 0,
+        "explain": "subplot2grid với loc=(1,0), colspan=2, rowspan=2 bắt đầu từ hàng 1 cột 0, mở rộng 2 cột và 2 hàng."
+      },
+      {
+        "text": "Cho đoạn mã tạo lưới tọa độ 2 chiều và vẽ đường đồng mức dưới đây. Sự khác biệt chính giữa plt.contour(X, Y, Z) và plt.contourf(X, Y, Z) là gì?\nx = np.linspace(-3, 3, 50)\ny = np.linspace(-3, 3, 50)\nX, Y = np.meshgrid(x, y)\nZ = X**2 + Y**2",
+        "options": [
+          "plt.contour() vẽ các đường đồng mức rỗng (chỉ vẽ nét đường), trong khi plt.contourf() tô đầy màu sắc vào các miền nằm giữa các đường đồng mức.",
+          "plt.contour() dùng cho dữ liệu 2D, còn plt.contourf() chỉ dùng cho mảng 1D.",
+          "plt.contourf() chỉ vẽ duy nhất đường biên ngoài cùng của đồ thị.",
+          "plt.contour() vẽ biểu đồ cột, còn plt.contourf() vẽ biểu đồ tròn."
+        ],
+        "correct": 0,
+        "explain": "plt.contour() vẽ các đường nét đồng mức, còn plt.contourf() (filled contour) tô kín màu các miền giữa các đường."
+      },
+      {
+        "text": "Đọc đoạn mã dưới đây và cho biết sau khi vòng lặp kết thúc, có bao nhiêu đoạn thẳng màu xanh lá được vẽ nối vào gốc tọa độ (0, 0)?\nimport matplotlib.pyplot as plt\nx = [2, 4, 6, 8]\ny = [1, 3, 5, 7]\nfor i in range(len(x)):\n    if x[i] + y[i] > 8:\n        plt.plot([0, x[i]], [0, y[i]], 'g-')\nplt.show()",
+        "options": ["1 đoạn thẳng.", "2 đoạn thẳng.", "3 đoạn thẳng.", "4 đoạn thẳng."],
+        "correct": 1,
+        "explain": "Kiểm tra điều kiện x[i] + y[i] > 8: chỉ có i = 2 (6+5=11) và i = 3 (8+7=15) thỏa mãn -> 2 đoạn thẳng."
+      },
+      {
+        "text": "Một sinh viên muốn vẽ một đoạn thẳng màu đỏ nối từ điểm A(1, 5) đến điểm B(4, 9) bằng đoạn mã dưới đây, nhưng kết quả lại không đúng như mong đợi. Nguyên nhân và cách sửa đúng là gì?\nimport matplotlib.pyplot as plt\nplt.plot([1, 5], [4, 9], 'r-')\nplt.show()",
+        "options": [
+          "Đoạn mã truyền nhầm tọa độ của từng điểm thay vì truyền mảng hoành độ và mảng tung độ riêng biệt; cần sửa thành plt.plot([1, 4], [5, 9], 'r-').",
+          "Hàm plt.plot() không thể vẽ đoạn thẳng nối 2 điểm; cần đổi tên hàm thành plt.scatter([1, 5], [4, 9]).",
+          "Chuỗi định dạng 'r-' bị sai cú pháp; cần sửa thành 'red-line'.",
+          "Cần phải xóa dấu ngoặc vuông và viết thành plt.plot(1, 5, 4, 9, 'r-')."
+        ],
+        "correct": 0,
+        "explain": "plt.plot yêu cầu đối số 1 là mảng hoành độ [x_A, x_B] = [1, 4] và đối số 2 là mảng tung độ [y_A, y_B] = [5, 9]."
+      },
+      {
+        "text": "Đoạn mã dưới đây phát sinh lỗi ValueError: num must be an integer with 1 <= num <= 4, not 0 khi thực thi. Dòng nào gây ra lỗi và sửa lại như thế nào cho đúng để vẽ vào ô đầu tiên của lưới 2 x 2?\nimport matplotlib.pyplot as plt\nplt.subplot(2, 2, 0)\nplt.plot([1, 2, 3], [2, 4, 6])\nplt.show()",
+        "options": [
+          "Sửa plt.subplot(2, 2, 0) thành plt.subplot(2, 2, 1) vì chỉ số vị trí vùng vẽ trong plt.subplot() được đánh số bắt đầu từ 1.",
+          "Sửa plt.subplot(2, 2, 0) thành plt.subplot(0, 2, 2).",
+          "Sửa plt.plot([1, 2, 3], [2, 4, 6]) thành plt.plot([0, 1, 2], [2, 4, 6]).",
+          "Xóa dòng plt.show() ở cuối chương trình."
+        ],
+        "correct": 0,
+        "explain": "Chỉ số index trong plt.subplot bắt buộc phải từ 1 đến nrows*ncols (từ 1 đến 4)."
+      },
+      {
+        "text": "Khi chạy đoạn mã dưới đây, Python báo lỗi ValueError: x and y must have same first dimension, but have shapes (4,) and (3,). Cách khắc phục nào sau đây là hợp lý nhất?\nimport matplotlib.pyplot as plt\nx = [10, 20, 30, 40]\ny = [5, 15, 25]\nplt.plot(x, y, 'bo-')\nplt.show()",
+        "options": [
+          "Đảm bảo hai danh sách x và y có cùng số lượng phần tử (ví dụ bổ sung phần tử thứ 4 vào y hoặc bớt 1 phần tử ở x sao cho mỗi điểm đều có đủ cặp tọa độ (x_i, y_i)).",
+          "Đổi hàm plt.plot(x, y, 'bo-') thành plt.scatter(x, y) vì scatter cho phép hai mảng lệch kích thước.",
+          "Đổi danh sách thành bộ (tuple) trước khi truyền vào hàm plot.",
+          "Thêm lệnh plt.axis('equal') trước lệnh plt.plot()."
+        ],
+        "correct": 0,
+        "explain": "Số lượng phần tử của x và y phải bằng nhau để tạo thành các cặp tọa độ 1-1."
+      },
+      {
+        "text": "Một sinh viên sử dụng giao diện hướng đối tượng fig, ax = plt.subplots(1, 2) để tạo 2 biểu đồ cạnh nhau nhưng lại gặp lỗi AttributeError: 'Axes' object has no attribute 'xlabel'. Cần sửa lại hai dòng đặt tên trục như thế nào để code chạy đúng?\nimport matplotlib.pyplot as plt\nfig, ax = plt.subplots(1, 2)\nax[0].plot([1, 2], [3, 4])\nax[0].xlabel('Truc X hinh 1')\nax[1].scatter([1, 2], [4, 3])\nax[1].ylabel('Truc Y hinh 2')\nplt.show()",
+        "options": [
+          "Thay ax[0].xlabel(...) bằng ax[0].set_xlabel(...) và thay ax[1].ylabel(...) bằng ax[1].set_ylabel(...).",
+          "Thay ax[0] và ax[1] bằng fig[0] và fig[1].",
+          "Đổi plt.subplots(1, 2) thành plt.subplot(1, 2).",
+          "Viết hoa chữ cái đầu thành ax[0].Xlabel(...) và ax[1].Ylabel(...)."
+        ],
+        "correct": 0,
+        "explain": "Các phương thức thiết lập thuộc tính trục trên đối tượng Axes sử dụng tiền tố set_, như ax.set_xlabel() và ax.set_ylabel()."
+      },
+      {
+        "text": "Sinh viên viết đoạn mã sau để vẽ các điểm dữ liệu và đánh dấu thêm điểm trung bình màu đỏ, nhưng khi chạy chỉ thấy duy nhất điểm trung bình mà mất hết các điểm dữ liệu ban đầu. Nguyên nhân là gì và cần sửa thế nào?\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.array([10, 20, 30, 40])\ny = np.array([15, 25, 35, 45])\nplt.scatter(x, y)\nplt.clf()\nplt.plot(np.mean(x), np.mean(y), 'ro')\nplt.show()",
+        "options": [
+          "Do lệnh plt.clf() (clear figure) đã xóa sạch toàn bộ nội dung vừa vẽ của plt.scatter(x, y); cần xóa bỏ dòng plt.clf().",
+          "Do hàm plt.plot() không thể dùng chung với plt.scatter() trong cùng một chương trình.",
+          "Do mảng x và y được tạo bằng np.array thay vì list.",
+          "Do thiếu lệnh plt.grid() ở giữa hai lệnh vẽ."
+        ],
+        "correct": 0,
+        "explain": "plt.clf() xóa sạch toàn bộ hình vẽ hiện tại, làm mất biểu đồ scatter trước đó."
+      },
+      {
+        "text": "Đoạn mã dưới đây dùng để vẽ biểu đồ cột đứng nhưng gặp lỗi TypeError: bar() missing 1 required positional argument: 'height'. Cần sửa dòng gọi hàm plt.bar() như thế nào để vẽ 3 cột ứng với 3 nhóm ['A', 'B', 'C'] và chiều cao [12, 25, 18]?\nimport matplotlib.pyplot as plt\nnhom = ['A', 'B', 'C']\ngia_tri = [12, 25, 18]\nplt.bar(gia_tri)\nplt.show()",
+        "options": [
+          "Truyền đủ cả hai đối số vị trí/nhãn cột và chiều cao cột: plt.bar(nhom, gia_tri).",
+          "Gộp hai danh sách lại bằng phép cộng: plt.bar(nhom + gia_tri).",
+          "Đổi tên hàm thành plt.bar(height=nhom).",
+          "Truyền thêm chuỗi định dạng màu sắc: plt.bar(gia_tri, 'b')."
+        ],
+        "correct": 0,
+        "explain": "plt.bar bắt buộc cần 2 đối số vị trí: x (nhãn/vị trí cột) và height (chiều cao cột)."
+      },
+      {
+        "text": "Một sinh viên muốn vẽ biểu đồ tròn thể hiện tỷ lệ của 3 mặt hàng và gắn nhãn tên cho từng mặt hàng bằng đoạn mã dưới đây nhưng gặp lỗi TypeError. Cách sửa nào sau đây là đúng cú pháp chuẩn của plt.pie()?\nimport matplotlib.pyplot as plt\nty_le = [40, 35, 25]\nmat_hang = ['Cam', 'Tao', 'Xoai']\nplt.pie(mat_hang, ty_le)\nplt.show()",
+        "options": [
+          "Đặt mảng số liệu ty_le làm đối số đầu tiên và truyền danh sách tên qua đối số từ khóa labels: plt.pie(ty_le, labels=mat_hang).",
+          "Đổi chỗ thành plt.pie(ty_le, mat_hang) mà không cần từ khóa labels.",
+          "Chuyển các chuỗi trong mat_hang thành số nguyên.",
+          "Đổi hàm plt.pie() thành plt.circle(mat_hang, ty_le)."
+        ],
+        "correct": 0,
+        "explain": "Đối số đầu tiên của plt.pie phải là mảng số liệu kích thước, và nhãn truyền qua từ khóa labels."
+      },
+      {
+        "text": "Trong bài toán nối từng điểm (x_i, y_i) với điểm trung bình (x_bar, y_bar), một sinh viên viết vòng lặp như dưới đây nhưng chỉ có các điểm được vẽ thêm chứ không hề xuất hiện đoạn thẳng nối nào. Lỗi nằm ở đâu và sửa thế nào?\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.array([10, 40, 70])\ny = np.array([20, 50, 10])\nxm, ym = np.mean(x), np.mean(y)\nplt.scatter(x, y)\nplt.plot(xm, ym, 'ro')\nfor i in range(len(x)):\n    plt.plot([x[i], xm], [y[i], ym], 'go')\nplt.show()",
+        "options": [
+          "Chuỗi định dạng 'go' trong vòng lặp chỉ vẽ các chấm tròn màu xanh lá mà không có ký hiệu đường nối; cần sửa 'go' thành 'g-' (hoặc 'go-') để vẽ đoạn thẳng.",
+          "Hàm np.mean() không tính được giá trị trung bình của mảng 3 phần tử.",
+          "Vòng lặp range(len(x)) bị thiếu 1 phần tử cuối cùng; cần sửa thành range(len(x) + 1).",
+          "Cần đưa lệnh plt.show() vào bên trong vòng lặp for."
+        ],
+        "correct": 0,
+        "explain": "'go' chỉ vẽ điểm tròn, để vẽ đoạn thẳng nối phải dùng định dạng đường như 'g-'."
+      },
+      {
+        "text": "Xem xét đoạn mã tính khoảng cách Euclid từ mỗi điểm (x_i, y_i) đến điểm trung bình dưới đây. Công thức tính biến d đang mắc lỗi toán học nào khiến kết quả lọc d < 50 bị sai lệch?\nimport numpy as np\nx = np.array([10, 50, 90])\ny = np.array([20, 60, 100])\nxm = np.mean(x)\nym = np.mean(y)\nfor i in range(len(x)):\n    d = np.sqrt((x[i] - xm)**2 - (y[i] - ym)**2)\n    if d < 50:\n        print(i)",
+        "options": [
+          "Dùng phép trừ - thay vì phép cộng + giữa hai bình phương độ lệch dưới dấu căn; cần sửa thành d = np.sqrt((x[i] - xm)**2 + (y[i] - ym)**2).",
+          "Dùng toán tử lũy thừa **2 trong Python là sai cú pháp; phải sửa thành ^2.",
+          "Hàm np.sqrt() không nhận giá trị số thực.",
+          "Biến xm và ym phải được tính lại từ đầu ở mỗi bước lặp."
+        ],
+        "correct": 0,
+        "explain": "Khoảng cách Euclid phải là tổng bình phương độ lệch: (x[i] - xm)**2 + (y[i] - ym)**2."
+      },
+      {
+        "text": "Đề bài yêu cầu: 'Chỉ vẽ các đoạn thẳng nối điểm (x_i, y_i) với điểm trung bình nếu khoảng cách Euclid d giữa chúng nhỏ hơn 50'. Một sinh viên đã viết đoạn mã dưới đây và nhận thấy những điểm cách tâm một khoảng lớn hơn 50 mới được nối, còn điểm gần tâm lại không được nối. Cần sửa như thế nào?\nfor i in range(len(x)):\n    d = np.sqrt((x[i] - xm)**2 + (y[i] - ym)**2)\n    if d > 50:\n        plt.plot([x[i], xm], [y[i], ym], 'b-')",
+        "options": [
+          "Sửa biểu thức điều kiện if d > 50: thành if d < 50:.",
+          "Sửa biểu thức điều kiện if d > 50: thành if d <= 50:.",
+          "Sửa plt.plot([x[i], xm], [y[i], ym], 'b-') thành plt.scatter(x[i], y[i]).",
+          "Đưa lệnh if ra bên ngoài vòng lặp for."
+        ],
+        "correct": 0,
+        "explain": "Đề bài yêu cầu nhỏ hơn 50 (d < 50), sinh viên viết ngược thành d > 50."
+      },
+      {
+        "text": "Một sinh viên muốn vẽ biểu đồ tần suất (Histogram) với 5 khoảng chia đều nhau từ danh sách du_lieu, nhưng viết nhầm lệnh như dưới đây và gặp lỗi TypeError. Cách sửa đúng là gì?\nimport matplotlib.pyplot as plt\ndu_lieu = [1, 2, 2, 3, 4, 5, 5, 5, 6, 8, 9, 10]\nplt.hist(du_lieu, labels=5)\nplt.show()",
+        "options": [
+          "Thay đối số labels=5 bằng bins=5 trong hàm plt.hist(du_lieu, bins=5).",
+          "Thay hàm plt.hist() bằng plt.pie(du_lieu, bins=5).",
+          "Đặt số 5 vào ngoặc kép thành labels='5'.",
+          "Truyền số 5 làm đối số đầu tiên: plt.hist(5, du_lieu)."
+        ],
+        "correct": 0,
+        "explain": "Tham số quy định số khoảng chia trong plt.hist là bins, không phải labels."
+      },
+      {
+        "text": "Sinh viên viết đoạn mã sau để tính điểm trung bình của đám mây điểm (x, y), nhưng điểm trung bình vẽ ra lại nằm lệch hẳn trên đường phân giác y = x. Lỗi sai nằm ở dòng nào và sửa ra sao?\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.array([10, 20, 30, 40])\ny = np.array([100, 120, 140, 160])\nxm = np.mean(x)\nym = np.mean(x)\nplt.scatter(x, y)\nplt.plot(xm, ym, 'rs')\nplt.show()",
+        "options": [
+          "Dòng tính ym đã truyền nhầm mảng x thay vì mảng y; cần sửa ym = np.mean(x) thành ym = np.mean(y).",
+          "Dòng xm = np.mean(x) phải sửa thành xm = np.sum(x).",
+          "Cần đổi thứ tự đối số trong plt.plot(xm, ym, 'rs') thành plt.plot(ym, xm, 'rs').",
+          "Cần sửa plt.scatter(x, y) thành plt.scatter(xm, ym)."
+        ],
+        "correct": 0,
+        "explain": "ym được tính nhầm bằng np.mean(x) thay vì np.mean(y)."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Cho hai mảng tọa độ 1 chiều x = np.array([10, 20, 30, 60]) và y = np.array([20, 40, 10, 50]). Để tính tọa độ điểm trung bình và đánh dấu điểm trung bình này lên đồ thị bằng một ngôi sao màu đỏ, đoạn mã nào sau đây thực hiện đúng?",
+        "options": [
+          "xm = np.mean(x); ym = np.mean(y); plt.plot(xm, ym, 'r*') với (x_bar, y_bar) = (30.0, 30.0).",
+          "xm = np.sum(x); ym = np.sum(y); plt.plot(xm, ym, 'r*') với (x_bar, y_bar) = (120, 120).",
+          "xm = np.mean(x); ym = np.mean(y); plt.scatter(xm, ym, 'r-') với (x_bar, y_bar) = (30.0, 30.0).",
+          "xm = np.median(x); ym = np.median(y); plt.plot(xm, ym, 'ro') với (x_bar, y_bar) = (25.0, 30.0)."
+        ],
+        "correct": 0,
+        "explain": "x_bar = 120/4 = 30.0, y_bar = 120/4 = 30.0. Dùng plt.plot(xm, ym, 'r*')."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Cho mảng tọa độ x và y gồm N điểm cùng tọa độ trung bình xm, ym. Giả sử ta muốn nối tất cả các điểm với điểm trung bình bằng đoạn thẳng nét đứt màu xanh dương. Khối vòng lặp nào sau đây là chính xác?",
+        "options": [
+          "for i in range(len(x)): plt.plot([x[i], xm], [y[i], ym], 'b--')",
+          "for i in range(len(x)): plt.plot([x[i], y[i]], [xm, ym], 'b--')",
+          "for i in range(len(x)): plt.scatter([x[i], xm], [y[i], ym], 'b--')",
+          "plt.plot(x, y, xm, ym, 'b--')"
+        ],
+        "correct": 0,
+        "explain": "Truyền danh sách [x[i], xm] và [y[i], ym] vào plt.plot với chuỗi định dạng 'b--'."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Cho đoạn mã Python dưới đây. Hãy tính toán cụ thể và cho biết có bao nhiêu đoạn thẳng màu đỏ được vẽ nối từ các điểm dữ liệu tới điểm trung bình?\nx = np.array([10, 40, 50, 90, 60])\ny = np.array([10, 50, 50, 90, 50])\nxm, ym = np.mean(x), np.mean(y)\nfor i in range(len(x)):\n    d = np.sqrt((x[i] - xm)**2 + (y[i] - ym)**2)\n    if d < 50:\n        plt.plot([x[i], xm], [y[i], ym], 'r-')",
+        "options": ["1 đoạn thẳng.", "2 đoạn thẳng.", "3 đoạn thẳng.", "4 đoạn thẳng."],
+        "correct": 2,
+        "explain": "xm = 50, ym = 50. Các khoảng cách d: i=0 (56.57), i=1 (10), i=2 (0), i=3 (56.57), i=4 (10). Có 3 điểm có d < 50 (i=1, 2, 4)."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Cho đoạn mã dưới đây. Hãy chú ý kỹ giá trị khoảng cách tại biên và cho biết có bao nhiêu đoạn thẳng thực sự được vẽ bởi vòng lặp for?\nx = np.array([20, 80, 50, 50])\ny = np.array([10, 90, 20, 80])\nxm, ym = np.mean(x), np.mean(y)\nfor i in range(len(x)):\n    d = np.sqrt((x[i] - xm)**2 + (y[i] - ym)**2)\n    if d < 50:\n        plt.plot([x[i], xm], [y[i], ym], 'g-')",
+        "options": ["1 đoạn thẳng.", "2 đoạn thẳng.", "3 đoạn thẳng.", "4 đoạn thẳng."],
+        "correct": 1,
+        "explain": "xm = 50, ym = 50. Các điểm i=0 và i=1 có d = 50.0 (không thỏa d < 50). Các điểm i=2 và i=3 có d = 30.0 < 50 -> 2 đoạn thẳng."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Đọc đoạn mã gồm 4 phần (1), (2), (3), (4). Phát biểu nào xác định đúng chức năng của từng phần trong việc tạo điểm và tạo đường trên biểu đồ?",
+        "options": [
+          "Phần (1) vẽ đám mây điểm dữ liệu ban đầu; phần (2) vẽ 1 điểm tròn màu đỏ tại tâm trung bình; phần (3) và (4) tạo các đoạn thẳng nét đứt màu đen nối những điểm thỏa mãn d < 50 với tâm trung bình.",
+          "Phần (1) vẽ đường gấp khúc màu xanh; phần (2) vẽ đường thẳng màu đỏ; phần (4) xóa các điểm có d < 50.",
+          "Phần (1) và (2) đều vẽ các đoạn thẳng; phần (4) chỉ vẽ các chấm tròn rời rạc.",
+          "Phần (2) tính khoảng cách Euclid, còn phần (4) vẽ biểu đồ hình cột."
+        ],
+        "correct": 0,
+        "explain": "(1) vẽ scatter điểm dữ liệu, (2) vẽ điểm trung bình, (3)-(4) duyệt vòng lặp vẽ đoạn thẳng nối tâm."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Cho đoạn mã khung. Để hoàn thiện chương trình tính khoảng cách Euclid và nối điểm với điểm trung bình khi d < 50, cần điền câu lệnh nào vào (1) và (2)?",
+        "options": [
+          "Vị trí (1): np.sqrt((x[i] - xm)**2 + (y[i] - ym)**2) / Vị trí (2): plt.plot([x[i], xm], [y[i], ym], 'g-')",
+          "Vị trí (1): np.sqrt((x - xm)**2 + (y - ym)**2) / Vị trí (2): plt.plot([x[i], y[i]], [xm, ym], 'g-')",
+          "Vị trí (1): (x[i] - xm)**2 + (y[i] - ym)**2 / Vị trí (2): plt.scatter([x[i], xm], [y[i], ym], 'g-')",
+          "Vị trí (1): np.mean((x[i] - xm)**2 + (y[i] - ym)**2) / Vị trí (2): plt.plot(x[i], xm, y[i], ym, 'g-')"
+        ],
+        "correct": 0,
+        "explain": "Vị trí (1) tính khoảng cách d cho từng điểm i, vị trí (2) vẽ đoạn thẳng nối plt.plot([x[i], xm], [y[i], ym], 'g-')."
+      },
+      {
+        "text": "Một sinh viên muốn chia cửa sổ hình vẽ thành 2 biểu đồ nằm ngang cạnh nhau (1 hàng, 2 cột): ô bên trái vẽ biểu đồ phân tán, ô bên phải vẽ biểu đồ cột. Đoạn mã nào sau đây thực hiện đúng?",
+        "options": [
+          "plt.subplot(1, 2, 1); plt.scatter(x, y); plt.subplot(1, 2, 2); plt.bar(x, y)",
+          "plt.subplot(2, 1, 1); plt.scatter(x, y); plt.subplot(2, 1, 2); plt.bar(x, y)",
+          "plt.subplot(1, 2, 0); plt.scatter(x, y); plt.subplot(1, 2, 1); plt.bar(x, y)",
+          "plt.subplot(1, 2, 1); plt.scatter(x, y); plt.bar(x, y)"
+        ],
+        "correct": 0,
+        "explain": "Bố cục 1 hàng 2 cột là plt.subplot(1, 2, ...), ô trái index 1, ô phải index 2."
+      },
+      {
+        "text": "Cho mảng dữ liệu data = np.array([2, 4, 7, 9, 11, 14, 16, 19, 22]) và lệnh vẽ plt.hist(data, bins=[0, 10, 20, 30]). Chiều cao của 3 cột tần số tương ứng các khoảng [0, 10), [10, 20) và [20, 30] lần lượt là bao nhiêu?",
+        "options": ["4, 4, 1.", "3, 5, 1.", "4, 3, 2.", "3, 3, 3."],
+        "correct": 0,
+        "explain": "Khoảng [0, 10) có 4 phần tử (2, 4, 7, 9); khoảng [10, 20) có 4 phần tử (11, 14, 16, 19); khoảng [20, 30] có 1 phần tử (22)."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Cho đoạn mã dưới đây. Hãy xác định chính xác tập hợp chỉ số i của những điểm được nối đoạn thẳng với điểm trung bình khi d < 50?\nx = np.array([0, 30, 60, 90, 120])\ny = np.array([0, 40, 80, 120, 160])\nxm, ym = np.mean(x), np.mean(y)\nfor i in range(len(x)):\n    d = np.sqrt((x[i] - xm)**2 + (y[i] - ym)**2)\n    if d < 50:\n        plt.plot([x[i], xm], [y[i], ym], 'b-')",
+        "options": [
+          "Chỉ có duy nhất chỉ số i = 2.",
+          "Các chỉ số i = 1, 2, 3.",
+          "Các chỉ số i = 0, 4.",
+          "Tất cả các chỉ số i = 0, 1, 2, 3, 4."
+        ],
+        "correct": 0,
+        "explain": "xm = 60, ym = 80. Chỉ có điểm i = 2 (tọa độ (60, 80)) có khoảng cách d = 0.0 < 50."
+      },
+      {
+        "text": "Cho đoạn mã sử dụng plt.subplots(2, 2) dưới đây. Hai biểu đồ được vẽ sẽ nằm ở những vị trí nào trên cửa sổ hình vẽ?\nfig, ax = plt.subplots(2, 2)\nax[0, 1].plot([1, 2, 3], [3, 2, 1], 'r-')\nax[1, 0].bar(['X', 'Y'], [10, 20])\nplt.show()",
+        "options": [
+          "Biểu đồ đường nằm ở ô góc trên bên phải; biểu đồ cột nằm ở ô góc dưới bên trái; hai ô còn lại là khung trục trống.",
+          "Biểu đồ đường nằm ở ô góc trên bên trái; biểu đồ cột nằm ở ô góc dưới bên phải.",
+          "Cả hai biểu đồ đều nằm ở hàng đầu tiên.",
+          "Chương trình báo lỗi vì mảng ax chỉ dùng được 1 chỉ số."
+        ],
+        "correct": 0,
+        "explain": "ax[0, 1] là hàng 0 cột 1 (góc trên phải), ax[1, 0] là hàng 1 cột 0 (góc dưới trái)."
+      },
+      {
+        "text": "[Mô phỏng đề thi] Một đề bài yêu cầu vẽ đám mây điểm (x, y), vẽ điểm trung bình có gắn nhãn chú thích 'Tam TB', nối các điểm có d < 50 tới tâm, đồng thời hiển thị lưới tọa độ và hộp chú thích. Đoạn mã nào đáp ứng đúng?",
+        "options": [
+          "plt.scatter(x, y, label='Diem du lieu'); plt.plot(xm, ym, 'ro', label='Tam TB'); [vòng lặp nối đoạn thẳng]; plt.grid(True); plt.legend(); plt.show()",
+          "plt.legend(); plt.grid(True); plt.show(); plt.scatter(x, y); plt.plot(xm, ym, 'ro')",
+          "plt.scatter(x, y); plt.plot(xm, ym, 'ro'); plt.title('Tam TB'); plt.show()",
+          "plt.plot(x, y, 'ro', label='Tam TB'); plt.axis('off'); plt.show()"
+        ],
+        "correct": 0,
+        "explain": "plt.legend() phải được gọi sau khi các đối tượng có label đã được vẽ và trước plt.show()."
+      },
+      {
+        "text": "Cho đoạn mã vẽ biểu đồ tròn dưới đây. Hỏi phần quạt tương ứng với nhãn 'Nhom C' sẽ chiếm góc ở tâm bằng bao nhiêu độ trên hình tròn 360 độ và hiển thị chuỗi phần trăm nào?\ndata = [20, 30, 50, 100]\nnhom = ['Nhom A', 'Nhom B', 'Nhom C', 'Nhom D']\nplt.pie(data, labels=nhom, autopct='%1.0f%%')\nplt.axis('equal')",
+        "options": [
+          "Góc ở tâm bằng 90 độ và hiển thị chuỗi 25%.",
+          "Góc ở tâm bằng 50 độ và hiển thị chuỗi 50%.",
+          "Góc ở tâm bằng 180 độ và hiển thị chuỗi 25.0%.",
+          "Góc ở tâm bằng 45 độ và hiển thị chuỗi 12%."
+        ],
+        "correct": 0,
+        "explain": "Tổng data = 200. Nhom C chiếm 50/200 = 25%. Góc ở tâm = 0.25 * 360° = 90°. autopct='%1.0f%%' hiển thị '25%'."
+      },
+      {
+        "text": "[Tổng hợp nâng cao] Cho đoạn mã kết hợp chia 2 vùng vẽ subplot và lọc khoảng cách. Tổng số đoạn thẳng màu xanh dương ở Hình 1 và tổng số đoạn thẳng màu đỏ ở Hình 2 lần lượt là bao nhiêu?\nx = np.array([10, 20, 50, 80, 90])\ny = np.array([20, 50, 50, 50, 80])\nxm, ym = np.mean(x), np.mean(y)\n# Hinh 1 (d < 50)\nplt.subplot(1, 2, 1)\n...\n# Hinh 2 (d >= 50)\nplt.subplot(1, 2, 2)\n...",
+        "options": [
+          "Hình 1 có 3 đoạn thẳng màu xanh dương; Hình 2 có 2 đoạn thẳng màu đỏ.",
+          "Hình 1 có 5 đoạn thẳng màu xanh dương; Hình 2 có 0 đoạn thẳng màu đỏ.",
+          "Hình 1 có 2 đoạn thẳng màu xanh dương; Hình 2 có 3 đoạn thẳng màu đỏ.",
+          "Hình 1 có 4 đoạn thẳng màu xanh dương; Hình 2 có 1 đoạn thẳng màu đỏ."
+        ],
+        "correct": 0,
+        "explain": "xm = 50, ym = 50. Khoảng cách d: i=0 (50.0), i=1 (30), i=2 (0), i=3 (30), i=4 (50.0). Hình 1 (d < 50) có 3 điểm (i=1,2,3); Hình 2 (d >= 50) có 2 điểm tại biên d=50 (i=0,4)."
+      },
+      {
+        "text": "[Phát hiện lỗi logic] Một sinh viên viết đoạn mã vẽ subplot(1, 2) nhưng các đoạn thẳng d < 50 lại bị vẽ nhầm sang biểu đồ Histogram ở bên phải. Nguyên nhân chính xác là gì?",
+        "options": [
+          "Trong vòng lặp for, sinh viên đã gọi hàm plt.plot(...) thay vì phương thức ax[0].plot(...); do plt.plot() luôn tác động lên trục hiện hành là ax[1], nên các đoạn thẳng bị vẽ nhầm sang ô bên phải.",
+          "Do danh sách ds_kc được khởi tạo rỗng trước vòng lặp nên làm thay đổi giá trị của xm và ym.",
+          "Do phương thức ax[1].hist() tự động hút toàn bộ các đường thẳng từ ax[0] sang ax[1].",
+          "Do điều kiện d < 50 luôn luôn sai."
+        ],
+        "correct": 0,
+        "explain": "plt.plot() tác động lên current axes (ax[1] được tạo sau cùng). Phải dùng ax[0].plot() để vẽ đúng ô bên trái."
+      },
+      {
+        "text": "[Suy luận thuật toán] Cho đoạn mã lặp có gán cập nhật x[i] = xm vào bên trong vòng lặp với x = [0.0, 60.0, 60.0], y = [0.0, 80.0, 40.0]. Có bao nhiêu đoạn thẳng được vẽ?",
+        "options": [
+          "Chỉ có 2 đoạn thẳng được vẽ (ứng với bước lặp i = 1 và i = 2).",
+          "Cả 3 đoạn thẳng đều được vẽ (ứng với i = 0, 1, 2).",
+          "Chỉ có 1 đoạn thẳng được vẽ (ứng với i = 2).",
+          "Không có đoạn thẳng nào được vẽ."
+        ],
+        "correct": 0,
+        "explain": "i=0: d=56.57 (không vẽ); i=1: d=44.72 < 50 (vẽ, cập nhật x[1]=40); i=2: d=26.67 < 50 (vẽ). Tổng cộng 2 đoạn thẳng."
+      },
+      {
+        "text": "[Tổng hợp nhiều đối tượng] Cho đoạn mã subplot2grid((2, 2)) gồm 3 vùng vẽ. Hỏi vùng vẽ ở hàng dưới có bao nhiêu điểm hình vuông màu xanh dương ('bs') và bao nhiêu đoạn thẳng màu đỏ ('r-') được vẽ với x = [10, 40, 40, 70, 40], y = [30, 30, 70, 30, 30]?",
+        "options": [
+          "Có 3 vùng vẽ con; vùng vẽ ở hàng dưới có 5 lần vẽ điểm hình vuông màu xanh dương ('bs') và 4 đoạn thẳng màu đỏ ('r-').",
+          "Có 4 vùng vẽ con; vùng vẽ ở hàng dưới có 5 lần vẽ điểm hình vuông màu xanh dương ('bs') và 5 đoạn thẳng màu đỏ ('r-').",
+          "Có 3 vùng vẽ con; vùng vẽ ở hàng dưới có 4 lần vẽ điểm hình vuông màu xanh dương ('bs') và 3 đoạn thẳng màu đỏ ('r-').",
+          "Có 2 vùng vẽ con; vùng vẽ ở hàng dưới có 3 lần vẽ điểm hình vuông màu xanh dương ('bs') và 3 đoạn thẳng màu đỏ ('r-')."
+        ],
+        "correct": 1,
+        "explain": "Có 3 vùng vẽ con. xm = 40, ym = 38. Cả 5 điểm đều thỏa mãn 0 < d < 50, nên vẽ đủ 5 điểm 'bs' và 5 đoạn thẳng 'r-'."
+      }
+    ]
+  }
+]
