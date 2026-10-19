@@ -1,1 +1,612 @@
-
+[
+  {
+    "id": "q-python-conditions-50",
+    "code": "PY-COND-50",
+    "title": "50 câu trắc nghiệm – Cấu trúc rẽ nhánh và điều kiện Python",
+    "desc": "Ôn tập giá trị bool, toán tử logic, if/elif/else, điều kiện lồng nhau và biểu thức điều kiện rút gọn.",
+    "duration": 60,
+    "createdAt": "2026-10-19",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "question": "Trong ngôn ngữ lập trình Python, hai giá trị thuộc kiểu dữ liệu logic (bool) được viết đúng cú pháp là:",
+        "options": {
+          "a": "true và false",
+          "b": "True và False",
+          "c": "TRUE và FALSE",
+          "d": "1 và 0"
+        },
+        "answer": "b",
+        "explain": "Python viết hai giá trị logic bằng True và False, phân biệt chữ hoa chữ thường."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho biến x = 15. Biểu thức nào sau đây dùng để kiểm tra xem x có bằng 15 hay không?",
+        "options": {
+          "a": "x = 15",
+          "b": "x == 15",
+          "c": "x := 15",
+          "d": "x === 15"
+        },
+        "answer": "b",
+        "explain": "Toán tử == dùng để so sánh bằng; dấu = dùng để gán giá trị."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\na = 7\nb = 12\nkq = (a >= b)\n```\n\nGiá trị của biến kq sau khi thực hiện đoạn chương trình trên là:",
+        "options": {
+          "a": "True",
+          "b": "False",
+          "c": "7",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "b",
+        "explain": "7 >= 12 là sai nên biểu thức trả về False."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Thứ tự ưu tiên thực hiện của các toán tử logic trong Python (khi không có dấu ngoặc tròn) từ cao xuống thấp là:",
+        "options": {
+          "a": "and → or → not",
+          "b": "not → or → and",
+          "c": "not → and → or",
+          "d": "Thực hiện từ trái sang phải, ba toán tử có cùng mức ưu tiên."
+        },
+        "answer": "c",
+        "explain": "Thứ tự ưu tiên là not, rồi and, rồi or."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho biểu thức logic:\n\nx = not True or False\n\nGiá trị của biến x là:",
+        "options": {
+          "a": "True",
+          "b": "False",
+          "c": "None",
+          "d": "Chương trình báo lỗi cú pháp."
+        },
+        "answer": "b",
+        "explain": "not True thành False; False or False cho kết quả False."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Từ khóa nào được sử dụng trong Python để kiểm tra thêm một điều kiện mới khi điều kiện của câu lệnh if phía trước bị sai (False)?",
+        "options": {
+          "a": "else if",
+          "b": "elseif",
+          "c": "elif",
+          "d": "otherwise"
+        },
+        "answer": "c",
+        "explain": "Trong Python, từ khóa kiểm tra điều kiện tiếp theo là elif."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nn = 10\nif n < 5:\n    n = n + 20\nprint(n)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "10",
+          "b": "30",
+          "c": "5",
+          "d": "Không in ra gì cả."
+        },
+        "answer": "a",
+        "explain": "Điều kiện 10 < 5 sai nên thân if không chạy, n vẫn bằng 10."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Câu lệnh điều kiện nào sau đây được viết đúng cú pháp trong Python?",
+        "options": {
+          "a": "if a > 0 then:",
+          "b": "if (a = 5):",
+          "c": "if a != 0:",
+          "d": "if a > 0"
+        },
+        "answer": "c",
+        "explain": "Cú pháp đúng là if a != 0: với dấu hai chấm ở cuối."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Trong Python, những câu lệnh nào được tính là thuộc cùng một nhánh của cấu trúc if?",
+        "options": {
+          "a": "Các câu lệnh được đặt bên trong cặp dấu ngoặc nhọn {{ }}.",
+          "b": "Các câu lệnh nằm giữa hai từ khóa begin và end.",
+          "c": "Các câu lệnh liên tiếp nhau có cùng mức thụt đầu dòng (indentation) bên dưới dòng if:.",
+          "d": "Chỉ duy nhất một dòng lệnh ngay sát dưới dòng if:."
+        },
+        "answer": "c",
+        "explain": "Các lệnh trong cùng một nhánh có cùng mức thụt đầu dòng."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\nm = 8\ny = 1 if m > 10 else 0\n```\n\nGiá trị của biến y sau khi chạy đoạn code trên là:",
+        "options": {
+          "a": "1",
+          "b": "0",
+          "c": "8",
+          "d": "False"
+        },
+        "answer": "b",
+        "explain": "m > 10 sai nên biểu thức điều kiện rút gọn lấy giá trị sau else là 0."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\na = 4\nb = 6\nc = 2\nx = (a + c == b) and (b % a != 2)\n```\n\nGiá trị của biến x là:",
+        "options": {
+          "a": "True",
+          "b": "False",
+          "c": "2",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "b",
+        "explain": "a + c = 6 bằng b, nhưng b % a = 2 nên điều kiện != 2 sai; True and False là False."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\np = 3\nq = 5\nr = 10\nkq = (p > q) or (r // q == 2) and (p + q < r)\n```\n\nGiá trị của biến kq là:",
+        "options": {
+          "a": "True",
+          "b": "False",
+          "c": "1",
+          "d": "0"
+        },
+        "answer": "a",
+        "explain": "p > q sai; vế (r // q == 2) and (p + q < r) là True, nên toàn biểu thức True."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nx = 5\ny = 8\nz = not (x < y and y < 10) or (x * 2 == 10)\n```\n\nGiá trị của biến z là:",
+        "options": {
+          "a": "True",
+          "b": "False",
+          "c": "10",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "a",
+        "explain": "x < y và y < 10 đều đúng; not của True là False, nhưng x * 2 == 10 đúng, nên kết quả True."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho biến n = 7. Giá trị của biểu thức 3 < n <= 7 và biểu thức 3 < n < 7 lần lượt là:",
+        "options": {
+          "a": "True và True",
+          "b": "True và False",
+          "c": "False và True",
+          "d": "False và False"
+        },
+        "answer": "b",
+        "explain": "3 < 7 <= 7 đúng; 3 < 7 < 7 sai."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\na = 12\nif a % 5 == 0:\n    a = a + 3\nelse:\n    a = a - 2\nprint(a)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "15",
+          "b": "10",
+          "c": "12",
+          "d": "13"
+        },
+        "answer": "b",
+        "explain": "12 % 5 khác 0 nên nhánh else chạy, a = 12 - 2 = 10."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nx = 14\nif x > 10:\n    x = x - 5\nif x < 12:\n    x = x + 3\nprint(x)\n```\n\nGiá trị của x được in ra màn hình là:",
+        "options": {
+          "a": "9",
+          "b": "12",
+          "c": "17",
+          "d": "14"
+        },
+        "answer": "b",
+        "explain": "if đầu tiên đổi x thành 9; if thứ hai cũng đúng nên x thành 12."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\nx = 14\nif x > 10:\n    x = x - 5\nelif x < 12:\n    x = x + 3\nprint(x)\n```\n\nGiá trị của x được in ra màn hình là:",
+        "options": {
+          "a": "9",
+          "b": "12",
+          "c": "17",
+          "d": "14"
+        },
+        "answer": "a",
+        "explain": "Điều kiện x > 10 đúng, x được đổi thành 9; nhánh elif không được xét nữa."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nscore = 75\nif score >= 85:\n    grade = \"A\"\nelif score >= 70:\n    grade = \"B\"\nelif score >= 50:\n    grade = \"C\"\nelse:\n    grade = \"D\"\n```\n\nGiá trị của biến grade sau khi thực hiện đoạn chương trình là:",
+        "options": {
+          "a": "\"A\"",
+          "b": "\"B\"",
+          "c": "\"C\"",
+          "d": "\"D\""
+        },
+        "answer": "b",
+        "explain": "75 không đạt 85 nhưng đạt 70, nên grade là B."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nk = 4\nm = 10\nif k * 3 > m:\n    m = m + k\n    k = k - 1\nprint(m - k)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "6",
+          "b": "10",
+          "c": "11",
+          "d": "9"
+        },
+        "answer": "c",
+        "explain": "4 * 3 > 10 đúng; m thành 14, k thành 3, kết quả 14 - 3 = 11."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình chú ý kỹ mức thụt lề:\n\n```python\na = 5\nb = 2\nif a < b:\n    a = a + 10\nb = b + 10\nprint(a, b)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "5 2",
+          "b": "15 12",
+          "c": "5 12",
+          "d": "15 2"
+        },
+        "answer": "c",
+        "explain": "a < b sai nên a vẫn là 5; b = b + 10 thành 12."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Để kiểm tra một số nguyên n có phải là số chẵn và lớn hơn 0 hay không, biểu thức điều kiện nào sau đây là đúng?",
+        "options": {
+          "a": "n % 2 == 0 or n > 0",
+          "b": "n // 2 == 0 and n > 0",
+          "c": "n % 2 == 0 and n > 0",
+          "d": "n % 2 != 0 and n >= 0"
+        },
+        "answer": "c",
+        "explain": "Số chẵn cần n % 2 == 0 và lớn hơn 0 cần n > 0; phải dùng and."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\nx = 0\nif x:\n    print(\"Yes\")\nelse:\n    print(\"No\")\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "Yes",
+          "b": "No",
+          "c": "0",
+          "d": "Chương trình báo lỗi vì x không phải kiểu bool."
+        },
+        "answer": "b",
+        "explain": "Giá trị 0 được xem là False trong điều kiện if, nên in No."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\na = 9\nb = 4\nc = a // b + a % b\nkq = (c >= 3) and not (a % 3 == 0)\n```\n\nGiá trị của biến kq là:",
+        "options": {
+          "a": "True",
+          "b": "False",
+          "c": "3",
+          "d": "0"
+        },
+        "answer": "b",
+        "explain": "c = 9 // 4 + 9 % 4 = 2 + 1 = 3; c >= 3 đúng nhưng 9 % 3 == 0, nên not(...) sai và kết quả False."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho biểu thức:\n\nkq = 10 - 4 * 2 == 2 and 5 + 3 > 8\n\nGiá trị của biến kq là:",
+        "options": {
+          "a": "True",
+          "b": "False",
+          "c": "2",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "a",
+        "explain": "10 - 4 * 2 = 2 nên so sánh đầu đúng; 5 + 3 > 8 sai; True and False là False."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\nx = -3\nif x:\n    y = 10\nelse:\n    y = 20\nprint(y)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "10",
+          "b": "20",
+          "c": "-3",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "b",
+        "explain": "Số nguyên -3 là giá trị truthy vì khác 0, nên y = 10."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình có cấu trúc rẽ nhánh lồng nhau:\n\n```python\na = 15\nb = 20\nif a > 10:\n    if b > 25:\n        res = 1\n    else:\n        res = 2\nelse:\n    res = 3\nprint(res)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "1",
+          "b": "2",
+          "c": "3",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "c",
+        "explain": "a > 10 đúng và b > 25 sai, nên nhánh else bên trong gán res = 2."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau (chú ý thứ tự các điều kiện):\n\n```python\nd = 85\nif d >= 50:\n    xep_loai = \"Dat\"\nelif d >= 70:\n    xep_loai = \"Kha\"\nelif d >= 85:\n    xep_loai = \"Gioi\"\nelse:\n    xep_loai = \"Khong dat\"\nprint(xep_loai)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "Gioi",
+          "b": "Kha",
+          "c": "Dat",
+          "d": "Khong dat"
+        },
+        "answer": "a",
+        "explain": "d >= 50 đúng ngay ở nhánh đầu tiên, vì vậy xep_loai là Dat; các elif sau không được xét."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nx = 6\ny = 10\nif x * 2 > y:\n    x = x + 2\n    if x == y:\n        y = y + 5\n    else:\n        y = y - 2\nprint(x, y)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "8 8",
+          "b": "8 15",
+          "c": "6 10",
+          "d": "8 10"
+        },
+        "answer": "c",
+        "explain": "x * 2 = 12 > 10 nên x thành 8; x == 10 sai nên y thành 8 - 2 = 8."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình tìm giá trị lớn nhất:\n\n```python\na = 12\nb = 19\nc = 15\nm = a\nif b > m:\n    m = b\nif c > m:\n    m = c\nprint(m)\n```\n\nSau khi chạy chương trình, giá trị được in ra màn hình là:",
+        "options": {
+          "a": "12",
+          "b": "15",
+          "c": "19",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "d",
+        "explain": "Giá trị lớn nhất trong 12, 19, 15 là 19."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\na = 5\nb = 5\nif a > b:\n    c = 1\nelif a == b:\n    c = 2\nif a >= b:\n    c = c + 3\nprint(c)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "2",
+          "b": "3",
+          "c": "4",
+          "d": "5"
+        },
+        "answer": "b",
+        "explain": "a == b đúng nên c = 2; điều kiện a >= b cũng đúng nên c = 2 + 3 = 5."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nx = 10\nif x == 10:\n    print(\"A\", end=\" \")\n    if x < 15:\n        print(\"B\", end=\" \")\n    elif x > 5:\n        print(\"C\", end=\" \")\nelse:\n    print(\"D\", end=\" \")\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "A B C",
+          "b": "A B",
+          "c": "A C",
+          "d": "B"
+        },
+        "answer": "b",
+        "explain": "x == 10 đúng nên in A; x < 15 đúng nên in B; elif không chạy."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\na = 3\nb = 7\nx = a if a > b else (b - a if b > 5 else b + a)\n```\n\nGiá trị của biến x là:",
+        "options": {
+          "a": "3",
+          "b": "4",
+          "c": "10",
+          "d": "7"
+        },
+        "answer": "c",
+        "explain": "a > b sai; b > 5 đúng nên x = b - a = 4."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Đoạn chương trình nào sau đây gặp lỗi cú pháp (SyntaxError) ngay khi bắt đầu chạy?",
+        "options": {
+          "a": "if 5 > 3: print(\"OK\")",
+          "b": "if (5 > 3) and (2 < 4): print(\"OK\")",
+          "c": "if 5 > 3 and < 10: print(\"OK\")",
+          "d": "if 3 < 5 < 10: print(\"OK\")"
+        },
+        "answer": "a",
+        "explain": "Phương án C thiếu toán hạng sau and, gây SyntaxError."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\nn = 18\nif n % 2 == 0:\n    if n % 3 == 0:\n        s = \"Chia het cho 6\"\n    else:\n        s = \"Chan nhung khong chia het cho 3\"\nelse:\n    s = \"So le\"\n```\n\nGiá trị của biến s sau khi thực hiện là:",
+        "options": {
+          "a": "\"Chia het cho 6\"",
+          "b": "\"Chan nhung khong chia het cho 3\"",
+          "c": "\"So le\"",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "c",
+        "explain": "18 chia hết cho 2 và 3 nên s = 'Chia het cho 6'."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình sau:\n\n```python\nx = 4\ny = 0\nif y != 0 and x / y > 1:\n    ket_qua = \"Hop le\"\nelse:\n    ket_qua = \"Khong hop le\"\nprint(ket_qua)\n```\n\nKhi chạy đoạn chương trình trên, điều gì sẽ xảy ra?",
+        "options": {
+          "a": "Chương trình báo lỗi chia cho 0 (ZeroDivisionError).",
+          "b": "Chương trình in ra Hop le.",
+          "c": "Chương trình in ra Khong hop le.",
+          "d": "Chương trình báo lỗi cú pháp (SyntaxError)."
+        },
+        "answer": "c",
+        "explain": "y != 0 sai nên Python short-circuit, không tính x / y; nhánh else in Khong hop le."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Ngược lại với Câu 35, nếu ta đổi thứ tự hai vế của toán tử and như sau:\n\n```python\nx = 4\ny = 0\nif x / y > 1 and y != 0:\n    print(\"Hop le\")\nelse:\n    print(\"Khong hop le\")\n```\n\nKết quả khi chạy chương trình là:",
+        "options": {
+          "a": "In ra Khong hop le.",
+          "b": "In ra Hop le.",
+          "c": "Chương trình dừng và báo lỗi ZeroDivisionError khi chạy.",
+          "d": "Chương trình không in gì cả nhưng không báo lỗi."
+        },
+        "answer": "c",
+        "explain": "Python tính vế trái x / y > 1 trước, gây ZeroDivisionError trước khi kiểm tra y != 0."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình tính cước vận chuyển theo khối lượng w (kg):\n\n```python\nw = 7\nif w <= 2:\n    phi = 15\nelif w <= 5:\n    phi = 25\nelif w <= 10:\n    phi = 40\nelse:\n    phi = 60\n```\n\nGiá trị của biến phi là:",
+        "options": {
+          "a": "15",
+          "b": "25",
+          "c": "40",
+          "d": "60"
+        },
+        "answer": "c",
+        "explain": "w = 7 không <= 2 hoặc <= 5 nhưng <= 10, nên phi = 40."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\na = 10\nb = 20\nc = 30\nif a > b or b < c and a > c:\n    x = 1\nelse:\n    x = 2\n```\n\nGiá trị của biến x sau khi chạy đoạn chương trình là:",
+        "options": {
+          "a": "1",
+          "b": "2",
+          "c": "10",
+          "d": "30"
+        },
+        "answer": "b",
+        "explain": "Điều kiện a > b sai; b < c đúng nhưng a > c sai, nên False or (True and False) là False và x = 2."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\na = 10\nb = 20\nc = 30\nif a < b or b < c and a > c:\n    x = 1\nelse:\n    x = 2\n```\n\nGiá trị của biến x sau khi chạy đoạn chương trình là:",
+        "options": {
+          "a": "1",
+          "b": "2",
+          "c": "0",
+          "d": "Chương trình báo lỗi."
+        },
+        "answer": "a",
+        "explain": "a < b đúng nên toàn điều kiện or đúng; x = 1."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\nu = 8\nv = 3\nif u % 2 == 0:\n    u = u // 2\n    if u > v:\n        v = v + u\nelse:\n    v = v - 1\nprint(u + v)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "11",
+          "b": "7",
+          "c": "15",
+          "d": "10"
+        },
+        "answer": "a",
+        "explain": "u = 8 đổi thành 4; 4 > 3 đúng nên v = 3 + 4 = 7; in u + v = 11."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Một phương trình bậc nhất có dạng ax + b = 0 (với a, b đã được gán giá trị số thực). Đoạn chương trình nào sau đây biện luận đúng nghiệm của phương trình?",
+        "options": {
+          "a": "```python\nif a == 0:\n    print(\"Vo nghiem\")\nelse:\n    print(\"Nghiem x =\", -b / a)\n```",
+          "b": "```python\nif a == 0 and b == 0:\n    print(\"Vo so nghiem\")\nelif a == 0 and b != 0:\n    print(\"Vo nghiem\")\nelse:\n    print(\"Nghiem x =\", -b / a)\n```",
+          "c": "```python\nif a != 0:\n    print(\"Nghiem x =\", -b / a)\nelif b == 0:\n    print(\"Vo nghiem\")\nelse:\n    print(\"Vo so nghiem\")\n```",
+          "d": "```python\nif a == 0:\n    if b == 0:\n        print(\"Vo nghiem\")\n    else:\n        print(\"Vo so nghiem\")\nelse:\n    print(\"Nghiem x =\", -b / a)\n```"
+        },
+        "answer": "b",
+        "explain": "Phương án B xét đủ ba trường hợp: a = 0, b = 0 (vô số nghiệm), a = 0, b != 0 (vô nghiệm), và a != 0 (một nghiệm)."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình:\n\n```python\nx = 5\ny = 12\nif x > 3:\n    if y < 10:\n        x = x + 1\nelse:\n    x = x + 10\nprint(x)\n```\n\nGiá trị của x in ra màn hình là:",
+        "options": {
+          "a": "5",
+          "b": "6",
+          "c": "15",
+          "d": "16"
+        },
+        "answer": "a",
+        "explain": "x > 3 đúng nhưng y < 10 sai; x không đổi và else gắn với if ngoài không chạy."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình kiểm tra năm nhuận đối với biến year:\n\n```python\nyear = 1900\nif (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):\n    ket_qua = \"Nam nhuan\"\nelse:\n    ket_qua = \"Nam thuong\"\nprint(ket_qua)\n```\n\nKết quả in ra màn hình và giá trị chân lý của hai vế quanh toán tử or lần lượt là:",
+        "options": {
+          "a": "Nam nhuan (Vế trái False, vế phải True)",
+          "b": "Nam thuong (Vế trái False, vế phải False)",
+          "c": "Nam nhuan (Vế trái True, vế phải False)",
+          "d": "Nam thuong (Vế trái True, vế phải False)"
+        },
+        "answer": "b",
+        "explain": "Năm 1900 không chia hết cho 400; tuy chia hết cho 4 nhưng chia hết cho 100 nên vế phải sai. Kết quả là năm thường."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình tính tiền điện bậc thang (đơn giản hóa) cho số kWh tiêu thụ kwh:\n\n```python\nkwh = 120\nif kwh <= 50:\n    tien = kwh * 1.5\nelif kwh <= 100:\n    tien = 50 * 1.5 + (kwh - 50) * 2.0\nelse:\n    tien = 50 * 1.5 + 50 * 2.0 + (kwh - 100) * 3.0\nprint(int(tien))\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "360",
+          "b": "235",
+          "c": "215",
+          "d": "175"
+        },
+        "answer": "b",
+        "explain": "Tiền điện = 50×1.5 + 50×2 + 20×3 = 75 + 100 + 60 = 235."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho đoạn chương trình biến đổi ba biến a, b, c:\n\n```python\na = 6\nb = 4\nc = 9\nif a > b:\n    a, b = b, a\nif b > c:\n    b, c = c, b\nif a > b:\n    a, b = b, a\nprint(a, b, c)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "9 6 4",
+          "b": "4 6 9",
+          "c": "4 9 6",
+          "d": "6 4 9"
+        },
+        "answer": "b",
+        "explain": "Ba lần đổi chỗ đưa ba giá trị về thứ tự tăng dần: 4, 6, 9."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "Cho ba số dương a = 3, b = 4, c = 8. Đoạn chương trình sau kiểm tra xem a, b, c có tạo thành độ dài 3 cạnh của một tam giác hay không:\n\n```python\na, b, c = 3, 4, 8\nif (a + b > c) and (a + c > b) and (b + c > a):\n    if a == b == c:\n        loai = \"Deu\"\n    elif a == b or b == c or a == c:\n        loai = \"Can\"\n    else:\n        loai = \"Thuong\"\nelse:\n    loai = \"Khong phai tam giac\"\nprint(loai)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "Deu",
+          "b": "Can",
+          "c": "Thuong",
+          "d": "Khong phai tam giac"
+        },
+        "answer": "d",
+        "explain": "3 + 4 > 8 sai nên ba số không tạo thành tam giác."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "(Nâng cao) Trong Python, toán tử and và or khi thao tác trên các giá trị không phải bool sẽ trả về chính giá trị của toán hạng quyết định kết quả (chứ không ép kiểu sang True/False). Cho đoạn chương trình:\n\n```python\na = 0\nb = 5\nc = 8\nx = a or b and c\nif x > 6:\n    y = x - b\nelse:\n    y = x + b\nprint(x, y)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "True 6",
+          "b": "5 10",
+          "c": "8 3",
+          "d": "0 5"
+        },
+        "answer": "c",
+        "explain": "and có ưu tiên cao hơn or: 0 or (5 and 8) trả về 8; 8 > 6 nên y = 8 - 5 = 3."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "(Nâng cao) Cho đoạn chương trình có nhiều nhánh biến đổi biến liên tiếp:\n\n```python\nx = 7\ny = 4\nz = 2\nif x % y >= z:\n    x = x - y\n    if y // z == 2 and not (x < z):\n        y = y + x\n        if y % 3 == 1:\n            z = z + y\n        else:\n            z = z * 2\n    else:\n        y = y - x\nelif x + y > 10:\n    z = 100\nprint(x, y, z)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "3 7 9",
+          "b": "3 7 4",
+          "c": "3 1 2",
+          "d": "7 4 100"
+        },
+        "answer": "a",
+        "explain": "x % y = 3 >= 2; x thành 3, y // z = 2 và not(3 < 2) đúng; y thành 7, y % 3 = 1 nên z thành 9."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "(Nâng cao) Cần chú ý bẫy về so sánh mắt xích (chained comparisons) trong Python. Cho đoạn chương trình:\n\n```python\na = 5\nb = 3\np = (a > b == False)\nq = ((a > b) == False)\nprint(p, q)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "False False",
+          "b": "True True",
+          "c": "False True",
+          "d": "True False"
+        },
+        "answer": "a",
+        "explain": "a > b là True nhưng b == False là False; chained comparison cho p=False. q là (True == False), cũng False."
+      },
+      {
+        "type": "multiple_choice",
+        "question": "(Nâng cao) Cho đoạn chương trình kết hợp biểu thức điều kiện rút gọn lồng nhau và cập nhật biến:\n\n```python\na = 4\nb = 9\nc = 6\nd = (a + b if a * 2 > b else b - a) if (c % a == 2 and b // a == 2) else (a * c)\nif d >= 5:\n    a = d if d % 2 == 0 else d + 1\n    b = a // 2 if a > 6 else a * 2\nprint(d, a, b)\n```\n\nKết quả in ra màn hình là:",
+        "options": {
+          "a": "13 14 7",
+          "b": "5 5 9",
+          "c": "24 24 12",
+          "d": "5 6 12"
+        },
+        "answer": "d",
+        "explain": "Điều kiện của d đúng nhưng a*2 > b sai nên d = b-a = 5; d lẻ nên a = 6, rồi b = a*2 = 12."
+      }
+    ]
+  }
+]
