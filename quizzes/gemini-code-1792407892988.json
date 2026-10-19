@@ -1,0 +1,560 @@
+{
+  "id": "q-python-loops-01",
+  "code": "PY-LOOP",
+  "title": "50 Câu Trắc Nghiệm Ôn Tập Cấu Trúc Lặp Python",
+  "desc": "Bộ câu hỏi ôn tập cấu trúc lặp (for, while, break, continue) môn Nhập môn Lập trình Python.",
+  "duration": 50,
+  "createdAt": "2026-10-19",
+  "questions": [
+    {
+      "text": "Hàm range(5) trong Python tạo ra dãy các số nguyên nào sau đây?",
+      "options": [
+        "1, 2, 3, 4, 5",
+        "0, 1, 2, 3, 4",
+        "0, 1, 2, 3, 4, 5",
+        "1, 2, 3, 4"
+      ],
+      "correct": 1,
+      "explain": "Khi gọi range(stop) với một đối số duy nhất, Python mặc định start = 0 và step = 1. Dãy số bắt đầu từ 0 và dừng lại ngay trước 5, tức là gồm 5 giá trị: 0, 1, 2, 3, 4."
+    },
+    {
+      "text": "Hàm range(2, 9, 2) tạo ra dãy gồm các số nào?",
+      "options": [
+        "2, 4, 6, 8",
+        "2, 4, 6, 8, 10",
+        "2, 3, 4, 5, 6, 7, 8",
+        "4, 6, 8"
+      ],
+      "correct": 0,
+      "explain": "Trong range(2, 9, 2), giá trị bắt đầu là start = 2, giá trị dừng là stop = 9 (không lấy 9), và bước nhảy là step = 2. Các giá trị lần lượt là: 2 -> 4 -> 6 -> 8."
+    },
+    {
+      "text": "Đoạn chương trình sau thực hiện thân vòng lặp bao nhiêu lần?\nfor i in range(10, 3, -3):\n    print(i)",
+      "options": [
+        "2 lần",
+        "3 lần",
+        "4 lần",
+        "0 lần"
+      ],
+      "correct": 1,
+      "explain": "Với start = 10, stop = 3, step = -3: i nhận các giá trị 10, 7, 4. Giá trị tiếp theo là 1 <= 3 nên vòng lặp dừng. Tổng cộng vòng lặp chạy 3 lần."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Thân vòng lặp while được thực hiện bao nhiêu lần?\nn = 10\nwhile n < 5:\n    n = n - 1\nprint(n)",
+      "options": [
+        "0 lần",
+        "1 lần",
+        "5 lần",
+        "Lặp vô hạn"
+      ],
+      "correct": 0,
+      "explain": "Giá trị ban đầu là n = 10. Ngay ở lần kiểm tra điều kiện đầu tiên, biểu thức n < 5 (10 < 5) nhận giá trị False. Thân vòng lặp không được thực hiện lần nào."
+    },
+    {
+      "text": "Trong cấu trúc lặp của Python, câu lệnh break có tác dụng gì?",
+      "options": [
+        "Bỏ qua các câu lệnh còn lại trong lượt lặp hiện tại và chuyển sang lượt lặp kế tiếp.",
+        "Tạm dừng chương trình trong một khoảng thời gian ngắn rồi tiếp tục lặp.",
+        "Kết thúc ngay lập tức vòng lặp gần nhất chứa nó và chuyển sang câu lệnh phía sau vòng lặp đó.",
+        "Khởi động lại vòng lặp từ giá trị ban đầu."
+      ],
+      "correct": 2,
+      "explain": "break dùng để thoát khỏi vòng lặp trong nhất chứa nó ngay lập tức. Phương án A là tác dụng của lệnh continue."
+    },
+    {
+      "text": "Đoạn chương trình nào sau đây sẽ dẫn đến vòng lặp vô hạn (infinite loop)?",
+      "options": [
+        "i = 0\nwhile i < 5:\n    i += 1",
+        "i = 5\nwhile i > 0:\n    i += 1",
+        "for i in range(5, 0, -1):\n    print(i)",
+        "i = 5\nwhile i < 0:\n    i -= 1"
+      ],
+      "correct": 1,
+      "explain": "Ở phương án B, biến i khởi tạo bằng 5 (> 0). Lệnh i += 1 làm i tăng lên 6, 7, 8... khiến điều kiện i > 0 luôn đúng, dẫn đến vòng lặp vô hạn."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\nfor ch in \"BK\":\n    print(ch, end=\"-\")",
+      "options": [
+        "B-K",
+        "B-K-",
+        "B K",
+        "BK-"
+      ],
+      "correct": 1,
+      "explain": "Vòng lặp for duyệt qua từng ký tự 'B' và 'K', in ra kèm theo dấu gạch ngang ở cuối mỗi lượt, kết quả là B-K-."
+    },
+    {
+      "text": "Kết quả của đoạn chương trình sau là gì?\ns = 0\nfor i in range(1, 5):\n    s += i\nprint(s)",
+      "options": [
+        "10",
+        "15",
+        "6",
+        "4"
+      ],
+      "correct": 0,
+      "explain": "Hàm range(1, 5) sinh ra các số 1, 2, 3, 4. Biến s cộng dồn: s = 0 + 1 + 2 + 3 + 4 = 10."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Phát biểu nào dưới đây là đúng?\nfor i in range(3)\n    print(i)",
+      "options": [
+        "Chương trình in ra các số 0, 1, 2 trên 3 dòng.",
+        "Chương trình in ra các số 1, 2, 3 trên 3 dòng.",
+        "Chương trình báo lỗi cú pháp (SyntaxError) vì thiếu dấu hai chấm : ở cuối dòng for.",
+        "Chương trình chạy bình thường nhưng không in ra gì."
+      ],
+      "correct": 2,
+      "explain": "Dòng tiêu đề của vòng lặp for bắt buộc phải kết thúc bằng dấu hai chấm (:). Thiếu dấu : sẽ gây ra lỗi cú pháp SyntaxError."
+    },
+    {
+      "text": "Vòng lặp nào sau đây thực hiện thân vòng lặp 0 lần?",
+      "options": [
+        "for i in range(0, 1):",
+        "for i in range(2, 5, -1):",
+        "for i in range(5, 2, -1):",
+        "for i in range(-3, 0):"
+      ],
+      "correct": 1,
+      "explain": "Xét range(2, 5, -1): start = 2 nhỏ hơn stop = 5 nhưng bước nhảy lại âm (-1). Vì 2 < 5 nên range rỗng, chạy 0 lần."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của biến x là bao nhiêu?\nx = 1\ni = 1\nwhile i < 4:\n    x = x * i\n    i = i + 1",
+      "options": [
+        "6",
+        "24",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explain": "Truy vết: i=1 (x=1), i=2 (x=2), i=3 (x=6). Khi i=4 kết thúc vòng while. Giá trị cuối cùng của x là 6."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\ns = 0\ni = 1\nwhile i <= 3:\n    i += 1\n    s += i\nprint(s)",
+      "options": [
+        "6",
+        "9",
+        "10",
+        "5"
+      ],
+      "correct": 1,
+      "explain": "Biến i tăng trước rồi cộng vào s: i=2->s=2; i=3->s=5; i=4->s=9. Kết quả là 9."
+    },
+    {
+      "text": "Sau khi đoạn chương trình dưới đây thực thi xong, giá trị của biến count là bao nhiêu?\ncount = 0\nfor i in range(1, 10):\n    if i % 3 == 0:\n        count += 1",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "9"
+      ],
+      "correct": 1,
+      "explain": "Dãy range(1, 10) gồm các số từ 1 đến 9. Các số chia hết cho 3 là 3, 6, 9 (có 3 số). Do đó count = 3."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\nfor i in range(1, 6):\n    if i == 3:\n        break\n    print(i, end=\" \")",
+      "options": [
+        "1 2 3",
+        "1 2",
+        "1 2 4 5",
+        "1 2 3 4 5"
+      ],
+      "correct": 1,
+      "explain": "Khi i = 3, gặp lệnh break nên vòng lặp dừng ngay lập tức. Màn hình chỉ in ra 1 2."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\nfor i in range(1, 6):\n    if i == 3:\n        continue\n    print(i, end=\" \")",
+      "options": [
+        "1 2",
+        "1 2 3",
+        "1 2 4 5",
+        "4 5"
+      ],
+      "correct": 2,
+      "explain": "Khi i = 3, gặp continue nên bỏ qua lượt i = 3 và tiếp tục với i = 4, 5. Kết quả in ra là 1 2 4 5."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Giá trị của biến s sau khi thực hiện là:\ns = 0\nfor i in range(10, 0, -3):\n    s = s + i",
+      "options": [
+        "22",
+        "21",
+        "18",
+        "25"
+      ],
+      "correct": 0,
+      "explain": "Hàm range(10, 0, -3) tạo ra i thuộc {10, 7, 4, 1}. Tổng s = 10 + 7 + 4 + 1 = 22."
+    },
+    {
+      "text": "Sau khi chạy đoạn code sau, giá trị của n và c lần lượt là bao nhiêu?\nn = 25\nc = 0\nwhile n > 0:\n    n = n // 2\n    c += 1",
+      "options": [
+        "n = 0, c = 4",
+        "n = 0, c = 5",
+        "n = 1, c = 4",
+        "n = 0, c = 6"
+      ],
+      "correct": 1,
+      "explain": "Các lượt lặp chia nguyên cho 2: n=12 (c=1), n=6 (c=2), n=3 (c=3), n=1 (c=4), n=0 (c=5). Kết quả n = 0, c = 5."
+    },
+    {
+      "text": "Đoạn chương trình sau in ra kết quả gì?\na = [4, 7, 2, 9, 5]\nm = a[0]\nfor x in a:\n    if x > m:\n        m = x\nprint(m)",
+      "options": [
+        "4",
+        "2",
+        "9",
+        "5"
+      ],
+      "correct": 2,
+      "explain": "Đây là thuật toán tìm giá trị lớn nhất trong danh sách a, kết quả là 9."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, biến d có giá trị là bao nhiêu?\ns = \"programming\"\nd = 0\nfor ch in s:\n    if ch in \"aeiou\":\n        d += 1",
+      "options": [
+        "3",
+        "4",
+        "11",
+        "2"
+      ],
+      "correct": 0,
+      "explain": "Các ký tự nguyên âm trong 'programming' gồm 'o', 'a', 'i' (tổng cộng 3 ký tự), nên d = 3."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Giá trị của biến cnt sau khi chạy xong là:\ncnt = 0\nfor i in range(3):\n    for j in range(4):\n        cnt += 1",
+      "options": [
+        "7",
+        "12",
+        "6",
+        "9"
+      ],
+      "correct": 1,
+      "explain": "Vòng lặp ngoài chạy 3 lần, vòng lặp trong chạy 4 lần. Tổng số lần thực hiện là 3 x 4 = 12."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\ns = 0\nfor i in range(4):\n    s += i\nprint(s)",
+      "options": [
+        "6",
+        "10",
+        "4",
+        "0 1 3 6"
+      ],
+      "correct": 0,
+      "explain": "Lệnh print nằm ngoài vòng lặp nên chỉ in tổng s = 0 + 1 + 2 + 3 = 6."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\nfor i in range(3):\n    print(i, end=\" \")\nelse:\n    print(\"Done\")",
+      "options": [
+        "0 1 2 Done",
+        "0 1 2",
+        "0 1 2 3 Done",
+        "Done"
+      ],
+      "correct": 0,
+      "explain": "Vòng lặp chạy hoàn tất không bị break, nhánh else được thực hiện, in ra 0 1 2 Done."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\nfor i in range(3):\n    if i == 1:\n        break\n    print(i, end=\" \")\nelse:\n    print(\"Done\")",
+      "options": [
+        "0 Done",
+        "0 1 Done",
+        "0",
+        "0 1"
+      ],
+      "correct": 2,
+      "explain": "Vòng lặp bị ngắt bởi break khi i = 1, do đó khối else bị bỏ qua hoàn toàn. Kết quả in ra chỉ có 0."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của biến res là bao nhiêu?\nres = 10\nfor i in range(1, 6):\n    if i % 2 == 0:\n        res += i\n    else:\n        res -= i",
+      "options": [
+        "7",
+        "13",
+        "5",
+        "10"
+      ],
+      "correct": 0,
+      "explain": "Truy vết từng i: i=1 (res=9), i=2 (res=11), i=3 (res=8), i=4 (res=12), i=5 (res=7)."
+    },
+    {
+      "text": "Sau khi đoạn chương trình sau kết thúc, giá trị của biến i là bao nhiêu?\ni = 1\nwhile i < 10:\n    i = i * 2",
+      "options": [
+        "8",
+        "10",
+        "16",
+        "32"
+      ],
+      "correct": 2,
+      "explain": "Các giá trị của i: 1 -> 2 -> 4 -> 8 -> 16. Khi i = 16 thì 16 < 10 sai, vòng lặp dừng với i = 16."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Giá trị in ra màn hình là gì?\na = 15\nb = 4\nc = 0\nwhile a >= b:\n    a = a - b\n    c = c + 1\nprint(c, a)",
+      "options": [
+        "3 3",
+        "4 0",
+        "3 4",
+        "4 -1"
+      ],
+      "correct": 0,
+      "explain": "Mô phỏng phép chia lấy phần nguyên và dư bằng phép trừ: c = 3 (thương), a = 3 (dư)."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của biến s là bao nhiêu?\ns = 0\nfor i in range(1, 5):\n    for j in range(i):\n        s += 1",
+      "options": [
+        "10",
+        "6",
+        "16",
+        "15"
+      ],
+      "correct": 0,
+      "explain": "Vòng lặp trong chạy i lần với i từ 1 đến 4. Tổng số lần s += 1 là 1 + 2 + 3 + 4 = 10."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của biến total là bao nhiêu?\ntotal = 0\nfor i in range(1, 4):\n    for j in range(1, 4):\n        if i == j:\n            break\n        total += 1",
+      "options": [
+        "3",
+        "6",
+        "9",
+        "4"
+      ],
+      "correct": 0,
+      "explain": "Break thoát vòng j khi i == j: i=1 (0 lần), i=2 (1 lần), i=3 (2 lần). Tổng total = 3."
+    },
+    {
+      "text": "Nếu thay lệnh break ở Câu 28 bằng lệnh continue, giá trị của biến total sẽ là bao nhiêu?",
+      "options": [
+        "3",
+        "6",
+        "9",
+        "8"
+      ],
+      "correct": 1,
+      "explain": "Tổng số cặp (i, j) là 9. Continue bỏ qua 3 cặp có i == j, còn lại 9 - 3 = 6 lần cộng."
+    },
+    {
+      "text": "Đoạn chương trình sau in ra kết quả gì?\nn = 1234\nrev = 0\nwhile n > 0:\n    rev = rev * 10 + n % 10\n    n = n // 10\nprint(rev)",
+      "options": [
+        "10",
+        "4321",
+        "1234",
+        "4"
+      ],
+      "correct": 1,
+      "explain": "Thuật toán đảo ngược số nguyên, biến 1234 thành 4321."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, danh sách nums có giá trị là gì?\nnums = [1, 2, 3, 4, 5]\nfor i in range(len(nums)):\n    if nums[i] % 2 == 1:\n        nums[i] = nums[i] * 2\n    else:\n        nums[i] = nums[i] - 1",
+      "options": [
+        "[2, 1, 6, 3, 10]",
+        "[0, 4, 2, 8, 4]",
+        "[2, 2, 6, 4, 10]",
+        "[1, 1, 3, 3, 5]"
+      ],
+      "correct": 0,
+      "explain": "Số lẻ nhân đôi, số chẵn trừ 1: nums[0]=2, nums[1]=1, nums[2]=6, nums[3]=3, nums[4]=10."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Giá trị của biến s sau khi chạy xong là bao nhiêu?\nL = [10, 20, 30, 40]\ns = 0\nfor x in L:\n    x = x + 5\n    s = s + L[0]",
+      "options": [
+        "40",
+        "60",
+        "100",
+        "120"
+      ],
+      "correct": 0,
+      "explain": "Thay đổi biến x không ảnh hưởng đến danh sách L. L[0] luôn bằng 10, chạy 4 lần nên s = 10 * 4 = 40."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\ns = \"Python\"\nout = \"\"\nfor i in range(len(s) - 1, -1, -2):\n    out += s[i]\nprint(out)",
+      "options": [
+        "nhy",
+        "nohtyP",
+        "Pto",
+        "nyP"
+      ],
+      "correct": 0,
+      "explain": "Lấy các ký tự ở các chỉ số giảm dần bước nhảy 2: i=5 ('n'), i=3 ('h'), i=1 ('y') -> 'nhy'."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của a và b là bao nhiêu?\na = 18\nb = 12\nwhile b != 0:\n    r = a % b\n    a = b\n    b = r",
+      "options": [
+        "a = 6, b = 0",
+        "a = 0, b = 6",
+        "a = 6, b = 6",
+        "a = 3, b = 0"
+      ],
+      "correct": 0,
+      "explain": "Thuật toán Euclid tìm ƯCLN, sau cùng a = 6 và b = 0."
+    },
+    {
+      "text": "Đoạn chương trình sau in ra kết quả gì?\nx = 10\nwhile x > 0:\n    x -= 3\n    if x % 2 == 0:\n        continue\n    print(x, end=\" \")",
+      "options": [
+        "7 1 -2",
+        "7 1",
+        "7 4 1 -2",
+        "7 4 1"
+      ],
+      "correct": 1,
+      "explain": "Các giá trị x qua vòng lặp: 7 (in), 4 (chẵn, bỏ qua), 1 (in), -2 (chẵn, bỏ qua). Kết quả: 7 1."
+    },
+    {
+      "text": "Cho mảng 2 chiều matrix như sau. Giá trị của biến s sau khi chạy code là:\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\ns = 0\nfor i in range(3):\n    for j in range(3):\n        if i + j == 2:\n            s += matrix[i][j]",
+      "options": [
+        "15",
+        "12",
+        "18",
+        "45"
+      ],
+      "correct": 0,
+      "explain": "Điều kiện i + j == 2 chọn các phần tử đường chéo phụ: matrix[0][2]=3, matrix[1][1]=5, matrix[2][0]=7. Tổng = 15."
+    },
+    {
+      "text": "Cho đoạn chương trình kiểm tra số nguyên tố dưới đây (với n = 9). Kết quả in ra màn hình là gì và vì sao?\nn = 9\nfor i in range(2, n):\n    if n % i == 0:\n        print(\"Hop so\")\n        break\n    else:\n        print(\"Nguyen to\")\n        break",
+      "options": [
+        "In ra Hop so vì 9 chia hết cho 3.",
+        "In ra Nguyen to vì câu lệnh else đặt nhầm vào khối if thay vì gắn với vòng lặp for.",
+        "In ra cả Nguyen to và Hop so.",
+        "Không in ra gì vì vòng lặp dừng ngay lập tức."
+      ],
+      "correct": 1,
+      "explain": "Do nhánh else ngang hàng với if (cấu trúc if-else thông thường bên trong for), ở i=2, 9%2!=0 nên nhảy vào else in ra Nguyen to rồi break ngay, dẫn đến kết quả sai."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của biến k là bao nhiêu?\nk = 0\nfor i in range(1, 10, 2):\n    if i % 3 == 0 or i % 5 == 0:\n        k += i",
+      "options": [
+        "17",
+        "23",
+        "12",
+        "25"
+      ],
+      "correct": 0,
+      "explain": "Các số lẻ từ 1 đến 9 chia hết cho 3 hoặc 5 gồm: 3, 5, 9. Tổng k = 3 + 5 + 9 = 17."
+    },
+    {
+      "text": "Đoạn chương trình sau thực hiện lệnh c += 1 tổng cộng bao nhiêu lần?\nc = 0\ni = 1\nwhile i <= 4:\n    j = i\n    while j <= 4:\n        c += 1\n        j += 1\n    i += 1",
+      "options": [
+        "16",
+        "10",
+        "6",
+        "12"
+      ],
+      "correct": 1,
+      "explain": "Số lần chạy của vòng trong theo i: i=1 (4 lần), i=2 (3 lần), i=3 (2 lần), i=4 (1 lần). Tổng = 4 + 3 + 2 + 1 = 10."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của biến p là bao nhiêu?\np = 1\nfor i in range(2, 6):\n    if i % 2 == 0:\n        p = p * i\n    else:\n        p = p - i",
+      "options": [
+        "-9",
+        "-4",
+        "9",
+        "15"
+      ],
+      "correct": 0,
+      "explain": "Truy vết: i=2 (p=2), i=3 (p=-1), i=4 (p=-4), i=5 (p=-9). Kết quả p = -9."
+    },
+    {
+      "text": "Kết quả in ra màn hình của đoạn chương trình sau là gì?\ni = 0\nwhile i < 5:\n    i += 1\n    if i == 2:\n        continue\n    if i == 4:\n        break\n    print(i, end=\" \")\nelse:\n    print(0)",
+      "options": [
+        "1 3",
+        "1 3 0",
+        "0 1 3",
+        "1 2 3"
+      ],
+      "correct": 0,
+      "explain": "In ra 1 (i=1), bỏ qua 2 (i=2), in ra 3 (i=3), gặp break ở i=4 nên dừng và không chạy khối else. Kết quả: 1 3."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Giá trị của biến m sau khi chạy xong là bao nhiêu?\na = [5, 2, 8, 1, 6, 3]\nm = 100\nfor x in a:\n    if x % 2 == 0 and x < m:\n        m = x",
+      "options": [
+        "1",
+        "2",
+        "8",
+        "100"
+      ],
+      "correct": 1,
+      "explain": "Tìm số chẵn nhỏ nhất trong danh sách a, các số chẵn là 2, 8, 6. Số nhỏ nhất là 2."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Giá trị in ra màn hình là bao nhiêu?\nn = 36\ns = 0\ni = 2\nwhile n > 1:\n    if n % i == 0:\n        s += i\n        n = n // i\n    else:\n        i += 1\nprint(s)",
+      "options": [
+        "5",
+        "10",
+        "12",
+        "9"
+      ],
+      "correct": 1,
+      "explain": "Phân tích 36 thành thừa số nguyên tố: 2, 2, 3, 3. Tổng s = 2 + 2 + 3 + 3 = 10."
+    },
+    {
+      "text": "Sau khi thực hiện đoạn chương trình sau, giá trị của biến count là bao nhiêu?\na = [2, 5, 3, 6, 4, 8, 7]\ncount = 0\nfor i in range(1, len(a) - 1):\n    if a[i] > a[i - 1] and a[i] > a[i + 1]:\n        count += 1",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct": 2,
+      "explain": "Đếm số phần tử cực đại địa phương: các vị trí thỏa mãn là 5 (i=1), 6 (i=3), 8 (i=5). Tổng count = 3."
+    },
+    {
+      "text": "Đoạn chương trình dưới đây in ra kết quả gì?\ns = \"aaabbcaaa\"\nres = s[0]\nfor i in range(1, len(s)):\n    if s[i] != s[i - 1]:\n        res += s[i]\nprint(res)",
+      "options": [
+        "abca",
+        "abc",
+        "aaabbcaaa",
+        "a3b2c1a3"
+      ],
+      "correct": 0,
+      "explain": "Thuật toán lọc bỏ các ký tự trùng nhau đứng liên tiếp: 'aaabbcaaa' thành 'abca'."
+    },
+    {
+      "text": "Cho đoạn chương trình sau. Giá trị in ra màn hình là gì?\na = 1\nb = 1\ns = 0\nfor i in range(4):\n    c = a + b\n    s += c\n    a = b\n    b = c\nprint(s, b)",
+      "options": [
+        "18 8",
+        "19 8",
+        "18 5",
+        "11 5"
+      ],
+      "correct": 0,
+      "explain": "Mô phỏng dãy Fibonacci: c chạy qua các giá trị 2, 3, 5, 8. Tổng s = 2 + 3 + 5 + 8 = 18, b cuối cùng bằng 8."
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình sau. Kết quả in ra màn hình là gì?\ns = 0\nfor i in range(6, 0, -2):\n    for j in range(1, i):\n        if (i + j) % 3 == 0:\n            s += j\n            continue\n        if j > 2:\n            break\n        s += 1\nprint(s)",
+      "options": [
+        "10",
+        "9",
+        "11",
+        "8"
+      ],
+      "correct": 1,
+      "explain": "Truy vết chi tiết các lượt i = 6, 4, 2 tích lũy vào s, kết quả cuối cùng s = 9."
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình sau. Kết quả in ra màn hình là gì?\na = 17\nb = 3\nres = 0\nstep = 1\nwhile a > 0:\n    if a % 2 == 1:\n        res += (a % b) * step\n        a = a // 2\n    else:\n        a = a - b\n    step = step * 2\nprint(res, a)",
+      "options": [
+        "10 -1",
+        "10 0",
+        "18 -1",
+        "26 0"
+      ],
+      "correct": 0,
+      "explain": "Truy vết qua 4 lượt, kết thúc vòng lặp khi a = -1 và res = 10."
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình sau. Sau khi thực thi xong, danh sách a và biến s có giá trị là gì?\na = [3, 1, 4, 2, 5]\ns = 0\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        a[i], a[i + 1] = a[i + 1], a[i]\n        s += a[i]\n    else:\n        a[i + 1] += a[i]\nprint(a, s)",
+      "options": [
+        "[1, 3, 2, 5, 7] và s = 8",
+        "[1, 3, 2, 7, 12] và s = 3",
+        "[1, 3, 2, 5, 7] và s = 17",
+        "[1, 4, 2, 5, 7] và s = 8"
+      ],
+      "correct": 0,
+      "explain": "Cập nhật trực tiếp danh sách a qua từng bước so sánh, sau cùng a = [1, 3, 2, 5, 7] và s = 8."
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình kết hợp vòng lặp lồng nhau và cấu trúc for-else dưới đây. Giá trị của biến ans sau khi thực hiện là bao nhiêu?\nans = 0\nfor x in range(2, 8):\n    for d in range(2, x):\n        if x % d == 0:\n            ans += d\n            break\n    else:\n        ans += x\nprint(ans)",
+      "options": [
+        "17",
+        "19",
+        "21",
+        "26"
+      ],
+      "correct": 2,
+      "explain": "Cấu trúc cộng ước nhỏ nhất nếu là hợp số, hoặc cộng chính x nếu là số nguyên tố (từ x=2 đến 7). Tổng ans = 2 + 3 + 2 + 5 + 2 + 7 = 21."
+    }
+  ]
+}
