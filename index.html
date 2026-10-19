@@ -15,7 +15,6 @@
             color: #212529;
         }
 
-        /* Họa tiết bản vẽ kiến trúc mờ ở góc trang */
         .blueprint-bg {
             background-image: 
                 linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
@@ -23,17 +22,18 @@
             background-size: 32px 32px;
         }
 
-        /* Thanh sọc chéo trang trí dưới tiêu đề */
         .hatch-pattern {
             background: repeating-linear-gradient(
-                -45deg,
-                #d1d5db,
-                #d1d5db 2px,
-                transparent 2px,
-                transparent 6px
+                -45deg, #d1d5db, #d1d5db 2px, transparent 2px, transparent 6px
             );
             height: 8px;
             width: 85px;
+        }
+
+        /* GIỮ NGUYÊN KHOẢNG TRẮNG VÀ XUỐNG DÒNG CHO CODE PYTHON */
+        .preserve-space {
+            white-space: pre-wrap;
+            font-family: 'Plus Jakarta Sans', monospace, sans-serif;
         }
 
         .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -56,25 +56,17 @@
         </button>
     </div>
 
-    <!-- ==================== HEADER TỐI GIẢN ==================== -->
+    <!-- ==================== HEADER ==================== -->
     <header class="bg-[#212326] text-white sticky top-0 z-30">
         <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Logo Trái -->
             <div class="flex items-center gap-3 cursor-pointer" onclick="app.showView('dashboard')">
                 <span class="font-extrabold text-2xl tracking-tighter text-white">Huy<span class="font-light text-zinc-400">Dũng</span></span>
             </div>
 
-            <!-- Menu Chính Giữa -->
             <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wider uppercase">
-                <button onclick="app.showView('dashboard')" class="py-1 border-b-2 border-white text-white transition">
-                    Trang chủ
-                </button>
-                <a href="#quiz-section" onclick="app.showView('dashboard')" class="py-1 text-zinc-400 hover:text-white transition">
-                    Bộ đề thi
-                </a>
-                <button onclick="app.openCreateQuiz()" class="py-1 text-zinc-400 hover:text-white transition">
-                    Tạo đề mới
-                </button>
+                <button onclick="app.showView('dashboard')" class="py-1 border-b-2 border-white text-white transition">Trang chủ</button>
+                <a href="#quiz-section" onclick="app.showView('dashboard')" class="py-1 text-zinc-400 hover:text-white transition">Bộ đề thi</a>
+                <button onclick="app.openCreateQuiz()" class="py-1 text-zinc-400 hover:text-white transition">Tạo đề mới</button>
                 <button onclick="app.reloadServerQuizzes()" class="py-1 text-zinc-400 hover:text-white transition flex items-center gap-1.5">
                     <span>Đồng bộ Cloud</span>
                     <i class="fa-solid fa-angle-down text-[10px]"></i>
@@ -83,164 +75,96 @@
                     Nhập JSON
                     <input type="file" accept=".json" class="hidden" onchange="app.importQuizJSON(event)">
                 </label>
-                <a href="#quiz-section" onclick="document.getElementById('search-quiz')?.focus()" class="py-1 text-zinc-300 hover:text-white transition">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
             </nav>
 
-            <!-- Thao tác Nhanh Bên Phải -->
             <div class="flex items-center gap-4 text-xs text-zinc-400">
-                <button onclick="app.reloadServerQuizzes()" class="hover:text-white transition" title="Tải lại danh sách đề từ Server">
-                    <i class="fa-solid fa-arrows-rotate"></i>
-                </button>
-                <button onclick="app.openCreateQuiz()" class="hover:text-white transition" title="Soạn đề mới">
-                    <i class="fa-solid fa-pen-ruler"></i>
-                </button>
+                <button onclick="app.reloadServerQuizzes()" class="hover:text-white transition" title="Đồng bộ"><i class="fa-solid fa-arrows-rotate"></i></button>
                 <span class="text-zinc-600">|</span>
                 <span class="font-mono text-[11px] text-zinc-300 hidden sm:inline">VN-STUDIO</span>
             </div>
         </div>
     </header>
 
-    <!-- ==================== MAIN CONTAINER ==================== -->
+    <!-- ==================== MAIN ==================== -->
     <main class="flex-1 w-full">
 
-        <!-- ==================== VIEW 1: DASHBOARD ==================== -->
+        <!-- DASHBOARD -->
         <section id="view-dashboard">
-            
-            <!-- KHỐI NỀN ĐEN PHÍA TRÊN & HERO CHIA ĐÔI -->
             <div class="relative bg-[#212326] pb-32 pt-2 px-4 sm:px-10 lg:px-16">
-                
                 <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[480px] shadow-2xl overflow-hidden">
-                    
-                    <!-- Nửa Trái: Nền Xám Kiến Trúc -->
                     <div class="lg:col-span-6 bg-[#6e7072] text-white p-8 sm:p-14 lg:p-16 flex flex-col justify-center space-y-5">
                         <div class="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-zinc-200">
-                            <span><i class="fa-solid fa-folder-open mr-1"></i> Tự động đồng bộ <code class="font-mono">/quizzes</code></span>
+                            <span><i class="fa-solid fa-folder-open mr-1"></i> Thư mục <code class="font-mono">/quizzes</code></span>
                             <span>•</span>
                             <span id="sync-status" class="text-zinc-100">Đang kiểm tra...</span>
                         </div>
-
                         <div class="space-y-2">
-                            <h1 class="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
-                                Hi Phan Thị Hà Linh
-                            </h1>
-                            <p class="text-base sm:text-lg text-zinc-200 font-light tracking-wide">
-                                Cuối Kì With Em Bô
-                            </p>
-                            <p class="text-xs text-zinc-300 pt-1">
-                                CHÚC EM MAY MẮN.
-                            </p>
+                            <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">Hi Phan Thị Hà Linh</h1>
+                            <p class="text-base sm:text-lg text-zinc-200 font-light">Cuối Kì With Em Bô</p>
+                            <p class="text-xs text-zinc-300 pt-1">CHÚC EM MAY MẮN.</p>
                         </div>
-
-                        <!-- Ô nhập Mã Đề -->
                         <div class="pt-3 flex flex-col sm:flex-row gap-2 max-w-md">
-                            <input id="join-code-input" type="text" placeholder="Nhập Mã Đề (VD: DSA-01)..." 
+                            <input id="join-code-input" type="text" placeholder="Nhập Mã Đề (VD: PY-01)..." 
                                 class="px-4 py-3.5 bg-white text-zinc-900 text-xs font-medium focus:outline-none w-full placeholder:text-zinc-400">
                             <button onclick="app.joinByCode()" class="px-7 py-3.5 bg-[#212326] hover:bg-black text-white text-[11px] font-bold uppercase tracking-[0.15em] transition whitespace-nowrap">
                                 Vào Thi Ngay
                             </button>
                         </div>
                     </div>
-
-                    <!-- Nửa Phải: Ảnh lt1.jpg -->
                     <div class="lg:col-span-6 relative min-h-[260px] bg-zinc-200">
                         <img src="lt1.jpg" alt="Studio" class="w-full h-full object-cover contrast-105 brightness-95">
                     </div>
                 </div>
             </div>
 
-            <!-- ==================== 3 THẺ TRẮNG ĐÈ LÊN HERO ==================== -->
+            <!-- CARDS -->
             <div class="relative z-20 max-w-[1200px] mx-auto px-4 sm:px-6 -mt-24">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
                     <div onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" 
-                         class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition duration-300 cursor-pointer">
-                        <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-zinc-800">
-                            <i class="fa-solid fa-compass-drafting text-3xl"></i>
-                        </div>
+                         class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition cursor-pointer">
+                        <i class="fa-solid fa-compass-drafting text-3xl mb-4"></i>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Kho Đề Trắc Nghiệm</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed">
-                            Hiện có <strong id="stat-total-quizzes" class="text-zinc-900">0</strong> bộ đề và <strong id="stat-total-questions" class="text-zinc-900">0</strong> câu hỏi trong thư mục <code class="font-mono">/quizzes</code>.
-                        </p>
+                        <p class="text-xs text-zinc-500">Hiện có <strong id="stat-total-quizzes">0</strong> bộ đề & <strong id="stat-total-questions">0</strong> câu hỏi.</p>
                     </div>
-
                     <div onclick="app.openCreateQuiz()" 
-                         class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition duration-300 cursor-pointer">
-                        <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-zinc-800">
-                            <i class="fa-solid fa-pen-ruler text-3xl"></i>
-                        </div>
+                         class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition cursor-pointer">
+                        <i class="fa-solid fa-pen-ruler text-3xl mb-4"></i>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Thiết Kế & Soạn Đề</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed">
-                            Tạo đề mới nhanh chóng bằng văn bản thô hoặc xuất ra file <code class="font-mono">.json</code>.
-                        </p>
+                        <p class="text-xs text-zinc-500">Tạo đề mới và xuất file JSON chuẩn.</p>
                     </div>
-
-                    <div class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition duration-300">
-                        <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-zinc-800">
-                            <i class="fa-solid fa-chart-column text-3xl"></i>
-                        </div>
+                    <div class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100">
+                        <i class="fa-solid fa-chart-column text-3xl mb-4"></i>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Hiệu Suất & Điểm Số</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed">
-                            Đã hoàn thành <strong id="stat-total-attempts" class="text-zinc-900">0</strong> lượt làm bài với điểm trung bình <strong id="stat-avg-score" class="text-zinc-900">0.0</strong>.
-                        </p>
+                        <p class="text-xs text-zinc-500">Đã hoàn thành <strong id="stat-total-attempts">0</strong> lượt, TB: <strong id="stat-avg-score">0.0</strong></p>
                     </div>
-
                 </div>
             </div>
 
-            <!-- ==================== KHỐI GIỚI THIỆU (lt2.jpg & lt3.jpg) ==================== -->
+            <!-- INTRO -->
             <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-20 blueprint-bg">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                    
                     <div class="lg:col-span-6 grid grid-cols-12 gap-5 items-end">
-                        <div class="col-span-7">
-                            <img src="lt2.jpg" alt="Space 1" class="w-full h-64 object-cover">
-                        </div>
-                        <div class="col-span-5 -mb-6">
-                            <img src="lt3.jpg" alt="Space 2" class="w-full h-40 object-cover">
-                        </div>
+                        <div class="col-span-7"><img src="lt2.jpg" alt="Space 1" class="w-full h-64 object-cover"></div>
+                        <div class="col-span-5 -mb-6"><img src="lt3.jpg" alt="Space 2" class="w-full h-40 object-cover"></div>
                     </div>
-
                     <div class="lg:col-span-6 relative pt-6 lg:pt-0">
-                        <div class="text-[64px] sm:text-[90px] font-extrabold text-zinc-100 leading-none select-none pointer-events-none absolute -top-6 left-0 tracking-tighter z-0">
-                            YOUR PLACE
-                        </div>
+                        <div class="text-[64px] sm:text-[90px] font-extrabold text-zinc-100 leading-none select-none pointer-events-none absolute -top-6 left-0">YOUR PLACE</div>
                         <div class="relative z-10 space-y-4">
-                            <div class="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">
-                                HỆ THỐNG LUYỆN THI TRẮC NGHIỆM
-                            </div>
-                            <h2 class="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
-                                I LOVE YOU &lt;3.
-                            </h2>
+                            <div class="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">LUYỆN THI TRẮC NGHIỆM PYTHON</div>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-zinc-900">I LOVE YOU &lt;3.</h2>
                             <div class="hatch-pattern"></div>
-                            <p class="text-sm text-zinc-600 leading-relaxed pt-1">
-                                Làm tập trung, không được tra <code class="font-mono bg-zinc-100 px-1.5 py-0.5 text-zinc-800">gemini</code>, <code class="font-mono bg-zinc-100 px-1.5 py-0.5 text-zinc-800">chatgpt</code> nhenn.
-                            </p>
-                            <p class="text-xs text-zinc-400 leading-relaxed">
-                                Hỗ trợ phím tắt bàn phím (A, B, C, D, ←, →), đếm ngược thời gian thực và ghi chú linh hoạt.
-                            </p>
-                            <div class="pt-2 flex flex-wrap gap-3">
-                                <button onclick="app.openCreateQuiz()" class="px-6 py-3 bg-[#212326] hover:bg-black text-white text-[11px] font-bold uppercase tracking-[0.15em] transition">
-                                    Tạo Bộ Đề Mới
-                                </button>
-                                <label class="px-6 py-3 border border-zinc-300 hover:border-zinc-900 text-zinc-800 text-[11px] font-bold uppercase tracking-[0.15em] transition cursor-pointer">
-                                    Tải File .JSON Lên
-                                    <input type="file" accept=".json" class="hidden" onchange="app.importQuizJSON(event)">
-                                </label>
-                            </div>
+                            <p class="text-sm text-zinc-600 leading-relaxed">Làm tập trung, không được tra <code class="bg-zinc-100 px-1.5 py-0.5">gemini</code> hay <code class="bg-zinc-100 px-1.5 py-0.5">chatgpt</code> nha!</p>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <!-- ==================== DANH SÁCH BỘ ĐỀ ==================== -->
+            <!-- QUIZ LIST -->
             <div id="quiz-section" class="max-w-[1200px] mx-auto px-4 sm:px-6 pb-24 pt-6 border-t border-zinc-100">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
                     <div>
-                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">PROJECTS & EXAMS</span>
-                        <h3 class="text-2xl font-bold text-zinc-900 mt-1">Danh Sách Bộ Đề Hiện Có</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">EXAMS</span>
+                        <h3 class="text-2xl font-bold text-zinc-900 mt-1">Danh Sách Bộ Đề</h3>
                     </div>
                     <div class="relative w-full sm:w-80">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-400 text-xs"></i>
@@ -248,178 +172,132 @@
                             class="w-full pl-9 pr-4 py-2.5 border border-zinc-300 text-xs focus:outline-none focus:border-zinc-900 bg-white">
                     </div>
                 </div>
-
                 <div id="quiz-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
-
         </section>
 
-        <!-- ==================== VIEW 2: CREATE / EDIT QUIZ ==================== -->
+        <!-- EDITOR -->
         <section id="view-editor" class="hidden max-w-[1100px] mx-auto px-4 sm:px-6 py-12 space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 border border-zinc-200 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 border border-zinc-200">
                 <div>
-                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">QUIZ ARCHITECT</span>
-                    <h2 id="editor-page-title" class="text-2xl font-bold text-zinc-900 mt-0.5">Tạo Bộ Đề Trắc Nghiệm Mới</h2>
-                    <p class="text-xs text-zinc-500 mt-1">Soạn câu hỏi, sau đó tải file <code class="font-mono">.json</code> về và bỏ vào thư mục <code class="font-mono">quizzes/</code></p>
+                    <h2 id="editor-page-title" class="text-2xl font-bold text-zinc-900">Tạo Bộ Đề Mới</h2>
+                    <p class="text-xs text-zinc-500 mt-1">Tải file <code class="font-mono">.json</code> và bỏ vào thư mục <code class="font-mono">quizzes/</code></p>
                 </div>
-                <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="app.showView('dashboard')" class="px-4 py-2.5 border border-zinc-300 text-zinc-700 hover:border-zinc-900 text-xs font-bold uppercase tracking-wider transition">
-                        Quay lại
-                    </button>
-                    <button onclick="app.openBulkModal()" class="px-4 py-2.5 border border-zinc-900 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 text-xs font-bold uppercase tracking-wider transition">
-                        <i class="fa-solid fa-bolt mr-1"></i> Nhập Nhanh Văn Bản
-                    </button>
-                    <button onclick="app.saveQuiz()" class="px-6 py-2.5 bg-[#212326] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition">
-                        <i class="fa-solid fa-floppy-disk mr-1"></i> Lưu & Xuất JSON
-                    </button>
+                <div class="flex gap-2">
+                    <button onclick="app.showView('dashboard')" class="px-4 py-2.5 border border-zinc-300 text-xs font-bold uppercase">Quay lại</button>
+                    <button onclick="app.saveQuiz()" class="px-6 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase">Lưu & Xuất JSON</button>
                 </div>
             </div>
-
-            <div class="bg-white p-6 border border-zinc-200 shadow-sm grid grid-cols-1 md:grid-cols-4 gap-5">
+            <div class="bg-white p-6 border border-zinc-200 grid grid-cols-1 md:grid-cols-4 gap-5">
                 <div class="md:col-span-2">
-                    <label class="block text-[11px] font-bold text-zinc-700 uppercase tracking-wider mb-1.5">Tên bộ đề thi *</label>
-                    <input id="edit-title" type="text" placeholder="VD: Ôn tập Cấu trúc dữ liệu & Giải thuật" 
-                        class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900">
+                    <label class="block text-[11px] font-bold uppercase mb-1.5">Tên đề *</label>
+                    <input id="edit-title" type="text" class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm">
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold text-zinc-700 uppercase tracking-wider mb-1.5">Mã Đề (Quiz Code)</label>
-                    <input id="edit-code" type="text" placeholder="VD: DSA-01" 
-                        class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm font-mono uppercase focus:outline-none focus:border-zinc-900">
+                    <label class="block text-[11px] font-bold uppercase mb-1.5">Mã Đề</label>
+                    <input id="edit-code" type="text" class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm font-mono uppercase">
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold text-zinc-700 uppercase tracking-wider mb-1.5">Thời gian (Phút)</label>
-                    <input id="edit-duration" type="number" min="1" max="300" value="15" 
-                        class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900">
+                    <label class="block text-[11px] font-bold uppercase mb-1.5">Phút</label>
+                    <input id="edit-duration" type="number" value="45" class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm">
                 </div>
                 <div class="md:col-span-4">
-                    <label class="block text-[11px] font-bold text-zinc-700 uppercase tracking-wider mb-1.5">Mô tả ngắn</label>
-                    <input id="edit-desc" type="text" placeholder="Mô tả nội dung hoặc ghi chú cho thí sinh..." 
-                        class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900">
+                    <label class="block text-[11px] font-bold uppercase mb-1.5">Mô tả</label>
+                    <input id="edit-desc" type="text" class="w-full px-3.5 py-2.5 border border-zinc-300 text-sm">
                 </div>
             </div>
-
             <div id="editor-questions-list" class="space-y-5"></div>
-
-            <button onclick="app.addEmptyQuestion()" class="w-full py-4 border-2 border-dashed border-zinc-300 hover:border-zinc-900 text-zinc-600 hover:text-zinc-900 font-bold text-xs uppercase tracking-widest transition flex items-center justify-center gap-2 bg-white">
-                <i class="fa-solid fa-plus"></i> Thêm Câu Hỏi Mới
-            </button>
+            <button onclick="app.addEmptyQuestion()" class="w-full py-4 border-2 border-dashed border-zinc-300 text-xs font-bold uppercase bg-white">+ Thêm Câu Hỏi</button>
         </section>
 
-        <!-- ==================== VIEW 3: EXAM ROOM ==================== -->
+        <!-- EXAM ROOM -->
         <section id="view-exam" class="hidden max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-                
-                <!-- Left: Question Area -->
                 <div class="lg:col-span-3 bg-white border border-zinc-200 shadow-sm p-8 space-y-6">
                     <div class="flex items-center justify-between border-b border-zinc-100 pb-5">
                         <div>
                             <span id="exam-quiz-title" class="text-[11px] font-bold text-zinc-400 uppercase tracking-[0.2em]"></span>
                             <h3 id="exam-question-counter" class="text-xl font-bold text-zinc-900 mt-1">Câu hỏi 1 / 10</h3>
                         </div>
-                        <button onclick="app.toggleFlagCurrent()" id="exam-flag-btn" class="px-4 py-2 border border-zinc-200 text-xs font-semibold text-zinc-600 hover:border-zinc-900 transition">
+                        <button onclick="app.toggleFlagCurrent()" id="exam-flag-btn" class="px-4 py-2 border border-zinc-200 text-xs font-semibold">
                             <i class="fa-regular fa-flag mr-1"></i> Đánh dấu xem lại
                         </button>
                     </div>
 
-                    <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed whitespace-pre-line py-2"></div>
+                    <!-- THÊM CLASS preserve-space ĐỂ GIỮ NGUYÊN THỤT LỀ CODE PYTHON -->
+                    <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed preserve-space py-2"></div>
 
                     <div id="exam-options-list" class="space-y-3"></div>
 
                     <div class="flex items-center justify-between pt-6 border-t border-zinc-100">
-                        <button onclick="app.prevQuestion()" id="btn-prev-q" class="px-5 py-2.5 border border-zinc-300 text-xs font-bold uppercase tracking-wider text-zinc-700 hover:border-zinc-900 transition">
-                            <i class="fa-solid fa-arrow-left mr-1.5"></i> Câu trước
-                        </button>
-                        <div class="text-xs text-zinc-400 hidden sm:block">
-                            Phím tắt: <kbd class="px-1.5 py-0.5 bg-zinc-100 border border-zinc-300 text-zinc-700">A</kbd> <kbd class="px-1.5 py-0.5 bg-zinc-100 border border-zinc-300 text-zinc-700">B</kbd> <kbd class="px-1.5 py-0.5 bg-zinc-100 border border-zinc-300 text-zinc-700">C</kbd> <kbd class="px-1.5 py-0.5 bg-zinc-100 border border-zinc-300 text-zinc-700">D</kbd>
-                        </div>
-                        <button onclick="app.nextQuestion()" id="btn-next-q" class="px-6 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black transition">
-                            Câu tiếp <i class="fa-solid fa-arrow-right ml-1.5"></i>
-                        </button>
+                        <button onclick="app.prevQuestion()" class="px-5 py-2.5 border border-zinc-300 text-xs font-bold uppercase"><i class="fa-solid fa-arrow-left mr-1.5"></i> Câu trước</button>
+                        <div class="text-xs text-zinc-400 hidden sm:block">Phím tắt: <kbd class="px-1.5 bg-zinc-100 border">A</kbd> <kbd class="px-1.5 bg-zinc-100 border">B</kbd> <kbd class="px-1.5 bg-zinc-100 border">C</kbd> <kbd class="px-1.5 bg-zinc-100 border">D</kbd></div>
+                        <button onclick="app.nextQuestion()" class="px-6 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase">Câu tiếp <i class="fa-solid fa-arrow-right ml-1.5"></i></button>
                     </div>
                 </div>
 
-                <!-- Right: Timer & Palette & Note Button -->
+                <!-- RIGHT SIDEBAR -->
                 <div class="bg-white border border-zinc-200 shadow-sm p-6 space-y-6 sticky top-28">
                     <div class="text-center p-5 bg-[#212326] text-white">
                         <div class="text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Thời gian còn lại</div>
-                        <div id="exam-timer" class="text-3xl font-mono font-bold mt-1 text-white">15:00</div>
+                        <div id="exam-timer" class="text-3xl font-mono font-bold mt-1 text-white">45:00</div>
                     </div>
-
-                    <!-- Shuffle Controls & Nút Mở Ghi Chú -->
                     <div class="space-y-2">
                         <div class="flex items-center justify-between text-xs text-zinc-600 bg-zinc-50 px-3.5 py-2.5 border border-zinc-200">
                             <span>Đảo thứ tự câu</span>
-                            <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold hover:underline">
-                                <i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay
-                            </button>
+                            <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold"><i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay</button>
                         </div>
-                        
-                        <button onclick="app.toggleNoteModal()" class="w-full py-2.5 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-wider border border-zinc-300 transition flex items-center justify-center gap-2">
+                        <button onclick="app.toggleNoteModal()" class="w-full py-2.5 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold uppercase border border-zinc-300 flex items-center justify-center gap-2">
                             <i class="fa-regular fa-note-sticky text-amber-500"></i> <span id="note-btn-label">Mở Ghi Chú (0)</span>
                         </button>
                     </div>
-
                     <div>
-                        <div class="flex justify-between text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">
+                        <div class="flex justify-between text-xs font-bold uppercase text-zinc-500 mb-3">
                             <span>Bảng câu hỏi</span>
                             <span id="exam-answered-count">0/0 đã chọn</span>
                         </div>
                         <div id="exam-palette" class="grid grid-cols-5 gap-2 max-h-60 overflow-y-auto custom-scroll p-1"></div>
                     </div>
-
-                    <button onclick="app.submitExam()" class="w-full py-3.5 bg-[#212326] hover:bg-black text-white font-bold text-xs uppercase tracking-[0.15em] transition">
-                        <i class="fa-solid fa-paper-plane mr-1.5"></i> Nộp Bài Chấm Điểm
-                    </button>
+                    <button onclick="app.submitExam()" class="w-full py-3.5 bg-[#212326] hover:bg-black text-white font-bold text-xs uppercase"><i class="fa-solid fa-paper-plane mr-1.5"></i> Nộp Bài Chấm Điểm</button>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== VIEW 4: RESULT & REVIEW ==================== -->
+        <!-- RESULT -->
         <section id="view-result" class="hidden max-w-[1100px] mx-auto px-4 sm:px-6 py-12 space-y-8">
             <div class="bg-white border border-zinc-200 shadow-sm p-8 text-center space-y-5">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-[#212326] text-white text-2xl">
-                    <i class="fa-solid fa-award"></i>
-                </div>
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-[#212326] text-white text-2xl"><i class="fa-solid fa-award"></i></div>
                 <div>
                     <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">EXAMINATION REPORT</span>
                     <h2 class="text-2xl font-bold text-zinc-900 mt-1">Kết Quả Bài Thi</h2>
                     <p id="result-quiz-title" class="text-xs text-zinc-500 mt-1"></p>
                 </div>
-
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto pt-2">
                     <div class="p-4 bg-zinc-50 border border-zinc-200">
-                        <div class="text-[11px] uppercase tracking-wider text-zinc-500">Điểm số (Hệ 10)</div>
+                        <div class="text-[11px] uppercase text-zinc-500">Điểm số</div>
                         <div id="res-score" class="text-2xl font-bold text-zinc-900 mt-1">0.0</div>
                     </div>
                     <div class="p-4 bg-zinc-50 border border-zinc-200">
-                        <div class="text-[11px] uppercase tracking-wider text-emerald-700">Số câu đúng</div>
+                        <div class="text-[11px] uppercase text-emerald-700">Đúng</div>
                         <div id="res-correct" class="text-2xl font-bold text-emerald-600 mt-1">0</div>
                     </div>
                     <div class="p-4 bg-zinc-50 border border-zinc-200">
-                        <div class="text-[11px] uppercase tracking-wider text-rose-700">Số câu sai</div>
+                        <div class="text-[11px] uppercase text-rose-700">Sai</div>
                         <div id="res-wrong" class="text-2xl font-bold text-rose-600 mt-1">0</div>
                     </div>
                     <div class="p-4 bg-zinc-50 border border-zinc-200">
-                        <div class="text-[11px] uppercase tracking-wider text-zinc-500">Thời gian làm</div>
+                        <div class="text-[11px] uppercase text-zinc-500">Thời gian</div>
                         <div id="res-time" class="text-2xl font-bold text-zinc-900 mt-1">00:00</div>
                     </div>
                 </div>
-
                 <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
-                    <button onclick="app.retryCurrentQuiz(false)" class="px-6 py-3 bg-[#212326] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition">
-                        <i class="fa-solid fa-rotate-right mr-1.5"></i> Làm lại toàn bộ đề
-                    </button>
-                    <button id="btn-retry-wrong" onclick="app.retryCurrentQuiz(true)" class="px-6 py-3 bg-rose-700 hover:bg-rose-800 text-white text-xs font-bold uppercase tracking-wider transition">
-                        <i class="fa-solid fa-filter-circle-xmark mr-1.5"></i> Làm lại các câu sai
-                    </button>
-                    <button onclick="app.showView('dashboard')" class="px-6 py-3 border border-zinc-300 hover:border-zinc-900 text-zinc-800 text-xs font-bold uppercase tracking-wider transition">
-                        Về trang chủ
-                    </button>
+                    <button onclick="app.retryCurrentQuiz(false)" class="px-6 py-3 bg-[#212326] text-white text-xs font-bold uppercase">Làm lại toàn bộ đề</button>
+                    <button id="btn-retry-wrong" onclick="app.retryCurrentQuiz(true)" class="px-6 py-3 bg-rose-700 text-white text-xs font-bold uppercase">Làm lại câu sai</button>
+                    <button onclick="app.showView('dashboard')" class="px-6 py-3 border border-zinc-300 text-zinc-800 text-xs font-bold uppercase">Về trang chủ</button>
                 </div>
             </div>
-
             <div class="space-y-4">
-                <h3 class="text-lg font-bold text-zinc-900 uppercase tracking-wider">Chi tiết đáp án & Giải thích</h3>
+                <h3 class="text-lg font-bold text-zinc-900 uppercase">Chi tiết đáp án & Giải thích</h3>
                 <div id="result-review-list" class="space-y-4"></div>
             </div>
         </section>
@@ -429,118 +307,105 @@
     <!-- FOOTER -->
     <footer class="bg-[#212326] text-zinc-400 text-xs py-8 px-6 border-t border-zinc-800 mt-auto">
         <div class="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="font-bold text-white tracking-tight">Hí nô<span class="font-light text-zinc-400">em bô</span> — Huy Dũng</div>
-            <div>chúc em may mắn <code class="text-zinc-200 font-mono"> nho </code> & <code class="text-zinc-200 font-mono">- love you</code></div>
+            <div class="font-bold text-white">Hí nô<span class="font-light text-zinc-400">em bô</span> — Huy Dũng</div>
+            <div>chúc em may mắn <code class="text-zinc-200 font-mono">nho</code> & <code class="text-zinc-200 font-mono">- love you</code></div>
         </div>
     </footer>
 
-    <!-- ==================== HỘP GHI CHÚ NỔI DI CHUYỂN ĐƯỢC ==================== -->
+    <!-- HỘP GHI CHÚ NỔI -->
     <div id="floating-note-box" class="fixed top-28 right-12 z-50 hidden w-80 bg-white border-2 border-zinc-900 shadow-2xl select-none">
         <div id="note-header-drag" class="bg-[#1b1d1f] text-white px-4 py-2.5 flex items-center justify-between cursor-move">
-            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase">
                 <i class="fa-regular fa-note-sticky text-amber-400"></i> 
                 <span>Ghi chú - Câu <span id="note-current-q-num">1</span></span>
             </div>
             <div class="flex items-center gap-2">
                 <span id="note-save-status" class="text-[10px] text-zinc-400">Đã lưu</span>
-                <button onclick="app.toggleNoteModal()" class="text-zinc-400 hover:text-white text-sm px-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button onclick="app.toggleNoteModal()" class="text-zinc-400 hover:text-white text-sm px-1"><i class="fa-solid fa-xmark"></i></button>
             </div>
         </div>
         <div class="p-3 bg-white space-y-2">
             <textarea id="floating-note-textarea" oninput="app.saveCurrentNote(this.value)" rows="4" 
-                placeholder="Nhập ghi chú, công thức hoặc mẹo nhớ cho câu này..." 
+                placeholder="Nhập ghi chú hoặc mẹo nhớ cho câu này..." 
                 class="w-full p-2.5 border border-zinc-200 text-xs focus:outline-none focus:border-zinc-900 resize-none bg-zinc-50"></textarea>
             <div class="text-[10px] text-zinc-400 flex justify-between items-center">
-                <span>💡 Kéo thanh đen phía trên để di chuyển.</span>
+                <span>💡 Kéo thanh đen để di chuyển.</span>
                 <span id="note-char-count">0 ký tự</span>
             </div>
         </div>
     </div>
 
-    <!-- ==================== MODAL NHẬP TÊN THÍ SINH ==================== -->
+    <!-- MODAL NHẬP TÊN -->
     <div id="modal-player-name" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white max-w-md w-full p-8 space-y-6 shadow-2xl border border-zinc-200">
             <div class="space-y-1">
                 <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Xác thực thí sinh</span>
                 <h3 class="text-lg font-bold text-zinc-900">Nhập tên của bạn để bắt đầu</h3>
-                <p class="text-xs text-zinc-500">Tên của bạn sẽ được lưu lại để ghi nhận kết quả bài thi.</p>
             </div>
-            
-            <input id="custom-player-name-input" type="text" placeholder="Nhập họ và tên..." 
-                class="w-full px-4 py-3 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900 transition">
-                
+            <input id="custom-player-name-input" type="text" placeholder="Nhập họ và tên..." class="w-full px-4 py-3 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900">
             <div class="flex justify-end gap-3 pt-2">
-                <button onclick="app.closeNameModal(false)" class="px-5 py-2.5 border border-zinc-200 text-xs font-bold uppercase tracking-wider text-zinc-600 hover:border-zinc-900 transition">
-                    Hủy
-                </button>
-                <button onclick="app.closeNameModal(true)" class="px-6 py-2.5 bg-[#1b1d1f] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition">
-                    Vào Thi
-                </button>
+                <button onclick="app.closeNameModal(false)" class="px-5 py-2.5 border border-zinc-200 text-xs font-bold uppercase">Hủy</button>
+                <button onclick="app.closeNameModal(true)" class="px-6 py-2.5 bg-[#1b1d1f] text-white text-xs font-bold uppercase">Vào Thi</button>
             </div>
         </div>
     </div>
 
-    <!-- ==================== MODAL BULK & SHARE ==================== -->
-    <div id="modal-bulk" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-white max-w-2xl w-full p-8 space-y-5 shadow-2xl border border-zinc-200">
-            <div class="flex items-center justify-between border-b border-zinc-100 pb-4">
-                <h3 class="text-lg font-bold text-zinc-900 uppercase tracking-wider">Nhập nhanh câu hỏi bằng Văn bản</h3>
-                <button onclick="app.closeModal('modal-bulk')" class="text-zinc-400 hover:text-zinc-900"><i class="fa-solid fa-xmark text-xl"></i></button>
+    <!-- MODAL SHARE & BULK -->
+    <div id="modal-bulk" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full p-8 space-y-5 border border-zinc-200">
+            <div class="flex justify-between items-center border-b pb-4">
+                <h3 class="text-lg font-bold uppercase">Nhập nhanh văn bản</h3>
+                <button onclick="app.closeModal('modal-bulk')"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <textarea id="bulk-textarea" rows="10" class="w-full p-4 border border-zinc-300 text-sm font-mono focus:outline-none focus:border-zinc-900" placeholder="Câu 1: ..."></textarea>
+            <textarea id="bulk-textarea" rows="10" class="w-full p-4 border border-zinc-300 text-sm font-mono"></textarea>
             <div class="flex justify-end gap-3">
-                <button onclick="app.closeModal('modal-bulk')" class="px-5 py-2.5 border border-zinc-300 text-xs font-bold uppercase tracking-wider">Hủy</button>
-                <button onclick="app.parseBulkText()" class="px-6 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black">Tách Câu Hỏi</button>
+                <button onclick="app.closeModal('modal-bulk')" class="px-5 py-2.5 border text-xs">Hủy</button>
+                <button onclick="app.parseBulkText()" class="px-6 py-2.5 bg-[#1b1d1f] text-white text-xs">Tách Câu Hỏi</button>
             </div>
         </div>
     </div>
 
-    <div id="modal-share" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-white max-w-lg w-full p-8 space-y-6 shadow-2xl border border-zinc-200">
-            <div class="flex items-center justify-between border-b border-zinc-100 pb-4">
-                <h3 class="text-base font-bold text-zinc-900 uppercase tracking-wider">Xuất File JSON & Chia Sẻ Đề</h3>
-                <button onclick="app.closeModal('modal-share')" class="text-zinc-400 hover:text-zinc-900"><i class="fa-solid fa-xmark text-xl"></i></button>
+    <div id="modal-share" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white max-w-lg w-full p-8 space-y-6 border border-zinc-200">
+            <div class="flex justify-between items-center border-b pb-4">
+                <h3 class="text-base font-bold uppercase">Chia Sẻ Đề</h3>
+                <button onclick="app.closeModal('modal-share')"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <div class="space-y-4">
-                <div class="p-5 bg-zinc-50 border border-zinc-200 flex items-center justify-between gap-4">
-                    <div>
-                        <div class="text-xs font-bold text-zinc-900 uppercase tracking-wider">Cách 1: Tải File .JSON</div>
-                    </div>
-                    <button id="btn-download-json" class="px-5 py-3 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black whitespace-nowrap">Tải JSON</button>
+                <div class="p-5 bg-zinc-50 border flex justify-between items-center">
+                    <span class="text-xs font-bold">Tải File .JSON</span>
+                    <button id="btn-download-json" class="px-5 py-3 bg-[#1b1d1f] text-white text-xs font-bold uppercase">Tải JSON</button>
                 </div>
-                <div class="p-5 bg-zinc-50 border border-zinc-200 space-y-2">
-                    <div class="text-xs font-bold text-zinc-900 uppercase tracking-wider">Cách 2: Gửi Link Trực Tiếp</div>
-                    <div class="flex gap-2 pt-2">
-                        <input id="share-url-input" type="text" readonly class="flex-1 px-3 py-2.5 bg-white border border-zinc-300 text-xs font-mono text-zinc-700">
-                        <button onclick="app.copyShareLink()" class="px-4 py-2.5 bg-[#212326] text-white text-xs font-bold uppercase tracking-wider hover:bg-black whitespace-nowrap">Copy Link</button>
+                <div class="p-5 bg-zinc-50 border space-y-2">
+                    <span class="text-xs font-bold">Link trực tiếp</span>
+                    <div class="flex gap-2">
+                        <input id="share-url-input" type="text" readonly class="flex-1 px-3 py-2.5 bg-white border text-xs font-mono">
+                        <button onclick="app.copyShareLink()" class="px-4 py-2.5 bg-[#1b1d1f] text-white text-xs font-bold">Copy</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- JAVASCRIPT -->
     <script>
-        const STORAGE_KEY = 'quizmaster_vn_quizzes_v3';
-        const STATS_KEY = 'quizmaster_vn_stats_v3';
+        const STORAGE_KEY = 'quizmaster_vn_quizzes_v4';
+        const STATS_KEY = 'quizmaster_vn_stats_v4';
 
         const DEFAULT_QUIZZES = [
             {
-                id: 'q-dsa-01',
-                code: 'DSA-01',
-                title: 'Cấu trúc dữ liệu & Giải thuật (DSA)',
-                desc: 'Ôn tập độ phức tạp thuật toán, Danh sách liên kết, Cây nhị phân và Đồ thị A*.',
-                duration: 15,
-                createdAt: '2026-10-19',
+                id: 'q-py-01',
+                code: 'PY-01',
+                title: '50 Câu Trắc Nghiệm Ôn Tập Python – Chủ Đề Hàm',
+                desc: 'Hệ thống câu hỏi ôn tập hàm Python từ cơ bản đến nâng cao.',
+                duration: 45,
                 isServer: true,
                 questions: [
                     {
-                        text: 'Độ phức tạp thời gian trung bình để tìm kiếm một phần tử trong Skip List có n phần tử là bao nhiêu?',
-                        options: ['O(1)', 'O(log n)', 'O(n)', 'O(n log n)'],
+                        text: "Cho đoạn chương trình sau:\na = 12\nif a % 5 == 0:\n    a = a + 3\nelse:\n    a = a - 2\nprint(a)\nCho biết kết quả in ra màn hình.",
+                        options: ["15", "10", "12", "14"],
                         correct: 1,
-                        explain: 'Skip List sử dụng nhiều tầng danh sách liên kết giúp bỏ qua các phần tử, đạt độ phức tạp trung bình O(log n).'
+                        explain: "Vì 12 % 5 == 0 là False, chương trình nhảy vào nhánh else và thực hiện a = a - 2 = 10."
                     }
                 ]
             }
@@ -551,8 +416,6 @@
             stats: { attempts: 0, totalScore: 0 },
             editingQuizId: null,
             editorQuestions: [],
-
-            // Trạng thái phòng thi & Ghi chú nổi
             activeQuiz: null,
             examQuestions: [],
             userAnswers: {},
@@ -561,13 +424,12 @@
             timerSeconds: 0,
             timerInterval: null,
             startTime: 0,
-            questionNotes: {}, // Lưu note theo { indexCâu: "nội dung" }
+            questionNotes: {},
             isNoteOpen: false,
 
             async init() {
                 const savedStats = localStorage.getItem(STATS_KEY);
                 if (savedStats) { try { this.stats = JSON.parse(savedStats); } catch (e) {} }
-
                 await this.reloadServerQuizzes(false);
                 this.checkUrlSharedQuiz();
 
@@ -583,7 +445,7 @@
                     }
                 });
 
-                // Kích hoạt tính năng kéo thả hộp ghi chú bằng chuột
+                // Kéo thả hộp note
                 const box = document.getElementById('floating-note-box');
                 const header = document.getElementById('note-header-drag');
                 let isDragging = false, startX, startY, initialX, initialY;
@@ -603,10 +465,8 @@
 
                 document.addEventListener('mousemove', (e) => {
                     if (!isDragging) return;
-                    const dx = e.clientX - startX;
-                    const dy = e.clientY - startY;
-                    box.style.left = (initialX + dx) + 'px';
-                    box.style.top = (initialY + dy) + 'px';
+                    box.style.left = (initialX + e.clientX - startX) + 'px';
+                    box.style.top = (initialY + e.clientY - startY) + 'px';
                 });
 
                 document.addEventListener('mouseup', () => { isDragging = false; });
@@ -633,11 +493,8 @@
             },
 
             saveCurrentNote(val) {
-                if (val.trim() === '') {
-                    delete this.questionNotes[this.currentQIndex];
-                } else {
-                    this.questionNotes[this.currentQIndex] = val;
-                }
+                if (val.trim() === '') delete this.questionNotes[this.currentQIndex];
+                else this.questionNotes[this.currentQIndex] = val;
                 document.getElementById('note-char-count').textContent = `${val.length} ký tự`;
                 const statusEl = document.getElementById('note-save-status');
                 if (statusEl) {
@@ -649,7 +506,7 @@
 
             async reloadServerQuizzes(showAlert = true) {
                 const statusEl = document.getElementById('sync-status');
-                if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i>Đang tải đề...';
+                if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i>Đang tải...';
 
                 const saved = localStorage.getItem(STORAGE_KEY);
                 let localQuizzes = [];
@@ -660,9 +517,7 @@
                     const res = await fetch('/api/quizzes?t=' + Date.now());
                     if (res.ok) {
                         const data = await res.json();
-                        if (Array.isArray(data) && data.length > 0) {
-                            serverQuizzes = data.map(q => ({ ...q, isServer: true }));
-                        }
+                        if (Array.isArray(data) && data.length > 0) serverQuizzes = data.map(q => ({ ...q, isServer: true }));
                     }
                 } catch (err) {}
 
@@ -673,7 +528,7 @@
                 this.renderDashboard();
 
                 if (statusEl) {
-                    statusEl.innerHTML = serverQuizzes.length > 0 ? `<i class="fa-solid fa-check mr-1"></i>Đã đồng bộ ${serverQuizzes.length} đề Cloud` : `Chế độ đề mặc định`;
+                    statusEl.innerHTML = serverQuizzes.length > 0 ? `<i class="fa-solid fa-check mr-1"></i>Đã đồng bộ ${serverQuizzes.length} đề` : `Chế độ mặc định`;
                 }
             },
 
@@ -683,9 +538,7 @@
             },
 
             showView(viewName) {
-                ['dashboard', 'editor', 'exam', 'result'].forEach(v => {
-                    document.getElementById(`view-${v}`).classList.add('hidden');
-                });
+                ['dashboard', 'editor', 'exam', 'result'].forEach(v => document.getElementById(`view-${v}`).classList.add('hidden'));
                 document.getElementById(`view-${viewName}`).classList.remove('hidden');
                 if (viewName !== 'exam' && this.timerInterval) clearInterval(this.timerInterval);
                 if (viewName === 'dashboard') this.renderDashboard();
@@ -700,8 +553,7 @@
                 document.getElementById('stat-total-quizzes').textContent = this.quizzes.length;
                 document.getElementById('stat-total-questions').textContent = totalQ;
                 document.getElementById('stat-total-attempts').textContent = this.stats.attempts;
-                const avg = this.stats.attempts ? (this.stats.totalScore / this.stats.attempts).toFixed(1) : '0.0';
-                document.getElementById('stat-avg-score').textContent = avg;
+                document.getElementById('stat-avg-score').textContent = this.stats.attempts ? (this.stats.totalScore / this.stats.attempts).toFixed(1) : '0.0';
 
                 const filtered = this.quizzes.filter(q => (q.title || '').toLowerCase().includes(query) || (q.code && q.code.toLowerCase().includes(query)));
 
@@ -710,7 +562,7 @@
                         <div>
                             <div class="flex items-center justify-between gap-2 mb-4">
                                 <span class="px-2.5 py-1 bg-zinc-100 text-zinc-900 font-mono text-[11px] font-bold">#${this.escapeHtml(q.code || 'QUIZ')}</span>
-                                <span class="text-xs text-zinc-400"><i class="fa-regular fa-clock mr-1"></i>${q.duration || 15}p • ${(q.questions || []).length} câu</span>
+                                <span class="text-xs text-zinc-400"><i class="fa-regular fa-clock mr-1"></i>${q.duration || 45}p • ${(q.questions || []).length} câu</span>
                             </div>
                             <h4 class="font-bold text-lg text-zinc-900 line-clamp-1 group-hover:underline">${this.escapeHtml(q.title)}</h4>
                             <p class="text-xs text-zinc-500 mt-2 line-clamp-2">${this.escapeHtml(q.desc || '')}</p>
@@ -734,10 +586,10 @@
 
             openCreateQuiz() {
                 this.editingQuizId = null;
-                document.getElementById('editor-page-title').textContent = 'Tạo Bộ Đề Trắc Nghiệm Mới';
+                document.getElementById('editor-page-title').textContent = 'Tạo Bộ Đề Mới';
                 document.getElementById('edit-title').value = '';
-                document.getElementById('edit-code').value = 'QM-' + Math.floor(1000 + Math.random() * 9000);
-                document.getElementById('edit-duration').value = 15;
+                document.getElementById('edit-code').value = 'PY-' + Math.floor(100 + Math.random() * 900);
+                document.getElementById('edit-duration').value = 45;
                 document.getElementById('edit-desc').value = '';
                 this.editorQuestions = [{ text: '', options: ['', '', '', ''], correct: 0, explain: '' }];
                 this.renderEditorQuestions();
@@ -750,7 +602,7 @@
                 this.editingQuizId = q.id;
                 document.getElementById('edit-title').value = q.title;
                 document.getElementById('edit-code').value = q.code || '';
-                document.getElementById('edit-duration').value = q.duration || 15;
+                document.getElementById('edit-duration').value = q.duration || 45;
                 document.getElementById('edit-desc').value = q.desc || '';
                 this.editorQuestions = JSON.parse(JSON.stringify(q.questions));
                 this.renderEditorQuestions();
@@ -764,7 +616,7 @@
                             <span class="px-3 py-1 bg-zinc-900 text-white font-bold text-xs uppercase">Câu hỏi ${idx + 1}</span>
                             <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-600 font-semibold">Xóa</button>
                         </div>
-                        <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="2" class="w-full p-3 border border-zinc-300 text-sm">${this.escapeHtml(q.text)}</textarea>
+                        <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="3" class="w-full p-3 border border-zinc-300 text-sm font-mono">${this.escapeHtml(q.text)}</textarea>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             ${['A', 'B', 'C', 'D'].map((letter, optIdx) => `
                                 <div class="flex items-center gap-2">
@@ -792,8 +644,8 @@
 
             saveQuiz() {
                 const title = document.getElementById('edit-title').value.trim();
-                const code = document.getElementById('edit-code').value.trim().toUpperCase() || 'QM-01';
-                const duration = parseInt(document.getElementById('edit-duration').value) || 15;
+                const code = document.getElementById('edit-code').value.trim().toUpperCase() || 'PY-01';
+                const duration = parseInt(document.getElementById('edit-duration').value) || 45;
                 const desc = document.getElementById('edit-desc').value.trim();
                 if (!title) return alert('Nhập tên đề!');
                 const validQuestions = this.editorQuestions.filter(q => q.text.trim() !== '');
@@ -825,10 +677,7 @@
                 document.getElementById('modal-share').classList.add('flex');
             },
 
-            closeModal(id) {
-                document.getElementById(id).classList.add('hidden');
-                document.getElementById(id).classList.remove('flex');
-            },
+            closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); },
 
             copyShareLink() {
                 const input = document.getElementById('share-url-input');
@@ -870,11 +719,9 @@
                 reader.readAsText(file);
             },
 
-            // ==================== EXAM ROOM ====================
             startQuiz(id, customQuestions = null) {
                 const quiz = this.quizzes.find(q => q.id === id);
                 if (!quiz) return;
-
                 this.pendingQuizId = id;
                 this.pendingCustomQuestions = customQuestions;
                 
@@ -900,9 +747,9 @@
                 this.examQuestions = this.pendingCustomQuestions || JSON.parse(JSON.stringify(quiz.questions));
                 this.userAnswers = {};
                 this.flaggedQuestions = new Set();
-                this.questionNotes = {}; // Reset note khi bắt đầu đề mới
+                this.questionNotes = {};
                 this.currentQIndex = 0;
-                this.timerSeconds = (quiz.duration || 15) * 60;
+                this.timerSeconds = (quiz.duration || 45) * 60;
                 this.startTime = Date.now();
 
                 document.getElementById('exam-quiz-title').textContent = `${quiz.code || 'QUIZ'} — ${quiz.title}`;
@@ -913,7 +760,7 @@
             },
 
             shuffleActiveExam() {
-                if (!confirm('Đảo thứ tự câu hỏi sẽ làm mới lựa chọn. Tiếp tục?')) return;
+                if (!confirm('Đảo thứ tự câu hỏi?')) return;
                 const shuffled = [...this.examQuestions].sort(() => Math.random() - 0.5);
                 this.startQuiz(this.activeQuiz.id, shuffled);
             },
@@ -960,7 +807,7 @@
                             <div class="w-8 h-8 flex items-center justify-center font-bold text-xs border ${
                                 active ? 'border-zinc-700 bg-zinc-800 text-white' : 'border-zinc-200 bg-zinc-100 text-zinc-800'
                             }">${letter}</div>
-                            <div class="text-sm sm:text-base flex-1">${this.escapeHtml(opt)}</div>
+                            <div class="text-sm sm:text-base flex-1 preserve-space">${this.escapeHtml(opt)}</div>
                         </div>
                     `;
                 }).join('');
@@ -978,7 +825,6 @@
                     return `<button onclick="app.jumpToQuestion(${idx})" class="h-9 border text-xs font-bold transition ${cls}">${idx + 1}</button>`;
                 }).join('');
 
-                // Đồng bộ nội dung ghi chú cho câu hỏi hiện tại
                 document.getElementById('note-current-q-num').textContent = this.currentQIndex + 1;
                 const textarea = document.getElementById('floating-note-textarea');
                 if (textarea) {
@@ -1020,12 +866,6 @@
                 const elapsedSec = Math.max(1, Math.floor((Date.now() - this.startTime) / 1000));
                 const elapsedStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`;
 
-                fetch('/api/submit', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ playerName: this.playerName || 'Ẩn danh', quizCode: this.activeQuiz?.code || 'QUIZ', score: score10, correct: correctCount, total, timeSpent: elapsedStr })
-                }).catch(err => {});
-
                 this.stats.attempts++;
                 this.stats.totalScore += parseFloat(score10);
                 this.saveToStorage();
@@ -1045,22 +885,21 @@
                     return `
                         <div class="bg-white p-6 border ${isCorrect ? 'border-zinc-200' : 'border-rose-300'} shadow-sm space-y-3">
                             <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 ${isCorrect ? 'bg-zinc-900 text-white' : 'bg-rose-600 text-white'}">Câu ${idx + 1}: ${isCorrect ? 'ĐÚNG' : 'SAI'}</span>
-                            <div class="font-medium text-zinc-900 text-sm sm:text-base">${this.escapeHtml(q.text)}</div>
+                            <div class="font-medium text-zinc-900 text-sm sm:text-base preserve-space">${this.escapeHtml(q.text)}</div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                                 ${q.options.map((opt, oIdx) => {
                                     let style = 'border-zinc-200 bg-zinc-50 text-zinc-700';
                                     if (oIdx === q.correct) style = 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold';
                                     else if (oIdx === userAns && !isCorrect) style = 'border-rose-400 bg-rose-50 text-rose-900 line-through';
-                                    return `<div class="p-3 border ${style}">${['A','B','C','D'][oIdx]}.${this.escapeHtml(opt)}</div>`;
+                                    return `<div class="p-3 border ${style} preserve-space">${['A','B','C','D'][oIdx]}.${this.escapeHtml(opt)}</div>`;
                                 }).join('')}
                             </div>
-                            ${q.explain ? `<div class="text-xs text-zinc-600 bg-zinc-50 p-3.5 border border-zinc-200"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <b>Giải thích:</b> ${this.escapeHtml(q.explain)}</div>` : ''}
+                            ${q.explain ? `<div class="text-xs text-zinc-600 bg-zinc-50 p-3.5 border border-zinc-200 preserve-space"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <b>Giải thích:</b> ${this.escapeHtml(q.explain)}</div>` : ''}
                         </div>
                     `;
                 }).join('');
 
                 this.showView('result');
-                // Tự động tắt hộp note nếu đang mở khi xem kết quả
                 if (this.isNoteOpen) this.toggleNoteModal();
             },
 
