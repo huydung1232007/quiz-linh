@@ -32,7 +32,7 @@
             width: 85px;
         }
 
-        /* Giữ nguyên thụt lề và khoảng trắng cho code Python */
+        /* Giữ nguyên thụt lề và TỰ ĐỘNG XUỐNG DÒNG cho câu hỏi/code dài */
         .preserve-space {
             white-space: pre-wrap !important;
             word-wrap: break-word !important;
@@ -192,6 +192,25 @@
                             class="w-full pl-9 pr-4 py-2.5 border border-zinc-300 text-xs focus:outline-none focus:border-zinc-900 bg-white">
                     </div>
                 </div>
+
+                <!-- ==================== BANNER TIẾP TỤC LÀM BÀI ==================== -->
+                <div id="resume-banner" class="hidden mb-8 bg-[#1b1d1f] text-white p-6 border-l-4 border-amber-500 shadow-md flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-amber-500">BÀI THI ĐANG DANG DỞ</span>
+                        <h3 class="text-base font-bold text-white mt-1" id="resume-quiz-title">Tên Đề Thi</h3>
+                        <p class="text-xs text-zinc-400 mt-1">Hệ thống đã tự động lưu lại toàn bộ câu trả lời, ghi chú và thời gian làm bài của bạn.</p>
+                    </div>
+                    <div class="flex gap-3 w-full md:w-auto">
+                        <button onclick="app.clearProgressAndHide()" class="flex-1 md:flex-none px-5 py-3 border border-zinc-600 text-zinc-300 hover:text-white hover:border-zinc-400 text-[10px] font-bold uppercase tracking-widest transition text-center whitespace-nowrap">
+                            Hủy kết quả
+                        </button>
+                        <button onclick="app.resumeQuiz()" class="flex-1 md:flex-none px-6 py-3 bg-white text-black hover:bg-zinc-200 text-[10px] font-bold uppercase tracking-widest transition text-center whitespace-nowrap">
+                            Tiếp tục thi
+                        </button>
+                    </div>
+                </div>
+                <!-- ================================================================= -->
+
                 <div id="quiz-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
         </section>
@@ -245,7 +264,7 @@
                     </div>
 
                     <!-- Khu vực nội dung câu hỏi -->
-                    <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed py-2"></div>
+                    <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed py-2 preserve-space"></div>
 
                     <div id="exam-options-list" class="space-y-3"></div>
 
@@ -415,6 +434,7 @@
     <script>
         const STORAGE_KEY = 'quizmaster_vn_quizzes_v5';
         const STATS_KEY = 'quizmaster_vn_stats_v5';
+        const PROGRESS_KEY = 'quizmaster_vn_progress_v5'; // Khóa lưu tiến độ
 
         const DEFAULT_QUIZZES = [
             {
@@ -495,6 +515,78 @@
 
                 document.addEventListener('mouseup', () => { isDragging = false; });
             },
+
+            // ---------------- HÀM LƯU TIẾN ĐỘ ----------------
+            saveProgress() {
+                if (!this.activeQuiz) return;
+                const progress = {
+                    quizId: this.activeQuiz.id,
+                    playerName: this.playerName,
+                    examQuestions: this.examQuestions,
+                    userAnswers: this.userAnswers,
+                    flaggedQuestions: Array.from(this.flaggedQuestions),
+                    questionNotes: this.questionNotes,
+                    currentQIndex: this.currentQIndex,
+                    timerSeconds: this.timerSeconds,
+                    startTime: this.startTime
+                };
+                localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+            },
+
+            checkSavedProgress() {
+                const saved = localStorage.getItem(PROGRESS_KEY);
+                const banner = document.getElementById('resume-banner');
+                if (saved && banner) {
+                    try {
+                        const p = JSON.parse(saved);
+                        const q = this.quizzes.find(item => item.id === p.quizId);
+                        if (q) {
+                            document.getElementById('resume-quiz-title').textContent = `${q.code || 'QUIZ'} — ${q.title}`;
+                            banner.classList.remove('hidden');
+                            banner.classList.add('flex');
+                            return;
+                        }
+                    } catch(e) {}
+                }
+                if (banner) {
+                    banner.classList.add('hidden');
+                    banner.classList.remove('flex');
+                }
+            },
+
+            resumeQuiz() {
+                const saved = localStorage.getItem(PROGRESS_KEY);
+                if (!saved) return;
+                try {
+                    const progress = JSON.parse(saved);
+                    const quiz = this.quizzes.find(q => q.id === progress.quizId);
+                    if (!quiz) return;
+
+                    this.playerName = progress.playerName;
+                    this.activeQuiz = quiz;
+                    this.examQuestions = progress.examQuestions;
+                    this.userAnswers = progress.userAnswers || {};
+                    this.flaggedQuestions = new Set(progress.flaggedQuestions || []);
+                    this.questionNotes = progress.questionNotes || {};
+                    this.currentQIndex = progress.currentQIndex || 0;
+                    this.timerSeconds = progress.timerSeconds;
+                    this.startTime = progress.startTime;
+
+                    document.getElementById('exam-quiz-title').textContent = `${quiz.code || 'QUIZ'} — ${quiz.title}`;
+                    this.showView('exam');
+                    this.renderExamQuestion();
+                    this.startTimer();
+                    this.updateNoteButtonLabel();
+                } catch(e) {
+                    this.clearProgressAndHide();
+                }
+            },
+
+            clearProgressAndHide() {
+                localStorage.removeItem(PROGRESS_KEY);
+                this.checkSavedProgress();
+            },
+            // ------------------------------------------------
 
             toggleNoteModal() {
                 const box = document.getElementById('floating-note-box');
@@ -598,6 +690,9 @@
                         </div>
                     </div>
                 `).join('');
+
+                // Kiểm tra tiến độ đang lưu
+                this.checkSavedProgress();
             },
 
             joinByCode() {
@@ -746,6 +841,22 @@
             startQuiz(id, customQuestions = null) {
                 const quiz = this.quizzes.find(q => q.id === id);
                 if (!quiz) return;
+
+                const savedProgress = localStorage.getItem(PROGRESS_KEY);
+                if (savedProgress && !customQuestions) {
+                    try {
+                        const p = JSON.parse(savedProgress);
+                        if (p.quizId === id) {
+                            if (confirm('Bạn đang có bài làm dang dở ở đề này. Bạn muốn tiếp tục bài làm cũ chứ? (Bấm OK để tiếp tục, bấm Cancel để làm lại từ đầu)')) {
+                                this.resumeQuiz();
+                                return;
+                            } else {
+                                this.clearProgressAndHide();
+                            }
+                        }
+                    } catch(e) {}
+                }
+
                 this.pendingQuizId = id;
                 this.pendingCustomQuestions = customQuestions;
                 
@@ -784,7 +895,7 @@
             },
 
             shuffleActiveExam() {
-                if (!confirm('Đảo thứ tự câu hỏi?')) return;
+                if (!confirm('Đảo thứ tự câu hỏi? Các câu trả lời sẽ được làm mới.')) return;
                 const shuffled = [...this.examQuestions].sort(() => Math.random() - 0.5);
                 this.startQuiz(this.activeQuiz.id, shuffled);
             },
@@ -800,6 +911,8 @@
                 this.timerInterval = setInterval(() => {
                     this.timerSeconds--;
                     updateDisplay();
+                    this.saveProgress(); // TỰ ĐỘNG LƯU MỖI GIÂY
+
                     if (this.timerSeconds <= 0) {
                         clearInterval(this.timerInterval);
                         alert('Hết giờ làm bài!');
@@ -890,6 +1003,7 @@
                 if (!auto && answered < total && !confirm(`Bạn mới làm ${answered}/${total} câu. Nộp bài sớm?`)) return;
 
                 clearInterval(this.timerInterval);
+                localStorage.removeItem(PROGRESS_KEY); // XÓA TIẾN ĐỘ KHI ĐÃ NỘP BÀI THÀNH CÔNG
 
                 let correctCount = 0;
                 const wrongQuestions = [];
