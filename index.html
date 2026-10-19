@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizMaster VN - Tạo & Chia Sẻ Đề Thi Trắc Nghiệm</title>
+    <title>QuizMaster VN - Hệ Thống Luyện Thi Trắc Nghiệm</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -26,16 +26,19 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-lg text-slate-900 leading-none">QuizMaster <span class="text-indigo-600">VN</span></h1>
-                    <span class="text-xs text-slate-500">Tạo, Làm & Chia sẻ đề trắc nghiệm</span>
+                    <span class="text-xs text-slate-500">Làm bài & Chia sẻ đề trắc nghiệm</span>
                 </div>
             </div>
 
             <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="app.reloadServerQuizzes()" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition" title="Tải lại danh sách đề từ Server">
+                    <i class="fa-solid fa-arrows-rotate mr-1"></i> <span class="hidden sm:inline">Đồng bộ Đề</span>
+                </button>
                 <button onclick="app.showView('dashboard')" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
-                    <i class="fa-solid fa-house mr-1"></i> Trang chủ
+                    <i class="fa-solid fa-house mr-1"></i> <span class="hidden sm:inline">Trang chủ</span>
                 </button>
                 <button onclick="app.openCreateQuiz()" class="px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm shadow-indigo-200 transition flex items-center gap-2">
-                    <i class="fa-solid fa-plus"></i> <span class="hidden sm:inline">Tạo Đề Mới</span>
+                    <i class="fa-solid fa-plus"></i> <span>Tạo Đề Mới</span>
                 </button>
             </div>
         </div>
@@ -49,15 +52,18 @@
             <!-- Hero / Join by Code or File -->
             <div class="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="space-y-2 max-w-xl">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-semibold backdrop-blur-sm">
-                        <i class="fa-solid fa-bolt mr-1"></i> Làm đề thi trực tuyến miễn phí
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-bold">Vào phòng thi nhanh hoặc chia sẻ đề cho bạn bè</h2>
-                    <p class="text-indigo-100 text-sm">Bạn có thể nhập Mã Đề, dán Link chia sẻ, hoặc tải file đề `.json` từ bạn bè lên để làm bài ngay lập tức.</p>
+                    <div class="flex items-center gap-2">
+                        <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-semibold backdrop-blur-sm">
+                            <i class="fa-solid fa-cloud-arrow-down mr-1"></i> Tự động tải đề từ thư mục <code class="font-mono">/quizzes</code>
+                        </span>
+                        <span id="sync-status" class="text-xs text-indigo-100"></span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold">Vào phòng thi nhanh hoặc tải đề lên</h2>
+                    <p class="text-indigo-100 text-sm">Nhập Mã Đề để vào thi ngay, dán Link chia sẻ từ bạn bè, hoặc tải file đề <code>.json</code> lên máy.</p>
                 </div>
 
                 <div class="w-full md:w-auto flex flex-col sm:flex-row gap-2 bg-white/10 p-2 rounded-xl backdrop-blur-md border border-white/20">
-                    <input id="join-code-input" type="text" placeholder="Nhập Mã Đề (VD:DSA-01)..." 
+                    <input id="join-code-input" type="text" placeholder="Nhập Mã Đề (VD: DSA-01)..." 
                         class="px-4 py-2.5 rounded-lg bg-white text-slate-800 text-sm font-medium focus:outline-none w-full sm:w-56">
                     <button onclick="app.joinByCode()" class="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-sm transition whitespace-nowrap">
                         <i class="fa-solid fa-play mr-1"></i> Vào Thi
@@ -108,14 +114,14 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
                 <div>
                     <h2 id="editor-page-title" class="text-xl font-bold text-slate-900">Tạo Bộ Đề Trắc Nghiệm Mới</h2>
-                    <p class="text-xs text-slate-500 mt-0.5">Thiết lập thông tin đề thi và danh sách câu hỏi bên dưới</p>
+                    <p class="text-xs text-slate-500 mt-0.5">Soạn câu hỏi, sau đó tải file <code>.json</code> về và bỏ vào thư mục <code>quizzes/</code> trên Vercel</p>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex flex-wrap items-center gap-2">
                     <button onclick="app.openBulkModal()" class="px-3.5 py-2 rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-sm font-medium transition">
                         <i class="fa-solid fa-bolt mr-1"></i> Nhập nhanh bằng Văn bản
                     </button>
                     <button onclick="app.saveQuiz()" class="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow-sm transition">
-                        <i class="fa-solid fa-floppy-disk mr-1"></i> Lưu & Lấy Link Chia Sẻ
+                        <i class="fa-solid fa-floppy-disk mr-1"></i> Lưu & Xuất File JSON
                     </button>
                 </div>
             </div>
@@ -190,7 +196,14 @@
                     <div class="text-center p-4 rounded-xl bg-slate-900 text-white">
                         <div class="text-xs text-slate-400 uppercase tracking-wider">Thời gian còn lại</div>
                         <div id="exam-timer" class="text-3xl font-mono font-bold mt-1 text-amber-400">15:00</div>
-                        <div id="exam-player-display" class="text-xs text-slate-300 mt-1 truncate">Thí sinh: Khách</div>
+                    </div>
+
+                    <!-- Shuffle Controls before/during exam -->
+                    <div class="flex items-center justify-between text-xs text-slate-600 bg-slate-50 px-3 py-2 rounded-lg border border-slate-200">
+                        <span>Đảo thứ tự câu hỏi</span>
+                        <button onclick="app.shuffleActiveExam()" class="text-indigo-600 font-semibold hover:underline">
+                            <i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay
+                        </button>
                     </div>
 
                     <div>
@@ -291,19 +304,30 @@ D. $v0"></textarea>
         </div>
     </div>
 
-    <!-- ==================== MODAL 2: SHARE QUIZ ==================== -->
+    <!-- ==================== MODAL 2: SHARE & EXPORT QUIZ ==================== -->
     <div id="modal-share" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-xl">
             <div class="flex items-center justify-between">
-                <h3 class="text-lg font-bold text-slate-900"><i class="fa-solid fa-share-nodes text-indigo-600 mr-1.5"></i> Chia sẻ đề thi cho bạn bè</h3>
+                <h3 class="text-lg font-bold text-slate-900"><i class="fa-solid fa-share-nodes text-indigo-600 mr-1.5"></i> Xuất File JSON & Chia Sẻ Đề</h3>
                 <button onclick="app.closeModal('modal-share')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
 
             <div class="space-y-4">
-                <!-- Method 1: Magic URL -->
+                <!-- Method 1: JSON File for Vercel /quizzes folder -->
+                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-3">
+                    <div>
+                        <div class="text-xs font-bold text-emerald-900 uppercase">Cách 1: Tải File .JSON (Để đưa lên Vercel)</div>
+                        <p class="text-xs text-emerald-700 mt-0.5">Tải file này về và bỏ vào thư mục <code>quizzes/</code> trong dự án Vercel của bạn để mọi người đều thấy.</p>
+                    </div>
+                    <button id="btn-download-json" class="px-4 py-2.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 whitespace-nowrap shadow-sm">
+                        <i class="fa-solid fa-download mr-1"></i> Tải JSON
+                    </button>
+                </div>
+
+                <!-- Method 2: Magic URL -->
                 <div class="p-4 rounded-xl bg-indigo-50 border border-indigo-100 space-y-2">
-                    <div class="text-xs font-bold text-indigo-900 uppercase">Cách 1: Gửi Link Trực Tiếp (Không cần cài đặt)</div>
-                    <p class="text-xs text-indigo-700">Toàn bộ câu hỏi được mã hóa vào link này. Bạn bè bấm vào link là làm bài được ngay trên mọi thiết bị!</p>
+                    <div class="text-xs font-bold text-indigo-900 uppercase">Cách 2: Gửi Link Trực Tiếp Ngay Lập Tức</div>
+                    <p class="text-xs text-indigo-700">Toàn bộ câu hỏi được mã hóa vào link này. Bạn bè bấm vào link là làm bài được ngay lập tức!</p>
                     <div class="flex gap-2 pt-1">
                         <input id="share-url-input" type="text" readonly class="flex-1 px-3 py-2 rounded-lg bg-white border border-indigo-200 text-xs font-mono text-slate-700">
                         <button onclick="app.copyShareLink()" class="px-3.5 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 whitespace-nowrap">
@@ -311,25 +335,14 @@ D. $v0"></textarea>
                         </button>
                     </div>
                 </div>
-
-                <!-- Method 2: JSON File -->
-                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-                    <div>
-                        <div class="text-xs font-bold text-slate-800 uppercase">Cách 2: Xuất File Đề (.JSON)</div>
-                        <p class="text-xs text-slate-500">Gửi file qua Zalo/Messenger/Telegram cho bạn bè.</p>
-                    </div>
-                    <button id="btn-download-json" class="px-3.5 py-2 rounded-lg bg-slate-800 text-white text-xs font-semibold hover:bg-slate-900 whitespace-nowrap">
-                        <i class="fa-solid fa-download mr-1"></i> Tải JSON
-                    </button>
-                </div>
             </div>
         </div>
     </div>
 
     <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
-        const STORAGE_KEY = 'quizmaster_vn_quizzes_v2';
-        const STATS_KEY = 'quizmaster_vn_stats_v2';
+        const STORAGE_KEY = 'quizmaster_vn_quizzes_v3';
+        const STATS_KEY = 'quizmaster_vn_stats_v3';
 
         const DEFAULT_QUIZZES = [
             {
@@ -339,6 +352,7 @@ D. $v0"></textarea>
                 desc: 'Ôn tập độ phức tạp thuật toán, Danh sách liên kết, Cây nhị phân và Đồ thị A*.',
                 duration: 15,
                 createdAt: '2026-10-19',
+                isServer: true,
                 questions: [
                     {
                         text: 'Độ phức tạp thời gian trung bình để tìm kiếm một phần tử trong Skip List có n phần tử là bao nhiêu?',
@@ -367,6 +381,7 @@ D. $v0"></textarea>
                 desc: 'Kiểm tra kiến thức về thanh ghi, bộ nhớ và tập lệnh MIPS cơ bản.',
                 duration: 10,
                 createdAt: '2026-10-19',
+                isServer: true,
                 questions: [
                     {
                         text: 'Trong kiến trúc MIPS 32-bit, mỗi lệnh máy (instruction) có kích thước cố định là bao nhiêu byte?',
@@ -401,51 +416,19 @@ D. $v0"></textarea>
             startTime: 0,
 
             async init() {
-                // Load public quizzes from quizzes.json. This file can be updated without editing index.html.
-                let publicQuizzes = DEFAULT_QUIZZES;
-                try {
-                    const response = await fetch('./quizzes.json', { cache: 'no-store' });
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (Array.isArray(data) && data.every(q => q && q.id && Array.isArray(q.questions))) {
-                            publicQuizzes = data;
-                        } else {
-                            console.warn('quizzes.json không đúng định dạng; dùng đề dự phòng trong index.html.');
-                        }
-                    }
-                } catch (error) {
-                    // Opening index.html directly or a network error falls back to built-in sample quizzes.
-                    console.warn('Không tải được quizzes.json; dùng đề dự phòng trong index.html.', error);
-                }
-
-                // Public versions always take priority so changes on GitHub appear on other devices.
-                // Keep locally-created quizzes only when their IDs are not in the public file.
-                let localQuizzes = [];
-                try {
-                    const saved = localStorage.getItem(STORAGE_KEY);
-                    if (saved) {
-                        const parsed = JSON.parse(saved);
-                        if (Array.isArray(parsed)) localQuizzes = parsed;
-                    }
-                } catch (error) {
-                    console.warn('Dữ liệu đề lưu trên máy bị lỗi; sẽ tải lại từ nguồn công khai.', error);
-                }
-                const publicIds = new Set(publicQuizzes.map(q => q.id));
-                this.quizzes = [
-                    ...publicQuizzes,
-                    ...localQuizzes.filter(q => q && q.id && !publicIds.has(q.id))
-                ];
-                this.saveToStorage();
-
+                // 1. Tải thống kê điểm
                 const savedStats = localStorage.getItem(STATS_KEY);
                 if (savedStats) {
-                    try { this.stats = JSON.parse(savedStats); } catch (_) { /* keep default stats */ }
+                    try { this.stats = JSON.parse(savedStats); } catch (e) {}
                 }
 
-                // Check URL Hash for Shared Quiz (#share=...)
+                // 2. Đồng bộ danh sách đề từ /api/quizzes (Vercel) + LocalStorage
+                await this.reloadServerQuizzes(false);
+
+                // 3. Kiểm tra nếu người dùng mở từ Link chia sẻ trực tiếp (#share=...)
                 this.checkUrlSharedQuiz();
 
-                // Keyboard navigation for Exam Room
+                // 4. Gắn phím tắt A, B, C, D và mũi tên khi đang ở trong Phòng thi
                 window.addEventListener('keydown', (e) => {
                     if (document.getElementById('view-exam').classList.contains('hidden')) return;
                     const key = e.key.toUpperCase();
@@ -458,8 +441,59 @@ D. $v0"></textarea>
                         this.prevQuestion();
                     }
                 });
+            },
 
+            async reloadServerQuizzes(showAlert = true) {
+                const statusEl = document.getElementById('sync-status');
+                if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i>Đang tải đề...';
+
+                // Đọc các đề cá nhân do người dùng tự tạo trên trình duyệt
+                const saved = localStorage.getItem(STORAGE_KEY);
+                let localQuizzes = [];
+                if (saved) {
+                    try {
+                        localQuizzes = JSON.parse(saved).filter(q => !q.isServer);
+                    } catch (e) {
+                        localQuizzes = [];
+                    }
+                }
+
+                let serverQuizzes = [];
+                try {
+                    // Gọi Serverless API của Vercel (/api/quizzes) để quét thư mục /quizzes
+                    const res = await fetch('/api/quizzes?t=' + Date.now());
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (Array.isArray(data) && data.length > 0) {
+                            serverQuizzes = data.map(q => ({ ...q, isServer: true }));
+                        }
+                    }
+                } catch (err) {
+                    console.warn('Chưa kết nối được /api/quizzes (đang chạy local hoặc chưa tạo file api/quizzes.js):', err);
+                }
+
+                // Gộp đề từ Server Vercel lên đầu, tiếp theo là đề cá nhân ở máy
+                const serverKeys = new Set(serverQuizzes.map(q => q.id || q.code));
+                const merged = [
+                    ...serverQuizzes,
+                    ...localQuizzes.filter(q => !serverKeys.has(q.id) && !serverKeys.has(q.code))
+                ];
+
+                this.quizzes = merged.length > 0 ? merged : DEFAULT_QUIZZES;
+                this.saveToStorage();
                 this.renderDashboard();
+
+                if (statusEl) {
+                    statusEl.innerHTML = serverQuizzes.length > 0
+                        ? `<i class="fa-solid fa-circle-check text-emerald-300 mr-1"></i>Đã tải ${serverQuizzes.length} đề từ Server`
+                        : `<i class="fa-solid fa-circle-info text-amber-200 mr-1"></i>Chế độ bộ đề mặc định`;
+                }
+
+                if (showAlert) {
+                    alert(serverQuizzes.length > 0
+                        ? `Đã đồng bộ thành công ${serverQuizzes.length} bộ đề từ thư mục quizzes/ trên Vercel!`
+                        : 'Không tìm thấy đề nào mới từ /api/quizzes.');
+                }
             },
 
             saveToStorage() {
@@ -484,7 +518,7 @@ D. $v0"></textarea>
                 const grid = document.getElementById('quiz-grid');
 
                 // Stats
-                const totalQ = this.quizzes.reduce((sum, q) => sum + q.questions.length, 0);
+                const totalQ = this.quizzes.reduce((sum, q) => sum + (q.questions ? q.questions.length : 0), 0);
                 document.getElementById('stat-total-quizzes').textContent = this.quizzes.length;
                 document.getElementById('stat-total-questions').textContent = totalQ;
                 document.getElementById('stat-total-attempts').textContent = this.stats.attempts;
@@ -492,7 +526,7 @@ D. $v0"></textarea>
                 document.getElementById('stat-avg-score').textContent = avg;
 
                 const filtered = this.quizzes.filter(q => 
-                    q.title.toLowerCase().includes(query) || 
+                    (q.title || '').toLowerCase().includes(query) || 
                     (q.code && q.code.toLowerCase().includes(query))
                 );
 
@@ -500,11 +534,14 @@ D. $v0"></textarea>
                     <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between gap-2 mb-3">
-                                <span class="px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 font-mono text-xs font-bold border border-indigo-100">
-                                    #${q.code || 'QUIZ'}
-                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 font-mono text-xs font-bold border border-indigo-100">
+                                        #${this.escapeHtml(q.code || 'QUIZ')}
+                                    </span>
+                                    ${q.isServer ? `<span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[11px] font-semibold border border-emerald-200" title="Đề thi từ thư mục quizzes/ trên Vercel"><i class="fa-solid fa-cloud mr-1"></i>Cloud</span>` : ''}
+                                </div>
                                 <span class="text-xs text-slate-400">
-                                    <i class="fa-regular fa-clock mr-1"></i>${q.duration} phút • ${q.questions.length} câu
+                                    <i class="fa-regular fa-clock mr-1"></i>${q.duration || 15}p • ${(q.questions || []).length} câu
                                 </span>
                             </div>
                             <h4 class="font-bold text-base text-slate-900 line-clamp-1">${this.escapeHtml(q.title)}</h4>
@@ -515,15 +552,17 @@ D. $v0"></textarea>
                             <button onclick="app.startQuiz('${q.id}')" class="flex-1 py-2 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition">
                                 <i class="fa-solid fa-play mr-1"></i> Làm Bài
                             </button>
-                            <button onclick="app.openShareModal('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" title="Chia sẻ đề cho bạn bè">
+                            <button onclick="app.openShareModal('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" title="Tải JSON / Chia sẻ link">
                                 <i class="fa-solid fa-share-nodes"></i>
                             </button>
-                            <button onclick="app.openEditQuiz('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" title="Chỉnh sửa đề">
+                            <button onclick="app.openEditQuiz('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" title="Xem / Chỉnh sửa đề">
                                 <i class="fa-solid fa-pen"></i>
                             </button>
-                            <button onclick="app.deleteQuiz('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-rose-500 hover:bg-rose-50 text-xs" title="Xóa đề">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
+                            ${!q.isServer ? `
+                                <button onclick="app.deleteQuiz('${q.id}')" class="p-2 rounded-lg border border-slate-200 text-rose-500 hover:bg-rose-50 text-xs" title="Xóa đề cá nhân">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            ` : ''}
                         </div>
                     </div>
                 `).join('');
@@ -533,7 +572,6 @@ D. $v0"></textarea>
                 const raw = document.getElementById('join-code-input').value.trim();
                 if (!raw) return alert('Vui lòng nhập Mã Đề hoặc dán Link chia sẻ!');
 
-                // Check if user pasted a full share link
                 if (raw.includes('#share=')) {
                     const base64 = raw.split('#share=')[1];
                     this.importFromBase64(base64);
@@ -544,7 +582,7 @@ D. $v0"></textarea>
                 if (found) {
                     this.startQuiz(found.id);
                 } else {
-                    alert('Không tìm thấy mã đề "' + raw + '" trong máy. Nếu bạn bè gửi đề cho bạn, hãy bảo họ bấm nút Chia Sẻ (Share) và gửi Link trực tiếp cho bạn nhé!');
+                    alert('Không tìm thấy mã đề "' + raw + '". Hãy kiểm tra lại Mã Đề hoặc bấm nút Đồng bộ Đề ở góc trên!');
                 }
             },
 
@@ -567,7 +605,7 @@ D. $v0"></textarea>
                 const q = this.quizzes.find(item => item.id === id);
                 if (!q) return;
                 this.editingQuizId = q.id;
-                document.getElementById('editor-page-title').textContent = 'Chỉnh Sửa Bộ Đề';
+                document.getElementById('editor-page-title').textContent = q.isServer ? 'Chỉnh Sửa Đề (Lưu bản mới để tải JSON)' : 'Chỉnh Sửa Bộ Đề';
                 document.getElementById('edit-title').value = q.title;
                 document.getElementById('edit-code').value = q.code || '';
                 document.getElementById('edit-duration').value = q.duration || 15;
@@ -635,7 +673,7 @@ D. $v0"></textarea>
                 if (targetId) {
                     const idx = this.quizzes.findIndex(q => q.id === targetId);
                     if (idx > -1) {
-                        this.quizzes[idx] = { ...this.quizzes[idx], title, code, duration, desc, questions: validQuestions };
+                        this.quizzes[idx] = { ...this.quizzes[idx], title, code, duration, desc, questions: validQuestions, isServer: false };
                     }
                 } else {
                     targetId = 'q-' + Date.now();
@@ -646,6 +684,7 @@ D. $v0"></textarea>
                         desc,
                         duration,
                         createdAt: new Date().toISOString().slice(0, 10),
+                        isServer: false,
                         questions: validQuestions
                     });
                 }
@@ -656,7 +695,7 @@ D. $v0"></textarea>
             },
 
             deleteQuiz(id) {
-                if (!confirm('Bạn có chắc muốn xóa bộ đề này?')) return;
+                if (!confirm('Bạn có chắc muốn xóa bộ đề này khỏi trình duyệt?')) return;
                 this.quizzes = this.quizzes.filter(q => q.id !== id);
                 this.saveToStorage();
                 this.renderDashboard();
@@ -726,18 +765,28 @@ D. $v0"></textarea>
                 }
             },
 
-            // ==================== SHARE & IMPORT (URL + JSON) ====================
+            // ==================== SHARE & IMPORT (JSON + URL) ====================
             openShareModal(id) {
                 const q = this.quizzes.find(item => item.id === id);
                 if (!q) return;
 
-                // Encode quiz into Base64 URL
-                const jsonStr = JSON.stringify(q);
+                // Clean object for export
+                const exportObj = {
+                    id: q.id,
+                    code: q.code,
+                    title: q.title,
+                    desc: q.desc,
+                    duration: q.duration,
+                    createdAt: q.createdAt || new Date().toISOString().slice(0, 10),
+                    questions: q.questions
+                };
+
+                const jsonStr = JSON.stringify(exportObj);
                 const base64 = btoa(unescape(encodeURIComponent(jsonStr)));
                 const shareUrl = `${window.location.origin}${window.location.pathname}#share=${base64}`;
 
                 document.getElementById('share-url-input').value = shareUrl;
-                document.getElementById('btn-download-json').onclick = () => this.exportQuizJSON(q);
+                document.getElementById('btn-download-json').onclick = () => this.exportQuizJSON(exportObj);
 
                 document.getElementById('modal-share').classList.remove('hidden');
                 document.getElementById('modal-share').classList.add('flex');
@@ -747,7 +796,7 @@ D. $v0"></textarea>
                 const input = document.getElementById('share-url-input');
                 input.select();
                 navigator.clipboard.writeText(input.value);
-                alert('Đã sao chép Link đề thi! Bạn có thể gửi link này qua Messenger/Zalo cho bạn bè.');
+                alert('Đã sao chép Link đề thi! Bạn có thể gửi link này cho bạn bè làm ngay.');
             },
 
             checkUrlSharedQuiz() {
@@ -781,7 +830,8 @@ D. $v0"></textarea>
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `${quiz.code || 'de-thi'}.json`;
+                const safeName = (quiz.code || 'de-thi').toLowerCase().replace(/[^a-z0-9-_]/g, '');
+                a.download = `${safeName || 'de-thi'}.json`;
                 a.click();
             },
 
@@ -792,12 +842,19 @@ D. $v0"></textarea>
                 reader.onload = (e) => {
                     try {
                         const data = JSON.parse(e.target.result);
-                        if (!data.title || !Array.isArray(data.questions)) throw new Error('Invalid format');
-                        data.id = 'q-' + Date.now();
-                        this.quizzes.unshift(data);
+                        const list = Array.isArray(data) ? data : [data];
+                        let count = 0;
+                        list.forEach(item => {
+                            if (item.title && Array.isArray(item.questions)) {
+                                item.id = item.id || ('q-' + Date.now() + '-' + count);
+                                this.quizzes.unshift(item);
+                                count++;
+                            }
+                        });
+                        if (count === 0) throw new Error('Invalid format');
                         this.saveToStorage();
                         this.renderDashboard();
-                        alert(`Đã nhập thành công đề "${data.title}"!`);
+                        alert(`Đã nhập thành công ${count} bộ đề!`);
                     } catch (err) {
                         alert('File JSON không đúng định dạng đề thi!');
                     }
@@ -818,10 +875,16 @@ D. $v0"></textarea>
                 this.timerSeconds = (quiz.duration || 15) * 60;
                 this.startTime = Date.now();
 
-                document.getElementById('exam-quiz-title').textContent = `${quiz.code} • ${quiz.title}`;
+                document.getElementById('exam-quiz-title').textContent = `${quiz.code || 'QUIZ'} • ${quiz.title}`;
                 this.showView('exam');
                 this.renderExamQuestion();
                 this.startTimer();
+            },
+
+            shuffleActiveExam() {
+                if (!confirm('Đảo thứ tự câu hỏi sẽ làm mới lại lựa chọn hiện tại của bạn. Tiếp tục?')) return;
+                const shuffled = [...this.examQuestions].sort(() => Math.random() - 0.5);
+                this.startQuiz(this.activeQuiz.id, shuffled);
             },
 
             startTimer() {
@@ -850,14 +913,12 @@ D. $v0"></textarea>
                 document.getElementById('exam-question-counter').textContent = `Câu hỏi ${this.currentQIndex + 1} / ${total}`;
                 document.getElementById('exam-question-text').textContent = q.text;
 
-                // Flag state
                 const isFlagged = this.flaggedQuestions.has(this.currentQIndex);
                 const flagBtn = document.getElementById('exam-flag-btn');
                 flagBtn.className = isFlagged 
                     ? 'px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50 text-xs font-semibold text-amber-700 transition'
                     : 'px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:bg-slate-50 transition';
 
-                // Render Options
                 const selected = this.userAnswers[this.currentQIndex];
                 const optionsEl = document.getElementById('exam-options-list');
                 optionsEl.innerHTML = q.options.map((opt, idx) => {
@@ -875,7 +936,6 @@ D. $v0"></textarea>
                     `;
                 }).join('');
 
-                // Palette
                 const answeredCount = Object.keys(this.userAnswers).length;
                 document.getElementById('exam-answered-count').textContent = `${answeredCount}/${total} đã chọn`;
 
@@ -950,12 +1010,10 @@ D. $v0"></textarea>
                 const elapsedSec = Math.max(1, Math.floor((Date.now() - this.startTime) / 1000));
                 const elapsedStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`;
 
-                // Update stats
                 this.stats.attempts++;
                 this.stats.totalScore += parseFloat(score10);
                 this.saveToStorage();
 
-                // Populate Result View
                 document.getElementById('result-quiz-title').textContent = this.activeQuiz.title;
                 document.getElementById('res-score').textContent = score10;
                 document.getElementById('res-correct').textContent = correctCount;
@@ -966,7 +1024,6 @@ D. $v0"></textarea>
                 this.lastWrongQuestions = wrongQuestions;
                 retryWrongBtn.style.display = wrongQuestions.length > 0 ? 'inline-block' : 'none';
 
-                // Render Review List
                 const reviewEl = document.getElementById('result-review-list');
                 reviewEl.innerHTML = this.examQuestions.map((q, idx) => {
                     const userAns = this.userAnswers[idx];
