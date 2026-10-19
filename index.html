@@ -6,7 +6,7 @@
     <title>quiz cuối kì - Huy Dũng & Em Bô</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Thư viện tô màu cú pháp Python -->
+    <!-- Thư viện tô màu cú pháp Python (Prism.js Dark Theme) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
@@ -32,12 +32,14 @@
             width: 85px;
         }
 
+        /* Giữ nguyên thụt lề và TỰ ĐỘNG XUỐNG DÒNG cho câu hỏi/code dài */
         .preserve-space {
             white-space: pre-wrap !important;
             word-wrap: break-word !important;
             font-family: 'Fira Code', Consolas, Monaco, monospace, sans-serif;
         }
 
+        /* Tùy chỉnh khung code block tối giống VS Code */
         pre.code-box, pre.code-box code {
             white-space: pre-wrap !important;
             word-break: break-word !important;
@@ -74,7 +76,7 @@
         </button>
     </div>
 
-    <!-- HEADER -->
+    <!-- ==================== HEADER ==================== -->
     <header class="bg-[#212326] text-white sticky top-0 z-30">
         <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3 cursor-pointer" onclick="app.showView('dashboard')">
@@ -103,8 +105,9 @@
         </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- ==================== MAIN ==================== -->
     <main class="flex-1 w-full">
+
         <!-- DASHBOARD -->
         <section id="view-dashboard">
             <div class="relative bg-[#212326] pb-32 pt-2 px-4 sm:px-10 lg:px-16">
@@ -129,7 +132,7 @@
                         </div>
                     </div>
                     <div class="lg:col-span-6 relative min-h-[260px] bg-zinc-200">
-                        <img src="lt1.jpg" alt="Studio" class="w-full h-full object-cover contrast-105 brightness-95" onerror="this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80'">
+                        <img src="lt1.jpg" alt="Studio" class="w-full h-full object-cover contrast-105 brightness-95">
                     </div>
                 </div>
             </div>
@@ -137,12 +140,14 @@
             <!-- CARDS -->
             <div class="relative z-20 max-w-[1200px] mx-auto px-4 sm:px-6 -mt-24">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition cursor-pointer">
+                    <div onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" 
+                         class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition cursor-pointer">
                         <i class="fa-solid fa-compass-drafting text-3xl mb-4"></i>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Kho Đề Trắc Nghiệm</h3>
                         <p class="text-xs text-zinc-500">Hiện có <strong id="stat-total-quizzes">0</strong> bộ đề & <strong id="stat-total-questions">0</strong> câu hỏi.</p>
                     </div>
-                    <div onclick="app.openCreateQuiz()" class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition cursor-pointer">
+                    <div onclick="app.openCreateQuiz()" 
+                         class="bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-zinc-100 hover:-translate-y-1 transition cursor-pointer">
                         <i class="fa-solid fa-pen-ruler text-3xl mb-4"></i>
                         <h3 class="font-bold text-base text-zinc-900 mb-2">Thiết Kế & Soạn Đề</h3>
                         <p class="text-xs text-zinc-500">Tạo đề mới và xuất file JSON chuẩn.</p>
@@ -159,8 +164,8 @@
             <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-20 blueprint-bg">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                     <div class="lg:col-span-6 grid grid-cols-12 gap-5 items-end">
-                        <div class="col-span-7"><img src="lt2.jpg" alt="Space 1" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80'"></div>
-                        <div class="col-span-5 -mb-6"><img src="lt3.jpg" alt="Space 2" class="w-full h-40 object-cover" onerror="this.src='https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=80'"></div>
+                        <div class="col-span-7"><img src="lt2.jpg" alt="Space 1" class="w-full h-64 object-cover"></div>
+                        <div class="col-span-5 -mb-6"><img src="lt3.jpg" alt="Space 2" class="w-full h-40 object-cover"></div>
                     </div>
                     <div class="lg:col-span-6 relative pt-6 lg:pt-0">
                         <div class="text-[64px] sm:text-[90px] font-extrabold text-zinc-100 leading-none select-none pointer-events-none absolute -top-6 left-0">YOUR PLACE</div>
@@ -188,6 +193,7 @@
                     </div>
                 </div>
 
+                <!-- BANNER TIẾP TỤC BÀI LÀM (AUTO-SAVE) -->
                 <div id="resume-banner" class="hidden mb-8 bg-[#1b1d1f] text-white p-6 border-l-4 border-emerald-500 shadow-md flex-col md:flex-row items-start md:items-center justify-between gap-5">
                     <div>
                         <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-400">BÀI THI ĐANG DANG DỞ</span>
@@ -256,6 +262,7 @@
                         </button>
                     </div>
 
+                    <!-- Khu vực nội dung câu hỏi -->
                     <div id="exam-question-text" class="text-base sm:text-lg font-medium text-zinc-900 leading-relaxed py-2 preserve-space"></div>
 
                     <div id="exam-options-list" class="space-y-3"></div>
@@ -267,6 +274,7 @@
                     </div>
                 </div>
 
+                <!-- RIGHT SIDEBAR -->
                 <div class="bg-white border border-zinc-200 shadow-sm p-6 space-y-6 sticky top-28">
                     <div class="text-center p-5 bg-[#212326] text-white">
                         <div class="text-[10px] text-zinc-400 uppercase tracking-[0.2em]">Thời gian còn lại</div>
@@ -279,6 +287,7 @@
                             <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold hover:underline"><i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay</button>
                         </div>
                         
+                        <!-- HAI NÚT: GHI CHÚ VÀ CHẠY CODE -->
                         <div class="flex gap-2">
                             <button onclick="app.toggleNoteModal()" class="flex-1 py-2.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-[10px] font-bold uppercase border border-zinc-300 flex items-center justify-center gap-1.5 transition">
                                 <i class="fa-regular fa-note-sticky text-amber-500"></i> <span id="note-btn-label">Note (0)</span>
@@ -342,6 +351,7 @@
 
     </main>
 
+    <!-- FOOTER -->
     <footer class="bg-[#212326] text-zinc-400 text-xs py-8 px-6 border-t border-zinc-800 mt-auto">
         <div class="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="font-bold text-white">Hí nô<span class="font-light text-zinc-400">em bô</span> — Huy Dũng</div>
@@ -372,9 +382,10 @@
         </div>
     </div>
 
-    <!-- MODAL PYTHON RUNNER -->
+    <!-- ==================== MODAL PYTHON RUNNER (THÊM MỚI TẠI ĐÂY) ==================== -->
     <div id="modal-python-runner" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60] hidden items-center justify-center p-4">
         <div class="bg-white max-w-4xl w-full flex flex-col shadow-2xl border border-zinc-200 h-[85vh] sm:h-[75vh]">
+            <!-- Header Modal -->
             <div class="flex items-center justify-between border-b border-zinc-200 px-6 py-4 bg-zinc-50">
                 <div class="flex items-center gap-2">
                     <i class="fa-brands fa-python text-xl text-emerald-600"></i>
@@ -383,11 +394,14 @@
                 <button onclick="app.closePythonRunner()" class="text-zinc-400 hover:text-zinc-900 transition"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             
+            <!-- Vùng Editor & IO -->
             <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
+                <!-- Vùng Trái: Code Editor -->
                 <div class="w-full md:w-2/3 p-5 flex flex-col border-b md:border-b-0 md:border-r border-zinc-200">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Code Python (Chỉnh sửa tùy ý)</label>
                     <textarea id="py-code-input" class="w-full flex-1 p-4 bg-[#1e1e1e] text-[#d4d4d8] font-mono text-sm focus:outline-none resize-none border border-zinc-800 rounded-lg custom-scroll whitespace-pre" spellcheck="false" placeholder="Nhập code Python vào đây..."></textarea>
                 </div>
+                <!-- Vùng Phải: Input & Output -->
                 <div class="w-full md:w-1/3 p-5 flex flex-col bg-zinc-50 space-y-4">
                     <div class="flex flex-col">
                         <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Đầu vào (Lệnh input)</label>
@@ -400,6 +414,7 @@
                 </div>
             </div>
             
+            <!-- Footer Buttons -->
             <div class="px-6 py-4 border-t border-zinc-200 bg-zinc-50 flex justify-end gap-3">
                 <button onclick="document.getElementById('py-output').textContent=''" class="px-5 py-2.5 border border-zinc-300 text-zinc-600 text-xs font-bold uppercase tracking-wider hover:border-zinc-900 transition">Xóa Output</button>
                 <button onclick="app.runPythonCode()" class="px-6 py-2.5 bg-[#1b1d1f] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-2 shadow-md">
@@ -408,6 +423,7 @@
             </div>
         </div>
     </div>
+    <!-- =================================================================================== -->
 
     <!-- MODAL NHẬP TÊN -->
     <div id="modal-player-name" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
@@ -420,6 +436,21 @@
             <div class="flex justify-end gap-3 pt-2">
                 <button onclick="app.closeNameModal(false)" class="px-5 py-2.5 border border-zinc-200 text-xs font-bold uppercase">Hủy</button>
                 <button onclick="app.closeNameModal(true)" class="px-6 py-2.5 bg-[#1b1d1f] text-white text-xs font-bold uppercase">Vào Thi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SHARE & BULK -->
+    <div id="modal-bulk" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full p-8 space-y-5 border border-zinc-200">
+            <div class="flex justify-between items-center border-b pb-4">
+                <h3 class="text-lg font-bold uppercase">Nhập nhanh văn bản</h3>
+                <button onclick="app.closeModal('modal-bulk')"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <textarea id="bulk-textarea" rows="10" class="w-full p-4 border border-zinc-300 text-sm font-mono"></textarea>
+            <div class="flex justify-end gap-3">
+                <button onclick="app.closeModal('modal-bulk')" class="px-5 py-2.5 border text-xs">Hủy</button>
+                <button onclick="app.parseBulkText()" class="px-6 py-2.5 bg-[#1b1d1f] text-white text-xs">Tách Câu Hỏi</button>
             </div>
         </div>
     </div>
@@ -447,28 +478,30 @@
     </div>
 
     <!-- THƯ VIỆN BÊN NGOÀI -->
+    <!-- Prism.js: Tô sáng cú pháp -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    
+    <!-- Skulpt: Engine chạy code Python trực tiếp trên trình duyệt -->
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const STORAGE_KEY = 'quizmaster_vn_quizzes_v7_universal';
-        const STATS_KEY = 'quizmaster_vn_stats_v7_universal';
-        const PROGRESS_KEY = 'quizmaster_vn_progress_v7_universal';
+        const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
+        const STATS_KEY = 'quizmaster_vn_stats_v6';
+        const PROGRESS_KEY = 'quizmaster_vn_progress_v6';
 
         const DEFAULT_QUIZZES = [
             {
                 id: 'q-py-01',
                 code: 'PY-01',
-                title: 'Câu Hỏi Mẫu Khởi Đầu',
-                desc: 'Hệ thống câu hỏi mẫu hỗ trợ đa định dạng.',
+                title: '50 Câu Trắc Nghiệm Ôn Tập Python',
+                desc: 'Hệ thống câu hỏi ôn tập hàm Python từ cơ bản đến nâng cao.',
                 duration: 45,
                 isServer: true,
                 questions: [
                     {
-                        type: "multiple_choice",
                         text: "Cho đoạn chương trình sau:\na = 12\nif a % 5 == 0:\n    a = a + 3\nelse:\n    a = a - 2\nprint(a)\nCho biết kết quả in ra màn hình.",
                         options: ["15", "10", "12", "14"],
                         correct: 1,
@@ -497,20 +530,17 @@
             async init() {
                 const savedStats = localStorage.getItem(STATS_KEY);
                 if (savedStats) { try { this.stats = JSON.parse(savedStats); } catch (e) {} }
-                
                 await this.reloadServerQuizzes(false);
                 this.checkUrlSharedQuiz();
 
                 window.addEventListener('keydown', (e) => {
                     if (document.getElementById('view-exam').classList.contains('hidden')) return;
+                    // Không kích hoạt phím tắt khi đang nhập liệu vào note hoặc code runner
                     if (['TEXTAREA', 'INPUT'].includes(document.activeElement.tagName)) return;
 
                     const key = e.key.toUpperCase();
-                    if (['A', 'B', 'C', 'D', 'E', 'F'].includes(key)) {
-                        const q = this.examQuestions[this.currentQIndex];
-                        if(q.type === 'multiple_choice') {
-                            this.selectOption(key.charCodeAt(0) - 65);
-                        }
+                    if (['A', 'B', 'C', 'D'].includes(key)) {
+                        this.selectOption(key.charCodeAt(0) - 65);
                     } else if (e.key === 'ArrowRight') {
                         this.nextQuestion();
                     } else if (e.key === 'ArrowLeft') {
@@ -518,6 +548,7 @@
                     }
                 });
 
+                // Kéo thả hộp note
                 const box = document.getElementById('floating-note-box');
                 const header = document.getElementById('note-header-drag');
                 let isDragging = false, startX, startY, initialX, initialY;
@@ -544,151 +575,22 @@
                 document.addEventListener('mouseup', () => { isDragging = false; });
             },
 
-            // ================== HÀM BÓC TÁCH & CHUẨN HÓA ĐA CHUẨN (MỚI) ==================
-            extractQuiz(item, fallbackName) {
-                let quizObj = null;
-
-                if (Array.isArray(item)) {
-                    if (item.length === 0) return null;
-                    if (item[0].questions !== undefined) {
-                        quizObj = item[0];
-                    } else if (item[0].question !== undefined || item[0].text !== undefined) {
-                        quizObj = {
-                            id: 'sync-q-' + Date.now() + '-' + Math.floor(Math.random() * 10000),
-                            code: 'QZ-' + Math.floor(100 + Math.random() * 900),
-                            title: fallbackName ? String(fallbackName) : 'Bộ đề Tự động',
-                            desc: 'Hệ thống tự động đóng gói từ danh sách câu hỏi.',
-                            duration: 45,
-                            questions: item
-                        };
-                    } else if (item.length === 1 && typeof item[0] === 'object') {
-                        quizObj = item[0];
-                    }
-                } else if (typeof item === 'object' && item !== null) {
-                    if (item.questions) {
-                        quizObj = item;
-                    } else if (item.data) {
-                        return this.extractQuiz(item.data, item.filename || item.file || fallbackName);
-                    }
-                }
-
-                if (!quizObj || !quizObj.questions) return null;
-
-                quizObj.questions = quizObj.questions.map(q => {
-                    let norm = {
-                        text: q.text || q.question || "",
-                        type: q.type || "multiple_choice",
-                        explain: q.explain || ""
-                    };
-                    
-                    if (norm.type === "multiple_choice") {
-                        if (Array.isArray(q.options)) {
-                            norm.options = q.options;
-                            norm.correct = q.correct !== undefined ? q.correct : -1;
-                        } else if (typeof q.options === 'object' && q.options !== null) {
-                            norm.options = Object.values(q.options);
-                            if (typeof q.answer === 'string' && q.answer.trim().length > 0) {
-                                const keys = Object.keys(q.options);
-                                norm.correct = keys.indexOf(q.answer.toLowerCase().trim());
-                            } else if (typeof q.correct === 'number') {
-                                norm.correct = q.correct;
-                            } else {
-                                norm.correct = -1;
-                            }
-                        }
-                    } else if (norm.type === "fill_in_blank") {
-                        norm.options = [];
-                        norm.correct = q.answer !== undefined ? String(q.answer).trim() : (q.correct !== undefined ? String(q.correct).trim() : "");
-                    }
-                    return norm;
-                });
-
-                return quizObj;
-            },
-
-            importQuizJSON(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    try {
-                        const data = JSON.parse(e.target.result);
-                        
-                        let itemsToProcess = [];
-                        if (Array.isArray(data) && data.length > 0 && data[0].questions !== undefined) {
-                            itemsToProcess = data;
-                        } else {
-                            itemsToProcess = [data];
-                        }
-
-                        itemsToProcess.forEach((item, idx) => {
-                            let normQ = this.extractQuiz(item, file.name.replace('.json', '') + ' ' + idx);
-                            if (normQ) {
-                                normQ.id = normQ.id || ('q-' + Date.now() + idx);
-                                normQ.title = normQ.title || file.name.replace('.json', '');
-                                normQ.isServer = false;
-                                this.quizzes.unshift(normQ);
-                            }
-                        });
-                        
-                        this.saveToStorage();
-                        this.renderDashboard();
-                        alert('Nhập JSON đa chuẩn thành công!');
-                    } catch (err) { alert('Định dạng file không hợp lệ!'); }
-                };
-                reader.readAsText(file);
-                event.target.value = '';
-            },
-
-            async reloadServerQuizzes(showAlert = true) {
-                const statusEl = document.getElementById('sync-status');
-                if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i>Đang tải...';
-
-                const saved = localStorage.getItem(STORAGE_KEY);
-                let localQuizzes = [];
-                if (saved) { try { localQuizzes = JSON.parse(saved).filter(q => !q.isServer); } catch (e) {} }
-
-                let serverQuizzes = [];
-                try {
-                    const res = await fetch('/api/quizzes?t=' + Date.now());
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (Array.isArray(data)) {
-                            data.forEach((fileContent, idx) => {
-                                // Gọi hàm normalize chung
-                                let normQ = this.extractQuiz(fileContent, 'Đề đồng bộ ' + (idx + 1));
-                                if (normQ) {
-                                    normQ.isServer = true;
-                                    serverQuizzes.push(normQ);
-                                }
-                            });
-                        }
-                    }
-                } catch (err) {}
-
-                const serverKeys = new Set(serverQuizzes.map(q => q.id || q.code));
-                this.quizzes = [...serverQuizzes, ...localQuizzes.filter(q => !serverKeys.has(q.id) && !serverKeys.has(q.code))];
-                if (this.quizzes.length === 0) this.quizzes = DEFAULT_QUIZZES;
-                this.saveToStorage();
-                this.renderDashboard();
-
-                if (statusEl) {
-                    statusEl.innerHTML = serverQuizzes.length > 0 ? `<i class="fa-solid fa-check mr-1"></i>Đã đồng bộ ${serverQuizzes.length} đề` : `Chế độ mặc định`;
-                }
-            },
-            // ============================================================================
-
+            // ---------------- TÍNH NĂNG PYTHON RUNNER ----------------
             openPythonRunner() {
                 document.getElementById('modal-python-runner').classList.replace('hidden', 'flex');
+                
+                // Trích xuất tự động code từ câu hỏi hiện tại để đỡ phải gõ lại
                 const q = this.examQuestions[this.currentQIndex];
                 const codeInput = document.getElementById('py-code-input');
                 if (q && (q.text.includes('\n') || q.text.includes('='))) {
+                    // Loại bỏ dòng văn bản thông thường (nếu có)
                     const lines = q.text.split('\n');
                     const codeLines = lines.filter(l => !l.toLowerCase().includes('cho đoạn chương trình') && !l.toLowerCase().includes('kết quả in ra'));
                     codeInput.value = codeLines.join('\n').trim();
                 } else {
-                    codeInput.value = 'name = input("Nhập tên của bạn: ")\nprint("Xin chào", name, "từ Em Bô!")';
+                    codeInput.value = 'print("Xin chào từ Em Bô!")';
                 }
+                
                 document.getElementById('py-output').textContent = '';
                 document.getElementById('py-stdin').value = '';
             },
@@ -702,42 +604,48 @@
                 const outputEl = document.getElementById('py-output');
                 const stdinStr = document.getElementById('py-stdin').value;
                 
-                const inputLines = stdinStr.trim() === '' ? [] : stdinStr.split('\n');
+                outputEl.textContent = 'Đang chạy...\n';
+                
+                const inputLines = stdinStr.split('\n');
                 let inputCursor = 0;
 
-                outputEl.textContent = ''; 
-
+                // Cấu hình môi trường chạy Python bằng Skulpt
                 Sk.configure({
-                    output: function(text) { outputEl.textContent += text; },
+                    output: function(text) {
+                        outputEl.textContent += text;
+                    },
                     read: function(x) {
-                        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) throw "File not found: '" + x + "'";
+                        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                            throw "File not found: '" + x + "'";
                         return Sk.builtinFiles["files"][x];
                     },
                     inputfun: function(promptStr) {
                         return new Promise((resolve) => {
-                            if (promptStr) outputEl.textContent += promptStr;
-                            if (inputCursor < inputLines.length) {
-                                const val = inputLines[inputCursor++];
-                                outputEl.textContent += val + '\n';
-                                resolve(val);
+                            if (inputCursor < inputLines.length && inputLines[inputCursor] !== undefined) {
+                                resolve(inputLines[inputCursor++]); // Đọc dữ liệu từ ô Input
                             } else {
-                                const val = prompt(promptStr || 'Nhập dữ liệu đầu vào cho Python:');
-                                const finalVal = val !== null ? val : '';
-                                outputEl.textContent += finalVal + '\n';
-                                resolve(finalVal);
+                                // Nếu hết dữ liệu ở ô input thì bật prompt của trình duyệt
+                                const val = prompt(promptStr || 'Nhập input cho Python:');
+                                resolve(val !== null ? val : '');
                             }
                         });
                     },
-                    execLimit: 5000 
+                    execLimit: 5000 // Chống lặp vô hạn (Giới hạn 5 giây)
                 });
 
+                // Thực thi code
                 Sk.misceval.asyncToPromise(() => {
+                    outputEl.textContent = ''; // Xóa chữ Đang chạy
                     return Sk.importMainWithBody("<stdin>", false, code, true);
-                }).then(() => {}, (err) => {
+                }).then(() => {
+                    // Chạy thành công
+                }, (err) => {
                     outputEl.textContent += '\n[LỖI] ' + err.toString();
                 });
             },
+            // ---------------------------------------------------------
 
+            // LƯU TIẾN ĐỘ TỰ ĐỘNG
             saveProgress() {
                 if (!this.activeQuiz) return;
                 const progress = {
@@ -808,6 +716,7 @@
                 this.checkSavedProgress();
             },
 
+            // CÁC HÀM XỬ LÝ GIAO DIỆN
             toggleNoteModal() {
                 const box = document.getElementById('floating-note-box');
                 this.isNoteOpen = !this.isNoteOpen;
@@ -838,6 +747,34 @@
                     setTimeout(() => { statusEl.textContent = 'Đã lưu'; }, 400);
                 }
                 this.updateNoteButtonLabel();
+            },
+
+            async reloadServerQuizzes(showAlert = true) {
+                const statusEl = document.getElementById('sync-status');
+                if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i>Đang tải...';
+
+                const saved = localStorage.getItem(STORAGE_KEY);
+                let localQuizzes = [];
+                if (saved) { try { localQuizzes = JSON.parse(saved).filter(q => !q.isServer); } catch (e) {} }
+
+                let serverQuizzes = [];
+                try {
+                    const res = await fetch('/api/quizzes?t=' + Date.now());
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (Array.isArray(data) && data.length > 0) serverQuizzes = data.map(q => ({ ...q, isServer: true }));
+                    }
+                } catch (err) {}
+
+                const serverKeys = new Set(serverQuizzes.map(q => q.id || q.code));
+                this.quizzes = [...serverQuizzes, ...localQuizzes.filter(q => !serverKeys.has(q.id) && !serverKeys.has(q.code))];
+                if (this.quizzes.length === 0) this.quizzes = DEFAULT_QUIZZES;
+                this.saveToStorage();
+                this.renderDashboard();
+
+                if (statusEl) {
+                    statusEl.innerHTML = serverQuizzes.length > 0 ? `<i class="fa-solid fa-check mr-1"></i>Đã đồng bộ ${serverQuizzes.length} đề` : `Chế độ mặc định`;
+                }
             },
 
             saveToStorage() {
@@ -1010,6 +947,25 @@
                 }
             },
 
+            importQuizJSON(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        (Array.isArray(data) ? data : [data]).forEach((item, idx) => {
+                            item.id = item.id || ('q-' + Date.now() + idx);
+                            this.quizzes.unshift(item);
+                        });
+                        this.saveToStorage();
+                        this.renderDashboard();
+                        alert('Nhập JSON thành công!');
+                    } catch (err) { alert('File không hợp lệ!'); }
+                };
+                reader.readAsText(file);
+            },
+
             startQuiz(id, customQuestions = null) {
                 const quiz = this.quizzes.find(q => q.id === id);
                 if (!quiz) return;
@@ -1096,8 +1052,10 @@
             renderExamQuestion() {
                 const q = this.examQuestions[this.currentQIndex];
                 const total = this.examQuestions.length;
+
                 document.getElementById('exam-question-counter').textContent = `Câu hỏi ${this.currentQIndex + 1} / ${total}`;
                 
+                // Bọc code vào khung code tối chuẩn màu Prism.js
                 const textEl = document.getElementById('exam-question-text');
                 if (q.text.includes('\n') || q.text.includes('=') || q.text.includes('print')) {
                     textEl.innerHTML = `<pre class="code-box"><code class="language-python">${this.escapeHtml(q.text)}</code></pre>`;
@@ -1111,35 +1069,33 @@
                     : 'px-4 py-2 border border-zinc-200 text-xs font-semibold text-zinc-600 hover:border-zinc-900';
 
                 const selected = this.userAnswers[this.currentQIndex];
-                
-                if (q.type === 'fill_in_blank') {
-                    document.getElementById('exam-options-list').innerHTML = `
-                        <div class="p-6 border border-zinc-200 bg-white">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">Nhập câu trả lời của bạn:</label>
-                            <input type="text" id="fill-in-blank-input" value="${this.escapeHtml(selected || '')}" 
-                                   oninput="app.inputFillInBlank(this.value)"
-                                   class="w-full p-4 bg-zinc-50 border border-zinc-300 focus:outline-none focus:border-zinc-900 text-sm font-mono transition" 
-                                   placeholder="Gõ đáp án vào đây..." autocomplete="off">
+                document.getElementById('exam-options-list').innerHTML = q.options.map((opt, idx) => {
+                    const letter = ['A', 'B', 'C', 'D'][idx];
+                    const active = selected === idx;
+                    return `
+                        <div onclick="app.selectOption(${idx})" class="p-4 border cursor-pointer transition flex items-center gap-4 ${
+                            active ? 'border-zinc-900 bg-zinc-900 text-white' : 'border-zinc-200 hover:border-zinc-900 bg-white text-zinc-800'
+                        }">
+                            <div class="w-8 h-8 flex items-center justify-center font-bold text-xs border ${
+                                active ? 'border-zinc-700 bg-zinc-800 text-white' : 'border-zinc-200 bg-zinc-100 text-zinc-800'
+                            }">${letter}</div>
+                            <div class="text-sm sm:text-base flex-1 preserve-space">${this.escapeHtml(opt)}</div>
                         </div>
                     `;
-                } else {
-                    document.getElementById('exam-options-list').innerHTML = q.options.map((opt, idx) => {
-                        const letter = ['A', 'B', 'C', 'D', 'E', 'F'][idx] || '?';
-                        const active = selected === idx;
-                        return `
-                            <div onclick="app.selectOption(${idx})" class="p-4 border cursor-pointer transition flex items-center gap-4 ${
-                                active ? 'border-zinc-900 bg-zinc-900 text-white' : 'border-zinc-200 hover:border-zinc-900 bg-white text-zinc-800'
-                            }">
-                                <div class="w-8 h-8 flex items-center justify-center font-bold text-xs border ${
-                                    active ? 'border-zinc-700 bg-zinc-800 text-white' : 'border-zinc-200 bg-zinc-100 text-zinc-800'
-                                }">${letter}</div>
-                                <div class="text-sm sm:text-base flex-1 preserve-space">${this.escapeHtml(opt)}</div>
-                            </div>
-                        `;
-                    }).join('');
-                }
+                }).join('');
 
-                this.updatePaletteAndCounter();
+                document.getElementById('exam-answered-count').textContent = `${Object.keys(this.userAnswers).length}/${total} đã chọn`;
+
+                document.getElementById('exam-palette').innerHTML = this.examQuestions.map((_, idx) => {
+                    const isCurrent = idx === this.currentQIndex;
+                    const isAns = this.userAnswers[idx] !== undefined;
+                    const isFlg = this.flaggedQuestions.has(idx);
+                    let cls = 'bg-zinc-100 text-zinc-600 border-zinc-200';
+                    if (isAns) cls = 'bg-zinc-900 text-white border-zinc-900';
+                    if (isFlg) cls = 'bg-amber-400 text-zinc-900 border-amber-500';
+                    if (isCurrent) cls += ' ring-2 ring-offset-1 ring-zinc-900';
+                    return `<button onclick="app.jumpToQuestion(${idx})" class="h-9 border text-xs font-bold transition ${cls}">${idx + 1}</button>`;
+                }).join('');
 
                 document.getElementById('note-current-q-num').textContent = this.currentQIndex + 1;
                 const textarea = document.getElementById('floating-note-textarea');
@@ -1148,12 +1104,9 @@
                     document.getElementById('note-char-count').textContent = `${textarea.value.length} ký tự`;
                 }
 
-                if (window.Prism) Prism.highlightAll();
-            },
-
-            inputFillInBlank(val) {
-                this.userAnswers[this.currentQIndex] = val;
-                this.updatePaletteAndCounter();
+                if (window.Prism) {
+                    Prism.highlightAll();
+                }
             },
 
             selectOption(optIdx) {
@@ -1164,46 +1117,7 @@
             toggleFlagCurrent() {
                 if (this.flaggedQuestions.has(this.currentQIndex)) this.flaggedQuestions.delete(this.currentQIndex);
                 else this.flaggedQuestions.add(this.currentQIndex);
-                
-                const q = this.examQuestions[this.currentQIndex];
-                if(q.type === 'fill_in_blank') {
-                    const isFlagged = this.flaggedQuestions.has(this.currentQIndex);
-                    document.getElementById('exam-flag-btn').className = isFlagged 
-                        ? 'px-4 py-2 border border-amber-500 bg-amber-50 text-xs font-bold text-amber-800'
-                        : 'px-4 py-2 border border-zinc-200 text-xs font-semibold text-zinc-600 hover:border-zinc-900';
-                    this.updatePaletteAndCounter();
-                } else {
-                    this.renderExamQuestion();
-                }
-            },
-
-            updatePaletteAndCounter() {
-                const total = this.examQuestions.length;
-                const answeredCount = Object.keys(this.userAnswers).filter(k => {
-                    if (this.examQuestions[k].type === 'fill_in_blank') {
-                        return this.userAnswers[k] !== undefined && String(this.userAnswers[k]).trim() !== '';
-                    }
-                    return this.userAnswers[k] !== undefined;
-                }).length;
-                
-                document.getElementById('exam-answered-count').textContent = `${answeredCount}/${total} đã làm`;
-
-                document.getElementById('exam-palette').innerHTML = this.examQuestions.map((q, idx) => {
-                    const isCurrent = idx === this.currentQIndex;
-                    let isAns = false;
-                    if (q.type === 'fill_in_blank') {
-                        isAns = this.userAnswers[idx] !== undefined && String(this.userAnswers[idx]).trim() !== '';
-                    } else {
-                        isAns = this.userAnswers[idx] !== undefined;
-                    }
-                    
-                    const isFlg = this.flaggedQuestions.has(idx);
-                    let cls = 'bg-zinc-100 text-zinc-600 border-zinc-200';
-                    if (isAns) cls = 'bg-zinc-900 text-white border-zinc-900';
-                    if (isFlg) cls = 'bg-amber-400 text-zinc-900 border-amber-500';
-                    if (isCurrent) cls += ' ring-2 ring-offset-1 ring-zinc-900';
-                    return `<button onclick="app.jumpToQuestion(${idx})" class="h-9 border text-xs font-bold transition ${cls}">${idx + 1}</button>`;
-                }).join('');
+                this.renderExamQuestion();
             },
 
             prevQuestion() { if (this.currentQIndex > 0) { this.currentQIndex--; this.renderExamQuestion(); } },
@@ -1212,32 +1126,16 @@
 
             submitExam(auto = false) {
                 const total = this.examQuestions.length;
-                const answered = Object.keys(this.userAnswers).filter(k => {
-                    if (this.examQuestions[k].type === 'fill_in_blank') return this.userAnswers[k] !== undefined && String(this.userAnswers[k]).trim() !== '';
-                    return this.userAnswers[k] !== undefined;
-                }).length;
-
+                const answered = Object.keys(this.userAnswers).length;
                 if (!auto && answered < total && !confirm(`Bạn mới làm ${answered}/${total} câu. Nộp bài sớm?`)) return;
 
                 clearInterval(this.timerInterval);
-                localStorage.removeItem(PROGRESS_KEY);
+                localStorage.removeItem(PROGRESS_KEY); // Xóa tiến độ
 
                 let correctCount = 0;
                 const wrongQuestions = [];
-                
                 this.examQuestions.forEach((q, idx) => {
-                    const userAns = this.userAnswers[idx];
-                    let isCorrect = false;
-                    
-                    if (q.type === 'fill_in_blank') {
-                        const ua = String(userAns || '').trim().toLowerCase();
-                        const ca = String(q.correct || '').trim().toLowerCase();
-                        if (ua === ca && ca !== '') isCorrect = true;
-                    } else {
-                        if (userAns === q.correct) isCorrect = true;
-                    }
-                    
-                    if (isCorrect) correctCount++;
+                    if (this.userAnswers[idx] === q.correct) correctCount++;
                     else wrongQuestions.push(q);
                 });
 
@@ -1266,47 +1164,20 @@
 
                 document.getElementById('result-review-list').innerHTML = this.examQuestions.map((q, idx) => {
                     const userAns = this.userAnswers[idx];
-                    let isCorrect = false;
-                    let reviewHtml = '';
-
-                    if (q.type === 'fill_in_blank') {
-                        const ua = String(userAns || '').trim().toLowerCase();
-                        const ca = String(q.correct || '').trim().toLowerCase();
-                        isCorrect = (ua === ca && ca !== '');
-                        
-                        reviewHtml = `
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm mt-3">
-                                <div class="p-4 border ${isCorrect ? 'border-emerald-600 bg-emerald-50 text-emerald-900' : 'border-rose-400 bg-rose-50 text-rose-900'}">
-                                    <span class="block text-[10px] font-bold uppercase tracking-wider mb-1 opacity-70">Bạn điền:</span>
-                                    <div class="font-mono text-base">${this.escapeHtml(userAns || '(Bỏ trống)')}</div>
-                                </div>
-                                <div class="p-4 border border-zinc-300 bg-zinc-50 text-zinc-900">
-                                    <span class="block text-[10px] font-bold uppercase tracking-wider mb-1 opacity-70">Đáp án chuẩn:</span>
-                                    <div class="font-mono text-base">${this.escapeHtml(q.correct || '')}</div>
-                                </div>
-                            </div>
-                        `;
-                    } else {
-                        isCorrect = userAns === q.correct;
-                        reviewHtml = `
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm mt-3">
+                    const isCorrect = userAns === q.correct;
+                    return `
+                        <div class="bg-white p-6 border ${isCorrect ? 'border-zinc-200' : 'border-rose-300'} shadow-sm space-y-3">
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 ${isCorrect ? 'bg-zinc-900 text-white' : 'bg-rose-600 text-white'}">Câu ${idx + 1}: ${isCorrect ? 'ĐÚNG' : 'SAI'}</span>
+                            <div class="font-medium text-zinc-900 text-sm sm:text-base preserve-space">${this.escapeHtml(q.text)}</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                                 ${q.options.map((opt, oIdx) => {
                                     let style = 'border-zinc-200 bg-zinc-50 text-zinc-700';
                                     if (oIdx === q.correct) style = 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold';
                                     else if (oIdx === userAns && !isCorrect) style = 'border-rose-400 bg-rose-50 text-rose-900 line-through';
-                                    const letter = ['A','B','C','D','E','F'][oIdx] || '?';
-                                    return \`<div class="p-3 border \${style} preserve-space">\${letter}. \${this.escapeHtml(opt)}</div>\`;
+                                    return `<div class="p-3 border ${style} preserve-space">${['A','B','C','D'][oIdx]}.${this.escapeHtml(opt)}</div>`;
                                 }).join('')}
                             </div>
-                        `;
-                    }
-
-                    return `
-                        <div class="bg-white p-6 border ${isCorrect ? 'border-zinc-200' : 'border-rose-300'} shadow-sm space-y-2">
-                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 ${isCorrect ? 'bg-zinc-900 text-white' : 'bg-rose-600 text-white'}">Câu ${idx + 1}: ${isCorrect ? 'ĐÚNG' : 'SAI'}</span>
-                            <div class="font-medium text-zinc-900 text-sm sm:text-base preserve-space pt-2">${this.escapeHtml(q.text)}</div>
-                            ${reviewHtml}
-                            ${q.explain ? \`<div class="text-xs text-zinc-600 bg-zinc-50 p-4 border border-zinc-200 preserve-space mt-4"><i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i><b>Giải thích:</b>\n\${this.escapeHtml(q.explain)}</div>\` : ''}
+                            ${q.explain ? `<div class="text-xs text-zinc-600 bg-zinc-50 p-3.5 border border-zinc-200 preserve-space"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <b>Giải thích:</b> ${this.escapeHtml(q.explain)}</div>` : ''}
                         </div>
                     `;
                 }).join('');
