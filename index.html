@@ -34,11 +34,17 @@
 
         /* Giữ nguyên thụt lề và khoảng trắng cho code Python */
         .preserve-space {
-            white-space: pre-wrap;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
             font-family: 'Fira Code', Consolas, Monaco, monospace, sans-serif;
         }
 
         /* Tùy chỉnh khung code block tối giống VS Code */
+        pre.code-box, pre.code-box code {
+            white-space: pre-wrap !important; /* Ép buộc tự động xuống dòng */
+            word-break: break-word !important; /* Cắt từ nếu quá dài tránh tràn khung */
+        }
+        
         pre.code-box {
             background-color: #1e1e1e !important;
             color: #d4d4d8 !important;
@@ -46,7 +52,6 @@
             border-radius: 6px;
             font-size: 13.5px;
             line-height: 1.6;
-            overflow-x: auto;
             margin: 8px 0;
             border: 1px solid #333;
         }
