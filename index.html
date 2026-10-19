@@ -857,25 +857,39 @@
             },
 
             renderEditorQuestions() {
-                document.getElementById('editor-questions-list').innerHTML = this.editorQuestions.map((q, idx) => `
-                    <div class="bg-white p-6 border border-zinc-200 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 bg-zinc-900 text-white font-bold text-xs uppercase">Câu hỏi ${idx + 1}</span>
-                            <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-600 font-semibold">Xóa</button>
+                document.getElementById('editor-questions-list').innerHTML = this.editorQuestions.map((q, idx) => {
+    // Đảm bảo q.options luôn là một mảng, nếu chưa có thì mặc định 4 ô trống
+    if (!Array.isArray(q.options)) q.options = ['', '', '', ''];
+    
+    return `
+        <div class="bg-white p-6 border border-zinc-200 space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="px-3 py-1 bg-zinc-900 text-white font-bold text-xs uppercase">Câu hỏi ${idx + 1}</span>
+                <div class="flex items-center gap-3">
+                    <button onclick="app.addEditorOption(${idx})" class="text-xs text-emerald-600 font-semibold hover:underline">+ Thêm đáp án</button>
+                    <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-600 font-semibold hover:underline">Xóa câu</button>
+                </div>
+            </div>
+            <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="3" class="w-full p-3 border border-zinc-300 text-sm font-mono">${this.escapeHtml(q.text)}</textarea>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                ${q.options.map((optText, optIdx) => {
+                    const letter = ['A', 'B', 'C', 'D', 'E', 'F'][optIdx] || String.fromCharCode(65 + optIdx);
+                    return `
+                        <div class="flex items-center gap-2">
+                            <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} onchange="app.editorQuestions[${idx}].correct =${optIdx}" title="Chọn làm đáp án đúng">
+                            <span class="text-xs font-bold w-4">${letter}.</span>
+                            <input type="text" value="${this.escapeHtml(optText || '')}" oninput="app.editorQuestions[${idx}].options[${optIdx}] = this.value" class="flex-1 px-3 py-2 border border-zinc-300 text-sm" placeholder="Nội dung đáp án...">
+                            ${q.options.length > 2 ? `<button onclick="app.removeEditorOption(${idx}, ${optIdx})" class="text-zinc-400 hover:text-rose-600 px-1 text-xs" title="Xóa đáp án này"><i class="fa-solid xmark"></i>×</button>` : ''}
                         </div>
-                        <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="3" class="w-full p-3 border border-zinc-300 text-sm font-mono">${this.escapeHtml(q.text)}</textarea>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            ${['A', 'B', 'C', 'D'].map((letter, optIdx) => `
-                                <div class="flex items-center gap-2">
-                                    <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} onchange="app.editorQuestions[${idx}].correct =${optIdx}">
-                                    <span class="text-xs font-bold">${letter}.</span>
-                                    <input type="text" value="${this.escapeHtml(q.options[optIdx] || '')}" oninput="app.editorQuestions[${idx}].options[${optIdx}] = this.value" class="flex-1 px-3 py-2 border border-zinc-300 text-sm">
-                                </div>
-                            `).join('')}
-                        </div>
-                        <input type="text" value="${this.escapeHtml(q.explain || '')}" oninput="app.editorQuestions[${idx}].explain = this.value" placeholder="Giải thích..." class="w-full px-3.5 py-2 border border-zinc-200 bg-zinc-50 text-xs">
-                    </div>
-                `).join('');
+                    `;
+                }).join('')}
+            </div>
+
+            <input type="text" value="${this.escapeHtml(q.explain || '')}" oninput="app.editorQuestions[${idx}].explain = this.value" placeholder="Giải thích chi tiết đáp án..." class="w-full px-3.5 py-2 border border-zinc-200 bg-zinc-50 text-xs">
+        </div>
+    `;
+}).join('');
             },
 
             addEmptyQuestion() {
