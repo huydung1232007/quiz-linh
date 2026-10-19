@@ -866,7 +866,11 @@ D. $v0"></textarea>
             startQuiz(id, customQuestions = null) {
                 const quiz = this.quizzes.find(q => q.id === id);
                 if (!quiz) return;
-
+                const savedName = localStorage.getItem('qm_player_name') || '';
+                const playerName = prompt('Nhập tên của bạn để lưu điểm làm bài:', savedName);
+                if (playerName === null) return; // Bấm Hủy thì không vào thi
+                this.playerName = playerName.trim() || 'Thí sinh ẩn danh';
+                localStorage.setItem('qm_player_name', this.playerName);
                 this.activeQuiz = quiz;
                 this.examQuestions = customQuestions || JSON.parse(JSON.stringify(quiz.questions));
                 this.userAnswers = {};
@@ -986,7 +990,7 @@ D. $v0"></textarea>
             },
 
             // ==================== SUBMIT & REVIEW ====================
-            submitExam(auto = false) {
+          submitExam(auto = false) {
                 const total = this.examQuestions.length;
                 const answered = Object.keys(this.userAnswers).length;
                 if (!auto && answered < total) {
@@ -1009,12 +1013,27 @@ D. $v0"></textarea>
                 const score10 = ((correctCount / total) * 10).toFixed(1);
                 const elapsedSec = Math.max(1, Math.floor((Date.now() - this.startTime) / 1000));
                 const elapsedStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`;
+                
+                // Gửi kết quả lên server an toàn hơn với optional chaining (?)
+                fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        playerName: this.playerName || 'Ẩn danh',
+                        quizCode: this.activeQuiz?.code || 'QUIZ',
+                        quizTitle: this.activeQuiz?.title || 'Đề thi trắc nghiệm',
+                        score: score10,
+                        correct: correctCount,
+                        total: total,
+                        timeSpent: elapsedStr
+                    })
+                }).catch(err => console.warn('Không gửi được điểm về server:', err));
 
                 this.stats.attempts++;
                 this.stats.totalScore += parseFloat(score10);
                 this.saveToStorage();
 
-                document.getElementById('result-quiz-title').textContent = this.activeQuiz.title;
+                document.getElementById('result-quiz-title').textContent = this.activeQuiz?.title || '';
                 document.getElementById('res-score').textContent = score10;
                 document.getElementById('res-correct').textContent = correctCount;
                 document.getElementById('res-wrong').textContent = total - correctCount;
