@@ -227,12 +227,16 @@ module.exports = async function handler(req, res) {
       ok: true,
       updatedAt: now
     });
-  } catch (error) {
-    console.error("[track.js] Redis/storage error:", error?.message || error);
+  
+} catch (error) {
+  const errorMessage = String(error?.message || error || "Unknown error");
 
-    return res.status(500).json({
-      ok: false,
-      error: "Không thể lưu tiến độ. Kiểm tra cấu hình và log Redis trên Vercel."
-    });
+  console.error("[track.js] Redis/storage error:", errorMessage);
+
+  return res.status(500).json({
+    ok: false,
+    error: "Không thể lưu tiến độ",
+    detail: errorMessage
+  });
   }
 };
