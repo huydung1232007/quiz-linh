@@ -30,6 +30,18 @@ body{font-family:Inter,system-ui,sans-serif;background:#0b1020;color:#e5e7eb}
 </header>
 <main class="max-w-7xl mx-auto p-5 md:p-8 space-y-6">
   <section class="glass rounded-3xl p-6 md:p-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+      <div>
+        <h2 class="text-xl font-bold"><i class="fa-solid fa-users text-indigo-300 mr-2"></i>Thí sinh / lượt thi</h2>
+        <p class="text-sm text-slate-400 mt-1">Chọn một lượt để xem chi tiết bên dưới. Tự cập nhật mỗi 5 giây.</p>
+      </div>
+      <span id="session-count" class="text-sm font-semibold text-emerald-300">0 lượt thi</span>
+    </div>
+    <div id="session-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+      <div class="text-sm text-slate-500">Đang tải danh sách lượt thi…</div>
+    </div>
+  </section>
+  <section class="glass rounded-3xl p-6 md:p-8">
     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
       <div>
         <div class="flex items-center gap-2 text-xs uppercase tracking-[.22em] text-indigo-300 font-bold"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Live session</div>
@@ -70,40 +82,84 @@ body{font-family:Inter,system-ui,sans-serif;background:#0b1020;color:#e5e7eb}
 <script>
 const $ = id => document.getElementById(id);
 let lastUpdated = '';
+let selectedSessionId = '';
 function esc(s){return String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderSessions(sessions, latest){
+  const list = $('session-list');
+  const all = Array.isArray(sessions) ? sessions : [];
+  $('session-count').textContent = `${all.length} lượt thi`;
+  if (!all.length) {
+    list.innerHTML = '<div class="text-sm text-slate-500 py-4">Chưa có lượt thi nào. Khi thí sinh bắt đầu, danh sách sẽ hiện ở đây.</div>';
+    return;
+  }
+  if (!selectedSessionId || !all.some(s => s.sessionId === selectedSessionId)) {
+    selectedSessionId = (latest && latest.sessionId) || all[0].sessionId || '';
+  }
+  list.innerHTML = all.map(s => {
+    const total = Number(s.totalQuestions)||0, answered = Number(s.answeredCount)||0;
+    const pct = total ? Math.min(100, Math.round(answered/total*100)) : 0;
+    const active = s.sessionId === selectedSessionId;
+    const submitted = s.eventType === 'SUBMIT';
+    const age = Date.now() - new Date(s.updatedAt || 0).getTime();
+    const state = submitted ? 'Đã nộp bài' : age > 120000 ? 'Không hoạt động' : 'Đang thi';
+    const stateClass = submitted ? 'text-sky-300' : age > 120000 ? 'text-amber-300' : 'text-emerald-300';
+    return `<button type="button" data-session="${esc(s.sessionId||'')}" class="text-left rounded-2xl border p-4 transition ${active?'border-indigo-400 bg-indigo-500/10':'border-white/10 bg-slate-900/50 hover:border-white/30'}">
+      <div class="flex items-start justify-between gap-2"><div class="font-bold truncate">${esc(s.playerName||'Ẩn danh')}</div><span class="text-xs ${stateClass} whitespace-nowrap">${state}</span></div>
+      <div class="text-xs text-slate-400 mt-1">${esc(s.quizCode||'QUIZ')} · ${esc(s.quizTitle||'Đề thi')}</div>
+      <div class="flex justify-between text-xs text-slate-400 mt-4"><span>Câu ${Number(s.currentQuestion)||0}/${total}</span><span>${answered}/${total} đã chọn</span></div>
+      <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden mt-2"><div class="h-full bg-gradient-to-r from-indigo-500 to-emerald-400" style="width:${pct}%"></div></div>
+      <div class="text-[11px] text-slate-500 mt-2">Cập nhật ${s.updatedAt ? new Date(s.updatedAt).toLocaleString('vi-VN') : '—'}</div>
+    </button>`;
+  }).join('');
+  list.querySelectorAll('[data-session]').forEach(btn => btn.addEventListener('click', () => {
+    selectedSessionId = btn.dataset.session;
+    const chosen = all.find(s => s.sessionId === selectedSessionId);
+    renderSessions(all, chosen);
+    renderDetail(chosen);
+  }));
+}
+function renderDetail(d){
+  if(!d) return;
+  lastUpdated=d.updatedAt || '';
+  const total=Number(d.totalQuestions)||0, answered=Number(d.answeredCount)||0;
+  const pct=total?Math.min(100,Math.round(answered/total*100)):0;
+  $('quiz-title').textContent=(d.quizCode||'QUIZ')+' — '+(d.quizTitle||'Đề thi');
+  $('student').textContent='Thí sinh: '+(d.playerName||'Ẩn danh');
+  $('event-status').textContent=d.eventType==='SUBMIT'?'Đã nộp bài':d.eventType==='START'?'Bắt đầu thi':'Đang làm bài';
+  $('updated').textContent='Cập nhật: '+(d.updatedAt ? new Date(d.updatedAt).toLocaleString('vi-VN') : '—');
+  $('current').textContent=(d.currentQuestion||0)+' / '+total;
+  $('answered').textContent=answered+' / '+total;
+  $('time').textContent=d.timeLeft||'—';
+  $('correct').textContent=Number(d.correctCount)||0;
+  $('percent').textContent=pct+'%';
+  $('bar').style.width=pct+'%';
+  $('activity').textContent=d.actionDetail||'Cập nhật tiến độ';
+  const answers={};
+  String(d.answerSheet||'').split('|').forEach(part=>{
+    const m=part.trim().match(/Câu\s+(\d+)\s*:\s*([A-F])/i);
+    if(m) answers[Number(m[1])]=m[2].toUpperCase();
+  });
+  const count=Math.min(total,200);
+  $('answer-grid').innerHTML=count?Array.from({length:count},(_,i)=>{
+    const n=i+1, a=answers[n];
+    return `<div class="answer ${a?'selected':'empty'} rounded-xl p-3 text-center"><div class="text-[10px] text-slate-400">CÂU ${n}</div><div class="text-xl font-extrabold mt-1 ${a?'text-emerald-300':'text-slate-500'}">${a||'—'}</div></div>`;
+  }).join(''):'<div class="text-slate-500 text-sm col-span-full py-8 text-center">Chưa có câu hỏi.</div>';
+}
 async function refresh(){
   try{
     const response = await fetch('/api/dashboard?t='+Date.now(), {cache:'no-store'});
     const result = await response.json();
     if(!response.ok || !result.ok) throw new Error(result.error || 'API error');
     $('status').innerHTML='<i class="fa-solid fa-circle text-emerald-400 mr-1"></i>Đang trực tuyến';
-    const d=result.data;
-    if(!d){$('status').textContent='Đang chờ dữ liệu';return;}
-    if(d.updatedAt===lastUpdated) return;
-    lastUpdated=d.updatedAt;
-    const total=Number(d.totalQuestions)||0, answered=Number(d.answeredCount)||0;
-    const pct=total?Math.min(100,Math.round(answered/total*100)):0;
-    $('quiz-title').textContent=(d.quizCode||'QUIZ')+' — '+(d.quizTitle||'Đề thi');
-    $('student').textContent='Thí sinh: '+(d.playerName||'Ẩn danh');
-    $('event-status').textContent=d.eventType==='SUBMIT'?'Đã nộp bài':d.eventType==='START'?'Bắt đầu thi':'Đang làm bài';
-    $('updated').textContent='Cập nhật: '+new Date(d.updatedAt).toLocaleString('vi-VN');
-    $('current').textContent=(d.currentQuestion||0)+' / '+total;
-    $('answered').textContent=answered+' / '+total;
-    $('time').textContent=d.timeLeft||'—';
-    $('correct').textContent=Number(d.correctCount)||0;
-    $('percent').textContent=pct+'%';
-    $('bar').style.width=pct+'%';
-    $('activity').textContent=d.actionDetail||'Cập nhật tiến độ';
-    const answers={};
-    String(d.answerSheet||'').split('|').forEach(part=>{
-      const m=part.trim().match(/Câu\s+(\d+)\s*:\s*([A-F])/i);
-      if(m) answers[Number(m[1])]=m[2].toUpperCase();
-    });
-    const count=Math.min(total,200);
-    $('answer-grid').innerHTML=count?Array.from({length:count},(_,i)=>{
-      const n=i+1, a=answers[n];
-      return `<div class="answer ${a?'selected':'empty'} rounded-xl p-3 text-center"><div class="text-[10px] text-slate-400">CÂU ${n}</div><div class="text-xl font-extrabold mt-1 ${a?'text-emerald-300':'text-slate-500'}">${a||'—'}</div></div>`;
-    }).join(''):'<div class="text-slate-500 text-sm col-span-full py-8 text-center">Chưa có câu hỏi.</div>';
+    const sessions = Array.isArray(result.sessions) ? result.sessions : (result.data ? [result.data] : []);
+    renderSessions(sessions, result.data);
+    const selected = sessions.find(s => s.sessionId === selectedSessionId) || result.data || sessions[0];
+    if(selected) renderDetail(selected);
+    else {
+      $('quiz-title').textContent='Chưa có dữ liệu bài thi';
+      $('student').textContent='Khi thí sinh bắt đầu làm bài, dữ liệu sẽ xuất hiện ở đây.';
+      $('status').textContent='Đang chờ dữ liệu';
+    }
   }catch(e){
     $('status').innerHTML='<i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i>Lỗi kết nối API';
   }
