@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuizMaster Live Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+body{font-family:Inter,system-ui,sans-serif;background:#0b1020;color:#e5e7eb}
+.glass{background:rgba(18,25,45,.88);border:1px solid rgba(148,163,184,.17);box-shadow:0 18px 50px rgba(0,0,0,.18)}
+.answer{min-height:74px;border:1px solid rgba(148,163,184,.17);background:rgba(30,41,59,.48)}
+.answer.selected{border-color:#34d399;background:rgba(16,185,129,.13)}
+.answer.empty{opacity:.55}
+</style>
+</head>
+<body class="min-h-screen">
+<header class="border-b border-white/10 bg-slate-950/70">
+  <div class="max-w-7xl mx-auto px-5 py-5 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-2xl bg-indigo-500/20 text-indigo-300 grid place-items-center"><i class="fa-solid fa-chart-line text-xl"></i></div>
+      <div><div class="font-extrabold tracking-tight text-lg">QuizMaster <span class="text-indigo-300">LIVE</span></div><div class="text-xs text-slate-400">Dashboard theo dõi tiến độ thi</div></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span id="status" class="text-xs text-slate-400"><i class="fa-solid fa-circle-notch fa-spin mr-1"></i>Đang kết nối</span>
+      <a href="/" class="rounded-xl border border-white/10 px-4 py-2 text-sm hover:bg-white/5"><i class="fa-solid fa-arrow-left mr-2"></i>Về trang thi</a>
+    </div>
+  </div>
+</header>
+<main class="max-w-7xl mx-auto p-5 md:p-8 space-y-6">
+  <section class="glass rounded-3xl p-6 md:p-8">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
+      <div>
+        <div class="flex items-center gap-2 text-xs uppercase tracking-[.22em] text-indigo-300 font-bold"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Live session</div>
+        <h1 id="quiz-title" class="text-2xl md:text-3xl font-extrabold mt-3">Chưa có dữ liệu bài thi</h1>
+        <p id="student" class="text-slate-400 mt-2">Khi thí sinh bắt đầu làm bài, dữ liệu sẽ xuất hiện ở đây.</p>
+      </div>
+      <div class="rounded-2xl bg-slate-900/80 border border-white/10 px-5 py-4 min-w-40">
+        <div class="text-xs text-slate-400">TRẠNG THÁI</div>
+        <div id="event-status" class="text-lg font-bold mt-1">Đang chờ</div>
+        <div id="updated" class="text-xs text-slate-500 mt-2">Chưa cập nhật</div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+      <div class="rounded-2xl bg-slate-900/70 border border-white/10 p-5"><div class="text-xs text-slate-400">CÂU HIỆN TẠI</div><div id="current" class="text-3xl font-extrabold mt-2">—</div><div class="text-xs text-slate-500 mt-1">Vị trí hiện tại trong đề</div></div>
+      <div class="rounded-2xl bg-slate-900/70 border border-white/10 p-5"><div class="text-xs text-slate-400">ĐÃ TRẢ LỜI</div><div id="answered" class="text-3xl font-extrabold mt-2">—</div><div class="text-xs text-slate-500 mt-1">Số câu đã chọn đáp án</div></div>
+      <div class="rounded-2xl bg-slate-900/70 border border-white/10 p-5"><div class="text-xs text-slate-400">THỜI GIAN CÒN</div><div id="time" class="text-3xl font-extrabold mt-2">—</div><div class="text-xs text-slate-500 mt-1">Theo bộ đếm của bài thi</div></div>
+      <div class="rounded-2xl bg-slate-900/70 border border-white/10 p-5"><div class="text-xs text-slate-400">ĐÚNG TẠM TÍNH</div><div id="correct" class="text-3xl font-extrabold mt-2">—</div><div class="text-xs text-slate-500 mt-1">Tính từ đáp án hiện có trên trình duyệt</div></div>
+    </div>
+    <div class="mt-7">
+      <div class="flex justify-between items-center text-sm mb-2"><span class="text-slate-300 font-semibold">Tiến độ trả lời</span><span id="percent" class="text-emerald-300 font-bold">0%</span></div>
+      <div class="h-3 bg-slate-800 rounded-full overflow-hidden"><div id="bar" class="h-full w-0 rounded-full bg-gradient-to-r from-indigo-500 to-emerald-400 transition-all duration-500"></div></div>
+    </div>
+  </section>
+  <section class="glass rounded-3xl p-6 md:p-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+      <div><h2 class="text-xl font-bold">Bảng đáp án từng câu</h2><p class="text-sm text-slate-400 mt-1">Hiển thị đáp án đã chọn; dấu gạch ngang là câu chưa trả lời.</p></div>
+      <div class="flex items-center gap-3 text-xs"><span><i class="fa-solid fa-circle text-emerald-400 mr-1"></i>Đã chọn</span><span><i class="fa-solid fa-circle text-slate-600 mr-1"></i>Chưa chọn</span></div>
+    </div>
+    <div id="answer-grid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-3">
+      <div class="text-slate-500 text-sm col-span-full py-8 text-center">Chưa có đáp án để hiển thị.</div>
+    </div>
+  </section>
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="glass rounded-2xl p-5 lg:col-span-2"><div class="text-xs text-slate-400 uppercase tracking-widest">Hoạt động gần nhất</div><div id="activity" class="text-lg font-semibold mt-2">Đang chờ thí sinh…</div></div>
+    <div class="glass rounded-2xl p-5"><div class="text-xs text-slate-400 uppercase tracking-widest">Tự cập nhật</div><div class="text-lg font-semibold mt-2">Mỗi 5 giây</div><p class="text-xs text-slate-500 mt-1">Dữ liệu được lấy từ API dự án Vercel.</p></div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let lastUpdated = '';
+function esc(s){return String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+async function refresh(){
+  try{
+    const response = await fetch('/api/dashboard?t='+Date.now(), {cache:'no-store'});
+    const result = await response.json();
+    if(!response.ok || !result.ok) throw new Error(result.error || 'API error');
+    $('status').innerHTML='<i class="fa-solid fa-circle text-emerald-400 mr-1"></i>Đang trực tuyến';
+    const d=result.data;
+    if(!d){$('status').textContent='Đang chờ dữ liệu';return;}
+    if(d.updatedAt===lastUpdated) return;
+    lastUpdated=d.updatedAt;
+    const total=Number(d.totalQuestions)||0, answered=Number(d.answeredCount)||0;
+    const pct=total?Math.min(100,Math.round(answered/total*100)):0;
+    $('quiz-title').textContent=(d.quizCode||'QUIZ')+' — '+(d.quizTitle||'Đề thi');
+    $('student').textContent='Thí sinh: '+(d.playerName||'Ẩn danh');
+    $('event-status').textContent=d.eventType==='SUBMIT'?'Đã nộp bài':d.eventType==='START'?'Bắt đầu thi':'Đang làm bài';
+    $('updated').textContent='Cập nhật: '+new Date(d.updatedAt).toLocaleString('vi-VN');
+    $('current').textContent=(d.currentQuestion||0)+' / '+total;
+    $('answered').textContent=answered+' / '+total;
+    $('time').textContent=d.timeLeft||'—';
+    $('correct').textContent=Number(d.correctCount)||0;
+    $('percent').textContent=pct+'%';
+    $('bar').style.width=pct+'%';
+    $('activity').textContent=d.actionDetail||'Cập nhật tiến độ';
+    const answers={};
+    String(d.answerSheet||'').split('|').forEach(part=>{
+      const m=part.trim().match(/Câu\s+(\d+)\s*:\s*([A-F])/i);
+      if(m) answers[Number(m[1])]=m[2].toUpperCase();
+    });
+    const count=Math.min(total,200);
+    $('answer-grid').innerHTML=count?Array.from({length:count},(_,i)=>{
+      const n=i+1, a=answers[n];
+      return `<div class="answer ${a?'selected':'empty'} rounded-xl p-3 text-center"><div class="text-[10px] text-slate-400">CÂU ${n}</div><div class="text-xl font-extrabold mt-1 ${a?'text-emerald-300':'text-slate-500'}">${a||'—'}</div></div>`;
+    }).join(''):'<div class="text-slate-500 text-sm col-span-full py-8 text-center">Chưa có câu hỏi.</div>';
+  }catch(e){
+    $('status').innerHTML='<i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i>Lỗi kết nối API';
+  }
+}
+refresh(); setInterval(refresh,5000);
+</script>
+</body>
+</html>
