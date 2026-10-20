@@ -1,3 +1,4 @@
+console.log("DASHBOARD API LOADED");
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
