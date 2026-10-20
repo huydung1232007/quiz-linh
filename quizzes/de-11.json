@@ -1,0 +1,708 @@
+{
+  "id": "q-python-general-03",
+  "code": "PY-GEN-03",
+  "title": "Đề Ôn Thầy - 3",
+  "desc": "Hệ thống 45 câu hỏi trắc nghiệm tổng hợp về vòng lặp, hàm, module, cấu trúc dữ liệu, NumPy và Matplotlib.",
+  "duration": 120,
+  "createdAt": "2026-10-20",
+  "questions": [
+    {
+      "text": "Cho biết kết quả của x trong đoạn chương trình sau:\n\ni = 0; x = 0\n\nwhile i < 10:\n\n    if i % 2 == 0:\n\n        x += 1\n\n    i += 1",
+      "options": [
+        "3",
+        "2",
+        "5",
+        "4"
+      ],
+      "correct": 2,
+      "explain": "Vòng lặp chạy với i từ 0 đến 9. Điều kiện i % 2 == 0 đúng khi i là các số chẵn: 0, 2, 4, 6, 8 (tổng cộng 5 giá trị), do đó x tăng lên 5.",
+      "hints": [
+        "Biến i chạy từ 0 đến 9 (gồm 10 giá trị).",
+        "Hãy đếm xem trong các số từ 0 đến 9 có bao nhiêu số chia hết cho 2 (kể cả số 0)."
+      ]
+    },
+    {
+      "text": "Để xóa phần tử thứ 2 trong danh sách a?",
+      "options": [
+        "del(a[1])",
+        "remove(a[2])",
+        "Tất cả đều sai",
+        "del(a[2])",
+        "remove(a[1])"
+      ],
+      "correct": 0,
+      "explain": "Chỉ số trong danh sách Python bắt đầu từ 0, nên phần tử thứ 2 có chỉ số là 1. Câu lệnh xóa phần tử tại chỉ số 1 là del(a[1]) (hoặc del a[1]).",
+      "hints": [
+        "Trong Python, phần tử thứ nhất ở chỉ số 0, vậy phần tử thứ 2 nằm ở chỉ số 1.",
+        "Lệnh xóa theo vị trí chỉ số sử dụng từ khóa del."
+      ]
+    },
+    {
+      "text": "Hoàn thiện (…) trong phát biểu sau:\n“Trong Python tất cả các biến khai báo bên trong hàm đều có tính …, không có hiệu lực ở bên … hàm”.",
+      "options": [
+        "địa phương, ngoài",
+        "địa phương, trong",
+        "toàn cục, ngoài",
+        "cục bộ, ngoài",
+        "Tất cả đều sai"
+      ],
+      "correct": 3,
+      "explain": "Biến khai báo bên trong hàm (nếu không dùng từ khóa global) đều có tính cục bộ (local) và không có hiệu lực ở bên ngoài hàm.",
+      "hints": [
+        "Biến chỉ dùng được trong phạm vi hàm gọi là biến cục bộ (local variable).",
+        "Khi ra khỏi hàm (bên ngoài hàm), biến này không còn hiệu lực."
+      ]
+    },
+    {
+      "text": "Trong module có thể chứa?",
+      "options": [
+        "Tất cả",
+        "Biến",
+        "Class",
+        "Hàm"
+      ],
+      "correct": 0,
+      "explain": "Một module trong Python là một file .py có thể chứa cả hàm (functions), lớp (classes), biến (variables) và các câu lệnh thực thi.",
+      "hints": [
+        "Module thực chất là một tệp mã nguồn Python (.py).",
+        "Nó có thể định nghĩa cả hàm, lớp (class) lẫn các biến."
+      ]
+    },
+    {
+      "text": "Khi khai báo module, trình thông dịch sẽ tìm đến thư mục nào đầu tiên để nạp module?",
+      "options": [
+        "Tất cả đều sai",
+        "Đường dẫn mặc định trong hệ thống (Linux/Unix)",
+        "Thư mục trong PYTHONPATH",
+        "Thư mục hiện hành mà script đang gọi"
+      ],
+      "correct": 3,
+      "explain": "Khi import một module, trình thông dịch Python sẽ tìm kiếm đầu tiên ở thư mục hiện hành (current directory) chứa script đang chạy (hoặc các module built-in), sau đó mới tìm trong PYTHONPATH và thư mục cài đặt mặc định.",
+      "hints": [
+        "Nếu bạn đặt một file module cùng thư mục với file code chính đang chạy, Python sẽ ưu tiên nạp file đó trước.",
+        "Do đó nơi được tìm đầu tiên là thư mục hiện hành mà script đang gọi."
+      ]
+    },
+    {
+      "text": "Hoàn thiện chương trình sau:\ndef USCLN_2(a, b):\n        r = a % b\n        while r != 0:\n                a = b\n                b = r\n                r = a % b\n    return (…)",
+      "options": [
+        "Lỗi",
+        "Tất cả đều sai",
+        "r",
+        "a",
+        "b"
+      ],
+      "correct": 4,
+      "explain": "Theo thuật toán Euclid tìm Ước số chung lớn nhất, khi số dư r = a % b bằng 0 thì vòng lặp dừng lại, và ước chung lớn nhất chính là số chia cuối cùng b.",
+      "hints": [
+        "Vòng lặp dừng lại ngay khi `r == 0`.",
+        "Lúc `a % b == 0` (chia hết), giá trị ước số chung lớn nhất chính là số chia hiện tại."
+      ]
+    },
+    {
+      "text": "Tính giá trị trung bình theo một trục cho trước trong mảng 2 chiều (2-D) trong numpy là?",
+      "options": [
+        "np.mean(arr, axis=1)",
+        "np.average(arr, axis=1)",
+        "arr.mean(axis=0)",
+        "Tất cả đều sai",
+        "arr.mean(axis=2)"
+      ],
+      "correct": 0,
+      "explain": "Hàm chuẩn trong NumPy để tính trung bình cộng theo một trục chỉ định là np.mean(arr, axis=1) (hoặc axis=0).",
+      "hints": [
+        "Mảng 2 chiều chỉ có axis=0 và axis=1 (không có axis=2).",
+        "Hàm chuẩn tính trung bình của thư viện NumPy là `np.mean(arr, axis=...)`."
+      ]
+    },
+    {
+      "text": "Điền vào … với yêu cầu điều kiện a bằng b in Yes, ngược lại in No?\na = 50; b = 10\n [___]  a  [___]  b  [___] \n    print(\"Yes\")\n [___] \n    print(\"No\")",
+      "options": [
+        "if, ==, :, else:",
+        "if, =, :, else:",
+        "when, ==, :, otherwise:",
+        "if, ==, then, else"
+      ],
+      "correct": 0,
+      "explain": "Cú pháp kiểm tra bằng nhau trong Python là 'if a == b:' và nhánh ngược lại là 'else:'.",
+      "hints": [
+        "Phép so sánh bằng trong Python dùng hai dấu bằng `==`.",
+        "Cuối dòng `if` và `else` bắt buộc phải có dấu hai chấm `:`."
+      ]
+    },
+    {
+      "text": "Cho danh sách a = [1, 2, 3, 4, 5]. Lệnh nào dưới đây sẽ trả về giá trị lớn nhất trong danh sách?",
+      "options": [
+        "max(a)",
+        "a.largest()",
+        "a.max",
+        "a.maximum()",
+        "a.max()"
+      ],
+      "correct": 0,
+      "explain": "Trong Python thuần, tìm giá trị lớn nhất của một danh sách sử dụng hàm tích hợp sẵn max(a) (danh sách chuẩn không có phương thức .max()).",
+      "hints": [
+        "Đối tượng List trong Python không có phương thức `.max()` mà phải dùng hàm tích hợp sẵn (built-in function).",
+        "Truyền danh sách `a` vào bên trong hàm `max(...)`."
+      ]
+    },
+    {
+      "text": "Muốn khai module math và random trên một dòng?",
+      "options": [
+        "import math; random",
+        "from math, random",
+        "import math, random",
+        "from math; random"
+      ],
+      "correct": 2,
+      "explain": "Để nạp (import) nhiều module trên cùng một dòng lệnh, ta liệt kê tên các module sau từ khóa import và ngăn cách nhau bởi dấu phẩy: import math, random.",
+      "hints": [
+        "Sử dụng từ khóa `import` ở đầu dòng.",
+        "Ngăn cách tên các module cần nạp bằng dấu phẩy `,`."
+      ]
+    },
+    {
+      "text": "Kết quả của chương trình sau là:\n\ndef PhepNhan(Number):\n        return Number ** 2;\nprint(PhepNhan(5))",
+      "options": [
+        "5",
+        "Tất cả đều sai",
+        "Lỗi",
+        "10",
+        "25"
+      ],
+      "correct": 4,
+      "explain": "Toán tử ** là phép tính lũy thừa. Number ** 2 với Number = 5 sẽ trả về 5^2 = 25 (dấu chấm phẩy ở cuối dòng trong Python vẫn hợp lệ và không gây lỗi).",
+      "hints": [
+        "Toán tử `**` trong Python là phép nâng lên lũy thừa.",
+        "Tính giá trị của `5 ** 2` (5 mũ 2)."
+      ]
+    },
+    {
+      "text": "Lệnh nào sau đây cho phép xóa đối tượng dictionary?",
+      "options": [
+        "clear",
+        "del",
+        "empty",
+        "truncate"
+      ],
+      "correct": 1,
+      "explain": "Lệnh del dùng để xóa hẳn đối tượng dictionary khỏi bộ nhớ (trong khi phương thức clear() chỉ làm rỗng các phần tử bên trong).",
+      "hints": [
+        "Phân biệt giữa làm rỗng nội dung từ điển (`clear`) và xóa hẳn biến đối tượng dictionary.",
+        "Từ khóa dùng để xóa đối tượng trong Python là `del`."
+      ]
+    },
+    {
+      "text": "Điền vào … với yêu cầu in “YES” nếu giá trị a bằng b, ngược lại in “NO”?\na = 2; b = 5\nprint(\"YES\")  [___]  print(\"NO\")",
+      "options": [
+        "if a == b else",
+        "if a = b else",
+        "when a == b else",
+        "if a == b elif"
+      ],
+      "correct": 0,
+      "explain": "Cú pháp biểu thức điều kiện rút gọn (ternary operator) trên một dòng trong Python là: <lệnh_khi_đúng> if <điều_kiện> else <lệnh_khi_sai>.",
+      "hints": [
+        "Cấu trúc rẽ nhánh rút gọn trên 1 dòng có dạng: `A if điều_kiện else B`.",
+        "Điều kiện kiểm tra `a` bằng `b` được viết là `a == b`."
+      ]
+    },
+    {
+      "text": "Tạo biểu đồ hiệu ứng (hoạt ảnh) trong Matplotlib?",
+      "options": [
+        "animation()",
+        "Lớp FuncAnimation",
+        "create_animation()",
+        "Tất cả đều sai",
+        "animate()"
+      ],
+      "correct": 1,
+      "explain": "Trong module matplotlib.animation, lớp FuncAnimation được sử dụng phổ biến nhất để tạo biểu đồ chuyển động / hiệu ứng hoạt ảnh.",
+      "hints": [
+        "Trong `matplotlib.animation`, hoạt ảnh được tạo bằng cách gọi một lớp (Class) cập nhật đồ thị theo từng khung hình (frame).",
+        "Tên lớp này bắt đầu bằng chữ `Func`."
+      ]
+    },
+    {
+      "text": "Chương trình sau cho kết quả là bao nhiêu?\nname = \"Codelearn\"; print(name[0])",
+      "options": [
+        "Lỗi",
+        "\"C\"",
+        "\"o\"",
+        "\"d\"",
+        "\"c\""
+      ],
+      "correct": 1,
+      "explain": "name[0] lấy ký tự đầu tiên của chuỗi \"Codelearn\", đó là chữ 'C' viết hoa.",
+      "hints": [
+        "Chỉ số `0` đại diện cho ký tự đầu tiên bên trái của chuỗi.",
+        "Chú ý phân biệt chữ hoa và chữ thường của ký tự đầu tiên trong `\"Codelearn\"`."
+      ]
+    },
+    {
+      "text": "Câu lệnh sau giải bài toán nào:\n\nwhile m != n:\n\n    if m > n:\n\n        m = m - n\n\n    else:\n\n        n = n - m",
+      "options": [
+        "Tìm hiệu nhỏ nhất (m, n)",
+        "Tìm UCLN (m, n)",
+        "Tìm BCNN (m, n)",
+        "Tìm hiệu lớn nhất (m, n)"
+      ],
+      "correct": 1,
+      "explain": "Đây là thuật toán Euclid cổ điển tìm Ước chung lớn nhất (UCLN) của hai số nguyên dương m và n bằng phép trừ liên tiếp cho đến khi m == n.",
+      "hints": [
+        "Liên tục lấy số lớn hơn trừ đi số nhỏ hơn cho đến khi hai số bằng nhau là thuật toán Euclid quen thuộc.",
+        "Thuật toán này dùng để tìm Ước chung lớn nhất (UCLN)."
+      ]
+    },
+    {
+      "text": "Cú pháp để in ra phần tử đầu tiên của một mảng là?",
+      "options": [
+        "print(arr, 1)",
+        "print(arr[1])",
+        "print(arr[0])",
+        "print(arr[-1])",
+        "Tất cả đều sai"
+      ],
+      "correct": 2,
+      "explain": "Trong Python và NumPy, chỉ số mảng luôn bắt đầu từ 0, do đó phần tử đầu tiên là arr[0].",
+      "hints": [
+        "Chỉ số (index) trong Python bắt đầu đếm từ 0.",
+        "`arr[-1]` là phần tử cuối cùng, còn `arr[0]` mới là phần tử đầu tiên."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của lệnh sau:\n\nprint(100 >= 100**2)",
+      "options": [
+        "100 >= 100 ** 2",
+        "False",
+        "True",
+        "None"
+      ],
+      "correct": 1,
+      "explain": "100**2 = 10000. Phép so sánh 100 >= 10000 là sai nên biểu thức trả về giá trị logic False.",
+      "hints": [
+        "Tính lũy thừa `100**2` (bằng 10,000) trước khi thực hiện phép so sánh `>=`.",
+        "Kiểm tra xem `100 >= 10000` là đúng hay sai."
+      ]
+    },
+    {
+      "text": "Lệnh nào để tạo một biểu đồ đường ở dạng hình vuông màu đỏ với x = x, y = y?",
+      "options": [
+        "ax.plot(x, y, 'R-', marker = 'sqr')",
+        "ax.plot(x, y, 'red', marker = 'square')",
+        "Tất cả đều sai",
+        "ax.plot(x, y, 'r-', marker = 's')",
+        "ax.plot(x, y, 'r', 's')"
+      ],
+      "correct": 3,
+      "explain": "Trong Matplotlib, 'r-' biểu diễn đường liền nét màu đỏ (red line), và tham số marker='s' biểu diễn điểm đánh dấu hình vuông (square).",
+      "hints": [
+        "Trong Matplotlib, màu đỏ viết tắt là `'r'`, đường liền là `'-'`, và điểm đánh dấu hình vuông (square) được ký hiệu bằng chữ cái `'s'`.",
+        "Tìm phương án kết hợp đúng `'r-'` và `marker = 's'`."
+      ]
+    },
+    {
+      "text": "Cho biết giá trị của x == y với:\n\nx = 3\ny = 2.9999999999999999",
+      "options": [
+        "False",
+        "True",
+        "Tất cả đều sai",
+        "Lỗi"
+      ],
+      "correct": 1,
+      "explain": "Số thực dấu chấm động (float) 64-bit theo chuẩn IEEE 754 chỉ có độ chính xác khoảng 15–17 chữ số thập phân. Số 2.9999999999999999 (có 16 chữ số 9 sau dấu phẩy) vượt quá giới hạn biểu diễn nên được làm tròn thành 3.0 trong bộ nhớ. Do đó x == y trả về True.",
+      "hints": [
+        "Số `y` có tới 16 chữ số 9 ở phần thập phân, vượt quá độ chính xác lưu trữ của kiểu `float` 64-bit trong Python.",
+        "Python tự động làm tròn `y` thành `3.0`, hãy so sánh `3 == 3.0`."
+      ]
+    },
+    {
+      "text": "Chỉnh độ trong suốt các thành phần trên biểu đồ?",
+      "options": [
+        "Phương thức set_transparency()",
+        "Tất cả đều sai",
+        "Tham số alpha trong plot()",
+        "Tham số transparency trong plot()",
+        "Phương thức set_alpha()"
+      ],
+      "correct": 2,
+      "explain": "Trong Matplotlib, tham số alpha (nhận giá trị thực từ 0.0 hoàn toàn trong suốt đến 1.0 hoàn toàn đục) trong hàm plot() và các hàm vẽ khác được dùng để điều chỉnh độ trong suốt.",
+      "hints": [
+        "Trong đồ họa máy tính và Matplotlib, kênh độ mờ / trong suốt không gọi là `transparency`.",
+        "Nó được đặt tên theo chữ cái Hy Lạp đầu tiên (`alpha`)."
+      ]
+    },
+    {
+      "text": "Lỗi nào thường gặp ở người mới học lập trình?",
+      "options": [
+        "Lỗi thực thi",
+        "Lỗi nghiệp vụ",
+        "Tất cả đều đúng",
+        "Lỗi cú pháp"
+      ],
+      "correct": 3,
+      "explain": "Người mới bắt đầu học lập trình thường chưa quen quy tắc viết lệnh của ngôn ngữ (quên dấu hai chấm, thụt lề sai, gõ sai từ khóa...) nên hay gặp Lỗi cú pháp (SyntaxError) nhất.",
+      "hints": [
+        "Khi mới làm quen với một ngôn ngữ lập trình, người học thường viết sai quy tắc ngữ pháp như thiếu dấu `:`, sai thụt đầu dòng hoặc thiếu ngoặc.",
+        "Loại lỗi do viết sai quy tắc ngôn ngữ được gọi là Lỗi cú pháp (Syntax error)."
+      ]
+    },
+    {
+      "text": "Cú pháp in 4 số cuối cùng của mảng sau là?\narr = np.array([1,2,3,4,5,6,7])",
+      "options": [
+        "print(arr[3:])",
+        "print(arr[4])",
+        "print(arr[:4])",
+        "Tất cả đều sai",
+        "print(arr[4:])"
+      ],
+      "correct": 0,
+      "explain": "Mảng arr có 7 phần tử (chỉ số từ 0 đến 6). 4 số cuối cùng là [4, 5, 6, 7] bắt đầu từ chỉ số 3 đến hết mảng, do đó cú pháp đúng là print(arr[3:]).",
+      "hints": [
+        "Mảng có 7 phần tử, vậy 4 phần tử cuối nằm ở các chỉ số 3, 4, 5, 6.",
+        "Cắt lát từ chỉ số 3 đến hết mảng được viết là `arr[3:]`."
+      ]
+    },
+    {
+      "text": "Kết quả của biểu thức sau với x = 2024?\nx % 4 == 0 and x % 100 != 0",
+      "options": [
+        "True",
+        "False",
+        "Lỗi thực thi",
+        "Tất cả đều sai"
+      ],
+      "correct": 0,
+      "explain": "Với x = 2024: 2024 chia hết cho 4 (2024 % 4 == 0 là True) và không chia hết cho 100 (2024 % 100 == 24 != 0 là True). True and True cho kết quả True.",
+      "hints": [
+        "Đây là biểu thức kiểm tra năm nhuận (chia hết cho 4 nhưng không chia hết cho 100).",
+        "Kiểm tra xem số 2024 có chia hết cho 4 và không chia hết cho 100 hay không."
+      ]
+    },
+    {
+      "text": "Điền … để sử dụng hàm range để vòng lặp lặp 6 lần:\nfor x in  [___]  :\n    print(x)",
+      "options": [
+        "range(6)",
+        "range(1, 6)",
+        "range(0, 5)",
+        "range[6]"
+      ],
+      "correct": 0,
+      "explain": "Hàm range(6) tạo ra dãy gồm 6 số nguyên từ 0 đến 5 (0, 1, 2, 3, 4, 5), giúp vòng lặp for thực hiện đúng 6 lần.",
+      "hints": [
+        "`range(1, 6)` chỉ lặp 5 lần (từ 1 đến 5).",
+        "Để lặp đúng 6 lần từ 0 đến 5, ta truyền số 6 vào hàm `range(...)`."
+      ]
+    },
+    {
+      "text": "Cho danh sách a = [1, 2, 3, 4, 5]. Lệnh nào dưới đây sẽ trả về danh sách mới là bao gồm 3 phần tử đầu tiên của danh sách a?",
+      "options": [
+        "Tất cả đều sai",
+        "a[:3]",
+        "a[:4]",
+        "a[4:]",
+        "a[3:]"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp cắt lát a[:3] lấy các phần tử từ đầu danh sách (chỉ số 0) đến trước chỉ số 3 (gồm chỉ số 0, 1, 2), trả về 3 phần tử đầu tiên [1, 2, 3].",
+      "hints": [
+        "Cắt lát `a[:n]` sẽ lấy `n` phần tử đầu tiên của danh sách `a`.",
+        "Muốn lấy 3 phần tử đầu tiên thì chọn `a[:3]`."
+      ]
+    },
+    {
+      "text": "Để hiển thị lỗi (chủ động phát sinh ngoại lệ) mà không dùng try/catch ta sử dụng từ khóa nào kết với cấu trúc kiểm tra điều kiện?",
+      "options": [
+        "pass",
+        "raise",
+        "Tất cả đều sai",
+        "print"
+      ],
+      "correct": 1,
+      "explain": "Trong Python, từ khóa 'raise' được dùng để chủ động ném/phát sinh một ngoại lệ (exception) khi một điều kiện nào đó xảy ra.",
+      "hints": [
+        "`print` chỉ in văn bản thông thường ra màn hình chứ không tạo ra ngoại lệ báo lỗi của hệ thống.",
+        "Từ khóa dùng để 'ném' (phát sinh) một Exception trong Python là `raise`."
+      ]
+    },
+    {
+      "text": "Để thêm một đối tượng tuple, dictionary hoặc set khác vào set, ta sử dụng?",
+      "options": [
+        "insert",
+        "add",
+        "+",
+        "update"
+      ],
+      "correct": 3,
+      "explain": "Phương thức update() của Set cho phép thêm tất cả các phần tử từ một iterable bất kỳ (như tuple, list, dictionary, hoặc set khác) vào set hiện tại.",
+      "hints": [
+        "`add()` chỉ thêm được 1 phần tử đơn lẻ, còn Set không hỗ trợ toán tử `+` hay `insert()`.",
+        "Để gộp thêm các phần tử từ một tập hợp/iterable khác vào Set, ta dùng phương thức `update`."
+      ]
+    },
+    {
+      "text": "Khởi tạo ma trận đường chéo từ mảng một chiều (1-D) arr của numpy là?",
+      "options": [
+        "Tất cả đều sai",
+        "np.diagonal(arr)",
+        "np.create_diag(arr)",
+        "arr.diag()",
+        "np.diag(arr)"
+      ],
+      "correct": 4,
+      "explain": "Hàm np.diag(arr) dùng để tạo một ma trận đường chéo 2 chiều từ mảng 1 chiều arr (hoặc trích xuất đường chéo nếu truyền vào mảng 2 chiều).",
+      "hints": [
+        "`np.diagonal()` chỉ dùng để trích xuất đường chéo từ mảng từ 2 chiều trở lên.",
+        "Hàm vừa tạo được ma trận đường chéo từ mảng 1D trong NumPy có tên viết tắt gồm 4 chữ cái: `np.diag(arr)`."
+      ]
+    },
+    {
+      "text": "Viết câu lệnh điều kiện với yêu cầu sau: Nếu z nằm trong đoạn [-5; -1] hoặc [1; 5] thì in ra màn hình TRUE?",
+      "options": [
+        "if(z >= -5 or z <= -1) or (z >= 1 or z <= 5): print('TRUE')",
+        "if(z >= -5 and z <= -1) or (z >= 1 and z <= 5): print('TRUE')",
+        "if(z >= -5 and z <= -1) and (z >= 1 and z <= 5): print('TRUE’)",
+        "if(z >= -5 or z <= -1) and (z >= 1 or z <= 5): print('TRUE')"
+      ],
+      "correct": 1,
+      "explain": "Một số z nằm trong đoạn [a; b] khi thỏa mãn đồng thời z >= a and z <= b. Kết hợp hai đoạn bằng từ khóa 'hoặc' sẽ dùng toán tử or ở giữa: (z >= -5 and z <= -1) or (z >= 1 and z <= 5).",
+      "hints": [
+        "Để `z` nằm trong một đoạn `[-5; -1]`, phải dùng toán tử `and`: `(z >= -5 and z <= -1)`.",
+        "Để kết nối hai đoạn rời nhau theo yêu cầu 'hoặc', ta đặt toán tử `or` ở giữa hai ngoặc."
+      ]
+    },
+    {
+      "text": "Thuộc tính nào của module chứa tên của module đó?",
+      "options": [
+        "name",
+        "_name_",
+        "__name__",
+        "Đáp án khác",
+        "__init__"
+      ],
+      "correct": 2,
+      "explain": "Trong Python, biến/thuộc tính đặc biệt __name__ (có 2 dấu gạch dưới ở mỗi bên) lưu trữ tên của module đó (hoặc '__main__' nếu chạy trực tiếp).",
+      "hints": [
+        "Các thuộc tính đặc biệt (dunder attributes) trong Python luôn bắt đầu và kết thúc bằng 2 dấu gạch dưới `__`.",
+        "Chọn phương án có chữ `name` nằm giữa cặp dấu gạch dưới kép."
+      ]
+    },
+    {
+      "text": "Chương trình sau bị lỗi ở dòng lệnh thứ bao nhiêu?\n(1)    def add(a, b)\n(2)            sum = a + b\n(3)            return sum\n(4)    x = int(input(\"Nhập số thứ nhất:\"))\n(5)    y = int(input(\"Nhập số thứ hai:\"))\n(6)    tong = add(x, y)\nprint(\"Tổng là: \" + str(tong))",
+      "options": [
+        "4",
+        "5",
+        "2",
+        "Không có lỗi",
+        "3",
+        "1",
+        "6",
+        "Tất cả đều sai"
+      ],
+      "correct": 5,
+      "explain": "Dòng (1) khai báo hàm 'def add(a, b)' bị thiếu dấu hai chấm ':' ở cuối dòng, gây ra lỗi cú pháp (SyntaxError). Đáp án đúng là dòng 1 (ứng với lựa chọn F).",
+      "hints": [
+        "Kiểm tra cú pháp khai báo hàm ở dòng đầu tiên `(1) def add(a, b)`.",
+        "Mọi dòng tiêu đề `def` trong Python bắt buộc phải kết thúc bằng dấu hai chấm `:`."
+      ]
+    },
+    {
+      "text": "Cú pháp nào là biểu thức điều kiện if trong Python?",
+      "options": [
+        "if expression \n\n    # if-block",
+        "if expression: \n\n    { # if-block }",
+        "if expression: \n\n    # if-block",
+        "if (expression)\n\n    # if-block"
+      ],
+      "correct": 2,
+      "explain": "Trong Python, câu lệnh điều kiện if phải có dấu hai chấm ':' sau biểu thức điều kiện và sử dụng thụt lề (indentation) để phân định khối lệnh chứ không dùng cặp ngoặc nhọn {}.",
+      "hints": [
+        "Python không dùng ngoặc nhọn `{ }` để bao khối lệnh như C/Java.",
+        "Sau biểu thức `if expression` bắt buộc phải có dấu hai chấm `:` và dòng bên dưới thụt lề vào trong."
+      ]
+    },
+    {
+      "text": "Giá trị của x là bao nhiêu sau biết kết quả là 8:\ndef tinh(a, b, c):\n        if(b != 0):\n                return a // b + c*2\ns = tinh(1, 5, x)\nprint(s)",
+      "options": [
+        "Tất cả đều sai",
+        "2",
+        "4",
+        "1",
+        "3"
+      ],
+      "correct": 2,
+      "explain": "Khi gọi tinh(1, 5, x): a = 1, b = 5, c = x. Vì 1 // 5 = 0 nên kết quả trả về là 0 + x * 2 = 8, suy ra x = 4.",
+      "hints": [
+        "Với `a = 1, b = 5`, phép chia lấy nguyên `1 // 5` bằng `0`.",
+        "Để `0 + x * 2 = 8`, hãy giải tìm giá trị của `x`."
+      ]
+    },
+    {
+      "text": "Phương thức để chia tách mảng là?",
+      "options": [
+        "hstack()",
+        "vstack()",
+        "Tất cả đều sai",
+        "Tất cả đều đúng",
+        "array_split()"
+      ],
+      "correct": 4,
+      "explain": "Trong NumPy, hàm array_split() (np.array_split()) được dùng để chia tách một mảng thành nhiều mảng con. Trong khi đó hstack() và vstack() dùng để ghép nối mảng.",
+      "hints": [
+        "`hstack()` và `vstack()` dùng để xếp chồng (nối) các mảng theo chiều ngang và chiều dọc.",
+        "Hàm dùng để chia tách mảng có chứa từ `split`."
+      ]
+    },
+    {
+      "text": "In ra đối tượng thứ #2 trong danh sách sau:\nfruits = [\"apple\", \"banana\", \"cherry\"]\nprint( [___] )",
+      "options": [
+        "fruits[1]",
+        "fruits[2]",
+        "fruits(1)",
+        "fruits(2)"
+      ],
+      "correct": 0,
+      "explain": "Đối tượng thứ 2 trong danh sách (\"banana\") có chỉ số là 1 vì chỉ số bắt đầu từ 0. Cú pháp truy xuất là fruits[1].",
+      "hints": [
+        "`\"apple\"` là phần tử thứ nhất (chỉ số 0), `\"banana\"` là phần tử thứ hai (chỉ số 1).",
+        "Sử dụng cặp ngoặc vuông `[]` để truy cập phần tử theo chỉ số."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của đoạn chương trình sau:\n\nd1 = {\"one\":\"eleven\", \"2\":2, \"three\":3, \"11\":\"eleven\", \"four\":44, \"two\":2}\nvals = list(d1.values())#all values\nuvals = [v for v in vals if vals.count(v)==1]#unique values\nd2 = {}\n\nfor k,v in d1.items():\n     if v in uvals:\n         d = {k:v}\n         d2.update(d)\n\nprint (d2)",
+      "options": [
+        "[3, 4]",
+        "{\"three\": 3, \"four\": 44}",
+        "{3, 4}",
+        "Tất cả đều sai"
+      ],
+      "correct": 1,
+      "explain": "Danh sách uvals lọc ra các giá trị chỉ xuất hiện đúng 1 lần trong d1 (gồm 3 và 44; vì 'eleven' và 2 đều xuất hiện 2 lần). Sau đó vòng lặp đưa các cặp key:value có value thuộc uvals vào từ điển d2, thu được {'three': 3, 'four': 44}.",
+      "hints": [
+        "`uvals` chỉ giữ lại những giá trị (`values`) nào xuất hiện duy nhất 1 lần trong từ điển `d1`.",
+        "Giá trị `\"eleven\"` và `2` bị lặp lại 2 lần nên bị loại, chỉ còn lại cặp có giá trị `3` và `44` được đưa vào từ điển `d2`."
+      ]
+    },
+    {
+      "text": "Mục đích của đoạn chương trình sau?\n\nimport random\nt1 = ()\nfor i in range(5):\n   x = random.randint(0, 100)\n   t1+=(x,)\nprint (t1)",
+      "options": [
+        "Tạo tuple ngẫu nhiên 5 phần tử trong đoạn [0, 100]",
+        "Tạo tuple ngẫu nhiên 4 phần tử trong đoạn [0, 100)",
+        "Tạo tuple ngẫu nhiên 5 phần tử trong đoạn [0, 100)",
+        "Tạo tuple ngẫu nhiên 4 phần tử trong đoạn [0, 100]"
+      ],
+      "correct": 0,
+      "explain": "Vòng lặp chạy 5 lần (range(5)), mỗi lần hàm random.randint(0, 100) sinh một số nguyên ngẫu nhiên trong đoạn đóng [0, 100] (bao gồm cả 0 và 100) và nối vào tuple t1.",
+      "hints": [
+        "`range(5)` lặp 5 lần nên tạo ra 5 phần tử.",
+        "Hàm `random.randint(a, b)` của module `random` chuẩn trong Python lấy cả hai đầu mút `[a, b]` (tức đoạn `[0, 100]`)."
+      ]
+    },
+    {
+      "text": "Trong các phát biểu sau, phát biểu nào chưa chính xác?",
+      "options": [
+        "Số lần lặp của lệnh lặp for luôn được xác định bởi vùng giá trị của lệnh range().",
+        "Khối lệnh lặp while được thực hiện cho đến khi <điều kiện >= False.",
+        "for là lệnh lặp với số lần xác định trước.",
+        "while là lệnh lặp với số lần không biết trước."
+      ],
+      "correct": 0,
+      "explain": "Phát biểu A chưa chính xác vì vòng lặp for trong Python có thể duyệt trực tiếp qua bất kỳ đối tượng khả duyệt nào (như chuỗi, list, tuple, set, dictionary) mà không bắt buộc phải dùng hàm range().",
+      "hints": [
+        "Vòng lặp `for` trong Python có bắt buộc lúc nào cũng phải đi kèm với hàm `range()` không?",
+        "Ta hoàn toàn có thể viết `for x in [1, 2, 3]:` hoặc `for ch in \"abc\":` mà không cần `range()`."
+      ]
+    },
+    {
+      "text": "Tùy chỉnh màu trong biểu đồ cột của Matplotlib?",
+      "options": [
+        "customize_color()",
+        "set_color()",
+        "Tham số color trong bar()",
+        "Tham số bar_color trong bar()",
+        "Tất cả đều sai"
+      ],
+      "correct": 2,
+      "explain": "Khi vẽ biểu đồ cột bằng hàm plt.bar() hoặc ax.bar(), ta truyền tham số color (ví dụ: color='red') để tùy chỉnh màu sắc cho các cột.",
+      "hints": [
+        "Trong hàm `bar()`, tên tham số dùng để đổi màu sắc rất trực quan và ngắn gọn.",
+        "Đó chính là tham số `color`."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả soam của đoạn chương trình sau?\n\ntuple1 = (-1, -2, 3, 4)\n*soam, *soduong = tuple1\nprint(soam)",
+      "options": [
+        "Lỗi",
+        "[-1]",
+        "[3, 4]",
+        "[-1, -2]"
+      ],
+      "correct": 0,
+      "explain": "Trong một câu lệnh unpacking của Python, chỉ được phép sử dụng tối đa MỘT biểu thức có dấu sao (*). Việc dùng hai biến có dấu sao (*soam, *soduong = tuple1) sẽ gây ra lỗi cú pháp (SyntaxError: multiple starred expressions in assignment).",
+      "hints": [
+        "Hãy quan sát câu lệnh gán: `*soam, *soduong = tuple1` có tới 2 dấu sao `*` ở cùng một vế.",
+        "Python không thể biết phải chia bao nhiêu phần tử cho biến thứ nhất và bao nhiêu cho biến thứ hai nên sẽ báo lỗi SyntaxError."
+      ]
+    },
+    {
+      "text": "Để thêm số 5 vào cuối danh sách a?",
+      "options": [
+        "pop(5)",
+        "append(5)",
+        "a.append(5)",
+        "a.pop(5)"
+      ],
+      "correct": 2,
+      "explain": "Phương thức a.append(5) dùng để thêm phần tử 5 vào vị trí cuối cùng của danh sách a.",
+      "hints": [
+        "`pop` dùng để xóa phần tử, còn `append` dùng để thêm phần tử vào cuối danh sách.",
+        "Phương thức phải được gọi thông qua tên danh sách `a` kèm dấu chấm: `a.append(5)`."
+      ]
+    },
+    {
+      "text": "Điền …  để in các giá trị i nhỏ hơn 6 ở khối lệnh sau:\ni = 1\n [___]  i < 6  [___] \n    print(i)\n    i += 1",
+      "options": [
+        "while, :",
+        "for, :",
+        "if, :",
+        "while, then"
+      ],
+      "correct": 0,
+      "explain": "Cấu trúc vòng lặp theo điều kiện trong Python sử dụng từ khóa 'while' và kết thúc dòng điều kiện bằng dấu hai chấm ':'.",
+      "hints": [
+        "Khối lệnh có biến đếm `i += 1` lặp lại cho đến khi `i < 6` sai là cấu trúc vòng lặp `while`.",
+        "Cuối dòng điều kiện của vòng lặp luôn phải có dấu hai chấm `:`."
+      ]
+    },
+    {
+      "text": "Tạo biểu đồ filled area (tô màu miền diện tích) trong Matplotlib?",
+      "options": [
+        "fill_between()",
+        "area()",
+        "Tất cả đều sai",
+        "fill()",
+        "filled_plot()"
+      ],
+      "correct": 0,
+      "explain": "Trong Matplotlib, hàm plt.fill_between() (hoặc ax.fill_between()) được sử dụng để tô màu vùng diện tích giữa đường biểu đồ và trục hoành (hoặc giữa hai đường).",
+      "hints": [
+        "Hàm này tô màu vùng diện tích nằm 'ở giữa' (between) đường đồ thị và trục X.",
+        "Tên hàm trong Matplotlib là `fill_between()`."
+      ]
+    },
+    {
+      "text": "Kết quả của phép toán sau a << 2 với a = 10011 (hệ nhị phân)?",
+      "options": [
+        "False",
+        "1001100",
+        "0000100",
+        "True"
+      ],
+      "correct": 1,
+      "explain": "Toán tử << là phép dịch bit sang trái (bitwise left shift). Dịch trái 2 bit (a << 2) sẽ thêm 2 chữ số 0 vào bên phải dãy bit nhị phân 10011, thu được 1001100.",
+      "hints": [
+        "Toán tử `<< 2` là phép dịch các bit nhị phân sang bên trái 2 vị trí.",
+        "Khi dịch trái 2 bit, ta chỉ cần viết thêm 2 chữ số `0` vào phía cuối bên phải của dãy bit `10011`."
+      ]
+    }
+  ]
+}
