@@ -101,6 +101,9 @@
                 <button onclick="app.reloadServerQuizzes()" class="hover:text-white transition" title="Đồng bộ"><i class="fa-solid fa-arrows-rotate"></i></button>
                 <span class="text-zinc-600">|</span>
                 <span class="font-mono text-[11px] text-zinc-300 hidden sm:inline">VN-STUDIO</span>
+                <a href="/dashboard.html" class="hidden sm:inline text-zinc-300 hover:text-white transition" title="Dashboard theo dõi thi">
+                    <i class="fa-solid fa-chart-line mr-1"></i> Dashboard
+                </a>
             </div>
         </div>
     </header>
@@ -568,11 +571,11 @@
             questionNotes: {},
 
             isNoteOpen: false,
-            telegramTrackingEnabled: false,
+            telegramTrackingEnabled: true,
             telegramReportInterval: null,
 
             async trackProgress(eventType, actionDetail) {
-                if (!this.telegramTrackingEnabled || !this.activeQuiz) return;
+                if (!this.activeQuiz) return;
                 const answers = {};
                 for (const [idx, value] of Object.entries(this.userAnswers || {})) {
                     answers[Number(idx) + 1] = String.fromCharCode(65 + Number(value));
