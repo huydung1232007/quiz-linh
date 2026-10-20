@@ -161,41 +161,66 @@ export default async function handler(req, res) {
       ]);
     }
 
-    // Cập nhật một tin nhắn Telegram.
-    const stored = await redis([
-      ["GET", "quizmaster:live:telegram_message_id"]
-    ]);
+    
+    // Gửi Telegram độc lập: không để lỗi Telegram làm hỏng
+    // phản hồi API khi dữ liệu Redis đã được lưu thành công.
+    try {
+      const stored = await redis([
+        ["GET", "quizmaster:live:telegram_message_id"]
+      ]);
 
-    const messageId = stored?.[0]?.result
-      ? Number(stored[0].result)
-      : null;
+      const messageId = stored?.[0]?.result
+        ? Number(stored[0].result)
+        : null;
 
-    async function sendTelegram(method, body) {
-      const response = await fetch(
-        `https://api.telegram.org/bot${botToken}/${method}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
+      async function sendTelegram(method, body) {
+        const response = await fetch(
+          `https://api.telegram.org/bot${botToken}/${method}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          }
+        );
+
+        return {
+          httpOk: response.ok,
+          data: await response.json()
+        };
+      }
+
+      if (messageId) {
+        const edited = await sendTelegram("editMessageText", {
+          chat_id: chatId,
+          message_id: messageId,
+          text: message,
+          parse_mode: "HTML",
+          disable_web_page_preview: true
+        });
+
+        if (!edited.httpOk || !edited.data.ok) {
+          const sent = await sendTelegram("sendMessage", {
+            chat_id: chatId,
+            text: message,
+            parse_mode: "HTML",
+            disable_web_page_preview: true
+          });
+
+          if (!sent.httpOk || !sent.data.ok) {
+            throw new Error(
+              sent.data?.description || "Telegram send failed"
+            );
+          }
+
+          await redis([
+            [
+              "SET",
+              "quizmaster:live:telegram_message_id",
+              String(sent.data.result.message_id)
+            ]
+          ]);
         }
-      );
-
-      return {
-        httpOk: response.ok,
-        data: await response.json()
-      };
-    }
-
-    if (messageId) {
-      const edited = await sendTelegram("editMessageText", {
-        chat_id: chatId,
-        message_id: messageId,
-        text: message,
-        parse_mode: "HTML",
-        disable_web_page_preview: true
-      });
-
-      if (!edited.httpOk || !edited.data.ok) {
+      } else {
         const sent = await sendTelegram("sendMessage", {
           chat_id: chatId,
           text: message,
@@ -204,10 +229,9 @@ export default async function handler(req, res) {
         });
 
         if (!sent.httpOk || !sent.data.ok) {
-          return res.status(502).json({
-            ok: false,
-            error: "Telegram send failed"
-          });
+          throw new Error(
+            sent.data?.description || "Telegram send failed"
+          );
         }
 
         await redis([
@@ -218,34 +242,20 @@ export default async function handler(req, res) {
           ]
         ]);
       }
-    } else {
-      const sent = await sendTelegram("sendMessage", {
-        chat_id: chatId,
-        text: message,
-        parse_mode: "HTML",
-        disable_web_page_preview: true
-      });
-
-      if (!sent.httpOk || !sent.data.ok) {
-        return res.status(502).json({
-          ok: false,
-          error: "Telegram send failed"
-        });
-      }
-
-      await redis([
-        [
-          "SET",
-          "quizmaster:live:telegram_message_id",
-          String(sent.data.result.message_id)
-        ]
-      ]);
+    } catch (telegramError) {
+      console.error(
+        "[track.js] Telegram error:",
+        telegramError?.message || telegramError
+      );
     }
 
+    // Redis đã lưu dữ liệu thì trả thành công,
+    // kể cả khi Telegram tạm thời không gửi được.
     return res.status(200).json({
       ok: true,
       updatedAt: now
     });
+
   } catch (error) {
     console.error("[track.js]", error);
 
