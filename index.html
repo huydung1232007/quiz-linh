@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz cuối kì - Huy Dũng & Em Bô</title>
+    <title>quiz cuối kì</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Thư viện tô màu cú pháp Python (Prism.js Dark Theme) -->
@@ -394,6 +394,24 @@
         </div>
     </footer>
 
+
+    <!-- POPUP THÔNG BÁO TỪ DASHBOARD -->
+    <div id="teacher-notification-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="teacher-notification-title">
+      <div class="w-full max-w-lg overflow-hidden rounded-2xl border border-indigo-200 bg-white shadow-2xl">
+        <div class="flex items-center gap-3 bg-[#1b1d1f] px-6 py-5 text-white">
+          <div class="grid h-11 w-11 place-items-center rounded-xl bg-indigo-500/20 text-indigo-300"><i class="fa-solid fa-bell text-xl"></i></div>
+          <div><div class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">QuizMaster VN</div><h2 id="teacher-notification-title" class="mt-1 text-lg font-extrabold">Thông báo từ giáo viên</h2></div>
+        </div>
+        <div class="space-y-5 p-6">
+          <p id="teacher-notification-message" class="whitespace-pre-wrap break-words text-sm leading-7 text-zinc-700"></p>
+          <div class="flex items-center justify-between gap-3 border-t border-zinc-100 pt-4">
+            <span class="text-xs text-zinc-400">Vui lòng xác nhận đã đọc.</span>
+            <button id="teacher-notification-ack" type="button" class="rounded-xl bg-indigo-600 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-indigo-700">Đã hiểu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- HỘP GHI CHÚ NỔI -->
     <div id="floating-note-box" class="fixed top-28 right-12 z-50 hidden w-80 bg-white border-2 border-zinc-900 shadow-2xl select-none">
         <div id="note-header-drag" class="bg-[#1b1d1f] text-white px-4 py-2.5 flex items-center justify-between cursor-move">
@@ -574,6 +592,82 @@
             telegramTrackingEnabled: true,
             telegramReportInterval: null,
             trackingSessionId: null,
+            notificationPollInterval: null,
+            activeTeacherNotification: null,
+            seenTeacherNotificationIds: new Set(),
+
+            async pollTeacherNotifications() {
+                if (!this.activeQuiz || !this.trackingSessionId ||
+                    document.getElementById('view-exam')?.classList.contains('hidden')) return;
+                try {
+                    const url = `/api/notifications?action=poll&sessionId=${encodeURIComponent(this.trackingSessionId)}&t=${Date.now()}`;
+                    const response = await fetch(url, { cache: 'no-store' });
+                    if (!response.ok) return;
+                    const result = await response.json();
+                    if (!result.ok || !Array.isArray(result.notifications)) return;
+                    for (const notification of result.notifications) {
+                        if (!notification || !notification.id || this.seenTeacherNotificationIds.has(notification.id)) continue;
+                        this.showTeacherNotification(notification);
+                        break;
+                    }
+                } catch (err) {
+                    console.warn('Không tải được thông báo từ giáo viên:', err);
+                }
+            },
+
+            showTeacherNotification(notification) {
+                if (this.activeTeacherNotification) return;
+                this.activeTeacherNotification = notification;
+                const modal = document.getElementById('teacher-notification-modal');
+                document.getElementById('teacher-notification-message').textContent = notification.message || '';
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.getElementById('teacher-notification-ack').onclick = async () => {
+                    const button = document.getElementById('teacher-notification-ack');
+                    button.disabled = true;
+                    button.textContent = 'Đang xác nhận...';
+                    try {
+                        const response = await fetch('/api/notifications', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                action: 'ack',
+                                sessionId: this.trackingSessionId,
+                                notificationId: notification.id
+                            })
+                        });
+                        if (!response.ok) throw new Error('Không xác nhận được');
+                        this.seenTeacherNotificationIds.add(notification.id);
+                        try {
+                            const key = `quizmaster_seen_notifications_${this.trackingSessionId}`;
+                            const seen = JSON.parse(localStorage.getItem(key) || '[]');
+                            if (!seen.includes(notification.id)) seen.push(notification.id);
+                            localStorage.setItem(key, JSON.stringify(seen.slice(-100)));
+                        } catch (_) {}
+                    } catch (err) {
+                        console.warn('Không gửi được xác nhận đã đọc:', err);
+                    } finally {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                        this.activeTeacherNotification = null;
+                        button.disabled = false;
+                        button.textContent = 'Đã hiểu';
+                        setTimeout(() => this.pollTeacherNotifications(), 250);
+                    }
+                };
+            },
+
+            startTeacherNotificationPolling() {
+                if (this.notificationPollInterval) clearInterval(this.notificationPollInterval);
+                this.notificationPollInterval = setInterval(() => this.pollTeacherNotifications(), 4000);
+                try {
+                    const key = `quizmaster_seen_notifications_${this.trackingSessionId}`;
+                    this.seenTeacherNotificationIds = new Set(JSON.parse(localStorage.getItem(key) || '[]'));
+                } catch (_) {
+                    this.seenTeacherNotificationIds = new Set();
+                }
+                this.pollTeacherNotifications();
+            },
 
             async trackProgress(eventType, actionDetail) {
                 if (!this.activeQuiz) return;
@@ -801,6 +895,7 @@
                     this.startTimer();
                     this.updateNoteButtonLabel();
                     this.trackProgress('START', 'Bắt đầu làm bài');
+                    this.startTeacherNotificationPolling();
                     if (this.telegramTrackingEnabled) {
                         this.telegramReportInterval = setInterval(() => {
                             this.trackProgress('PERIODIC', 'Báo cáo tiến độ định kỳ mỗi phút');
@@ -1236,6 +1331,13 @@
                 this.renderExamQuestion();
                 this.startTimer();
                 this.updateNoteButtonLabel();
+                this.trackProgress('START', 'Bắt đầu làm bài');
+                this.startTeacherNotificationPolling();
+                if (this.telegramTrackingEnabled) {
+                    this.telegramReportInterval = setInterval(() => {
+                        this.trackProgress('PERIODIC', 'Báo cáo tiến độ định kỳ mỗi phút');
+                    }, 60000);
+                }
             },
 
             shuffleActiveExam() {
