@@ -1,361 +1,560 @@
-[
-  {
-    "id": "q-python-list-chuyen-de",
-    "code": "PY-03",
-    "title": "List",
-    "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về List, phương thức, cắt lát, tham chiếu và các bài toán truy vết nâng cao trong Python.",
-    "duration": 50,
-    "questions": [
-      {
-        "text": "Cú pháp nào sau đây khởi tạo một List rỗng hợp lệ trong Python?",
-        "options": ["A = ()", "A = {}", "A = []", "A = set()"],
-        "correct": 2,
-        "explain": "Trong Python, cặp dấu ngoặc vuông [] hoặc hàm tạo list() dùng để khởi tạo một List rỗng. Phương án A tạo tuple, phương án B tạo dict, phương án D tạo set."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [10, \"Python\", [1, 2], True]\nprint(len(A))\nKết quả in ra màn hình là gì?",
-        "options": ["4", "5", "10", "Chương trình báo lỗi vì List chứa nhiều kiểu dữ liệu khác nhau."],
-        "correct": 0,
-        "explain": "Hàm len(A) đếm số phần tử ở cấp ngoài cùng của A. List A có 4 phần tử (10, 'Python', [1, 2], True)."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [5, 10, [15, 20], 25]\nprint(15 in A)\nKết quả in ra màn hình là gì?",
-        "options": ["True", "2", "Chương trình báo lỗi.", "False"],
-        "correct": 3,
-        "explain": "Toán tử in kiểm tra phần tử trực tiếp ở cấp ngoài cùng. Số 15 nằm trong list con [15, 20] nên 15 in A trả về False."
-      },
-      {
-        "text": "Cho A = [12, 24, 36, 48, 60]. Biểu thức A[1] + A[-2] có giá trị là bao nhiêu?",
-        "options": ["60", "72", "84", "48"],
-        "correct": 1,
-        "explain": "A[1] = 24 và A[-2] = 48. Tổng A[1] + A[-2] = 24 + 48 = 72."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2]\nB = [3, 4]\nC = A + B\nprint(C)\nKết quả in ra màn hình là gì?",
-        "options": ["[4, 6]", "[[1, 2], [3, 4]]", "[1, 2, 3, 4]", "[1, 2, [3, 4]]"],
-        "correct": 2,
-        "explain": "Đối với List, toán tử + thực hiện phép nối hai list lại với nhau thành một list mới [1, 2, 3, 4]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2] * 3\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[3, 6]", "[[1, 2], [1, 2], [1, 2]]", "[1, 1, 1, 2, 2, 2]", "[1, 2, 1, 2, 1, 2]"],
-        "correct": 3,
-        "explain": "Toán tử * giữa list và số nguyên lặp lại các phần tử 3 lần nối tiếp nhau: [1, 2, 1, 2, 1, 2]."
-      },
-      {
-        "text": "Phát biểu nào sau đây là đúng khi phân biệt list với tuple, set và dict trong Python?",
-        "options": [
-          "list và tuple đều không cho phép thay đổi giá trị phần tử sau khi khởi tạo.",
-          "list giữ nguyên thứ tự các phần tử, cho phép các phần tử trùng lặp và có thể thay đổi nội dung (mutable).",
-          "list tự động loại bỏ các phần tử trùng nhau giống như set.",
-          "list lưu trữ dữ liệu theo cặp key: value giống như dict."
-        ],
-        "correct": 1,
-        "explain": "List có thứ tự, có thể thay đổi nội dung (mutable) và cho phép các phần tử trùng lặp."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [2, 4, 6]\nB = A * 2 + [8]\nprint(len(B), B[-1])\nKết quả in ra màn hình là gì?",
-        "options": ["7 8", "6 8", "4 8", "7 6"],
-        "correct": 0,
-        "explain": "A * 2 tạo ra [2, 4, 6, 2, 4, 6], nối thêm [8] thành B = [2, 4, 6, 2, 4, 6, 8] (7 phần tử). Phần tử cuối B[-1] = 8."
-      },
-      {
-        "text": "Cho A = [10, 20, 30, 40, 50, 60]. Kết quả của biểu thức cắt lát A[1:4] là gì?",
-        "options": ["[10, 20, 30, 40]", "[20, 30, 40]", "[20, 30, 40, 50]", "[10, 20, 30]"],
-        "correct": 1,
-        "explain": "Cắt lát A[1:4] lấy các chỉ số 1, 2, 3 tương ứng với các phần tử [20, 30, 40]."
-      },
-      {
-        "text": "Cho A = [1, 2, 3, 4, 5, 6, 7]. Kết quả của biểu thức A[1:6:2] là gì?",
-        "options": ["[2, 4, 6]", "[1, 3, 5]", "[2, 4, 6, 7]", "[2, 3, 4, 5, 6]"],
-        "correct": 0,
-        "explain": "Biểu thức A[1:6:2] lấy từ chỉ số 1 đến trước 6 với bước nhảy 2, gồm các chỉ số 1, 3, 5 tương ứng với [2, 4, 6]."
-      },
-      {
-        "text": "Cho A = [10, 20, 30, 40, 50]. Kết quả của biểu thức A[-4:-1] là gì?",
-        "options": ["[20, 30, 40, 50]", "[10, 20, 30]", "[20, 30, 40]", "[]"],
-        "correct": 2,
-        "explain": "Cắt lát A[-4:-1] lấy từ vị trí -4 đến trước -1, gồm các phần tử [20, 30, 40]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nprint(A[::-1])\nKết quả in ra màn hình là gì?",
-        "options": ["[1, 2, 3]", "[4]", "[1, 4]", "[4, 3, 2, 1]"],
-        "correct": 3,
-        "explain": "Bước nhảy -1 đảo ngược toàn bộ danh sách thành [4, 3, 2, 1]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [5, 10, 15, 20, 25]\nB = A[:2] + A[3:]\nprint(B)\nKết quả in ra màn hình là gì?",
-        "options": ["[5, 10, 20, 25]", "[5, 10, 15, 20, 25]", "[10, 15, 20]", "[5, 25]"],
-        "correct": 0,
-        "explain": "A[:2] là [5, 10], A[3:] là [20, 25]. Nối lại ta được [5, 10, 20, 25]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nA[1] = A[2] + A[-1]\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[7, 2, 3, 4]", "[1, 7, 3, 4]", "[1, 6, 3, 4]", "[1, 2, 7, 4]"],
-        "correct": 1,
-        "explain": "A[2] + A[-1] = 3 + 4 = 7. Gán vào A[1] thay giá trị 2 thành 7, ta được [1, 7, 3, 4]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4, 5]\nA[1:4] = [9, 8]\nprint(A, len(A))\nKết quả in ra màn hình là gì?",
-        "options": [
-          "[1, 9, 8, 4, 5] 5",
-          "[1, [9, 8], 5] 3",
-          "Chương trình báo lỗi vì số lượng phần tử thay thế không bằng số phần tử bị cắt.",
-          "[1, 9, 8, 5] 4"
-        ],
-        "correct": 3,
-        "explain": "Thay đoạn A[1:4] (3 phần tử) bằng [9, 8] (2 phần tử). List A co lại còn [1, 9, 8, 5] với độ dài 4."
-      },
-      {
-        "text": "Cho A = [10, 20, 30]. Câu lệnh nào dưới đây sẽ gây ra lỗi IndexError khi chạy chương trình?",
-        "options": ["print(A[1:10])", "print(A[-3])", "print(A[3])", "print(A[3:])"],
-        "correct": 2,
-        "explain": "Truy cập trực tiếp phần tử tại chỉ số 3 (ngoài phạm vi 0, 1, 2) gây ra lỗi IndexError. Cắt lát không bao giờ gây lỗi này."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2]\nA.append([3, 4])\nA.extend([5, 6])\nprint(len(A), A)\nKết quả in ra màn hình là gì?",
-        "options": [
-          "6 [1, 2, 3, 4, 5, 6]",
-          "5 [1, 2, [3, 4], 5, 6]",
-          "4 [1, 2, [3, 4], [5, 6]]",
-          "5 [1, 2, 3, 4, [5, 6]]"
-        ],
-        "correct": 1,
-        "explain": "append thêm list [3, 4] như 1 phần tử. extend nối từng phần tử 5, 6 vào cuối. List có 5 phần tử: [1, 2, [3, 4], 5, 6]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30]\nA.insert(1, 15)\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[15, 10, 20, 30]", "[10, 15, 30]", "[10, 15, 20, 30]", "[10, 20, 15, 30]"],
-        "correct": 2,
-        "explain": "insert(1, 15) chèn 15 vào chỉ số 1, đẩy các phần tử phía sau sang phải, thu được [10, 15, 20, 30]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [2, 3, 2, 4, 2]\nA.remove(2)\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[3, 4]", "[3, 2, 4, 2]", "[2, 3, 4, 2]", "[2, 3, 2, 4]"],
-        "correct": 1,
-        "explain": "remove(2) chỉ xóa lần xuất hiện đầu tiên của số 2 (ở chỉ số 0), thu được [3, 2, 4, 2]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30, 40]\nx = A.pop(1)\ny = A.pop()\nprint(x + y, A)\nKết quả in ra màn hình là gì?",
-        "options": ["50 [20, 30]", "50 [10, 30]", "70 [10, 20]", "60 [10, 30]"],
-        "correct": 3,
-        "explain": "A.pop(1) lấy ra 20, A.pop() lấy ra 40. Tổng x + y = 60, A còn lại [10, 30]."
-      },
-      {
-        "text": "Phát biểu nào sau đây phân biệt đúng các thao tác xóa phần tử trong List A?",
-        "options": [
-          "A.remove(1) xóa phần tử ở chỉ số 1, còn A.pop(1) xóa phần tử có giá trị bằng 1.",
-          "A.remove(1) xóa phần tử đầu tiên có giá trị bằng 1, còn A.pop(1) và del A[1] xóa phần tử tại chỉ số 1.",
-          "A.clear() xóa hoàn toàn biến A khỏi bộ nhớ khiến lệnh print(A) sau đó báo lỗi NameError.",
-          "del A[1] vừa xóa phần tử tại chỉ số 1 vừa trả về giá trị đó để gán cho biến khác."
-        ],
-        "correct": 1,
-        "explain": "remove xóa theo giá trị đầu tiên tìm thấy, trong khi pop và del xóa theo vị trí chỉ số."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [4, 1, 3, 2]\nA.append(5)\nA.insert(2, 0)\ndel A[1:3]\nA.pop()\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[4, 3, 2]", "[4, 0, 3, 2]", "[4, 1, 2]", "[4, 3, 2, 5]"],
-        "correct": 0,
-        "explain": "Thực hiện lần lượt các thao tác append, insert, del lát cắt và pop, kết quả thu được là [4, 3, 2]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [3, 1, 4, 2]\nB = A.sort()\nC = sorted(A, reverse=True)\nprint(B, C)\nKết quả in ra màn hình là gì?",
-        "options": [
-          "[1, 2, 3, 4] [4, 3, 2, 1]",
-          "None [1, 2, 3, 4]",
-          "None [4, 3, 2, 1]",
-          "[1, 2, 3, 4] None"
-        ],
-        "correct": 2,
-        "explain": "A.sort() sắp xếp trực tiếp tại chỗ và trả về None (nên B = None). sorted() trả về list mới giảm dần [4, 3, 2, 1]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [5, 2, 8, 2, 9, 2]\nA.reverse()\nprint(A.index(2), A.count(2))\nKết quả in ra màn hình là gì?",
-        "options": ["1 3", "5 3", "0 1", "0 3"],
-        "correct": 3,
-        "explain": "reverse() đảo ngược list thành [2, 9, 2, 8, 2, 5]. Số 2 xuất hiện đầu tiên ở chỉ số 0, tổng số lần xuất hiện là 3."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30]\nA.clear()\nA.append(40)\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[10, 20, 30, 40]", "[40]", "[]", "Chương trình báo lỗi."],
-        "correct": 1,
-        "explain": "clear() làm rỗng list thành [], sau đó append(40) thêm 40 vào thành [40]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3]\nB = A\nB[0] = 99\nprint(A[0])\nKết quả in ra màn hình là gì?",
-        "options": ["1", "[99, 2, 3]", "Chương trình báo lỗi.", "99"],
-        "correct": 3,
-        "explain": "Phép gán B = A tạo tham chiếu cùng trỏ đến một đối tượng list. Thay đổi B[0] làm thay đổi cả A[0] thành 99."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3]\nB = A.copy()\nC = A[:]\nB[0] = 10\nC[1] = 20\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[10, 20, 3]", "[10, 2, 3]", "[1, 2, 3]", "[1, 20, 3]"],
-        "correct": 2,
-        "explain": "copy() và slicing tạo bản sao mới độc lập (shallow copy), không làm thay đổi list A ban đầu [1, 2, 3]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30]\nB = A\nA = [40, 50]\nB.append(60)\nprint(A, B)\nKết quả in ra màn hình là gì?",
-        "options": [
-          "[40, 50, 60] [40, 50, 60]",
-          "[10, 20, 30, 60] [10, 20, 30, 60]",
-          "[40, 50, 60] [10, 20, 30]",
-          "[40, 50] [10, 20, 30, 60]"
-        ],
-        "correct": 3,
-        "explain": "A được gán sang list mới [40, 50]. B vẫn trỏ đến list cũ [10, 20, 30] và được append(60) thành [10, 20, 30, 60]."
-      },
-      {
-        "text": "Cho List hai chiều M = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]. Giá trị của biểu thức M[1][2] + M[-1][0] là bao nhiêu?",
-        "options": ["11", "13", "14", "12"],
-        "correct": 1,
-        "explain": "M[1][2] = 6, M[-1][0] = 7. Tổng là 6 + 7 = 13."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nM = [[1, 2], [3, 4, 5], [6]]\ns = 0\nfor row in M:\n    s += len(row)\nprint(s + len(M))\nKết quả in ra màn hình là gì?",
-        "options": ["6", "21", "9", "24"],
-        "correct": 2,
-        "explain": "Tổng độ dài các list con là 2 + 3 + 1 = 6. Số lượng hàng len(M) = 3. Tổng s + len(M) = 6 + 3 = 9."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nM = [[1, 2], [3, 4]]\nfor i in range(len(M)):\n    for j in range(len(M[i])):\n        if i == j:\n            M[i][j] = M[i][j] * 10\nprint(M)\nKết quả in ra màn hình là gì?",
-        "options": [
-          "[[10, 2], [3, 40]]",
-          "[[10, 20], [30, 40]]",
-          "[[1, 20], [30, 4]]",
-          "[[10, 2], [30, 4]]"
-        ],
-        "correct": 0,
-        "explain": "Điều kiện i == j nhân 10 các phần tử trên đường chéo chính: M[0][0] = 10 và M[1][1] = 40."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nM = [[1, 2, 3], [4, 5, 6]]\ns = 0\nfor row in M:\n    s += row[-1]\nprint(s)\nKết quả in ra màn hình là gì?",
-        "options": ["5", "15", "7", "9"],
-        "correct": 3,
-        "explain": "Cộng phần tử cuối mỗi hàng: 3 + 6 = 9."
-      },
-      {
-        "text": "Để khởi tạo một ma trận gồm 3 hàng và 2 cột chứa toàn số 0 sao cho các hàng hoàn toàn độc lập với nhau, cách viết nào sau đây là đúng?",
-        "options": [
-          "M = [[0] * 2] * 3",
-          "M = [[0 for j in range(2)] for i in range(3)]",
-          "M = [0, 0] * 3",
-          "M = [[0] * 3] * 2"
-        ],
-        "correct": 1,
-        "explain": "Sử dụng list comprehension lồng nhau giúp tạo ra các list con hoàn toàn độc lập trong bộ nhớ."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nM = [[0] * 2] * 3\nM[0][1] = 5\nprint(M)\nKết quả in ra màn hình là gì?",
-        "options": [
-          "[[0, 5], [0, 0], [0, 0]]",
-          "[[5, 5], [0, 0], [0, 0]]",
-          "[[0, 5], [0, 5], [0, 5]]",
-          "[[5, 0], [5, 0], [5, 0]]"
-        ],
-        "correct": 2,
-        "explain": "Toán tử * nhân list chứa các tham chiếu cùng trỏ về một list con duy nhất, khiến mọi hàng đều bị đổi thành [0, 5]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [[1, 2], [3, 4]]\nB = A.copy()\nB[0][0] = 99\nprint(A[0][0])\nKết quả in ra màn hình là gì?",
-        "options": ["1", "[99, 2]", "Chương trình báo lỗi.", "99"],
-        "correct": 3,
-        "explain": "copy() chỉ là sao chép nông (shallow copy), các list con bên trong vẫn bị dùng chung tham chiếu nên thay đổi B[0][0] làm đổi cả A[0][0] thành 99."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [2, 5, 8, 3, 6]\nfor i in range(len(A)):\n    if A[i] % 2 == 0:\n        A[i] = A[i] // 2\n    else:\n        A[i] = A[i] + 1\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[1, 6, 4, 4, 3]", "[1, 3, 4, 2, 3]", "[4, 6, 16, 4, 12]", "[1, 5, 4, 3, 3]"],
-        "correct": 0,
-        "explain": "Số chẵn chia nguyên cho 2, số lẻ cộng 1. Ta thu được [1, 6, 4, 4, 3]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nfor i in range(1, len(A)):\n    A[i] = A[i] + A[i - 1]\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[1, 3, 5, 7]", "[1, 3, 6, 10]", "[1, 2, 5, 9]", "[3, 5, 7, 4]"],
-        "correct": 1,
-        "explain": "Tính mảng cộng dồn (prefix sum): A[1]=3, A[2]=6, A[3]=10, thu được [1, 3, 6, 10]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nfor i in range(len(A) - 2, -1, -1):\n    A[i] = A[i] + A[i + 1]\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[10, 9, 7, 4]", "[3, 5, 7, 4]", "[1, 3, 6, 10]", "[10, 7, 4, 4]"],
-        "correct": 0,
-        "explain": "Duyệt ngược từ phải sang trái để cộng dồn ngược, thu được [10, 9, 7, 4]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [7, 3, 6, 2, 5, 1]\ncnt = 0\nfor i in range(len(A) - 1):\n    if A[i] > max(A[i + 1:]):\n        cnt += 1\nprint(cnt)\nKết quả in ra màn hình là gì?",
-        "options": ["2", "4", "5", "3"],
-        "correct": 3,
-        "explain": "Đếm số phần tử lớn hơn tất cả các phần tử đứng bên phải nó (gồm 7, 6, 5), tổng cộng là 3."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [4, 2, 7, 1, 5]\ns = 0\nfor i in range(1, len(A)):\n    s += min(A[:i])\nprint(s)\nKết quả in ra màn hình là gì?",
-        "options": ["9", "7", "8", "10"],
-        "correct": 0,
-        "explain": "Cộng min các tiền tố: min([4])=4, min([4,2])=2, min([4,2,7])=2, min([4,2,7,1])=1. Tổng s = 4 + 2 + 2 + 1 = 9."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [3, 6, 2, 5, 8]\nfor x in A:\n    if x % 2 == 1:\n        continue\n    print(x, end=\"-\")\nKết quả in ra màn hình là gì?",
-        "options": ["6-2-8", "3-5-", "6-2-8-", "6-2-"],
-        "correct": 2,
-        "explain": "Bỏ qua các số lẻ, in các số chẵn 6, 2, 8 kèm ký tự '-' ở cuối, kết quả là '6-2-8-'."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3]\ni = 0\nwhile i < len(A):\n    if A[i] < 3:\n        A.append(A[i] + 2)\n    i += 1\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[1, 2, 3, 3, 4]", "[1, 2, 3, 3]", "[1, 2, 3, 4, 5]", "Chương trình lặp vô hạn."],
-        "correct": 0,
-        "explain": "Vòng while duyệt và append thêm các phần tử tương ứng, dừng khi i đạt độ dài mới là 5, kết quả [1, 2, 3, 3, 4]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [10, 25, 30, 15, 40]\nB = []\nfor i in range(len(A) - 1):\n    if A[i] < A[i + 1]:\n        B.append(A[i + 1] - A[i])\nprint(B)\nKết quả in ra màn hình là gì?",
-        "options": ["[15, 5, -15, 25]", "[15, 5, 25]", "[15, 5]", "[25, 30, 40]"],
-        "correct": 1,
-        "explain": "Thêm hiệu của các cặp phần tử tăng dần: 25-10=15, 30-25=5, 40-15=25. Kết quả [15, 5, 25]."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\ns = 0\nfor i in range(len(A)):\n    s += A[i] + A[i + 1]\nprint(s)\nKhi thực thi đoạn chương trình trên, điều gì sẽ xảy ra?",
-        "options": [
-          "Chương trình in ra 16.",
-          "Chương trình in ra 20.",
-          "Chương trình báo lỗi IndexError ở lượt lặp cuối cùng khi i = 3.",
-          "Chương trình báo lỗi SyntaxError."
-        ],
-        "correct": 2,
-        "explain": "Ở lượt lặp cuối khi i = 3, A[i + 1] truy cập A[4] vượt quá giới hạn list, gây ra lỗi IndexError."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [2, 1, 3, 0, 4]\ni = 0\ncnt = 0\nwhile i < len(A) and A[i] != 0:\n    cnt += 1\n    i = A[i]\nprint(cnt, i)\nKết quả in ra màn hình là gì?",
-        "options": ["2 3", "3 0", "3 3", "4 4"],
-        "correct": 0,
-        "explain": "Duyệt theo con trỏ giá trị list: i=0 -> i=2 -> i=3 (A[3]=0 dừng). Số bước đếm cnt = 2, i = 3."
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4, 5]\nfor i in range(len(A) // 2):\n    A[i], A[-1 - i] = A[-1 - i] + 1, A[i] - 1\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[6, 5, 3, 1, 0]", "[5, 4, 3, 2, 1]", "[6, 5, 4, 1, 0]", "[4, 3, 3, 3, 2]"],
-        "correct": 0,
-        "explain": "Hoán đổi đồng thời và biến đổi giá trị đầu cuối, thu được kết quả [6, 5, 3, 1, 0]."
-      },
-      {
-        "text": "[Nâng cao] Cho đoạn chương trình sau:\nA = [2, 4, 3, 6, 8, 5]\nfor x in A:\n    if x % 2 == 0:\n        A.remove(x)\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[3, 5]", "[4, 3, 8, 5]", "[2, 3, 6, 5]", "Chương trình báo lỗi ValueError."],
-        "correct": 1,
-        "explain": "Xóa phần tử trực tiếp trong vòng lặp for làm dịch chuyển chỉ số, dẫn đến việc bỏ sót các phần tử chẵn liền sau, kết quả [4, 3, 8, 5]."
-      },
-      {
-        "text": "[Nâng cao] Cho đoạn chương trình sau:\nA = [1, 2, 3, 4, 5, 6]\nfor i in range(3):\n    A[i:i + 2] = [A[i] + A[-1]]\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[7, 9, 11, 6]", "[7, 8, 9]", "[7, 9, 11]", "[7, 5, 9, 6]"],
-        "correct": 2,
-        "explain": "Thay thế lát cắt kề nhau bằng tổng với phần tử cuối, độ dài list co lại sau mỗi bước, thu được [7, 9, 11]."
-      },
-      {
-        "text": "[Nâng cao] Cho đoạn chương trình sau:\nM = [[1, 2], [3, 4]]\nN = M[:]\nN.append(N[0])\nN[2][1] = 10\nN[1] = [5, 6]\nprint(M)\nKết quả in ra màn hình là gì?",
-        "options": ["[[1, 10], [3, 4]]", "[[1, 10], [5, 6]]", "[[1, 2], [3, 4]]", "[[1, 10], [3, 4], [1, 10]]"],
-        "correct": 0,
-        "explain": "N là copy nông của M. Thay đổi N[2][1] tác động đến list con đầu tiên do dùng chung tham chiếu, làm M đổi thành [[1, 10], [3, 4]]."
-      },
-      {
-        "text": "[Nâng cao] Cho đoạn chương trình sau:\nA = [3, 1, 4, 1, 5, 9]\ni = 0\nwhile i < len(A) - 1:\n    if A[i] >= A[i + 1]:\n        x = A.pop(i + 1)\n        A[i] += x\n    else:\n        i += 1\nprint(A)\nKết quả in ra màn hình là gì?",
-        "options": ["[4, 5, 5, 9]", "[4, 4, 1, 5, 9]", "[9, 5, 9]", "[23]"],
-        "correct": 3,
-        "explain": "Khi A[i] >= A[i+1], phần tử phía sau bị pop và cộng dồn vào A[i] mà i không tăng, cuối cùng gộp toàn bộ list thành [23]."
-      }
-    ]
-  }
-]
+{
+  "id": "q-python-list-chuyen-de",
+  "code": "PY-03",
+  "title": "List",
+  "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về List, phương thức, cắt lát, tham chiếu và các bài toán truy vết nâng cao trong Python.",
+  "duration": 50,
+  "createdAt": "2026-10-20",
+  "questions": [
+    {
+      "text": "Cú pháp nào sau đây khởi tạo một List rỗng hợp lệ trong Python?",
+      "options": ["A = ()", "A = {}", "A = []", "A = set()"],
+      "correct": 2,
+      "explain": "Trong Python, cặp dấu ngoặc vuông [] hoặc hàm tạo list() dùng để khởi tạo một List rỗng. Phương án A tạo tuple, phương án B tạo dict, phương án D tạo set.",
+      "hints": [
+        "Hãy nhớ lại ký hiệu dấu ngoặc đặc trưng của kiểu dữ liệu danh sách (List).",
+        "Ngoặc đơn () là Tuple, ngoặc nhọn {} là Dict, còn ngoặc vuông [] mới là List."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [10, \"Python\", [1, 2], True]\nprint(len(A))\nKết quả in ra màn hình là gì?",
+      "options": ["4", "5", "10", "Chương trình báo lỗi vì List chứa nhiều kiểu dữ liệu khác nhau."],
+      "correct": 0,
+      "explain": "Hàm len(A) đếm số phần tử ở cấp ngoài cùng của A. List A có 4 phần tử (10, 'Python', [1, 2], True).",
+      "hints": [
+        "List trong Python có thể chứa các phần tử thuộc nhiều kiểu dữ liệu khác nhau.",
+        "Danh sách con [1, 2] chỉ được tính là 1 phần tử duy nhất của List A."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [5, 10, [15, 20], 25]\nprint(15 in A)\nKết quả in ra màn hình là gì?",
+      "options": ["True", "2", "Chương trình báo lỗi.", "False"],
+      "correct": 3,
+      "explain": "Toán tử in kiểm tra phần tử trực tiếp ở cấp ngoài cùng. Số 15 nằm trong list con [15, 20] nên 15 in A trả về False.",
+      "hints": [
+        "Toán tử 'in' chỉ kiểm tra các phần tử nằm trực tiếp ở cấp ngoài cùng của List A.",
+        "Ở cấp ngoài cùng, A chỉ gồm 4 phần tử là: 5, 10, [15, 20] và 25."
+      ]
+    },
+    {
+      "text": "Cho A = [12, 24, 36, 48, 60]. Biểu thức A[1] + A[-2] có giá trị là bao nhiêu?",
+      "options": ["60", "72", "84", "48"],
+      "correct": 1,
+      "explain": "A[1] = 24 và A[-2] = 48. Tổng A[1] + A[-2] = 24 + 48 = 72.",
+      "hints": [
+        "Chỉ số dương đếm từ 0 (từ trái sang phải), chỉ số âm đếm từ -1 (từ phải sang trái).",
+        "Xác định giá trị của phần tử thứ hai A[1] và phần tử áp chót A[-2] rồi cộng lại."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2]\nB = [3, 4]\nC = A + B\nprint(C)\nKết quả in ra màn hình là gì?",
+      "options": ["[4, 6]", "[[1, 2], [3, 4]]", "[1, 2, 3, 4]", "[1, 2, [3, 4]]"],
+      "correct": 2,
+      "explain": "Đối với List, toán tử + thực hiện phép nối hai list lại với nhau thành một list mới [1, 2, 3, 4].",
+      "hints": [
+        "Toán tử + giữa hai List không cộng từng phần tử theo vị trí toán học.",
+        "Nó sẽ nối các phần tử của List B vào ngay phía sau các phần tử của List A."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2] * 3\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[3, 6]", "[[1, 2], [1, 2], [1, 2]]", "[1, 1, 1, 2, 2, 2]", "[1, 2, 1, 2, 1, 2]"],
+      "correct": 3,
+      "explain": "Toán tử * giữa list và số nguyên lặp lại các phần tử 3 lần nối tiếp nhau: [1, 2, 1, 2, 1, 2].",
+      "hints": [
+        "Phép nhân List với số nguyên n sẽ lặp lại trình tự các phần tử của List đó n lần.",
+        "Nối [1, 2] liên tiếp 3 lần trong cùng một danh sách."
+      ]
+    },
+    {
+      "text": "Phát biểu nào sau đây là đúng khi phân biệt list với tuple, set và dict trong Python?",
+      "options": [
+        "list và tuple đều không cho phép thay đổi giá trị phần tử sau khi khởi tạo.",
+        "list giữ nguyên thứ tự các phần tử, cho phép các phần tử trùng lặp và có thể thay đổi nội dung (mutable).",
+        "list tự động loại bỏ các phần tử trùng nhau giống như set.",
+        "list lưu trữ dữ liệu theo cặp key: value giống như dict."
+      ],
+      "correct": 1,
+      "explain": "List có thứ tự, có thể thay đổi nội dung (mutable) và cho phép các phần tử trùng lặp.",
+      "hints": [
+        "Hãy nhớ lại 3 đặc tính cốt lõi của List: có thứ tự (ordered), khả biến (mutable), và cho phép trùng lặp.",
+        "Loại trừ các tính chất của Tuple (bất biến), Set (không trùng lặp) và Dict (cặp key: value)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [2, 4, 6]\nB = A * 2 + [8]\nprint(len(B), B[-1])\nKết quả in ra màn hình là gì?",
+      "options": ["7 8", "6 8", "4 8", "7 6"],
+      "correct": 0,
+      "explain": "A * 2 tạo ra [2, 4, 6, 2, 4, 6], nối thêm [8] thành B = [2, 4, 6, 2, 4, 6, 8] (7 phần tử). Phần tử cuối B[-1] = 8.",
+      "hints": [
+        "Tính A * 2 trước (gồm 6 phần tử), sau đó nối thêm 1 phần tử [8] vào cuối.",
+        "Đếm tổng số phần tử của B và tìm phần tử đứng cuối cùng B[-1]."
+      ]
+    },
+    {
+      "text": "Cho A = [10, 20, 30, 40, 50, 60]. Kết quả của biểu thức cắt lát A[1:4] là gì?",
+      "options": ["[10, 20, 30, 40]", "[20, 30, 40]", "[20, 30, 40, 50]", "[10, 20, 30]"],
+      "correct": 1,
+      "explain": "Cắt lát A[1:4] lấy các chỉ số 1, 2, 3 tương ứng với các phần tử [20, 30, 40].",
+      "hints": [
+        "Cú pháp cắt lát A[start:stop] lấy từ chỉ số start đến chỉ số (stop - 1).",
+        "Chỉ số 4 không được lấy, vậy chỉ lấy các phần tử ở vị trí 1, 2 và 3."
+      ]
+    },
+    {
+      "text": "Cho A = [1, 2, 3, 4, 5, 6, 7]. Kết quả của biểu thức A[1:6:2] là gì?",
+      "options": ["[2, 4, 6]", "[1, 3, 5]", "[2, 4, 6, 7]", "[2, 3, 4, 5, 6]"],
+      "correct": 0,
+      "explain": "Biểu thức A[1:6:2] lấy từ chỉ số 1 đến trước 6 với bước nhảy 2, gồm các chỉ số 1, 3, 5 tương ứng với [2, 4, 6].",
+      "hints": [
+        "Cú pháp A[start:stop:step] bắt đầu tại chỉ số 1, dừng trước chỉ số 6 và nhảy cách 2 đơn vị.",
+        "Liệt kê các phần tử tại các chỉ số: 1, 3, 5."
+      ]
+    },
+    {
+      "text": "Cho A = [10, 20, 30, 40, 50]. Kết quả của biểu thức A[-4:-1] là gì?",
+      "options": ["[20, 30, 40, 50]", "[10, 20, 30]", "[20, 30, 40]", "[]"],
+      "correct": 2,
+      "explain": "Cắt lát A[-4:-1] lấy từ vị trí -4 đến trước -1, gồm các phần tử [20, 30, 40].",
+      "hints": [
+        "Đánh chỉ số âm từ phải sang trái: 50 là -1, 40 là -2, 30 là -3, 20 là -4, 10 là -5.",
+        "Lấy các phần tử từ chỉ số -4 đến ngay trước chỉ số -1 (không lấy phần tử ở -1)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nprint(A[::-1])\nKết quả in ra màn hình là gì?",
+      "options": ["[1, 2, 3]", "[4]", "[1, 4]", "[4, 3, 2, 1]"],
+      "correct": 3,
+      "explain": "Bước nhảy -1 đảo ngược toàn bộ danh sách thành [4, 3, 2, 1].",
+      "hints": [
+        "Cú pháp [::-1] sử dụng bước nhảy âm (-1) để duyệt danh sách từ cuối về đầu.",
+        "Đây là cách viết ngắn gọn để tạo một bản sao đảo ngược thứ tự của List."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [5, 10, 15, 20, 25]\nB = A[:2] + A[3:]\nprint(B)\nKết quả in ra màn hình là gì?",
+      "options": ["[5, 10, 20, 25]", "[5, 10, 15, 20, 25]", "[10, 15, 20]", "[5, 25]"],
+      "correct": 0,
+      "explain": "A[:2] là [5, 10], A[3:] là [20, 25]. Nối lại ta được [5, 10, 20, 25].",
+      "hints": [
+        "A[:2] lấy 2 phần tử đầu tiên (chỉ số 0, 1); A[3:] lấy từ chỉ số 3 đến hết.",
+        "Phần tử ở chỉ số 2 (số 15) bị bỏ qua khi ghép hai đoạn cắt này lại."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nA[1] = A[2] + A[-1]\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[7, 2, 3, 4]", "[1, 7, 3, 4]", "[1, 6, 3, 4]", "[1, 2, 7, 4]"],
+      "correct": 1,
+      "explain": "A[2] + A[-1] = 3 + 4 = 7. Gán vào A[1] thay giá trị 2 thành 7, ta được [1, 7, 3, 4].",
+      "hints": [
+        "Tính tổng vế phải trước: A[2] là 3, A[-1] là 4.",
+        "Gán kết quả vừa tính được vào vị trí chỉ số 1 (thay thế cho số 2)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4, 5]\nA[1:4] = [9, 8]\nprint(A, len(A))\nKết quả in ra màn hình là gì?",
+      "options": [
+        "[1, 9, 8, 4, 5] 5",
+        "[1, [9, 8], 5] 3",
+        "Chương trình báo lỗi vì số lượng phần tử thay thế không bằng số phần tử bị cắt.",
+        "[1, 9, 8, 5] 4"
+      ],
+      "correct": 3,
+      "explain": "Thay đoạn A[1:4] (3 phần tử) bằng [9, 8] (2 phần tử). List A co lại còn [1, 9, 8, 5] với độ dài 4.",
+      "hints": [
+        "Gán vào một lát cắt (slice assignment) cho phép thay thế cả đoạn phần tử bằng một danh sách có độ dài bất kỳ.",
+        "Đoạn [2, 3, 4] bị rút ra và thay bằng 2 phần tử 9, 8."
+      ]
+    },
+    {
+      "text": "Cho A = [10, 20, 30]. Câu lệnh nào dưới đây sẽ gây ra lỗi IndexError khi chạy chương trình?",
+      "options": ["print(A[1:10])", "print(A[-3])", "print(A[3])", "print(A[3:])"],
+      "correct": 2,
+      "explain": "Truy cập trực tiếp phần tử tại chỉ số 3 (ngoài phạm vi 0, 1, 2) gây ra lỗi IndexError. Cắt lát không bao giờ gây lỗi này.",
+      "hints": [
+        "Phép cắt lát (có dấu hai chấm :) không bao giờ báo lỗi IndexError dù chỉ số vượt quá độ dài.",
+        "List có 3 phần tử nên chỉ số dương chỉ từ 0 đến 2; truy xuất trực tiếp chỉ số 3 sẽ báo lỗi."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2]\nA.append([3, 4])\nA.extend([5, 6])\nprint(len(A), A)\nKết quả in ra màn hình là gì?",
+      "options": [
+        "6 [1, 2, 3, 4, 5, 6]",
+        "5 [1, 2, [3, 4], 5, 6]",
+        "4 [1, 2, [3, 4], [5, 6]]",
+        "5 [1, 2, 3, 4, [5, 6]]"
+      ],
+      "correct": 1,
+      "explain": "append thêm list [3, 4] như 1 phần tử. extend nối từng phần tử 5, 6 vào cuối. List có 5 phần tử: [1, 2, [3, 4], 5, 6].",
+      "hints": [
+        "append(x) đưa nguyên vẹn đối tượng x vào cuối List như 1 phần tử duy nhất.",
+        "extend(iterable) tách rời từng phần tử của danh sách truyền vào để nối vào cuối List."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30]\nA.insert(1, 15)\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[15, 10, 20, 30]", "[10, 15, 30]", "[10, 15, 20, 30]", "[10, 20, 15, 30]"],
+      "correct": 2,
+      "explain": "insert(1, 15) chèn 15 vào chỉ số 1, đẩy các phần tử phía sau sang phải, thu được [10, 15, 20, 30].",
+      "hints": [
+        "Cú pháp A.insert(index, value) sẽ chèn giá trị value vào đúng vị trí index.",
+        "Các phần tử từ vị trí index trở đi sẽ được đẩy lùi về phía sau chứ không bị ghi đè."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [2, 3, 2, 4, 2]\nA.remove(2)\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[3, 4]", "[3, 2, 4, 2]", "[2, 3, 4, 2]", "[2, 3, 2, 4]"],
+      "correct": 1,
+      "explain": "remove(2) chỉ xóa lần xuất hiện đầu tiên của số 2 (ở chỉ số 0), thu được [3, 2, 4, 2].",
+      "hints": [
+        "Phương thức remove(x) không xóa toàn bộ các giá trị x trong List.",
+        "Nó chỉ tìm và xóa phần tử x đầu tiên bắt gặp khi duyệt từ trái sang phải."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30, 40]\nx = A.pop(1)\ny = A.pop()\nprint(x + y, A)\nKết quả in ra màn hình là gì?",
+      "options": ["50 [20, 30]", "50 [10, 30]", "70 [10, 20]", "60 [10, 30]"],
+      "correct": 3,
+      "explain": "A.pop(1) lấy ra 20, A.pop() lấy ra 40. Tổng x + y = 60, A còn lại [10, 30].",
+      "hints": [
+        "A.pop(1) xóa và trả về phần tử ở chỉ số 1; A.pop() không truyền đối số sẽ xóa và trả về phần tử cuối cùng.",
+        "Tính tổng 2 phần tử vừa lấy ra và xem các phần tử nào còn sót lại trong A."
+      ]
+    },
+    {
+      "text": "Phát biểu nào sau đây phân biệt đúng các thao tác xóa phần tử trong List A?",
+      "options": [
+        "A.remove(1) xóa phần tử ở chỉ số 1, còn A.pop(1) xóa phần tử có giá trị bằng 1.",
+        "A.remove(1) xóa phần tử đầu tiên có giá trị bằng 1, còn A.pop(1) và del A[1] xóa phần tử tại chỉ số 1.",
+        "A.clear() xóa hoàn toàn biến A khỏi bộ nhớ khiến lệnh print(A) sau đó báo lỗi NameError.",
+        "del A[1] vừa xóa phần tử tại chỉ số 1 vừa trả về giá trị đó để gán cho biến khác."
+      ],
+      "correct": 1,
+      "explain": "remove xóa theo giá trị đầu tiên tìm thấy, trong khi pop và del xóa theo vị trí chỉ số.",
+      "hints": [
+        "Hãy phân biệt rõ: phương thức nào nhận vào GIÁ TRỊ cần xóa, phương thức nào nhận vào CHỈ SỐ (vị trí) cần xóa.",
+        "remove(val) xóa theo giá trị; còn pop(idx) và del A[idx] xóa theo chỉ số."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [4, 1, 3, 2]\nA.append(5)\nA.insert(2, 0)\ndel A[1:3]\nA.pop()\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[4, 3, 2]", "[4, 0, 3, 2]", "[4, 1, 2]", "[4, 3, 2, 5]"],
+      "correct": 0,
+      "explain": "Thực hiện lần lượt các thao tác append, insert, del lát cắt và pop, kết quả thu được là [4, 3, 2].",
+      "hints": [
+        "Truy vết từng dòng: sau append(5) -> [4, 1, 3, 2, 5]; sau insert(2, 0) -> [4, 1, 0, 3, 2, 5].",
+        "del A[1:3] xóa 2 phần tử ở chỉ số 1 và 2 (là 1 và 0), cuối cùng pop() xóa phần tử cuối (là 5)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [3, 1, 4, 2]\nB = A.sort()\nC = sorted(A, reverse=True)\nprint(B, C)\nKết quả in ra màn hình là gì?",
+      "options": [
+        "[1, 2, 3, 4] [4, 3, 2, 1]",
+        "None [1, 2, 3, 4]",
+        "None [4, 3, 2, 1]",
+        "[1, 2, 3, 4] None"
+      ],
+      "correct": 2,
+      "explain": "A.sort() sắp xếp trực tiếp tại chỗ và trả về None (nên B = None). sorted() trả về list mới giảm dần [4, 3, 2, 1].",
+      "hints": [
+        "Phương thức A.sort() sắp xếp trực tiếp trên A và luôn trả về giá trị None.",
+        "Hàm sorted(A, reverse=True) tạo và trả về một danh sách mới được sắp xếp theo thứ tự giảm dần."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [5, 2, 8, 2, 9, 2]\nA.reverse()\nprint(A.index(2), A.count(2))\nKết quả in ra màn hình là gì?",
+      "options": ["1 3", "5 3", "0 1", "0 3"],
+      "correct": 3,
+      "explain": "reverse() đảo ngược list thành [2, 9, 2, 8, 2, 5]. Số 2 xuất hiện đầu tiên ở chỉ số 0, tổng số lần xuất hiện là 3.",
+      "hints": [
+        "Sau khi gọi A.reverse(), phần tử cuối cùng (số 2) sẽ đảo lên đứng ở vị trí đầu tiên (chỉ số 0).",
+        "A.index(2) trả về vị trí xuất hiện đầu tiên của số 2, còn A.count(2) đếm tổng số lần số 2 xuất hiện."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30]\nA.clear()\nA.append(40)\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[10, 20, 30, 40]", "[40]", "[]", "Chương trình báo lỗi."],
+      "correct": 1,
+      "explain": "clear() làm rỗng list thành [], sau đó append(40) thêm 40 vào thành [40].",
+      "hints": [
+        "A.clear() xóa toàn bộ phần tử bên trong khiến A trở thành danh sách rỗng [].",
+        "Sau đó A.append(40) thêm phần tử 40 vào danh sách rỗng đó."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3]\nB = A\nB[0] = 99\nprint(A[0])\nKết quả in ra màn hình là gì?",
+      "options": ["1", "[99, 2, 3]", "Chương trình báo lỗi.", "99"],
+      "correct": 3,
+      "explain": "Phép gán B = A tạo tham chiếu cùng trỏ đến một đối tượng list. Thay đổi B[0] làm thay đổi cả A[0] thành 99.",
+      "hints": [
+        "Phép gán B = A không tạo ra danh sách mới mà cho B và A cùng trỏ vào một vùng nhớ.",
+        "Mọi thay đổi trên phần tử của B cũng chính là thay đổi trên A."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3]\nB = A.copy()\nC = A[:]\nB[0] = 10\nC[1] = 20\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[10, 20, 3]", "[10, 2, 3]", "[1, 2, 3]", "[1, 20, 3]"],
+      "correct": 2,
+      "explain": "copy() và slicing tạo bản sao mới độc lập (shallow copy), không làm thay đổi list A ban đầu [1, 2, 3].",
+      "hints": [
+        "Cả A.copy() và A[:] đều tạo ra một bản sao danh sách mới độc lập ở cấp ngoài cùng.",
+        "Do đó việc sửa đổi B[0] và C[1] không ảnh hưởng gì đến danh sách A gốc."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [10, 20, 30]\nB = A\nA = [40, 50]\nB.append(60)\nprint(A, B)\nKết quả in ra màn hình là gì?",
+      "options": [
+        "[40, 50, 60] [40, 50, 60]",
+        "[10, 20, 30, 60] [10, 20, 30, 60]",
+        "[40, 50, 60] [10, 20, 30]",
+        "[40, 50] [10, 20, 30, 60]"
+      ],
+      "correct": 3,
+      "explain": "A được gán sang list mới [40, 50]. B vẫn trỏ đến list cũ [10, 20, 30] và được append(60) thành [10, 20, 30, 60].",
+      "hints": [
+        "Ban đầu B trỏ vào [10, 20, 30]. Khi gán A = [40, 50], biến A chuyển sang trỏ vào danh sách mới, còn B vẫn giữ danh sách cũ.",
+        "Lệnh B.append(60) chỉ thêm 60 vào danh sách mà B đang trỏ tới."
+      ]
+    },
+    {
+      "text": "Cho List hai chiều M = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]. Giá trị của biểu thức M[1][2] + M[-1][0] là bao nhiêu?",
+      "options": ["11", "13", "14", "12"],
+      "correct": 1,
+      "explain": "M[1][2] = 6, M[-1][0] = 7. Tổng là 6 + 7 = 13.",
+      "hints": [
+        "Chỉ số thứ nhất chọn hàng (list con), chỉ số thứ hai chọn cột (phần tử trong list con đó).",
+        "M[1][2] là hàng chỉ số 1 ([4, 5, 6]), phần tử chỉ số 2 (số 6); M[-1][0] là hàng cuối ([7, 8, 9]), phần tử đầu (số 7)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nM = [[1, 2], [3, 4, 5], [6]]\ns = 0\nfor row in M:\n    s += len(row)\nprint(s + len(M))\nKết quả in ra màn hình là gì?",
+      "options": ["6", "21", "9", "24"],
+      "correct": 2,
+      "explain": "Tổng độ dài các list con là 2 + 3 + 1 = 6. Số lượng hàng len(M) = 3. Tổng s + len(M) = 6 + 3 = 9.",
+      "hints": [
+        "Vòng lặp cộng độ dài của từng list con vào biến s: 2 + 3 + 1 = 6.",
+        "Đừng quên cộng thêm len(M) (số lượng list con trong M, bằng 3) trước khi in ra."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nM = [[1, 2], [3, 4]]\nfor i in range(len(M)):\n    for j in range(len(M[i])):\n        if i == j:\n            M[i][j] = M[i][j] * 10\nprint(M)\nKết quả in ra màn hình là gì?",
+      "options": [
+        "[[10, 2], [3, 40]]",
+        "[[10, 20], [30, 40]]",
+        "[[1, 20], [30, 4]]",
+        "[[10, 2], [30, 4]]"
+      ],
+      "correct": 0,
+      "explain": "Điều kiện i == j nhân 10 các phần tử trên đường chéo chính: M[0][0] = 10 và M[1][1] = 40.",
+      "hints": [
+        "Điều kiện i == j chỉ đúng tại các vị trí có chỉ số hàng bằng chỉ số cột: (0, 0) và (1, 1).",
+        "Chỉ có phần tử M[0][0] (số 1) và M[1][1] (số 4) được nhân với 10."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nM = [[1, 2, 3], [4, 5, 6]]\ns = 0\nfor row in M:\n    s += row[-1]\nprint(s)\nKết quả in ra màn hình là gì?",
+      "options": ["5", "15", "7", "9"],
+      "correct": 3,
+      "explain": "Cộng phần tử cuối mỗi hàng: 3 + 6 = 9.",
+      "hints": [
+        "Trong mỗi lượt lặp, biến row đại diện cho từng hàng của ma trận M.",
+        "row[-1] là phần tử cuối cùng của mỗi hàng (lần lượt là 3 và 6)."
+      ]
+    },
+    {
+      "text": "Để khởi tạo một ma trận gồm 3 hàng và 2 cột chứa toàn số 0 sao cho các hàng hoàn toàn độc lập với nhau, cách viết nào sau đây là đúng?",
+      "options": [
+        "M = [[0] * 2] * 3",
+        "M = [[0 for j in range(2)] for i in range(3)]",
+        "M = [0, 0] * 3",
+        "M = [[0] * 3] * 2"
+      ],
+      "correct": 1,
+      "explain": "Sử dụng list comprehension lồng nhau giúp tạo ra các list con hoàn toàn độc lập trong bộ nhớ.",
+      "hints": [
+        "Dùng phép nhân [[0] * 2] * 3 sẽ khiến cả 3 hàng cùng trỏ vào một list con duy nhất.",
+        "Để tạo 3 hàng độc lập (mỗi hàng 2 cột), cần dùng vòng lặp for hoặc List Comprehension tạo mới từng hàng."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nM = [[0] * 2] * 3\nM[0][1] = 5\nprint(M)\nKết quả in ra màn hình là gì?",
+      "options": [
+        "[[0, 5], [0, 0], [0, 0]]",
+        "[[5, 5], [0, 0], [0, 0]]",
+        "[[0, 5], [0, 5], [0, 5]]",
+        "[[5, 0], [5, 0], [5, 0]]"
+      ],
+      "correct": 2,
+      "explain": "Toán tử * nhân list chứa các tham chiếu cùng trỏ về một list con duy nhất, khiến mọi hàng đều bị đổi thành [0, 5].",
+      "hints": [
+        "Cú pháp [[0] * 2] * 3 không tạo ra 3 danh sách riêng biệt mà tạo 3 tham chiếu cùng trỏ tới một danh sách [0, 0].",
+        "Khi sửa M[0][1] = 5, cả 3 hàng đều bị thay đổi theo giống hệt nhau."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [[1, 2], [3, 4]]\nB = A.copy()\nB[0][0] = 99\nprint(A[0][0])\nKết quả in ra màn hình là gì?",
+      "options": ["1", "[99, 2]", "Chương trình báo lỗi.", "99"],
+      "correct": 3,
+      "explain": "copy() chỉ là sao chép nông (shallow copy), các list con bên trong vẫn bị dùng chung tham chiếu nên thay đổi B[0][0] làm đổi cả A[0][0] thành 99.",
+      "hints": [
+        "Phương thức .copy() chỉ sao chép lớp vỏ ngoài (shallow copy), còn các list con bên trong vẫn dùng chung tham chiếu.",
+        "Do B[0] và A[0] vẫn cùng trỏ tới một list con nên khi gán B[0][0] = 99 thì A[0][0] cũng bằng 99."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [2, 5, 8, 3, 6]\nfor i in range(len(A)):\n    if A[i] % 2 == 0:\n        A[i] = A[i] // 2\n    else:\n        A[i] = A[i] + 1\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[1, 6, 4, 4, 3]", "[1, 3, 4, 2, 3]", "[4, 6, 16, 4, 12]", "[1, 5, 4, 3, 3]"],
+      "correct": 0,
+      "explain": "Số chẵn chia nguyên cho 2, số lẻ cộng 1. Ta thu được [1, 6, 4, 4, 3].",
+      "hints": [
+        "Duyệt từng phần tử: nếu là số chẵn thì chia lấy nguyên cho 2 (// 2), nếu là số lẻ thì cộng thêm 1.",
+        "Áp dụng lần lượt cho 2 (chẵn -> 1), 5 (lẻ -> 6), 8 (chẵn -> 4), 3 (lẻ -> 4), 6 (chẵn -> 3)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nfor i in range(1, len(A)):\n    A[i] = A[i] + A[i - 1]\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[1, 3, 5, 7]", "[1, 3, 6, 10]", "[1, 2, 5, 9]", "[3, 5, 7, 4]"],
+      "correct": 1,
+      "explain": "Tính mảng cộng dồn (prefix sum): A[1]=3, A[2]=6, A[3]=10, thu được [1, 3, 6, 10].",
+      "hints": [
+        "Lưu ý rằng A[i - 1] đã được cập nhật giá trị mới ở bước lặp ngay trước đó.",
+        "Truy vết: A[0] = 1; A[1] = 2 + 1 = 3; A[2] = 3 + 3 = 6; A[3] = 4 + 6 = 10."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\nfor i in range(len(A) - 2, -1, -1):\n    A[i] = A[i] + A[i + 1]\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[10, 9, 7, 4]", "[3, 5, 7, 4]", "[1, 3, 6, 10]", "[10, 7, 4, 4]"],
+      "correct": 0,
+      "explain": "Duyệt ngược từ phải sang trái để cộng dồn ngược, thu được [10, 9, 7, 4].",
+      "hints": [
+        "range(2, -1, -1) duyệt chỉ số i giảm dần từ 2 về 0 (tức là i = 2, 1, 0).",
+        "Cộng dồn từ phải sang trái: A[3] = 4; A[2] = 3 + 4 = 7; A[1] = 2 + 7 = 9; A[0] = 1 + 9 = 10."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [7, 3, 6, 2, 5, 1]\ncnt = 0\nfor i in range(len(A) - 1):\n    if A[i] > max(A[i + 1:]):\n        cnt += 1\nprint(cnt)\nKết quả in ra màn hình là gì?",
+      "options": ["2", "4", "5", "3"],
+      "correct": 3,
+      "explain": "Đếm số phần tử lớn hơn tất cả các phần tử đứng bên phải nó (gồm 7, 6, 5), tổng cộng là 3.",
+      "hints": [
+        "A[i + 1:] là danh sách tất cả các phần tử nằm ở bên phải của A[i].",
+        "Hãy đếm xem có bao nhiêu số lớn hơn mọi số đứng bên phải nó (không tính phần tử cuối cùng 1)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [4, 2, 7, 1, 5]\ns = 0\nfor i in range(1, len(A)):\n    s += min(A[:i])\nprint(s)\nKết quả in ra màn hình là gì?",
+      "options": ["9", "7", "8", "10"],
+      "correct": 0,
+      "explain": "Cộng min các tiền tố: min([4])=4, min([4,2])=2, min([4,2,7])=2, min([4,2,7,1])=1. Tổng s = 4 + 2 + 2 + 1 = 9.",
+      "hints": [
+        "i chạy từ 1 đến 4; A[:i] là đoạn gồm i phần tử đầu tiên của danh sách A.",
+        "Tìm giá trị nhỏ nhất của từng đoạn: [4] -> 4, [4, 2] -> 2, [4, 2, 7] -> 2, [4, 2, 7, 1] -> 1 rồi cộng lại."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [3, 6, 2, 5, 8]\nfor x in A:\n    if x % 2 == 1:\n        continue\n    print(x, end=\"-\")\nKết quả in ra màn hình là gì?",
+      "options": ["6-2-8", "3-5-", "6-2-8-", "6-2-"],
+      "correct": 2,
+      "explain": "Bỏ qua các số lẻ, in các số chẵn 6, 2, 8 kèm ký tự '-' ở cuối, kết quả là '6-2-8-'.",
+      "hints": [
+        "Lệnh continue sẽ bỏ qua lệnh print bên dưới nếu x là số lẻ (x % 2 == 1).",
+        "Chú ý tham số end='-' sẽ in thêm dấu gạch ngang ngay sau mỗi số chẵn, kể cả số chẵn cuối cùng."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3]\ni = 0\nwhile i < len(A):\n    if A[i] < 3:\n        A.append(A[i] + 2)\n    i += 1\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[1, 2, 3, 3, 4]", "[1, 2, 3, 3]", "[1, 2, 3, 4, 5]", "Chương trình lặp vô hạn."],
+      "correct": 0,
+      "explain": "Vòng while duyệt và append thêm các phần tử tương ứng, dừng khi i đạt độ dài mới là 5, kết quả [1, 2, 3, 3, 4].",
+      "hints": [
+        "Khi i = 0 (A[0] = 1 < 3), chương trình nối thêm 1 + 2 = 3 vào cuối A. Khi i = 1 (A[1] = 2 < 3), nối thêm 2 + 2 = 4 vào cuối A.",
+        "Từ i = 2 trở đi, các phần tử đều >= 3 nên không append thêm nữa, vòng lặp kết thúc an toàn."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [10, 25, 30, 15, 40]\nB = []\nfor i in range(len(A) - 1):\n    if A[i] < A[i + 1]:\n        B.append(A[i + 1] - A[i])\nprint(B)\nKết quả in ra màn hình là gì?",
+      "options": ["[15, 5, -15, 25]", "[15, 5, 25]", "[15, 5]", "[25, 30, 40]"],
+      "correct": 1,
+      "explain": "Thêm hiệu của các cặp phần tử tăng dần: 25-10=15, 30-25=5, 40-15=25. Kết quả [15, 5, 25].",
+      "hints": [
+        "Xét từng cặp phần tử kề nhau (A[i], A[i + 1]): chỉ khi số sau lớn hơn số trước thì mới lấy hiệu đưa vào B.",
+        "Các cặp tăng dần là (10, 25), (25, 30) và (15, 40); cặp (30, 15) bị bỏ qua."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4]\ns = 0\nfor i in range(len(A)):\n    s += A[i] + A[i + 1]\nprint(s)\nKhi thực thi đoạn chương trình trên, điều gì sẽ xảy ra?",
+      "options": [
+        "Chương trình in ra 16.",
+        "Chương trình in ra 20.",
+        "Chương trình báo lỗi IndexError ở lượt lặp cuối cùng khi i = 3.",
+        "Chương trình báo lỗi SyntaxError."
+      ],
+      "correct": 2,
+      "explain": "Ở lượt lặp cuối khi i = 3, A[i + 1] truy cập A[4] vượt quá giới hạn list, gây ra lỗi IndexError.",
+      "hints": [
+        "len(A) = 4 nên i sẽ chạy qua các giá trị 0, 1, 2, 3.",
+        "Hãy kiểm tra xem khi i = 3 thì biểu thức A[i + 1] sẽ truy cập vào chỉ số nào."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [2, 1, 3, 0, 4]\ni = 0\ncnt = 0\nwhile i < len(A) and A[i] != 0:\n    cnt += 1\n    i = A[i]\nprint(cnt, i)\nKết quả in ra màn hình là gì?",
+      "options": ["2 3", "3 0", "3 3", "4 4"],
+      "correct": 0,
+      "explain": "Duyệt theo con trỏ giá trị list: i=0 -> i=2 -> i=3 (A[3]=0 dừng). Số bước đếm cnt = 2, i = 3.",
+      "hints": [
+        "Đây là bài toán nhảy chỉ số: ở mỗi bước, giá trị A[i] sẽ trở thành chỉ số i mới cho bước tiếp theo.",
+        "Bắt đầu từ i = 0: A[0] = 2 (nhảy tới i = 2, cnt = 1) -> A[2] = 3 (nhảy tới i = 3, cnt = 2) -> A[3] = 0 (dừng vòng lặp)."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\nA = [1, 2, 3, 4, 5]\nfor i in range(len(A) // 2):\n    A[i], A[-1 - i] = A[-1 - i] + 1, A[i] - 1\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[6, 5, 3, 1, 0]", "[5, 4, 3, 2, 1]", "[6, 5, 4, 1, 0]", "[4, 3, 3, 3, 2]"],
+      "correct": 0,
+      "explain": "Hoán đổi đồng thời và biến đổi giá trị đầu cuối, thu được kết quả [6, 5, 3, 1, 0].",
+      "hints": [
+        "len(A) // 2 = 2, nên i chỉ nhận 2 giá trị là i = 0 và i = 1 (phần tử chính giữa A[2] = 3 giữ nguyên).",
+        "Khi i = 0: A[0], A[-1] = 5 + 1, 1 - 1 = 6, 0. Khi i = 1: A[1], A[-2] = 4 + 1, 2 - 1 = 5, 1."
+      ]
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình sau:\nA = [2, 4, 3, 6, 8, 5]\nfor x in A:\n    if x % 2 == 0:\n        A.remove(x)\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[3, 5]", "[4, 3, 8, 5]", "[2, 3, 6, 5]", "Chương trình báo lỗi ValueError."],
+      "correct": 1,
+      "explain": "Xóa phần tử trực tiếp trong vòng lặp for làm dịch chuyển chỉ số, dẫn đến việc bỏ sót các phần tử chẵn liền sau, kết quả [4, 3, 8, 5].",
+      "hints": [
+        "Khi xóa một phần tử bằng remove() ngay trong lúc đang duyệt bằng vòng lặp for, toàn bộ phần tử phía sau sẽ bị dồn lên trước 1 vị trí.",
+        "Lượt 1 (chỉ số 0): xóa 2, số 4 bị tụt về chỉ số 0 nên lượt 2 (chỉ số 1) sẽ nhảy sang xét số 3 (bỏ sót số 4). Tương tự khi xóa 6 sẽ bỏ sót 8."
+      ]
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình sau:\nA = [1, 2, 3, 4, 5, 6]\nfor i in range(3):\n    A[i:i + 2] = [A[i] + A[-1]]\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[7, 9, 11, 6]", "[7, 8, 9]", "[7, 9, 11]", "[7, 5, 9, 6]"],
+      "correct": 2,
+      "explain": "Thay thế lát cắt kề nhau bằng tổng với phần tử cuối, độ dài list co lại sau mỗi bước, thu được [7, 9, 11].",
+      "hints": [
+        "Mỗi lượt lặp thay thế 2 phần tử A[i:i+2] bằng 1 phần tử duy nhất là A[i] + A[-1].",
+        "Truy vết 3 bước: i=0 -> thay [1, 2] bằng [1+6] -> [7, 3, 4, 5, 6]; i=1 -> thay [3, 4] bằng [3+6] -> [7, 9, 5, 6]; i=2 -> thay [5, 6] bằng [5+6]."
+      ]
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình sau:\nM = [[1, 2], [3, 4]]\nN = M[:]\nN.append(N[0])\nN[2][1] = 10\nN[1] = [5, 6]\nprint(M)\nKết quả in ra màn hình là gì?",
+      "options": ["[[1, 10], [3, 4]]", "[[1, 10], [5, 6]]", "[[1, 2], [3, 4]]", "[[1, 10], [3, 4], [1, 10]]"],
+      "correct": 0,
+      "explain": "N là copy nông của M. Thay đổi N[2][1] tác động đến list con đầu tiên do dùng chung tham chiếu, làm M đổi thành [[1, 10], [3, 4]].",
+      "hints": [
+        "N = M[:] là sao chép nông, và N.append(N[0]) làm cho N[2], N[0] và M[0] đều cùng trỏ vào list con [1, 2].",
+        "Khi sửa N[2][1] = 10 thì M[0] biến thành [1, 10]; còn lệnh gán N[1] = [5, 6] chỉ đổi tham chiếu của N[1] chứ không ảnh hưởng tới M[1]."
+      ]
+    },
+    {
+      "text": "[Nâng cao] Cho đoạn chương trình sau:\nA = [3, 1, 4, 1, 5, 9]\ni = 0\nwhile i < len(A) - 1:\n    if A[i] >= A[i + 1]:\n        x = A.pop(i + 1)\n        A[i] += x\n    else:\n        i += 1\nprint(A)\nKết quả in ra màn hình là gì?",
+      "options": ["[4, 5, 5, 9]", "[4, 4, 1, 5, 9]", "[9, 5, 9]", "[23]"],
+      "correct": 3,
+      "explain": "Khi A[i] >= A[i+1], phần tử phía sau bị pop và cộng dồn vào A[i] mà i không tăng, cuối cùng gộp toàn bộ list thành [23].",
+      "hints": [
+        "Tại i = 0: 3 >= 1 nên rút 1 cộng vào 3 thành A[0] = 4 (lúc này A = [4, 4, 1, 5, 9] và i vẫn bằng 0).",
+        "Tiếp tục tại i = 0: 4 >= 4 nên gộp thành 8, rồi 8 >= 1 gộp thành 9, 9 >= 5 gộp thành 14, 14 >= 9 gộp thành 23."
+      ]
+    }
+  ]
+}
