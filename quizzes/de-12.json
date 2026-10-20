@@ -1,702 +1,1250 @@
-[
-  {
-    "id": 1,
-    "question": "Cho đoạn code sau, kết quả in ra màn hình là gì?\n\nlst = [5, -3, 12]\nprint(lst[1])",
-    "options": ["5", "-3", "12", "IndexError"],
-    "answer": "-3",
-    "hint": "Chỉ số index của List trong Python bắt đầu từ 0."
-  },
-  {
-    "id": 2,
-    "question": "Cho đoạn code sau:\n\nlst = [0.5] * 4\nprint(len(lst))",
-    "options": ["1", "2", "4", "2.0"],
-    "answer": "4",
-    "hint": "Toán tử * dùng với List sẽ nhân bản các phần tử theo số lần chỉ định."
-  },
-  {
-    "id": 3,
-    "question": "Kết quả xuất ra của đoạn code sau là gì?\n\nlst = [10, 20, 30, 40, 50]\nprint(lst[-1])",
-    "options": ["10", "40", "50", "IndexError"],
-    "answer": "50",
-    "hint": "Chỉ số âm -1 tham chiếu tới phần tử cuối cùng của danh sách."
-  },
-  {
-    "id": 4,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nlst = [5, 7, 2, 9, 6, 3]\nprint(lst[2:5])",
-    "options": ["[7, 2, 9]", "[2, 9, 6]", "[2, 9, 6, 3]", "[7, 2, 9, 6]"],
-    "answer": "[2, 9, 6]",
-    "hint": "Cú pháp slicing lst[start:end] lấy từ vị trí start đến end - 1."
-  },
-  {
-    "id": 5,
-    "question": "Đoạn code sau in ra kết quả gì?\n\nlst = [1, 2, 3, 4, 5]\nprint(lst[:3])",
-    "options": ["[1, 2]", "[1, 2, 3]", "[2, 3, 4]", "[1, 2, 3, 4]"],
-    "answer": "[1, 2, 3]",
-    "hint": "Khi bỏ qua start, Python mặc định lấy từ đầu danh sách (chỉ số 0)."
-  },
-  {
-    "id": 6,
-    "question": "Đoạn code sau in ra kết quả gì?\n\nlst = [10, 20, 30, 40, 50]\nprint(lst[2:])",
-    "options": ["[30, 40, 50]", "[20, 30, 40, 50]", "[30, 40]", "[40, 50]"],
-    "answer": "[30, 40, 50]",
-    "hint": "Khi bỏ qua end, Python cắt từ start đến hết danh sách."
-  },
-  {
-    "id": 7,
-    "question": "Kết quả của đoạn code sau là gì?\n\nlst = [0, 1, 2, 3, 4, 5, 6, 7]\nprint(lst[::2])",
-    "options": ["[0, 2, 4, 6]", "[1, 3, 5, 7]", "[0, 1, 2]", "[2, 4, 6]"],
-    "answer": "[0, 2, 4, 6]",
-    "hint": "Bước nhảy step = 2 lấy cách quãng từng 2 phần tử."
-  },
-  {
-    "id": 8,
-    "question": "Kết quả in ra của biểu thức sau là gì?\n\nlst = [1, 2, 3, 4]\nprint(lst[::-1])",
-    "options": ["[1, 2, 3, 4]", "[4, 3, 2, 1]", "[-1, -2, -3, -4]", "[]"],
-    "answer": "[4, 3, 2, 1]",
-    "hint": "Bước nhảy âm (step = -1) dùng để đảo ngược danh sách."
-  },
-  {
-    "id": 9,
-    "question": "Cho đoạn code sau. Giá trị in ra là gì?\n\na = [10, 20, 30, 40]\nb = a\nb[2] = 99\nprint(a[2])",
-    "options": ["30", "99", "10", "Error"],
-    "answer": "99",
-    "hint": "Phép gán b = a tham chiếu cùng một vùng nhớ trong bộ nhớ."
-  },
-  {
-    "id": 10,
-    "question": "Kết quả của chương trình sau là gì?\n\na = [10, 20, 30, 40]\nb = a.copy()\nb[2] = 99\nprint(a[2])",
-    "options": ["30", "99", "40", "Error"],
-    "answer": "30",
-    "hint": "Phương thức copy() tạo một bản sao độc lập, chỉnh sửa b không làm thay đổi a."
-  },
-  {
-    "id": 11,
-    "question": "Đoạn code sau cho kết quả gì?\n\nlst = [5, 7, 2, 9]\nlst[1:3] = [6, 8, 10]\nprint(lst)",
-    "options": ["[5, 6, 8, 10, 9]", "[5, 6, 8, 9]", "[6, 8, 10, 9]", "[5, 7, 6, 8, 10, 9]"],
-    "answer": "[5, 6, 8, 10, 9]",
-    "hint": "Gán lát cắt (slice assignment) thay thế khoảng [1:3] bằng nội dung danh sách mới."
-  },
-  {
-    "id": 12,
-    "question": "Chương trình sau in ra kết quả gì?\n\nlst = [0, 1, 2, 3]\nlst.insert(2, 9)\nprint(lst)",
-    "options": ["[0, 9, 1, 2, 3]", "[0, 1, 9, 2, 3]", "[0, 1, 2, 9, 3]", "[9, 0, 1, 2, 3]"],
-    "answer": "[0, 1, 9, 2, 3]",
-    "hint": "Cú pháp insert(index, value) chèn giá trị vào vị trí chỉ định và đẩy các phần tử phía sau lui lại."
-  },
-  {
-    "id": 13,
-    "question": "Nếu chèn vượt quá độ dài danh sách:\n\nlst = [1, 2, 3]\nlst.insert(10, 5)\nprint(lst)",
-    "options": ["IndexError", "[1, 2, 3, 5]", "[1, 2, 3, None, 5]", "[5, 1, 2, 3]"],
-    "answer": "[1, 2, 3, 5]",
-    "hint": "Nếu vị trí vượt quá len(lst), Python sẽ tự động chèn vào cuối danh sách."
-  },
-  {
-    "id": 14,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nlst = [1, 2, 3]\nlst.append([4, 5])\nprint(len(lst))",
-    "options": ["3", "4", "5", "TypeError"],
-    "answer": "4",
-    "hint": "Phương thức append() thêm cả đối tượng danh sách con như một phần tử duy nhất."
-  },
-  {
-    "id": 15,
-    "question": "Đoạn code sau in ra gì?\n\nlst = [1, 2, 3]\nlst.extend([4, 5])\nprint(len(lst))",
-    "options": ["3", "4", "5", "TypeError"],
-    "answer": "5",
-    "hint": "Phương thức extend() duyệt qua từng phần tử của iterable để nối vào cuối list."
-  },
-  {
-    "id": 16,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nlst = [1, 2, 3, 2, 1]\nlst.remove(2)\nprint(lst)",
-    "options": ["[1, 3, 2, 1]", "[1, 3, 1]", "[1, 2, 3, 1]", "ValueError"],
-    "answer": "[1, 3, 2, 1]",
-    "hint": "Phương thức remove(x) chỉ xóa phần tử x đầu tiên được tìm thấy."
-  },
-  {
-    "id": 17,
-    "question": "Lệnh sau gây ra kết quả gì?\n\nlst = [1, 2, 3]\nlst.remove(5)",
-    "options": ["Không thay đổi list", "Trả về False", "Báo lỗi ValueError", "Báo lỗi IndexError"],
-    "answer": "Báo lỗi ValueError",
-    "hint": "Xóa một giá trị không tồn tại bằng remove() sẽ ném ra ngoại lệ ValueError."
-  },
-  {
-    "id": 18,
-    "question": "Giá trị của x và lst là gì sau đoạn mã?\n\nlst = [10, 20, 30, 40]\nx = lst.pop()",
-    "options": ["x = 10, lst = [20, 30, 40]", "x = 40, lst = [10, 20, 30]", "x = 30, lst = [10, 20, 40]", "x = None, lst = [10, 20, 30, 40]"],
-    "answer": "x = 40, lst = [10, 20, 30]",
-    "hint": "pop() mặc định xóa và trả về phần tử ở vị trí cuối cùng (-1)."
-  },
-  {
-    "id": 19,
-    "question": "Kết quả đoạn mã sau là gì?\n\nlst = [10, 20, 30, 40]\nx = lst.pop(1)\nprint(x, lst)",
-    "options": ["20 [10, 30, 40]", "10 [20, 30, 40]", "30 [10, 20, 40]", "1 [10, 30, 40]"],
-    "answer": "20 [10, 30, 40]",
-    "hint": "pop(index) xóa và trả về giá trị tại vị trí index."
-  },
-  {
-    "id": 20,
-    "question": "Đoạn code sau in ra gì?\n\nlst = [1, 2, 3, 4]\nlst.clear()\nprint(lst)",
-    "options": ["None", "[]", "IndexError", "0"],
-    "answer": "[]",
-    "hint": "clear() dọn sạch toàn bộ phần tử, biến danh sách thành danh sách rỗng."
-  },
-  {
-    "id": 21,
-    "question": "Sau đoạn code sau, biến lst có giá trị gì?\n\nlst = [1, 2, 3]\ndel lst\nprint(lst)",
-    "options": ["[]", "None", "Báo lỗi NameError", "0"],
-    "answer": "Báo lỗi NameError",
-    "hint": "Lệnh 'del lst' hủy hoàn toàn định danh biến khỏi bộ nhớ."
-  },
-  {
-    "id": 22,
-    "question": "Kết quả in ra của chương trình sau là gì?\n\nlst = ['Orange', 'mango', 'Kiwi']\nlst.sort()\nprint(lst)",
-    "options": ["['Kiwi', 'Orange', 'mango']", "['Orange', 'Kiwi', 'mango']", "['mango', 'Kiwi', 'Orange']", "['Kiwi', 'mango', 'Orange']"],
-    "answer": "['Kiwi', 'Orange', 'mango']",
-    "hint": "sort() mặc định phân biệt hoa thường dựa theo mã ASCII (chữ hoa đứng trước chữ thường)."
-  },
-  {
-    "id": 23,
-    "question": "Chương trình sau in ra kết quả gì?\n\nlst = ['Orange', 'mango', 'Kiwi']\nlst.sort(key=str.lower)\nprint(lst)",
-    "options": ["['Kiwi', 'mango', 'Orange']", "['Kiwi', 'Orange', 'mango']", "['mango', 'Kiwi', 'Orange']", "['Orange', 'mango', 'Kiwi']"],
-    "answer": "['Kiwi', 'mango', 'Orange']",
-    "hint": "Tham số key=str.lower giúp sắp xếp theo thứ tự bảng chữ cái không phân biệt hoa thường."
-  },
-  {
-    "id": 24,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nlst = [1, 3, 2]\nx = lst.sort()\nprint(x)",
-    "options": ["[1, 2, 3]", "[3, 2, 1]", "None", "Error"],
-    "answer": "None",
-    "hint": "Phương thức .sort() sửa đổi trực tiếp trên list gốc và luôn trả về giá trị None."
-  },
-  {
-    "id": 25,
-    "question": "Kết quả in ra của đoạn code sau là gì?\n\nlst = [1, 2, 3]\nlst.reverse()\nprint(lst)",
-    "options": ["[3, 2, 1]", "[1, 2, 3]", "None", "Error"],
-    "answer": "[3, 2, 1]",
-    "hint": "reverse() đảo ngược thứ tự các phần tử tại chỗ (in-place)."
-  },
-  {
-    "id": 26,
-    "question": "Kết quả của đoạn List Comprehension sau là gì?\n\nlst = [x * 2 for x in range(4)]\nprint(lst)",
-    "options": ["[0, 2, 4, 6]", "[2, 4, 6, 8]", "[0, 1, 2, 3]", "[0, 2, 4]"],
-    "answer": "[0, 2, 4, 6]",
-    "hint": "range(4) sinh ra 0, 1, 2, 3; nhân 2 lần lượt ta được 0, 2, 4, 6."
-  },
-  {
-    "id": 27,
-    "question": "Kết quả của List Comprehension sau là gì?\n\nlst = [x for x in [1, 2, 3, 4, 5, 6] if x % 2 == 0]\nprint(lst)",
-    "options": ["[1, 3, 5]", "[2, 4, 6]", "[0, 2, 4, 6]", "[2, 4]"],
-    "answer": "[2, 4, 6]",
-    "hint": "Mệnh đề if lọc các giá trị chẵn chia hết cho 2."
-  },
-  {
-    "id": 28,
-    "question": "Cho ma trận sau:\n\nmatrix = [\n    [1, 2, 3],\n    [4, 5, 6],\n    [7, 8, 9]\n]\nprint(matrix[1][2])",
-    "options": ["2", "4", "6", "8"],
-    "answer": "6",
-    "hint": "matrix[1] là hàng 1: [4, 5, 6]; matrix[1][2] là phần tử cột 2: giá trị 6."
-  },
-  {
-    "id": 29,
-    "question": "Kết quả in ra của đoạn code ma trận sau là gì?\n\nrow = 3\ncol = 2\nlst = [[0] * col] * row\nlst[0][0] = 5\nprint(lst[1][0])",
-    "options": ["0", "5", "IndexError", "None"],
-    "answer": "5",
-    "hint": "Nhân bản mảng con bằng dấu * tạo ra các hàng cùng trỏ vào một đối tượng list duy nhất."
-  },
-  {
-    "id": 30,
-    "question": "Kết quả của phép nối danh sách sau là gì?\n\na = [1, 2]\nb = [3, 4]\nprint(a + b)",
-    "options": ["[1, 2, 3, 4]", "[[1, 2], [3, 4]]", "[4, 6]", "TypeError"],
-    "answer": "[1, 2, 3, 4]",
-    "hint": "Toán tử + dùng để ghép nối hai danh sách tạo thành danh sách mới."
-  },
-  {
-    "id": 31,
-    "question": "Kiểu dữ liệu nào sau đây là IMMUTABLE (bất biến)?",
-    "options": ["List", "Dictionary", "Set", "Tuple"],
-    "answer": "Tuple",
-    "hint": "Tuple và String là các kiểu tuần tự không cho phép sửa đổi nội dung sau khi khởi tạo."
-  },
-  {
-    "id": 32,
-    "question": "Đoạn code sau cho ra kiểu dữ liệu gì?\n\nx = (50)\nprint(type(x))",
-    "options": ["<class 'tuple'>", "<class 'int'>", "<class 'list'>", "<class 'set'>"],
-    "answer": "<class 'int'>",
-    "hint": "Tuple có 1 phần tử bắt buộc phải có dấu phẩy ở sau: (50,)."
-  },
-  {
-    "id": 33,
-    "question": "Đoạn code sau in ra kiểu dữ liệu gì?\n\nx = (50,)\nprint(type(x))",
-    "options": ["<class 'int'>", "<class 'tuple'>", "<class 'set'>", "<class 'list'>"],
-    "answer": "<class 'tuple'>",
-    "hint": "Dấu phẩy phân tách quyết định việc tạo tuple 1 phần tử."
-  },
-  {
-    "id": 34,
-    "question": "Đoạn mã sau xảy ra điều gì?\n\ntup = (1, 2, 3)\ntup[1] = 10",
-    "options": ["tup trở thành (1, 10, 3)", "Báo lỗi TypeError", "Báo lỗi ValueError", "Báo lỗi IndexError"],
-    "answer": "Báo lỗi TypeError",
-    "hint": "Tuple không hỗ trợ gán giá trị theo chỉ số index (immutable)."
-  },
-  {
-    "id": 35,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nt = (1, 2, 3, 2, 4, 2)\nprint(t.count(2))",
-    "options": ["1", "2", "3", "0"],
-    "answer": "3",
-    "hint": "Phương thức count(x) đếm số lần x xuất hiện trong tuple."
-  },
-  {
-    "id": 36,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nt = (1, 2, 3, 2, 4)\nprint(t.index(2))",
-    "options": ["1", "3", "2", "[1, 3]"],
-    "answer": "1",
-    "hint": "index(x) trả về vị trí xuất hiện đầu tiên của giá trị x."
-  },
-  {
-    "id": 37,
-    "question": "Lệnh sau trả về kết quả gì?\n\nt = (1, 2, 3)\nprint(t.index(5))",
-    "options": ["-1", "None", "Báo lỗi ValueError", "Báo lỗi IndexError"],
-    "answer": "Báo lỗi ValueError",
-    "hint": "Gọi index() với giá trị không tồn tại trong Tuple/List sẽ báo lỗi ValueError."
-  },
-  {
-    "id": 38,
-    "question": "Đoạn code sau in ra kết quả gì?\n\na = (1, 2)\nb = (3, 4)\nprint(a + b)",
-    "options": ["(1, 2, 3, 4)", "(4, 6)", "((1, 2), (3, 4))", "TypeError"],
-    "answer": "(1, 2, 3, 4)",
-    "hint": "Toán tử + ghép nối hai Tuple để tạo ra Tuple mới."
-  },
-  {
-    "id": 39,
-    "question": "Kết quả của biểu thức sau là gì?\n\nprint(('Hi!',) * 3)",
-    "options": ["('Hi!', 'Hi!', 'Hi!')", "('Hi!Hi!Hi!')", "TypeError", "('Hi!', 3)"],
-    "answer": "('Hi!', 'Hi!', 'Hi!')",
-    "hint": "Toán tử * nhân bản các phần tử bên trong tuple."
-  },
-  {
-    "id": 40,
-    "question": "Kỹ thuật Unpacking sau in ra giá trị gì?\n\nfriends = ('Ti', 'Teo', 'Tun')\na, b, c = friends\nprint(b)",
-    "options": ["Ti", "Teo", "Tun", "('Teo',)"],
-    "answer": "Teo",
-    "hint": "Số biến bên trái khớp số lượng phần tử của tuple; b nhận phần tử thứ hai."
-  },
-  {
-    "id": 41,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nnumbers = (1, 2, 3, 4, 5)\na, *b, c = numbers\nprint(b)",
-    "options": ["[2, 3, 4]", "(2, 3, 4)", "[2, 3]", "[3, 4]"],
-    "answer": "[2, 3, 4]",
-    "hint": "Toán tử * gom các phần tử còn lại vào một List."
-  },
-  {
-    "id": 42,
-    "question": "Kết quả in ra là gì?\n\nnumbers = (1, 2, 3, 4)\n*a, b = numbers\nprint(a)",
-    "options": ["[1, 2, 3]", "(1, 2, 3)", "[1, 2]", "1"],
-    "answer": "[1, 2, 3]",
-    "hint": "Biến *a nhận toàn bộ phần tử trừ phần tử cuối cùng dành cho b."
-  },
-  {
-    "id": 43,
-    "question": "Cách nào sau đây là hợp lệ để thêm phần tử vào tuple t = (1, 2)?",
-    "options": ["t.append(3)", "t.insert(0, 3)", "t = t + (3,)", "t.add(3)"],
-    "answer": "t = t + (3,)",
-    "hint": "Do tuple là bất biến, cần ghép với tuple mới rồi gán lại vào tên biến."
-  },
-  {
-    "id": 44,
-    "question": "Đoạn mã sau xảy ra điều gì?\n\nt = (1, [2, 3], 4)\nt[1].append(99)\nprint(t)",
-    "options": ["TypeError", "(1, [2, 3], 4)", "(1, [2, 3, 99], 4)", "(1, 99, 4)"],
-    "answer": "(1, [2, 3, 99], 4)",
-    "hint": "Bản thân tuple bất biến nhưng phần tử bên trong nó là List (mutable) thì có thể sửa đổi nội dung list đó."
-  },
-  {
-    "id": 45,
-    "question": "Biểu thức sau trả về kết quả gì?\n\nprint(3 in (1, 2, 3, 4))",
-    "options": ["True", "False", "None", "Error"],
-    "answer": "True",
-    "hint": "Toán tử 'in' kiểm tra sự tồn tại của phần tử trong Tuple/List."
-  },
-  {
-    "id": 46,
-    "question": "Đặc điểm nào sau đây KHÔNG ĐÚNG về Set trong Python?",
-    "options": ["Không có thứ tự (unordered)", "Không chứa phần tử trùng lặp", "Hỗ trợ truy xuất qua chỉ số index", "Khai báo bằng cặp dấu ngoặc nhọn {}"],
-    "answer": "Hỗ trợ truy xuất qua chỉ số index",
-    "hint": "Set không có thứ tự nên không hỗ trợ lập chỉ mục (index) hoặc cắt lát (slicing)."
-  },
-  {
-    "id": 47,
-    "question": "Khai báo nào sau đây tạo ra một Set rỗng?",
-    "options": ["s = {}", "s = set()", "s = []", "s = ()"],
-    "answer": "s = set()",
-    "hint": "Dấu {} mặc định tạo một Dictionary rỗng; phải dùng set() để tạo set rỗng."
-  },
-  {
-    "id": 48,
-    "question": "Kết quả in ra của đoạn code sau là gì?\n\ns = {1, 2, 2, 3, 3, 3}\nprint(len(s))",
-    "options": ["6", "3", "1", "TypeError"],
-    "answer": "3",
-    "hint": "Set tự động loại bỏ tất cả các giá trị trùng lặp."
-  },
-  {
-    "id": 49,
-    "question": "Kết quả của đoạn code sau là gì?\n\ns = {1, True, 0, False}\nprint(len(s))",
-    "options": ["4", "2", "3", "0"],
-    "answer": "2",
-    "hint": "Trong Python, 1 tương đương với True và 0 tương đương với False trong Set."
-  },
-  {
-    "id": 50,
-    "question": "Đoạn mã sau xảy ra điều gì?\n\ns = {1, 2, 3}\nprint(s[0])",
-    "options": ["1", "TypeError", "KeyError", "IndexError"],
-    "answer": "TypeError",
-    "hint": "Set không hỗ trợ truy xuất theo chỉ mục, gây ra lỗi 'TypeError: 'set' object is not subscriptable'."
-  },
-  {
-    "id": 51,
-    "question": "Kết quả của chương trình sau là gì?\n\ns = {1, 2, 3}\ns.add(2)\nprint(len(s))",
-    "options": ["4", "3", "2", "Error"],
-    "answer": "3",
-    "hint": "add() thêm phần tử vào set; do 2 đã tồn tại nên set giữ nguyên kích thước."
-  },
-  {
-    "id": 52,
-    "question": "Kết quả của đoạn code sau là gì?\n\ns = {1, 2}\ns.update([2, 3, 4])\nprint(s)",
-    "options": ["{1, 2, 3, 4}", "{1, 2, [2, 3, 4]}", "{1, 2, 2, 3, 4}", "TypeError"],
-    "answer": "{1, 2, 3, 4}",
-    "hint": "update() nhận một iterable và thêm lần lượt các phần tử mới vào set."
-  },
-  {
-    "id": 53,
-    "question": "Điều gì xảy ra khi chạy đoạn code sau?\n\ns = {1, 2, 3}\ns.remove(5)",
-    "options": ["Không có gì xảy ra", "Trả về False", "Báo lỗi KeyError", "Báo lỗi ValueError"],
-    "answer": "Báo lỗi KeyError",
-    "hint": "remove() trên set sẽ báo lỗi KeyError nếu phần tử cần xóa không có trong set."
-  },
-  {
-    "id": 54,
-    "question": "Điều gì xảy ra khi chạy đoạn code sau?\n\ns = {1, 2, 3}\ns.discard(5)",
-    "options": ["Báo lỗi KeyError", "Không báo lỗi, set giữ nguyên", "Trả về None và xóa phần tử đầu tiên", "Báo lỗi ValueError"],
-    "answer": "Không báo lỗi, set giữ nguyên",
-    "hint": "discard() xóa phần tử an toàn, không báo lỗi nếu phần tử không tồn tại."
-  },
-  {
-    "id": 55,
-    "question": "Phương thức pop() trên Set có đặc điểm gì?\n\ns = {10, 20, 30}\nx = s.pop()",
-    "options": ["Luôn xóa phần tử cuối cùng", "Luôn xóa phần tử nhỏ nhất", "Xóa và trả về một phần tử ngẫu nhiên", "Báo lỗi vì Set không có thứ tự"],
-    "answer": "Xóa và trả về một phần tử ngẫu nhiên",
-    "hint": "Do Set không có thứ tự xác định, pop() lấy ra và xóa một phần tử bất kỳ."
-  },
-  {
-    "id": 56,
-    "question": "Kết quả của biểu thức sau là gì?\n\na = {1, 2, 3}\nb = {3, 4, 5}\nprint(a | b)",
-    "options": ["{3}", "{1, 2, 4, 5}", "{1, 2, 3, 4, 5}", "{1, 2, 3, 3, 4, 5}"],
-    "answer": "{1, 2, 3, 4, 5}",
-    "hint": "Toán tử | đại diện cho phép hợp (union) lấy tất cả phần tử từ cả hai set."
-  },
-  {
-    "id": 57,
-    "question": "Kết quả của biểu thức sau là gì?\n\na = {1, 2, 3}\nb = {3, 4, 5}\nprint(a & b)",
-    "options": ["{3}", "{1, 2, 4, 5}", "{1, 2, 3, 4, 5}", "set()"],
-    "answer": "{3}",
-    "hint": "Toán tử & đại diện cho phép giao (intersection), chỉ giữ lại các phần tử chung."
-  },
-  {
-    "id": 58,
-    "question": "Kết quả của biểu thức sau là gì?\n\na = {1, 2, 3}\nb = {3, 4, 5}\nprint(a - b)",
-    "options": ["{1, 2}", "{4, 5}", "{3}", "{1, 2, 4, 5}"],
-    "answer": "{1, 2}",
-    "hint": "Toán tử - đại diện cho phép hiệu (difference), giữ lại các phần tử thuộc a nhưng không thuộc b."
-  },
-  {
-    "id": 59,
-    "question": "Kết quả của biểu thức sau là gì?\n\na = {1, 2, 3}\nb = {3, 4, 5}\nprint(a ^ b)",
-    "options": ["{3}", "{1, 2, 4, 5}", "{1, 2, 3, 4, 5}", "set()"],
-    "answer": "{1, 2, 4, 5}",
-    "hint": "Toán tử ^ là symmetric difference, lấy các phần tử chỉ xuất hiện ở 1 trong 2 set."
-  },
-  {
-    "id": 60,
-    "question": "Đoạn code sau in ra kết quả gì?\n\na = {1, 2, 3}\nb = {2, 3, 4}\na.intersection_update(b)\nprint(a)",
-    "options": ["{1}", "{2, 3}", "{1, 2, 3, 4}", "{4}"],
-    "answer": "{2, 3}",
-    "hint": "intersection_update cập nhật trực tiếp tập hợp ban đầu bằng tập giao của hai set."
-  },
-  {
-    "id": 61,
-    "question": "Đoạn mã sau xảy ra điều gì?\n\ns = {1, 2, [3, 4]}",
-    "options": ["Tạo ra set chứa 3 phần tử", "TypeError: unhashable type: 'list'", "ValueError", "Tự động chuyển list thành tuple"],
-    "answer": "TypeError: unhashable type: 'list'",
-    "hint": "Các phần tử của Set phải là kiểu băm được (hashable / immutable). List là mutable nên không thể đưa vào set."
-  },
-  {
-    "id": 62,
-    "question": "Khai báo nào sau đây là hợp lệ với Set?",
-    "options": ["s = {1, (2, 3)}", "s = {1, [2, 3]}", "s = {1, {2, 3}}", "s = {1, {'a': 1}}"],
-    "answer": "s = {1, (2, 3)}",
-    "hint": "Tuple chứa các phần tử bất biến là hashable nên có thể đặt vào Set."
-  },
-  {
-    "id": 63,
-    "question": "Kết quả của hàm len() sau là gì?\n\ns = set('hello')\nprint(len(s))",
-    "options": ["5", "4", "1", "TypeError"],
-    "answer": "4",
-    "hint": "Chuỗi 'hello' có 4 ký tự duy nhất: 'h', 'e', 'l', 'o' (ký tự 'l' bị trùng)."
-  },
-  {
-    "id": 64,
-    "question": "Đoạn code sau in ra kết quả gì?\n\ns = {1, 2, 3}\ns.clear()\nprint(s)",
-    "options": ["{}", "set()", "None", "Error"],
-    "answer": "set()",
-    "hint": "Set rỗng được biểu diễn dưới dạng 'set()', không phải '{}'."
-  },
-  {
-    "id": 65,
-    "question": "Đoạn code sau in ra gì?\n\na = {1, 2}\nb = {1, 2, 3}\nprint(a.issubset(b))",
-    "options": ["True", "False", "None", "Error"],
-    "answer": "True",
-    "hint": "Mọi phần tử của a đều nằm trong b, nên a là tập con (subset) của b."
-  },
-  {
-    "id": 66,
-    "question": "Trong Python (từ bản 3.7 trở đi), Dictionary có đặc điểm gì về thứ tự?",
-    "options": ["Không có thứ tự", "Có tính thứ tự theo thứ tự thêm vào", "Tự động sắp xếp theo alphabet của key", "Tự động sắp xếp theo value"],
-    "answer": "Có tính thứ tự theo thứ tự thêm vào",
-    "hint": "Từ Python 3.7, Dictionary duy trì thứ tự chèn (insertion order) của các cặp key-value."
-  },
-  {
-    "id": 67,
-    "question": "Kiểu dữ liệu nào sau đây KHÔNG THỂ làm Key trong Dictionary?",
-    "options": ["int", "str", "tuple", "list"],
-    "answer": "list",
-    "hint": "Key của Dictionary bắt buộc phải là kiểu dữ liệu hashable (immutable)."
-  },
-  {
-    "id": 68,
-    "question": "Kết quả của đoạn code sau là gì?\n\nd = {'a': 1, 'b': 2, 'a': 3}\nprint(d)",
-    "options": ["{'a': 1, 'b': 2}", "{'a': 3, 'b': 2}", "{'a': 1, 'b': 2, 'a': 3}", "SyntaxError"],
-    "answer": "{'a': 3, 'b': 2}",
-    "hint": "Các key trong Dictionary phải là duy nhất. Key xuất hiện sau sẽ ghi đè giá trị trước."
-  },
-  {
-    "id": 69,
-    "question": "Kết quả của đoạn code sau là gì?\n\nd = dict(name='Tran', age=37)\nprint(d['age'])",
-    "options": ["37", "'37'", "name", "KeyError"],
-    "answer": "37",
-    "hint": "dict(key=value) khởi tạo dictionary với các key dạng chuỗi tương ứng."
-  },
-  {
-    "id": 70,
-    "question": "Đoạn mã sau xảy ra điều gì?\n\nd = {'name': 'Alice'}\nprint(d['age'])",
-    "options": ["None", "Trả về chuỗi rỗng", "Báo lỗi KeyError", "Báo lỗi IndexError"],
-    "answer": "Báo lỗi KeyError",
-    "hint": "Truy xuất trực tiếp d[key] mà key không tồn tại sẽ gây ra KeyError."
-  },
-  {
-    "id": 71,
-    "question": "Kết quả của phương thức get() sau là gì?\n\nd = {'name': 'Alice'}\nprint(d.get('age'))",
-    "options": ["None", "0", "KeyError", "Error"],
-    "answer": "None",
-    "hint": "Phương thức get(key) trả về None nếu key không tồn tại thay vì gây lỗi."
-  },
-  {
-    "id": 72,
-    "question": "Kết quả của phương thức get() có giá trị mặc định là gì?\n\nd = {'name': 'Alice'}\nprint(d.get('age', 18))",
-    "options": ["None", "18", "KeyError", "Alice"],
-    "answer": "18",
-    "hint": "Cú pháp d.get(key, default) trả về giá trị default khi key không tồn tại."
-  },
-  {
-    "id": 73,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nd = {'a': 1, 'b': 2}\nd['c'] = 3\nprint(len(d))",
-    "options": ["2", "3", "4", "Error"],
-    "answer": "3",
-    "hint": "Gán d[new_key] = value sẽ thêm một cặp key-value mới vào từ điển."
-  },
-  {
-    "id": 74,
-    "question": "Đoạn mã sau cho kết quả gì?\n\nd = {'a': 1, 'b': 2}\nd.update({'b': 20, 'c': 30})\nprint(d['b'])",
-    "options": ["2", "20", "KeyError", "[2, 20]"],
-    "answer": "20",
-    "hint": "update() cập nhật giá trị cho key đã tồn tại và thêm key mới nếu chưa có."
-  },
-  {
-    "id": 75,
-    "question": "Kết quả in ra của phương thức pop() sau là gì?\n\nd = {'a': 1, 'b': 2, 'c': 3}\nval = d.pop('b')\nprint(val, d)",
-    "options": ["2 {'a': 1, 'c': 3}", "b {'a': 1, 'c': 3}", "('b', 2) {'a': 1, 'c': 3}", "KeyError"],
-    "answer": "2 {'a': 1, 'c': 3}",
-    "hint": "pop(key) xóa key và trả về value tương ứng của key đó."
-  },
-  {
-    "id": 76,
-    "question": "Phương thức popitem() trong Python 3.7+ làm nhiệm vụ gì?\n\nd = {'a': 1, 'b': 2}\nx = d.popitem()",
-    "options": ["Xóa ngẫu nhiên một cặp key-value", "Xóa và trả về cặp (key, value) cuối cùng được thêm vào", "Chỉ xóa value của phần tử đầu tiên", "Làm trống từ điển"],
-    "answer": "Xóa và trả về cặp (key, value) cuối cùng được thêm vào",
-    "hint": "Từ Python 3.7, popitem() xóa và trả về cặp item cuối cùng theo cơ chế LIFO."
-  },
-  {
-    "id": 77,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nd = {'a': 10, 'b': 20}\nfor x in d:\n    print(x, end=' ')",
-    "options": ["10 20 ", "a b ", "('a', 10) ('b', 20) ", "Error"],
-    "answer": "a b ",
-    "hint": "Vòng lặp for trực tiếp trên dictionary duyệt qua danh sách các KEYS."
-  },
-  {
-    "id": 78,
-    "question": "Kết quả của đoạn mã sau là gì?\n\nd = {'a': 10, 'b': 20}\nfor x in d.values():\n    print(x, end=' ')",
-    "options": ["a b ", "10 20 ", "('a', 10) ('b', 20) ", "None"],
-    "answer": "10 20 ",
-    "hint": "Phương thức .values() trả về đối tượng duyệt qua các giá trị."
-  },
-  {
-    "id": 79,
-    "question": "Phương thức .items() trả về danh sách các phần tử có kiểu dữ liệu gì?\n\nd = {'a': 1, 'b': 2}\nprint(list(d.items())[0])",
-    "options": ["['a', 1]", "('a', 1)", "{'a': 1}", "'a: 1'"],
-    "answer": "('a', 1)",
-    "hint": "d.items() trả về các cặp khóa-giá trị dưới dạng tuple (key, value)."
-  },
-  {
-    "id": 80,
-    "question": "Kết quả của đoạn code sau là gì?\n\nd = {'x': 1, 'y': 2}\nprint('x' in d, 1 in d)",
-    "options": ["True True", "True False", "False True", "False False"],
-    "answer": "True False",
-    "hint": "Toán tử 'in' trên từ điển kiểm tra sự tồn tại của KEY, không kiểm tra value."
-  },
-  {
-    "id": 81,
-    "question": "Biểu thức Dict Comprehension sau cho kết quả gì?\n\nd = {x: x**2 for x in (1, 2, 3)}\nprint(d[2])",
-    "options": ["2", "4", "8", "KeyError"],
-    "answer": "4",
-    "hint": "Với x = 2, giá trị gán cho key 2 là x**2 = 4."
-  },
-  {
-    "id": 82,
-    "question": "Kết quả in ra của đoạn code sau là gì?\n\nlst = [1, 2, 3, 4]\nprint(lst[1:1])",
-    "options": ["[2]", "[1]", "[]", "IndexError"],
-    "answer": "[]",
-    "hint": "Cắt lát từ index 1 đến 1 (start == end) luôn trả về danh sách rỗng."
-  },
-  {
-    "id": 63,
-    "question": "Đoạn code sau in ra gì?\n\nlst = [1, 2, 3, 4]\nlst[1:3] = []\nprint(lst)",
-    "options": ["[1, 4]", "[2, 3]", "[]", "[1, None, None, 4]"],
-    "answer": "[1, 4]",
-    "hint": "Gán một danh sách rỗng vào một lát cắt tương đương với thao tác xóa các phần tử trong lát cắt đó."
-  },
-  {
-    "id": 84,
-    "question": "Kết quả của đoạn code sau là gì?\n\nt = (1, 2, 3)\nl = list(t)\nl.append(4)\nt = tuple(l)\nprint(t)",
-    "options": ["(1, 2, 3, 4)", "[1, 2, 3, 4]", "(1, 2, 3)", "TypeError"],
-    "answer": "(1, 2, 3, 4)",
-    "hint": "Quy trình chuyển đổi Tuple -> List -> Thao tác -> Chuyển lại Tuple thường dùng để chỉnh sửa tuple gián tiếp."
-  },
-  {
-    "id": 85,
-    "question": "Kết quả in ra của chương trình sau là gì?\n\ns = {'cat', 'dog', 'bird'}\ns.update(['fish', 'dog'])\nprint(len(s))",
-    "options": ["5", "4", "3", "TypeError"],
-    "answer": "4",
-    "hint": "'dog' đã có sẵn nên chỉ thêm mới 'fish', tổng cộng set có 4 phần tử."
-  },
-  {
-    "id": 86,
-    "question": "Đoạn code sau in ra kết quả gì?\n\nd = {'a': 1}\nd.setdefault('a', 10)\nd.setdefault('b', 20)\nprint(d['a'], d['b'])",
-    "options": ["10 20", "1 20", "1 None", "KeyError"],
-    "answer": "1 20",
-    "hint": "setdefault() chỉ gán giá trị mặc định nếu key chưa tồn tại. Key 'a' đã có nên giữ nguyên giá trị 1."
-  },
-  {
-    "id": 87,
-    "question": "Giá trị của đoạn mã sau là gì?\n\nlst = [[]] * 3\nlst[0].append(1)\nprint(lst)",
-    "options": ["[[1], [], []]", "[[1], [1], [1]]", "[[1]]", "IndexError"],
-    "answer": "[[1], [1], [1]]",
-    "hint": "Phép nhân [[]] * 3 tạo 3 tham chiếu đến cùng một danh sách con trong bộ nhớ."
-  },
-  {
-    "id": 88,
-    "question": "Kết quả của đoạn mã sau là gì?\n\na = {1, 2, 3}\nb = {4, 5, 6}\nprint(a.isdisjoint(b))",
-    "options": ["True", "False", "None", "Error"],
-    "answer": "True",
-    "hint": "isdisjoint() trả về True nếu hai tập hợp không có bất kỳ phần tử chung nào."
-  },
-  {
-    "id": 89,
-    "question": "Đoạn code sau in ra gì?\n\nlst = [10, 20, 30, 40, 50]\nprint(lst[-4:-1])",
-    "options": ["[20, 30, 40]", "[10, 20, 30]", "[20, 30, 40, 50]", "[30, 40]"],
-    "answer": "[20, 30, 40]",
-    "hint": "-4 là 20, -1 là 50 (không lấy vị trí end -1), kết quả là [20, 30, 40]."
-  },
-  {
-    "id": 90,
-    "question": "Hàm sorted() khác gì với phương thức .sort() trên danh sách?\n\nlst = [3, 1, 2]\nx = sorted(lst)",
-    "options": ["sorted() sửa trực tiếp lst, trả về None", "sorted() trả về danh sách mới được sắp xếp, không đổi lst gốc", "Không có điểm khác biệt", "sorted() chỉ dùng được cho Tuple"],
-    "answer": "sorted() trả về danh sách mới được sắp xếp, không đổi lst gốc",
-    "hint": "sorted() là hàm dựng sẵn trả về list mới; .sort() là phương thức thay đổi tại chỗ của List."
-  },
-  {
-    "id": 91,
-    "question": "Kết quả in ra của đoạn code sau là gì?\n\na = (1, 2)\nb = (1, 2)\nprint(a == b, a is b)",
-    "options": ["True True", "True False", "False True", "False False"],
-    "answer": "True True",
-    "hint": "Do tuple là immutable và nhỏ, Python tối ưu bộ nhớ (interning) nên hai tuple cùng trỏ tới một vùng nhớ."
-  },
-  {
-    "id": 92,
-    "question": "Kết quả của đoạn code sau là gì?\n\na = [1, 2]\nb = [1, 2]\nprint(a == b, a is b)",
-    "options": ["True True", "True False", "False True", "False False"],
-    "answer": "True False",
-    "hint": "List là mutable nên Python khởi tạo hai đối tượng độc lập tại hai địa chỉ bộ nhớ khác nhau."
-  },
-  {
-    "id": 93,
-    "question": "Kết quả của đoạn code sau là gì?\n\nd = {'k1': 'v1'}\nd.clear()\nprint(len(d))",
-    "options": ["0", "1", "None", "KeyError"],
-    "answer": "0",
-    "hint": "clear() dọn sạch toàn bộ các cặp key-value khỏi dictionary."
-  },
-  {
-    "id": 94,
-    "question": "Đoạn code sau in ra gì?\n\ns = {1, 2, 3}\ns.remove(2)\ns.add(2)\nprint(s == {1, 2, 3})",
-    "options": ["True", "False", "None", "Error"],
-    "answer": "True",
-    "hint": "Tập hợp không quan tâm thứ tự các phần tử, hai tập hợp có cùng phần tử thì bằng nhau."
-  },
-  {
-    "id": 95,
-    "question": "Kết quả in ra của chương trình sau là gì?\n\nlst = ['a', 'b', 'c']\nfor idx, val in enumerate(lst):\n    if idx == 1:\n        print(val)",
-    "options": ["a", "b", "c", "1"],
-    "answer": "b",
-    "hint": "Hàm enumerate trả về cặp (vị trí, giá trị); tại vị trí 1 giá trị là 'b'."
-  },
-  {
-    "id": 96,
-    "question": "Kết quả của đoạn code sau là gì?\n\nkeys = ['a', 'b']\nvals = [1, 2]\nd = dict(zip(keys, vals))\nprint(d)",
-    "options": ["{'a': 1, 'b': 2}", "{1: 'a', 2: 'b'}", "[('a', 1), ('b', 2)]", "TypeError"],
-    "answer": "{'a': 1, 'b': 2}",
-    "hint": "zip ghép cặp hai iterable và dict() chuyển đổi danh sách các cặp đó thành dictionary."
-  },
-  {
-    "id": 97,
-    "question": "Kết quả của đoạn code sau là gì?\n\nlst = [1, 2, 3]\ndel lst[1]\nprint(lst)",
-    "options": ["[1, 3]", "[2, 3]", "[1, 2]", "IndexError"],
-    "answer": "[1, 3]",
-    "hint": "del lst[1] xóa phần tử tại chỉ số 1 (giá trị 2)."
-  },
-  {
-    "id": 98,
-    "question": "Kết quả của đoạn mã sau là gì?\n\ns = set()\ns.update('abc')\nprint(len(s))",
-    "options": ["1", "3", "0", "TypeError"],
-    "answer": "3",
-    "hint": "Chuỗi 'abc' là iterable, update() sẽ bóc tách thành 'a', 'b', 'c' và thêm vào set."
-  },
-  {
-    "id": 99,
-    "question": "Kết quả của chương trình sau là gì?\n\nd = {'x': 10}\nprint(list(d.keys()))",
-    "options": ["['x']", "[10]", "[('x', 10)]", "['x': 10]"],
-    "answer": "['x']",
-    "hint": "keys() lấy tập hợp các khóa, ép kiểu sang list cho danh sách chứa ['x']."
-  },
-  {
-    "id": 100,
-    "question": "Kết quả của chương trình sau là gì?\n\nmatrix = [[1, 2], [3, 4]]\ntotal = sum([row[0] for row in matrix])\nprint(total)",
-    "options": ["3", "4", "7", "10"],
-    "answer": "4",
-    "hint": "Cột 0 của các hàng lần lượt là 1 và 3; tổng sum([1, 3]) bằng 4."
-  }
-]
+{
+  "id": "q-python-collections-100",
+  "code": "PY-COL-100",
+  "title": "Ôn Tập Thêm List, Tuple, Set, Dictionary",
+  "desc": "100 câu trắc nghiệm đọc code và thao tác trên List, Tuple, Set, Dictionary trong Python.",
+  "duration": 90,
+  "createdAt": "2026-10-20",
+  "questions": [
+    {
+      "text": "Cho đoạn mã sau:\nlst = [5, -3, 12]\nprint(lst[1])\nKết quả in ra là gì?",
+      "options": ["5", "-3", "12", "IndexError"],
+      "correct": 1,
+      "explain": "Chỉ số index của List trong Python bắt đầu từ 0, do đó lst[1] trỏ tới phần tử thứ hai mang giá trị -3.",
+      "hints": [
+        "Vị trí các phần tử trong danh sách được đánh số lần lượt từ 0, 1, 2...",
+        "lst[0] = 5, lst[1] = -3."
+      ]
+    },
+    {
+      "text": "Đoạn mã sau tạo danh sách gồm bao nhiêu phần tử?\nlst = [0.5] * 10\nprint(len(lst))",
+      "options": ["1", "5", "10", "5.0"],
+      "correct": 2,
+      "explain": "Toán tử nhân (*) giữa list và một số nguyên n sẽ tạo ra một list mới lặp lại các phần tử ban đầu n lần.",
+      "hints": [
+        "Cú pháp [giá_trị] * n nhân bản phần tử bên trong ngoặc vuông n lần.",
+        "len() trả về số lượng phần tử hiện có trong danh sách."
+      ]
+    },
+    {
+      "text": "Kết quả xuất ra màn hình của đoạn code sau là gì?\nlst = [10, 20, 30, 40, 50]\nprint(lst[-1])",
+      "options": ["10", "40", "50", "IndexError"],
+      "correct": 2,
+      "explain": "Chỉ số âm bắt đầu đếm ngược từ cuối danh sách, trong đó chỉ số -1 là phần tử cuối cùng.",
+      "hints": [
+        "Chỉ số dương tính từ trái qua phải bắt đầu từ 0.",
+        "Chỉ số âm tính từ phải qua trái bắt đầu từ -1."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nlst = [5, 7, 2, 9, 6, 3, 10]\nprint(lst[2:5])\nKết quả là:",
+      "options": ["[7, 2, 9]", "[2, 9, 6]", "[2, 9, 6, 3]", "[7, 2, 9, 6]"],
+      "correct": 1,
+      "explain": "Cú pháp slicing lst[start:end] lấy các phần tử từ chỉ số start đến end - 1. Với lst[2:5], các chỉ số được lấy là 2, 3, 4 (tương ứng với các giá trị 2, 9, 6).",
+      "hints": [
+        "Điểm kết thúc (end = 5) không được bao gồm trong kết quả cắt lát.",
+        "Xác định phần tử ở các vị trí index 2, 3 và 4."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn mã sau là gì?\nlst = [1, 2, 3, 4, 5]\nprint(lst[:3])",
+      "options": ["[1, 2]", "[1, 2, 3]", "[2, 3, 4]", "[1, 2, 3, 4]"],
+      "correct": 1,
+      "explain": "Khi khuyết start trong cú pháp slicing, Python mặc định lấy từ đầu danh sách (chỉ số 0 đến 2).",
+      "hints": [
+        "Cú pháp [:end] tương đương với [0:end].",
+        "Lấy từ đầu danh sách đến trước vị trí chỉ số 3."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn mã sau là gì?\nlst = [10, 20, 30, 40, 50]\nprint(lst[2:])",
+      "options": ["[30, 40, 50]", "[20, 30, 40, 50]", "[30, 40]", "[40, 50]"],
+      "correct": 0,
+      "explain": "Khi khuyết end, Python lấy từ chỉ số start (vị trí 2 mang giá trị 30) cho đến hết danh sách.",
+      "hints": [
+        "Cú pháp [start:] lấy từ vị trí start đến phần tử cuối cùng.",
+        "Vị trí index 2 có giá trị là 30."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả in ra của đoạn chương trình sau:\nlst = [0, 1, 2, 3, 4, 5, 6, 7]\nprint(lst[::2])",
+      "options": ["[0, 2, 4, 6]", "[1, 3, 5, 7]", "[0, 1, 2]", "[2, 4, 6]"],
+      "correct": 0,
+      "explain": "Cú pháp [::step] với step=2 sẽ duyệt từ đầu đến cuối danh sách với bước nhảy 2, lấy các phần tử ở vị trí chẵn 0, 2, 4, 6.",
+      "hints": [
+        "Khi cả start và end đều để trống, phạm vi là toàn bộ danh sách.",
+        "Bước nhảy step = 2 sẽ lấy cách quãng 1 phần tử."
+      ]
+    },
+    {
+      "text": "Biểu thức slicing nào sau đây dùng để đảo ngược danh sách lst?",
+      "options": ["lst[::-1]", "lst[-1::]", "lst[:0:-1]", "lst[0:-1:-1]"],
+      "correct": 0,
+      "explain": "Cú pháp lst[::-1] với step = -1 sẽ duyệt danh sách từ cuối về đầu, tạo ra một danh sách đảo ngược.",
+      "hints": [
+        "Bước nhảy âm quy định chiều duyệt từ phải sang trái.",
+        "Để lấy toàn bộ danh sách theo chiều ngược, cả start và end đều để trống kết hợp step = -1."
+      ]
+    },
+    {
+      "text": "Cho biết giá trị in ra của chương trình sau:\na = [10, 20, 30, 40]\nb = a\nb[2] = 99\nprint(a[2])",
+      "options": ["30", "99", "10", "IndexError"],
+      "correct": 1,
+      "explain": "Phép gán b = a trong Python là phép gán tham chiếu, cả hai biến cùng trỏ vào một vùng nhớ. Khi sửa phần tử qua b thì danh sách a cũng thay đổi.",
+      "hints": [
+        "Kiểu List trong Python là kiểu dữ liệu có thể thay đổi (mutable).",
+        "Phép gán trực tiếp không tạo bản sao độc lập mà chỉ chia sẻ vùng nhớ."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn chương trình sau là gì?\na = [10, 20, 30, 40]\nb = a.copy()\nb[2] = 99\nprint(a[2])",
+      "options": ["30", "99", "40", "AttributeError"],
+      "correct": 0,
+      "explain": "Phương thức a.copy() tạo ra một bản sao nông (shallow copy) độc lập. Thay đổi trên b không ảnh hưởng đến a.",
+      "hints": [
+        "Phương thức copy() sao chép các phần tử sang một vùng nhớ mới.",
+        "Danh sách ban đầu a không bị biến đổi khi chỉnh sửa bản sao."
+      ]
+    },
+    {
+      "text": "Đoạn code sau cho kết quả gì?\nlst = [5, 7, 2, 9]\nlst[1:3] = [6, 8, 10]\nprint(lst)",
+      "options": [
+        "[5, 6, 8, 10, 9]",
+        "[5, 6, 8, 9]",
+        "[6, 8, 10, 9]",
+        "[5, 7, 6, 8, 10, 9]"
+      ],
+      "correct": 0,
+      "explain": "Gán lát cắt (slice assignment) thay thế khoảng phần tử từ index 1 đến 2 ([7, 2]) bằng các phần tử của danh sách mới [6, 8, 10].",
+      "hints": [
+        "Lát cắt lst[1:3] gồm 2 phần tử (chỉ số 1 và 2).",
+        "Hai phần tử này bị loại bỏ và thay thế trọn vẹn bởi 3 phần tử mới."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nlst = [0, 1, 2, 3]\nlst.insert(2, 9)\nprint(lst)\nKết quả là:",
+      "options": [
+        "[0, 9, 1, 2, 3]",
+        "[0, 1, 9, 2, 3]",
+        "[0, 1, 2, 9, 3]",
+        "[9, 0, 1, 2, 3]"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp insert(index, value) chèn giá trị value vào đúng vị trí index chỉ định, các phần tử từ vị trí đó sẽ bị lùi sang phải.",
+      "hints": [
+        "Tham số thứ nhất của insert là vị trí chèn, tham số thứ hai là giá trị cần chèn.",
+        "Số 9 sẽ đứng tại vị trí index 2 mới."
+      ]
+    },
+    {
+      "text": "Nếu vị trí chèn vượt quá số lượng phần tử của danh sách:\nlst = [1, 2, 3]\nlst.insert(10, 5)\nprint(lst)\nKết quả là gì?",
+      "options": [
+        "IndexError",
+        "[1, 2, 3, 5]",
+        "[1, 2, 3, None, 5]",
+        "[5, 1, 2, 3]"
+      ],
+      "correct": 1,
+      "explain": "Trong Python, nếu index truyền vào hàm insert() lớn hơn độ dài của list, phần tử sẽ tự động được thêm vào cuối danh sách mà không báo lỗi.",
+      "hints": [
+        "Phương thức insert() rất linh hoạt khi xử lý chỉ số ngoài phạm vi.",
+        "Khi index quá lớn, nó hoạt động tương tự phương thức append()."
+      ]
+    },
+    {
+      "text": "Kết quả độ dài của danh sách sau khi thực hiện đoạn mã sau là bao nhiêu?\nlst = [1, 2, 3]\nlst.append([4, 5])\nprint(len(lst))",
+      "options": ["3", "4", "5", "TypeError"],
+      "correct": 1,
+      "explain": "Phương thức append() thêm toàn bộ đối tượng truyền vào như một phần tử đơn lẻ ở cuối list. Ở đây, [4, 5] là một phần tử dạng list con.",
+      "hints": [
+        "append() không bóc tách các phần tử của đối tượng truyền vào.",
+        "Danh sách mới gồm: 1, 2, 3 và danh sách con [4, 5]."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nlst = [1, 2, 3]\nlst.extend([4, 5])\nprint(len(lst))\nKết quả in ra là:",
+      "options": ["3", "4", "5", "TypeError"],
+      "correct": 2,
+      "explain": "Phương thức extend() duyệt qua đối tượng có thể lặp (iterable) và thêm từng phần tử vào cuối danh sách, làm tăng độ dài thêm 2.",
+      "hints": [
+        "Phân biệt rõ giữa append (thêm nguyên khối) và extend (nối thêm từng phần tử).",
+        "Số 4 và số 5 được thêm vào như hai phần tử riêng rẽ."
+      ]
+    },
+    {
+      "text": "Cho đoạn mã sau:\nlst = [1, 2, 3, 2, 1]\nlst.remove(2)\nprint(lst)\nKết quả là:",
+      "options": [
+        "[1, 3, 2, 1]",
+        "[1, 3, 1]",
+        "[1, 2, 3, 1]",
+        "ValueError"
+      ],
+      "correct": 0,
+      "explain": "Phương thức remove(value) chỉ tìm và xóa phần tử đầu tiên có giá trị bằng value xuất hiện trong danh sách.",
+      "hints": [
+        "remove() không xóa tất cả các phần tử trùng nhau.",
+        "Nó duyệt từ trái sang phải và chỉ xóa phần tử khớp đầu tiên."
+      ]
+    },
+    {
+      "text": "Điều gì xảy ra khi xóa một phần tử không tồn tại bằng phương thức remove()?\nlst = [1, 2, 3]\nlst.remove(9)",
+      "options": [
+        "Không có gì xảy ra, danh sách giữ nguyên",
+        "Báo lỗi ValueError",
+        "Báo lỗi IndexError",
+        "Trả về giá trị False"
+      ],
+      "correct": 1,
+      "explain": "Trong Python, gọi phương thức remove() với giá trị không tồn tại trong danh sách sẽ gây ra ngoại lệ ValueError.",
+      "hints": [
+        "remove() đòi hỏi phần tử cần xóa bắt buộc phải có mặt trong list.",
+        "Lỗi giá trị (Value) sẽ xuất hiện nếu tìm không thấy."
+      ]
+    },
+    {
+      "text": "Giá trị của biến x và danh sách lst sau đoạn mã sau là gì?\nlst = [10, 20, 30, 40]\nx = lst.pop()",
+      "options": [
+        "x = 10, lst = [20, 30, 40]",
+        "x = 40, lst = [10, 20, 30]",
+        "x = 30, lst = [10, 20, 40]",
+        "x = None, lst = [10, 20, 30, 40]"
+      ],
+      "correct": 1,
+      "explain": "Phương thức pop() không truyền tham số mặc định sẽ xóa và trả về giá trị của phần tử ở vị trí cuối cùng.",
+      "hints": [
+        "pop() vừa xóa phần tử vừa trả về giá trị bị xóa.",
+        "Mặc định index của pop là -1."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nlst = [10, 20, 30, 40]\nx = lst.pop(1)\nprint(x, lst)\nKết quả in ra là:",
+      "options": [
+        "20 [10, 30, 40]",
+        "10 [20, 30, 40]",
+        "30 [10, 20, 40]",
+        "1 [10, 30, 40]"
+      ],
+      "correct": 0,
+      "explain": "pop(1) xóa phần tử tại chỉ số index 1 (giá trị 20) và trả về giá trị đó gán vào x.",
+      "hints": [
+        "Tham số truyền vào pop là chỉ số index, không phải giá trị phần tử.",
+        "Phần tử ở vị trí 1 là số 20."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn mã sau là gì?\nlst = [1, 2, 3, 4]\nlst.clear()\nprint(lst)",
+      "options": ["None", "[]", "IndexError", "0"],
+      "correct": 1,
+      "explain": "Phương thức clear() xóa sạch toàn bộ các phần tử bên trong danh sách, đưa list về trạng thái rỗng [].",
+      "hints": [
+        "clear() không xóa biến danh sách khỏi bộ nhớ.",
+        "Nó làm trống toàn bộ nội dung của list."
+      ]
+    },
+    {
+      "text": "Điều gì xảy ra khi thực hiện đoạn code sau?\nlst = [1, 2, 3]\ndel lst\nprint(lst)",
+      "options": [
+        "[]",
+        "None",
+        "Báo lỗi NameError",
+        "Báo lỗi ValueError"
+      ],
+      "correct": 2,
+      "explain": "Từ khóa del lst xóa hoàn toàn đối tượng và định danh biến khỏi bộ nhớ. Khi print(lst), Python báo lỗi NameError vì biến không còn tồn tại.",
+      "hints": [
+        "del áp dụng trực tiếp lên tên biến sẽ giải phóng biến đó hoàn toàn.",
+        "Truy cập vào biến đã bị xóa sẽ gây ra lỗi định danh."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả in ra của chương trình sau:\nlst = ['Orange', 'mango', 'Kiwi']\nlst.sort()\nprint(lst)",
+      "options": [
+        "['Kiwi', 'Orange', 'mango']",
+        "['Orange', 'Kiwi', 'mango']",
+        "['mango', 'Kiwi', 'Orange']",
+        "['Kiwi', 'mango', 'Orange']"
+      ],
+      "correct": 0,
+      "explain": "sort() mặc định sắp xếp theo thứ tự bảng mã ASCII (các ký tự viết hoa đứng trước các ký tự viết thường). Do đó 'Kiwi' đứng đầu, sau đó tới 'Orange', rồi tới 'mango'.",
+      "hints": [
+        "Ký tự hoa luôn có mã ASCII nhỏ hơn ký tự thường.",
+        "So sánh chữ cái đầu: 'K' < 'O' < 'm'."
+      ]
+    },
+    {
+      "text": "Để sắp xếp danh sách không phân biệt chữ hoa, chữ thường, cú pháp nào sau đây đúng?",
+      "options": [
+        "lst.sort(key = str.lower)",
+        "lst.sort(lower = True)",
+        "lst.sort(ignore_case = True)",
+        "lst.sort(case = False)"
+      ],
+      "correct": 0,
+      "explain": "Tham số key nhận một hàm biến đổi, key = str.lower sẽ chuyển đổi tạm thời các chuỗi về chữ thường để so sánh thứ tự.",
+      "hints": [
+        "Hàm sort hỗ trợ đối số từ khóa 'key'.",
+        "Sử dụng hàm dựng sẵn chuyển chuỗi thành chữ thường của lớp str."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nlst = [1, 3, 2]\nx = lst.sort()\nprint(x)\nKết quả in ra là gì?",
+      "options": ["[1, 2, 3]", "[3, 2, 1]", "None", "TypeError"],
+      "correct": 2,
+      "explain": "Phương thức .sort() sắp xếp trực tiếp trên danh sách gốc (in-place) và luôn trả về giá trị None.",
+      "hints": [
+        "Phân biệt phương thức biến đổi tại chỗ với hàm trả về giá trị mới.",
+        "gán kết quả của lst.sort() vào một biến sẽ luôn nhận giá trị None."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nlst = ['Orange', 'mango', 'Kiwi']\nlst.reverse()\nprint(lst)\nKết quả là:",
+      "options": [
+        "['Kiwi', 'mango', 'Orange']",
+        "['Kiwi', 'Orange', 'mango']",
+        "['Orange', 'mango', 'Kiwi']",
+        "['mango', 'Orange', 'Kiwi']"
+      ],
+      "correct": 0,
+      "explain": "Phương thức reverse() đảo ngược thứ tự các phần tử hiện tại trong danh sách ngay tại chỗ.",
+      "hints": [
+        "reverse() không sắp xếp theo bảng chữ cái.",
+        "Nó chỉ đơn thuần lật ngược lại thứ tự trước sau."
+      ]
+    },
+    {
+      "text": "Kết quả của biểu thức List Comprehension sau là gì?\nlst = [x * 2 for x in range(4)]\nprint(lst)",
+      "options": [
+        "[0, 2, 4, 6]",
+        "[2, 4, 6, 8]",
+        "[0, 1, 2, 3]",
+        "[0, 2, 4]"
+      ],
+      "correct": 0,
+      "explain": "range(4) sinh ra chuỗi số 0, 1, 2, 3. Lần lượt nhân mỗi giá trị với 2 ta thu được danh sách [0, 2, 4, 6].",
+      "hints": [
+        "range(4) bắt đầu từ 0 và kết thúc tại 3.",
+        "Mỗi phần tử được nhân đôi qua biểu thức x * 2."
+      ]
+    },
+    {
+      "text": "Đoạn mã sau xuất ra danh sách nào?\nlst = [x for x in [1, 2, 3, 4, 5, 6] if x % 2 == 0]\nprint(lst)",
+      "options": ["[1, 3, 5]", "[2, 4, 6]", "[0, 2, 4, 6]", "[2, 4]"],
+      "correct": 1,
+      "explain": "Mệnh đề 'if x % 2 == 0' lọc các số chia hết cho 2 (số chẵn), do đó kết quả là [2, 4, 6].",
+      "hints": [
+        "Điều kiện lọc giữ lại các phần tử chia lấy dư cho 2 bằng 0.",
+        "Các số chẵn trong danh sách ban đầu là 2, 4, 6."
+      ]
+    },
+    {
+      "text": "Cho ma trận 2 chiều sau:\nmatrix = [\n  [100, 14, 8],\n  [0, 243, 68],\n  [90, 21, 7]\n]\nprint(matrix[1][2])\nKết quả in ra là:",
+      "options": ["14", "243", "68", "21"],
+      "correct": 2,
+      "explain": "matrix[1] trỏ tới hàng có chỉ số 1 là [0, 243, 68]. Tiếp tục [2] lấy phần tử tại cột chỉ số 2, mang giá trị 68.",
+      "hints": [
+        "Chỉ số đầu tiên là chỉ số hàng (bắt đầu từ 0).",
+        "Chỉ số thứ hai là chỉ số cột (bắt đầu từ 0)."
+      ]
+    },
+    {
+      "text": "Cho đoạn code khởi tạo list đa chiều sau:\nrow, column = 3, 2\nlst = [[0] * column] * row\nlst[0][0] = 5\nprint(lst[1][0])\nKết quả là:",
+      "options": ["0", "5", "IndexError", "None"],
+      "correct": 1,
+      "explain": "Toán tử * row nhân bản tham chiếu của cùng một danh sách con. Do đó khi sửa phần tử ở một hàng, tất cả các hàng còn lại đều bị thay đổi giá trị theo.",
+      "hints": [
+        "Phép nhân danh sách chứa đối tượng mutable tạo ra các tham chiếu nông lặp lại.",
+        "Cả 3 hàng thực chất cùng trỏ chung vào một mảng trong bộ nhớ."
+      ]
+    },
+    {
+      "text": "Phát biểu nào sau đây là ĐÚNG về Tuple trong Python?",
+      "options": [
+        "Tuple có thể thêm hoặc xóa phần tử sau khi tạo",
+        "Tuple sử dụng cặp dấu ngoặc vuông []",
+        "Tuple là kiểu dữ liệu có thứ tự và không thể thay đổi (immutable)",
+        "Tuple không cho phép các phần tử trùng lặp giá trị"
+      ],
+      "correct": 2,
+      "explain": "Tuple có thứ tự (ordered), có thể chứa phần tử trùng lặp, dùng dấu () và đặc biệt là bất biến (immutable - không thể sửa, xóa hay thêm mới).",
+      "hints": [
+        "Hãy nhớ lại tính chất cơ bản phân biệt Tuple với List.",
+        "Một khi Tuple đã được khởi tạo, không thể thay đổi nội dung của nó."
+      ]
+    },
+    {
+      "text": "Đoạn code sau in ra kiểu dữ liệu gì?\nx = (50)\nprint(type(x))",
+      "options": [
+        "<class 'tuple'>",
+        "<class 'int'>",
+        "<class 'list'>",
+        "<class 'set'>"
+      ],
+      "correct": 1,
+      "explain": "Cặp dấu ngoặc đơn bao quanh một số nguyên chỉ mang ý nghĩa toán học. Muốn tạo tuple có 1 phần tử bắt buộc phải có dấu phẩy: (50,).",
+      "hints": [
+        "Để Python nhận diện Tuple có duy nhất 1 phần tử, cần có dấu phẩy ngăn cách.",
+        "Không có dấu phẩy, Python coi đây là một biểu thức số nguyên trong ngoặc."
+      ]
+    },
+    {
+      "text": "Khai báo nào sau đây tạo ra một Tuple có duy nhất một phần tử?",
+      "options": ["tup = (50)", "tup = [50]", "tup = (50,)", "tup = {50}"],
+      "correct": 2,
+      "explain": "Cú pháp tạo tuple có 1 phần tử yêu cầu dấu phẩy đi ngay sau phần tử đó: tup = (50,).",
+      "hints": [
+        "Dấu ngoặc tròn kết hợp cùng dấu phẩy tạo nên Tuple đơn.",
+        "Cặp ngoặc nhọn là set, ngoặc vuông là list."
+      ]
+    },
+    {
+      "text": "Điều gì xảy ra khi chạy đoạn chương trình sau?\ntup = (1, 2, 3)\ntup[1] = 10",
+      "options": [
+        "tup trở thành (1, 10, 3)",
+        "Báo lỗi TypeError",
+        "Báo lỗi ValueError",
+        "Báo lỗi IndexError"
+      ],
+      "correct": 1,
+      "explain": "Tuple là đối tượng bất biến (immutable), không hỗ trợ thao tác gán item assignment nên sẽ phát sinh lỗi TypeError.",
+      "hints": [
+        "Tuple không cho phép thay đổi giá trị của các phần tử sau khi khởi tạo.",
+        "Phép gán chỉ số trên tuple sẽ ném ra lỗi kiểu dữ liệu (TypeError)."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nt = (1, 2, 3, 2, 4, 2)\nprint(t.count(2))\nKết quả là:",
+      "options": ["1", "2", "3", "0"],
+      "correct": 2,
+      "explain": "Phương thức t.count(value) đếm số lần xuất hiện của value trong tuple. Số 2 xuất hiện 3 lần.",
+      "hints": [
+        "Hàm count dùng để đếm tần suất xuất hiện của một phần tử.",
+        "Đếm số lượng số 2 có mặt trong Tuple."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nt = (1, 2, 3, 2, 4)\nprint(t.index(2))\nKết quả in ra là:",
+      "options": ["1", "3", "2", "[1, 3]"],
+      "correct": 0,
+      "explain": "Phương thức index(value) trả về chỉ số xuất hiện đầu tiên của value trong tuple. Số 2 xuất hiện đầu tiên ở index 1.",
+      "hints": [
+        "index() luôn trả về vị trí xuất hiện đầu tiên từ bên trái sang.",
+        "Chỉ số đầu tiên (index 0) là 1, chỉ số thứ hai (index 1) là 2."
+      ]
+    },
+    {
+      "text": "Điều gì xảy ra khi tìm một phần tử không có trong tuple bằng hàm index()?\nt = (1, 2, 3)\nprint(t.index(8))",
+      "options": [
+        "-1",
+        "None",
+        "Báo lỗi ValueError",
+        "Báo lỗi IndexError"
+      ],
+      "correct": 2,
+      "explain": "Khi tìm kiếm một giá trị không tồn tại trong tuple/list bằng phương thức index(), Python sẽ ném ra lỗi ValueError.",
+      "hints": [
+        "index() không trả về -1 như một số ngôn ngữ khác (C/JavaScript).",
+        "Nếu phần tử không tồn tại trong tuple, Python báo lỗi giá trị."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn mã sau là gì?\na = (1, 2, 3)\nb = (4, 5, 6)\nprint(a + b)",
+      "options": [
+        "(1, 2, 3, 4, 5, 6)",
+        "(5, 7, 9)",
+        "((1, 2, 3), (4, 5, 6))",
+        "TypeError"
+      ],
+      "correct": 0,
+      "explain": "Toán tử + dùng để nối hai tuple lại với nhau tạo ra một tuple mới chứa các phần tử của cả hai.",
+      "hints": [
+        "Toán tử cộng (+) giữa hai collection dạng tuần tự là thao tác ghép chuỗi/nối phần tử.",
+        "Nối lần lượt các phần tử của b vào sau a."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn mã sau là gì?\nprint(('Hi!',) * 3)",
+      "options": [
+        "('Hi!', 'Hi!', 'Hi!')",
+        "('Hi!Hi!Hi!')",
+        "TypeError",
+        "('Hi!', 3)"
+      ],
+      "correct": 0,
+      "explain": "Toán tử * nhân bản các phần tử của tuple lên 3 lần, tạo thành một tuple có 3 chuỗi 'Hi!'.",
+      "hints": [
+        "Toán tử nhân lặp lại tuple ban đầu theo số nguyên chỉ định.",
+        "Kết quả giữ nguyên cấu trúc kiểu dữ liệu Tuple."
+      ]
+    },
+    {
+      "text": "Cho đoạn mã kỹ thuật Unpacking sau:\nfriends = ('Ti', 'Teo', 'Tun', 'Tin')\n(ti, teo, *anhem) = friends\nprint(anhem)\nKết quả in ra là:",
+      "options": [
+        "('Tun', 'Tin')",
+        "['Tun', 'Tin']",
+        "'Tun, Tin'",
+        "['Ti', 'Teo']"
+      ],
+      "correct": 1,
+      "explain": "Dấu * phía trước một biến trong quá trình unpacking sẽ gom tất cả các phần tử còn lại vào trong một danh sách (List).",
+      "hints": [
+        "ti nhận 'Ti', teo nhận 'Teo'.",
+        "Toán tử * luôn gom các giá trị còn lại thành kiểu dữ liệu List []."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn unpacking sau là gì?\nnumbers = (1, 2, 3, 4)\n*a, b = numbers\nprint(a)",
+      "options": ["[1, 2, 3]", "(1, 2, 3)", "[1, 2]", "1"],
+      "correct": 0,
+      "explain": "Biến b nhận phần tử cuối cùng (4), phần tử còn lại từ đầu được gom vào biến *a dưới dạng một list: [1, 2, 3].",
+      "hints": [
+        "b tương ứng với phần tử cuối cùng của tuple.",
+        "*a nhận toàn bộ các phần tử đứng trước nó dạng List."
+      ]
+    },
+    {
+      "text": "Để thay đổi giá trị một phần tử trong Tuple tup = (1, 2, 3), cách làm gián tiếp đúng là gì?",
+      "options": [
+        "Chuyển tuple thành list -> sửa phần tử trong list -> chuyển lại thành tuple",
+        "Dùng hàm tup.modify(index, value)",
+        "Dùng lệnh gán trực tiếp tup[index] = value",
+        "Dùng phương thức tup.replace()"
+      ],
+      "correct": 0,
+      "explain": "Vì tuple là immutable, cách chuẩn là chuyển sang list bằng hàm list(), sửa giá trị, rồi chuyển ngược lại bằng hàm tuple().",
+      "hints": [
+        "Tuple không có phương thức hỗ trợ sửa đổi trực tiếp.",
+        "Cần tận dụng tính linh hoạt (mutable) của kiểu List."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nt = (1, [2, 3], 4)\nt[1].append(99)\nprint(t)\nKết quả là:",
+      "options": [
+        "Báo lỗi TypeError",
+        "(1, [2, 3], 4)",
+        "(1, [2, 3, 99], 4)",
+        "(1, 99, 4)"
+      ],
+      "correct": 2,
+      "explain": "Bản thân Tuple là bất biến nhưng phần tử tại vị trí 1 là một List (mutable). Việc thay đổi nội dung bên trong List không làm thay đổi địa chỉ tham chiếu mà Tuple nắm giữ nên hợp lệ.",
+      "hints": [
+        "Tuple cố định tham chiếu đến đối tượng.",
+        "Nếu đối tượng con bên trong là List, nội dung của List đó vẫn có thể thêm/sửa/xóa."
+      ]
+    },
+    {
+      "text": "Lệnh del tác động như thế nào lên một Tuple?\ntup = (1, 2, 3)\ndel tup[0]",
+      "options": [
+        "Xóa phần tử đầu tiên, tup thành (2, 3)",
+        "Báo lỗi TypeError: 'tuple' object doesn't support item deletion",
+        "Gán phần tử đầu tiên bằng None",
+        "Xóa toàn bộ tuple khỏi bộ nhớ"
+      ],
+      "correct": 1,
+      "explain": "Không thể xóa từng phần tử riêng lẻ trong Tuple. Muốn xóa chỉ có thể dùng 'del tup' để xóa toàn bộ tuple.",
+      "hints": [
+        "Tính chất bất biến (immutable) áp dụng cho cả thao tác xóa phần tử đơn lẻ.",
+        "Chỉ có thể giải phóng toàn bộ biến tuple."
+      ]
+    },
+    {
+      "text": "Phát biểu nào sau đây ĐÚNG về Set trong Python?",
+      "options": [
+        "Set là tập hợp có thứ tự và cho phép các phần tử trùng lặp",
+        "Set không có tính thứ tự, không có chỉ mục (index) và các phần tử không trùng lặp",
+        "Các phần tử trong Set có thể là kiểu dữ liệu danh sách (List)",
+        "Set được khởi tạo bằng cặp ngoặc vuông []"
+      ],
+      "correct": 1,
+      "explain": "Set là tập hợp không thứ tự (unordered), không hỗ trợ đánh chỉ mục (unindexed), các phần tử là duy nhất (no duplicates) và phải là kiểu hashable.",
+      "hints": [
+        "Tập hợp trong toán học và Set trong Python đều không chấp nhận phần tử trùng nhau.",
+        "Vì không có thứ tự nên Set không có vị trí chỉ số 0, 1, 2..."
+      ]
+    },
+    {
+      "text": "Để khai báo một Set rỗng, cú pháp nào sau đây là ĐÚNG?",
+      "options": ["s = {}", "s = set()", "s = []", "s = set({})"],
+      "correct": 1,
+      "explain": "Cú pháp s = {} sẽ tạo ra một Dictionary rỗng. Muốn tạo Set rỗng bắt buộc phải sử dụng hàm set().",
+      "hints": [
+        "Cặp ngoặc nhọn {} rỗng được Python ưu tiên dành cho Dictionary.",
+        "Sử dụng hàm dựng sẵn kiểu dữ liệu để tạo tập hợp rỗng."
+      ]
+    },
+    {
+      "text": "Kết quả in ra của đoạn code sau là gì?\ns = {1, 2, 2, 3, 3, 3, 4}\nprint(len(s))",
+      "options": ["7", "4", "3", "TypeError"],
+      "correct": 1,
+      "explain": "Set tự động loại bỏ các phần tử trùng lặp, chỉ giữ lại các giá trị duy nhất: {1, 2, 3, 4}. Do đó độ dài là 4.",
+      "hints": [
+        "Tập hợp Set chỉ lưu trữ các giá trị độc nhất.",
+        "Đếm số lượng các số phân biệt trong khai báo."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\ns = {1, True, 0, False}\nprint(len(s))\nKết quả là:",
+      "options": ["4", "2", "3", "0"],
+      "correct": 1,
+      "explain": "Trong Python, 1 và True có cùng giá trị logic và giá trị băm, tương tự 0 và False cũng vậy. Set coi chúng là trùng lặp nên chỉ còn lại 2 phần tử ({1, 0} hoặc {True, False}).",
+      "hints": [
+        "Kiểu boolean là lớp con của số nguyên: True == 1 và False == 0.",
+        "Set loại bỏ phần tử trùng giá trị."
+      ]
+    },
+    {
+      "text": "Điều gì xảy ra khi truy xuất phần tử của Set qua chỉ số?\ns = {1, 2, 3}\nprint(s[0])",
+      "options": [
+        "In ra phần tử 1",
+        "Báo lỗi TypeError: 'set' object is not subscriptable",
+        "Báo lỗi IndexError",
+        "In ra phần tử ngẫu nhiên"
+      ],
+      "correct": 1,
+      "explain": "Set không có thứ tự và không được đánh chỉ mục nên không hỗ trợ toán tử ngoặc vuông [], gây ra lỗi TypeError.",
+      "hints": [
+        "Set là cấu trúc dữ liệu không có tính thứ tự (unordered).",
+        "Không thể sử dụng chỉ số index để lấy phần tử của Set."
+      ]
+    },
+    {
+      "text": "Phương thức nào dùng để thêm một phần tử đơn lẻ vào Set?",
+      "options": ["append()", "insert()", "add()", "extend()"],
+      "correct": 2,
+      "explain": "Để thêm một phần tử vào Set, Python cung cấp phương thức add(). Các phương thức append, insert thuộc về List.",
+      "hints": [
+        "Set không có khái niệm chèn vào đầu hay cuối.",
+        "Từ khóa tiếng Anh mang nghĩa 'thêm vào' cho tập hợp là add."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\ns = {1, 2, 3}\ns.update([3, 4, 5])\nprint(s)\nKết quả in ra là:",
+      "options": [
+        "{1, 2, 3, 4, 5}",
+        "{1, 2, 3, [3, 4, 5]}",
+        "{1, 2, 3, 3, 4, 5}",
+        "TypeError"
+      ],
+      "correct": 0,
+      "explain": "update() nhận một iterable (list, tuple, set khác...) và thêm từng phần tử vào set hiện tại, đồng thời tự động loại bỏ trùng lặp.",
+      "hints": [
+        "update() hoạt động tương tự extend của list nhưng áp dụng trên set.",
+        "Số 3 bị trùng nên không được thêm lại lần thứ hai."
+      ]
+    },
+    {
+      "text": "Sự khác biệt cơ bản giữa hai phương thức remove() và discard() trên Set là gì?",
+      "options": [
+        "remove() không báo lỗi khi phần tử không tồn tại, discard() thì báo lỗi",
+        "discard() không báo lỗi khi phần tử không tồn tại, remove() thì báo lỗi KeyError",
+        "remove() xóa phần tử ngẫu nhiên, discard() xóa theo giá trị",
+        "Cả hai phương thức hoạt động hoàn toàn giống hệt nhau"
+      ],
+      "correct": 1,
+      "explain": "remove(<giá_trị>) sẽ ném ra lỗi KeyError nếu giá trị cần xóa không có trong Set; trong khi discard(<giá_trị>) sẽ bỏ qua an toàn và không gây lỗi.",
+      "hints": [
+        "discard mang ý nghĩa loại bỏ nếu có, không có thì thôi.",
+        "remove yêu cầu phần tử bắt buộc phải tồn tại."
+      ]
+    },
+    {
+      "text": "Phương thức pop() trên Set có đặc điểm gì?",
+      "options": [
+        "Luôn xóa phần tử có giá trị lớn nhất",
+        "Luôn xóa phần tử cuối cùng",
+        "Xóa và trả về một phần tử ngẫu nhiên do Set không có thứ tự",
+        "Báo lỗi vì Set không hỗ trợ phương thức pop()"
+      ],
+      "correct": 2,
+      "explain": "Vì Set không có thứ tự, phương thức pop() sẽ lấy ra và xóa một phần tử bất kỳ trong tập hợp.",
+      "hints": [
+        "Do không có chỉ mục và thứ tự cố định, pop() không biết vị trí nào là đầu hay cuối.",
+        "Hành vi của nó là loại bỏ ngẫu nhiên một phần tử."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của đoạn code sau:\nx = {'apple', 'banana', 'cherry'}\ny = {'google', 'microsoft', 'apple'}\nz = x | y\nprint(len(z))",
+      "options": ["6", "5", "1", "4"],
+      "correct": 1,
+      "explain": "Toán tử | (hoặc x.union(y)) là phép hợp 2 tập hợp. Phần tử 'apple' chung chỉ xuất hiện một lần. Tổng số phần tử duy nhất là 5.",
+      "hints": [
+        "Toán tử gạch đứng (|) biểu diễn phép HỢP trong tập hợp.",
+        "Đếm tổng các phần tử riêng biệt của cả x và y."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn code sau là gì?\nx = {'apple', 'banana', 'cherry'}\ny = {'google', 'microsoft', 'apple'}\nprint(x & y)",
+      "options": [
+        "{'apple'}",
+        "{'banana', 'cherry'}",
+        "{'google', 'microsoft'}",
+        "set()"
+      ],
+      "correct": 0,
+      "explain": "Toán tử & (hoặc intersection()) là phép GIAO, chỉ lấy các phần tử cùng xuất hiện ở cả hai tập hợp ('apple').",
+      "hints": [
+        "Toán tử và (&) tìm điểm chung giữa hai tập hợp.",
+        "Tìm chuỗi xuất hiện ở cả x lẫn y."
+      ]
+    },
+    {
+      "text": "Kết quả của biểu thức hiệu (difference) sau là gì?\nx = {1, 2, 3, 4}\ny = {3, 4, 5, 6}\nprint(x - y)",
+      "options": ["{1, 2}", "{5, 6}", "{3, 4}", "{1, 2, 5, 6}"],
+      "correct": 0,
+      "explain": "Phép trừ x - y (hoặc x.difference(y)) giữ lại các phần tử thuộc về x nhưng KHÔNG thuộc về y (tức là 1 và 2).",
+      "hints": [
+        "Lấy các phần tử chỉ có ở tập đứng trước dấu trừ.",
+        "Bỏ đi các phần tử của x bị trùng với y."
+      ]
+    },
+    {
+      "text": "Cho đoạn mã sau:\nx = {1, 2, 3}\ny = {2, 3, 4}\nprint(x ^ y)\nKết quả là:",
+      "options": ["{2, 3}", "{1, 4}", "{1, 2, 3, 4}", "set()"],
+      "correct": 1,
+      "explain": "Toán tử ^ (symmetric_difference) lấy các phần tử thuộc x hoặc y nhưng KHÔNG thuộc phần giao của cả hai (tức là loại trừ 2 và 3).",
+      "hints": [
+        "Symmetric difference là hiệu đối xứng.",
+        "Lấy tất cả các phần tử ngoại trừ phần tử chung của cả hai tập."
+      ]
+    },
+    {
+      "text": "Phương thức difference_update() khác với difference() ở điểm nào?",
+      "options": [
+        "Không có điểm khác biệt",
+        "difference() trả về set mới, difference_update() sửa đổi trực tiếp trên set hiện tại",
+        "difference_update() chỉ dùng được với list",
+        "difference() làm thay đổi set gốc"
+      ],
+      "correct": 1,
+      "explain": "Các hàm có đuôi _update (như difference_update, intersection_update) đều cập nhật kết quả đè trực tiếp lên tập hợp ban đầu.",
+      "hints": [
+        "Hậu tố '_update' mang ý nghĩa ghi đè tại chỗ (in-place).",
+        "Phương thức không có '_update' sẽ giữ nguyên tập ban đầu và trả về tập mới."
+      ]
+    },
+    {
+      "text": "Điều gì xảy ra khi tạo một Set chứa phần tử là danh sách List?\ns = {1, 2, [3, 4]}",
+      "options": [
+        "Tạo thành công set có 3 phần tử",
+        "Báo lỗi TypeError: unhashable type: 'list'",
+        "Tự động ép kiểu List thành Tuple",
+        "Báo lỗi ValueError"
+      ],
+      "correct": 1,
+      "explain": "Mọi phần tử trong Set bắt buộc phải là kiểu dữ liệu băm được (hashable - bất biến). List là kiểu mutable nên không thể đưa vào Set.",
+      "hints": [
+        "Các phần tử trong Set phải có giá trị băm cố định.",
+        "List có thể thay đổi nội dung nên không băm được (unhashable)."
+      ]
+    },
+    {
+      "text": "Khai báo Set nào sau đây là HỢP LỆ?",
+      "options": [
+        "s = {1, 2, (3, 4)}",
+        "s = {1, 2, [3, 4]}",
+        "s = {1, 2, {3, 4}}",
+        "s = {1, 2, {'a': 1}}"
+      ],
+      "correct": 0,
+      "explain": "Tuple (3, 4) chứa các số nguyên là kiểu bất biến (immutable) nên là hashable, hoàn toàn hợp lệ khi đặt vào Set. List, Set, Dictionary đều là unhashable.",
+      "hints": [
+        "Tìm phương án chứa kiểu dữ liệu bất biến (immutable).",
+        "Tuple có thể nằm trong Set nếu các phần tử bên trong nó cũng là bất biến."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\ns = set('hello')\nprint(len(s))\nKết quả là:",
+      "options": ["5", "4", "1", "TypeError"],
+      "correct": 1,
+      "explain": "Chuỗi 'hello' khi chuyển sang set sẽ được tách thành từng ký tự: 'h', 'e', 'l', 'o'. Ký tự 'l' lặp lại 2 lần bị loại bớt 1, còn 4 phần tử.",
+      "hints": [
+        "Hàm set() bóc tách một chuỗi thành tập các ký tự đơn lẻ.",
+        "Loại trừ ký tự trùng lặp trong từ 'hello'."
+      ]
+    },
+    {
+      "text": "Mỗi phần tử trong cấu trúc Dictionary của Python được cấu tạo bởi gì?",
+      "options": [
+        "Một giá trị duy nhất có chỉ số index",
+        "Một cặp Khóa : Giá trị (key : value)",
+        "Hai giá trị bất biến liên tiếp",
+        "Một khóa duy nhất không có giá trị"
+      ],
+      "correct": 1,
+      "explain": "Mỗi phần tử của Dictionary là một cặp (key : value), được gọi là một item.",
+      "hints": [
+        "Từ điển hoạt động theo cơ chế tra cứu từ khóa và nghĩa tương ứng.",
+        "Cấu trúc được viết dưới dạng {key: value}."
+      ]
+    },
+    {
+      "text": "Phát biểu nào sau đây là SAI về Key (khóa) trong Dictionary?",
+      "options": [
+        "Các key trong dictionary phải là duy nhất",
+        "Key có thể là kiểu dữ liệu danh sách (List)",
+        "Key phải là kiểu dữ liệu bất biến (hashable)",
+        "Key có thể là chuỗi, số nguyên hoặc tuple chứa kiểu bất biến"
+      ],
+      "correct": 1,
+      "explain": "Key của Dictionary dùng cơ chế bảng băm nên bắt buộc phải là kiểu hashable (bất biến). Do đó List không thể làm key trong dictionary.",
+      "hints": [
+        "Điều kiện để làm khóa trong Dict tương tự như điều kiện phần tử của Set.",
+        "Các đối tượng thay đổi được (mutable) như List không thể dùng làm key."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nd = {'a': 1, 'b': 2, 'a': 3}\nprint(d)\nKết quả in ra là gì?",
+      "options": [
+        "{'a': 1, 'b': 2}",
+        "{'a': 3, 'b': 2}",
+        "{'a': 1, 'b': 2, 'a': 3}",
+        "Báo lỗi SyntaxError"
+      ],
+      "correct": 1,
+      "explain": "Dictionary không cho phép các key trùng lặp. Khi khai báo trùng key, giá trị xuất hiện sau ('a': 3) sẽ ghi đè lên giá trị trước đó.",
+      "hints": [
+        "Các key trong từ điển luôn là độc nhất.",
+        "Key 'a' bị gán lại giá trị ở phía sau."
+      ]
+    },
+    {
+      "text": "Đoạn mã sau sử dụng hàm khởi tạo dict() in ra kết quả gì?\nd = dict(name='Tran', age=37)\nprint(d['name'])",
+      "options": ["Tran", "'Tran'", "name", "KeyError"],
+      "correct": 0,
+      "explain": "Hàm dict(key=value) tự động tạo các khóa dạng chuỗi tương ứng, nên d['name'] truy xuất được giá trị 'Tran'.",
+      "hints": [
+        "Cú pháp dict(k=v) nhận tên tham số làm khóa dạng string.",
+        "Truy cập khóa 'name' trả về giá trị đã truyền."
+      ]
+    },
+    {
+      "text": "Điều gì xảy ra khi truy xuất một khóa không tồn tại theo cách thông thường?\nd = {'name': 'Tran'}\nprint(d['age'])",
+      "options": [
+        "Trả về None",
+        "Trả về 0",
+        "Báo lỗi KeyError",
+        "Báo lỗi IndexError"
+      ],
+      "correct": 2,
+      "explain": "Truy xuất trực tiếp qua d[key] sẽ ném ra lỗi KeyError nếu khóa đó không có trong dictionary.",
+      "hints": [
+        "Khác với phương thức .get(), cách dùng ngoặc vuông [] yêu cầu khóa phải tồn tại.",
+        "Lỗi phát sinh mang tên của chính thuộc tính khóa (Key)."
+      ]
+    },
+    {
+      "text": "Phương thức get() xử lý thế nào khi khóa không tồn tại?\nd = {'name': 'Tran'}\nprint(d.get('age'))",
+      "options": [
+        "Báo lỗi KeyError",
+        "Trả về giá trị None",
+        "Trả về chuỗi rỗng ''",
+        "Báo lỗi TypeError"
+      ],
+      "correct": 1,
+      "explain": "Phương thức d.get(key) giúp truy xuất an toàn. Nếu key không tồn tại, nó mặc định trả về None thay vì gây lỗi.",
+      "hints": [
+        "get() là cách lấy giá trị an toàn tránh gián đoạn chương trình.",
+        "Giá trị mặc định khi không tìm thấy là gì?"
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nd = {'name': 'Tran'}\nprint(d.get('age', 18))\nKết quả in ra là:",
+      "options": ["None", "18", "KeyError", "Tran"],
+      "correct": 1,
+      "explain": "Cú pháp d.get(key, default_value) cho phép trả về giá trị mặc định được chỉ định nếu khóa không tồn tại trong từ điển.",
+      "hints": [
+        "Tham số thứ hai của hàm get() là giá trị dự phòng.",
+        "Do 'age' không tồn tại nên giá trị dự phòng được chọn."
+      ]
+    },
+    {
+      "text": "Để lấy danh sách tất cả các khóa trong dictionary mydict, phương thức nào được dùng?",
+      "options": [
+        "mydict.all_keys()",
+        "mydict.keys()",
+        "mydict.list_keys()",
+        "keys(mydict)"
+      ],
+      "correct": 1,
+      "explain": "Phương thức mydict.keys() trả về một đối tượng dict_keys chứa danh sách tất cả các khóa của từ điển.",
+      "hints": [
+        "Tên phương thức là danh từ số nhiều của 'key'.",
+        "Gọi trực tiếp từ đối tượng dictionary."
+      ]
+    },
+    {
+      "text": "Phương thức nào trả về danh sách các giá trị trong Dictionary?",
+      "options": [
+        "mydict.values()",
+        "mydict.elements()",
+        "mydict.data()",
+        "mydict.all_values()"
+      ],
+      "correct": 0,
+      "explain": "Phương thức mydict.values() trả về một đối tượng dict_values chứa tập hợp tất cả các giá trị.",
+      "hints": [
+        "Từ tiếng Anh chỉ các giá trị số nhiều.",
+        "Cú pháp tương đồng với hàm keys()."
+      ]
+    },
+    {
+      "text": "Phương thức mydict.items() trả về dữ liệu có cấu trúc như thế nào?",
+      "options": [
+        "Danh sách các chuỗi dạng 'key:value'",
+        "Danh sách các tuple có dạng (key, value)",
+        "Một danh sách gồm 2 list riêng biệt",
+        "Một set chỉ chứa các key"
+      ],
+      "correct": 1,
+      "explain": "Phương thức items() trả về đối tượng dict_items chứa các phần tử dưới dạng tuple gồm 2 giá trị (key, value).",
+      "hints": [
+        "Mỗi cặp khóa-giá trị được gom vào một bộ không đổi.",
+        "Cấu trúc trả về là các cặp dạng (khóa, giá_trị)."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nd = {'a': 1, 'b': 2}\nd['c'] = 3\nprint(len(d))\nKết quả in ra là:",
+      "options": ["2", "3", "4", "KeyError"],
+      "correct": 1,
+      "explain": "Gán d['c'] = 3 khi khóa 'c' chưa có trong từ điển sẽ tự động thêm mới một item ('c': 3), nâng tổng số phần tử lên 3.",
+      "hints": [
+        "Phép gán ngoặc vuông vừa dùng để sửa vừa dùng để thêm mới item.",
+        "Từ điển ban đầu có 2 phần tử."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nd = {'name': 'Tran', 'age': 30}\nd.update({'name': 'Quang', 'country': 'Vietnam'})\nprint(d['name'], len(d))\nKết quả là:",
+      "options": [
+        "Quang 3",
+        "Tran 3",
+        "Quang 2",
+        "Tran 2"
+      ],
+      "correct": 0,
+      "explain": "update() cập nhật giá trị mới cho key đã có ('name' thành 'Quang') và thêm mới các cặp khóa chưa có ('country': 'Vietnam'). Tổng số phần tử là 3.",
+      "hints": [
+        "update() ghi đè khóa cũ và bổ sung khóa mới.",
+        "Xác định giá trị mới của 'name' và tổng số key sau khi update."
+      ]
+    },
+    {
+      "text": "Phương thức nào dùng để xóa một khóa chỉ định và trả về giá trị của khóa đó?",
+      "options": ["pop()", "remove()", "discard()", "delete()"],
+      "correct": 0,
+      "explain": "Phương thức mydict.pop(key) sẽ xóa cặp key-value chỉ định khỏi dictionary và trả về giá trị tương ứng của key đó.",
+      "hints": [
+        "Tương tự như list, pop trên dict cũng trả về giá trị bị xóa.",
+        "Dict không có phương thức remove."
+      ]
+    },
+    {
+      "text": "Trong Python 3.7 trở lên, phương thức popitem() thực hiện thao tác gì?",
+      "options": [
+        "Xóa một phần tử ngẫu nhiên",
+        "Xóa và trả về cặp (key, value) cuối cùng được thêm vào",
+        "Xóa phần tử đầu tiên của từ điển",
+        "Làm trống toàn bộ từ điển"
+      ],
+      "correct": 1,
+      "explain": "Kể từ Python 3.7, dictionary duy trì thứ tự chèn, do đó popitem() xóa và trả về item cuối cùng (theo cơ chế LIFO).",
+      "hints": [
+        "Trước Python 3.7 nó xóa ngẫu nhiên.",
+        "Từ bản 3.7, nó hoạt động như ngăn xếp (LIFO - xóa phần tử thêm vào gần nhất)."
+      ]
+    },
+    {
+      "text": "Đoạn code sau dùng để duyệt Dictionary sẽ in ra nội dung gì?\nmydict = {'a': 1, 'b': 2}\nfor x in mydict:\n    print(x, end=' ')",
+      "options": ["1 2 ", "a b ", "('a', 1) ('b', 2) ", "None"],
+      "correct": 1,
+      "explain": "Khi sử dụng vòng lặp for trực tiếp trên một Dictionary, biến lặp mặc định sẽ nhận các KEY của từ điển.",
+      "hints": [
+        "Vòng lặp trực tiếp for k in dict tương đương với for k in dict.keys().",
+        "Giá trị của biến x là các khóa."
+      ]
+    },
+    {
+      "text": "Để duyệt đồng thời cả key và value trong Dictionary, cú pháp vòng lặp nào sau đây là chuẩn?",
+      "options": [
+        "for key, value in mydict:",
+        "for key, value in mydict.items():",
+        "for key, value in mydict.values():",
+        "for key, value in mydict.pairs():"
+      ],
+      "correct": 1,
+      "explain": "Cần duyệt qua mydict.items() vì nó trả về các tuple gồm 2 phần tử (key, value) để unpack vào 2 biến lặp.",
+      "hints": [
+        "Phương thức nào cung cấp các cặp (khóa, giá_trị)?",
+        "Sử dụng kỹ thuật unpacking cùng phương thức items()."
+      ]
+    },
+    {
+      "text": "Toán tử in khi kiểm tra trên Dictionary kiểm tra sự tồn tại của cái gì?\n'Vietnam' in {'country': 'Vietnam', 'age': 37}",
+      "options": [
+        "Kiểm tra Value, trả về True",
+        "Kiểm tra Key, trả về False",
+        "Kiểm tra cả Key và Value, trả về True",
+        "Báo lỗi TypeError"
+      ],
+      "correct": 1,
+      "explain": "Toán tử 'in' trên Dictionary chỉ tìm kiếm trong tập hợp các KEYS. Vì 'Vietnam' là value chứ không phải key nên biểu thức trả về False.",
+      "hints": [
+        "Toán tử 'in' mặc định kiểm tra trên các khóa (keys).",
+        "Muốn kiểm tra trong values phải dùng: 'Vietnam' in dict.values()."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\ndic = {'a': 2, 'b': 3}\ndic.clear()\nprint(dic)\nKết quả là:",
+      "options": ["{}", "None", "set()", "KeyError"],
+      "correct": 0,
+      "explain": "clear() xóa sạch các mục khỏi dictionary, biến nó thành từ điển rỗng biểu diễn bằng {}.",
+      "hints": [
+        "clear() làm rỗng dictionary.",
+        "Ký hiệu dictionary rỗng là cặp ngoặc nhọn."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nd = {x: x * 3 for x in (1, 2, 3)}\nprint(d[2])\nKết quả in ra là:",
+      "options": ["2", "6", "9", "KeyError"],
+      "correct": 1,
+      "explain": "Dict comprehension tạo ra {1: 3, 2: 6, 3: 9}. Với khóa 2, giá trị tương ứng là 2 * 3 = 6.",
+      "hints": [
+        "Biểu thức sinh từ điển dạng {khóa: giá_trị}.",
+        "Với x = 2, tính giá trị x * 3."
+      ]
+    },
+    {
+      "text": "Phương thức copy() trên Dictionary có ý nghĩa gì?\nd1 = {'a': 1}\nd2 = d1.copy()",
+      "options": [
+        "Tạo bản sao độc lập, thay đổi trên d2 không ảnh hưởng d1",
+        "Tạo tham chiếu cùng trỏ tới một vùng nhớ",
+        "Chỉ sao chép các khóa, bỏ qua các giá trị",
+        "Báo lỗi cú pháp"
+      ],
+      "correct": 0,
+      "explain": "copy() thực hiện sao chép nội dung sang một đối tượng từ điển mới độc lập, giúp tránh hiện tượng sửa d2 làm đổi d1.",
+      "hints": [
+        "Tương tự như List, phương thức copy() dùng để tạo bản sao.",
+        "Không dùng chung địa chỉ ô nhớ."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\na = (1, 2)\nb = (1, 2)\nprint(a is b, a == b)\nKết quả in ra là:",
+      "options": [
+        "True True",
+        "False True",
+        "False False",
+        "True False"
+      ],
+      "correct": 0,
+      "explain": "Toán tử == so sánh giá trị (bằng nhau). Với các tuple hằng số nhỏ bất biến, Python tối ưu bộ nhớ (interning) nên chúng trỏ cùng đối tượng (a is b trả về True).",
+      "hints": [
+        "Toán tử == so sánh nội dung giá trị bên trong.",
+        "Tuple là kiểu dữ liệu bất biến nên Python tối ưu hóa việc lưu trữ bộ nhớ."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\na = [1, 2]\nb = [1, 2]\nprint(a is b, a == b)\nKết quả in ra là:",
+      "options": [
+        "True True",
+        "False True",
+        "False False",
+        "True False"
+      ],
+      "correct": 1,
+      "explain": "Nội dung hai list bằng nhau nên a == b là True. Tuy nhiên List là mutable nên Python luôn tạo hai đối tượng riêng biệt ở hai vùng nhớ khác nhau, do đó a is b là False.",
+      "hints": [
+        "Toán tử 'is' so sánh địa chỉ ô nhớ (identity).",
+        "Mỗi List được khởi tạo độc lập sẽ có ô nhớ riêng."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của đoạn mã sau:\nlst = [10, 20, 30, 40, 50]\nprint(lst[-4:-1])",
+      "options": [
+        "[20, 30, 40]",
+        "[10, 20, 30]",
+        "[20, 30, 40, 50]",
+        "[30, 40]"
+      ],
+      "correct": 0,
+      "explain": "Chỉ số -4 tương ứng giá trị 20, chỉ số -1 là 50 (không bao gồm end). Do đó lát cắt lấy các phần tử tại -4, -3, -2 mang các giá trị [20, 30, 40].",
+      "hints": [
+        "Đếm ngược: -1 (50), -2 (40), -3 (30), -4 (20).",
+        "Cắt từ -4 đến trước -1."
+      ]
+    },
+    {
+      "text": "Đoạn mã sau xuất ra kết quả gì?\nlst = [1, 2, 3, 4]\nlst[1:3] = []\nprint(lst)",
+      "options": ["[1, 4]", "[2, 3]", "[]", "[1, None, 4]"],
+      "correct": 0,
+      "explain": "Gán một danh sách rỗng vào lát cắt lst[1:3] sẽ xóa các phần tử ở vị trí index 1 và 2 (giá trị 2 và 3), danh sách còn lại [1, 4].",
+      "hints": [
+        "Gán mảng rỗng vào một đoạn con tương đương với thao tác xóa đoạn con đó.",
+        "Hai phần tử ở giữa bị loại bỏ."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\ns = {'a', 'b'}\ns.add(('c', 'd'))\nprint(len(s))\nKết quả là:",
+      "options": ["3", "4", "2", "TypeError"],
+      "correct": 0,
+      "explain": "add() thêm nguyên cả tuple ('c', 'd') vào Set như một phần tử duy nhất (vì Tuple là hashable). Số lượng phần tử tăng từ 2 lên 3.",
+      "hints": [
+        "Tuple là kiểu bất biến nên được chấp nhận trong Set.",
+        "add() thêm đối tượng như một phần tử đơn lẻ."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn chương trình sau là gì?\ns1 = {1, 2, 3, 4}\ns2 = {2, 3}\nprint(s2.issubset(s1))\n",
+      "options": ["True", "False", "None", "Error"],
+      "correct": 0,
+      "explain": "Phương thức issubset() kiểm tra tập con. Vì toàn bộ phần tử của s2 ({2, 3}) đều nằm trong s1 nên trả về True.",
+      "hints": [
+        "Tập A là con của tập B khi mọi phần tử của A đều có mặt trong B.",
+        "Kiểm tra xem 2 và 3 có thuộc s1 hay không."
+      ]
+    },
+    {
+      "text": "Cho đoạn mã sau:\ns1 = {1, 2, 3}\ns2 = {4, 5, 6}\nprint(s1.isdisjoint(s2))\nKết quả là:",
+      "options": ["True", "False", "None", "Error"],
+      "correct": 0,
+      "explain": "isdisjoint() trả về True nếu hai tập hợp hoàn toàn không có phần tử nào chung (giao bằng rỗng).",
+      "hints": [
+        "Hai tập hợp rời nhau là hai tập hợp không có phần tử chung.",
+        "Kiểm tra các phần tử giữa s1 và s2."
+      ]
+    },
+    {
+      "text": "Cho đoạn mã sau:\nd = {'x': 10}\nprint(list(d.keys()))\nKết quả in ra là:",
+      "options": ["['x']", "[10]", "[('x', 10)]", "['x': 10]"],
+      "correct": 0,
+      "explain": "d.keys() trả về khóa của từ điển là 'x'. Khi ép kiểu sang list, ta nhận được danh sách chứa khóa đó: ['x'].",
+      "hints": [
+        "Phương thức keys() lấy các khóa, không lấy giá trị.",
+        "Chuyển đổi thành một list chuẩn trong Python."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn chương trình sau là gì?\nkeys = ['name', 'age']\nvalues = ['Alice', 25]\nd = dict(zip(keys, values))\nprint(d)",
+      "options": [
+        "{'name': 'Alice', 'age': 25}",
+        "{'Alice': 'name', 25: 'age'}",
+        "[('name', 'Alice'), ('age', 25)]",
+        "TypeError"
+      ],
+      "correct": 0,
+      "explain": "Hàm zip() ghép từng cặp phần tử tương ứng từ 2 danh sách, và hàm dict() chuyển đổi các cặp ghép đó thành một Dictionary hoàn chỉnh.",
+      "hints": [
+        "zip() ghép phần tử thứ nhất với phần tử thứ nhất, thứ hai với thứ hai.",
+        "dict() biến các cặp tuple thành cặp key-value."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nlst = [1, 2, 3, 4]\nprint(lst[1:1])\nKết quả là:",
+      "options": ["[]", "[2]", "[1]", "IndexError"],
+      "correct": 0,
+      "explain": "Khi lát cắt có chỉ số bắt đầu và kết thúc bằng nhau (start == end), kết quả luôn luôn là một danh sách rỗng [].",
+      "hints": [
+        "Phạm vi lấy từ 1 đến trước 1 (không có phần tử nào thỏa mãn).",
+        "Kết quả trả về danh sách rỗng."
+      ]
+    },
+    {
+      "text": "Đoạn code sau xuất ra kết quả gì?\nlst = ['a', 'b', 'c']\nfor idx, val in enumerate(lst):\n    if idx == 1:\n        print(val)",
+      "options": ["a", "b", "c", "1"],
+      "correct": 1,
+      "explain": "Hàm enumerate() trả về các cặp (chỉ số, giá trị). Tại chỉ số idx = 1, giá trị tương ứng trong list là 'b'.",
+      "hints": [
+        "enumerate cung cấp bộ đếm chỉ số bắt đầu từ 0.",
+        "Tìm phần tử đứng ở vị trí index = 1."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của đoạn code sau:\ns = set()\ns.update('abc')\nprint(len(s))",
+      "options": ["1", "3", "0", "TypeError"],
+      "correct": 1,
+      "explain": "Chuỗi 'abc' là một iterable. Phương thức update() duyệt qua chuỗi và thêm từng ký tự 'a', 'b', 'c' vào tập hợp s, nâng độ dài lên 3.",
+      "hints": [
+        "update nhận một chuỗi sẽ bóc tách chuỗi đó thành từng ký tự.",
+        "Số lượng phần tử được thêm vào là 3 ký tự riêng biệt."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn chương trình sau là gì?\nmatrix = [[1, 2], [3, 4]]\ntotal = sum([row[0] for row in matrix])\nprint(total)",
+      "options": ["3", "4", "7", "10"],
+      "correct": 1,
+      "explain": "List comprehension trích xuất phần tử ở vị trí cột 0 của từng hàng: row 0 là 1, row 1 là 3. Tổng sum([1, 3]) = 4.",
+      "hints": [
+        "Phần tử đầu tiên của hàng [1, 2] là 1.",
+        "Phần tử đầu tiên của hàng [3, 4] là 3. Cộng 1 + 3."
+      ]
+    },
+    {
+      "text": "Cho biết giá trị của biến a sau đoạn mã sau:\na = [1, 2, 3]\nb = a\na = a + [4]\nprint(b)",
+      "options": ["[1, 2, 3]", "[1, 2, 3, 4]", "[4]", "TypeError"],
+      "correct": 0,
+      "explain": "Phép toán a = a + [4] tạo ra một danh sách hoàn toàn MỚI rồi gán lại cho biến a. Biến b vẫn trỏ vào danh sách ban đầu [1, 2, 3].",
+      "hints": [
+        "Toán tử + tạo ra đối tượng mới trong bộ nhớ chứ không sửa tại chỗ.",
+        "b vẫn giữ nguyên tham chiếu ban đầu."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả đoạn code sau:\na = [1, 2, 3]\nb = a\na += [4]\nprint(b)",
+      "options": ["[1, 2, 3, 4]", "[1, 2, 3]", "[4]", "IndexError"],
+      "correct": 0,
+      "explain": "Toán tử += trên List tương đương với phương thức extend() (thay đổi tại chỗ). Cả a và b cùng tham chiếu chung danh sách nên b cũng thành [1, 2, 3, 4].",
+      "hints": [
+        "Toán tử += trên list thực hiện chỉnh sửa tại chỗ (in-place modification).",
+        "Vì b và a trỏ cùng vùng nhớ nên b thấy sự thay đổi."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\ntup = (1, 2, 3)\nprint(tup * 0)",
+      "options": ["()", "0", "None", "Error"],
+      "correct": 0,
+      "explain": "Nhân một collection với 0 (hoặc số âm) sẽ tạo ra một collection rỗng tương ứng cùng kiểu (tuple rỗng ()).",
+      "hints": [
+        "Phép nhân bản một tuần tự với 0 trả về tập hợp rỗng.",
+        "Kiểu dữ liệu kết quả vẫn là Tuple."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả in ra của chương trình sau:\nd = {'a': 1, 'b': 2}\nprint(list(d))\n",
+      "options": ["['a', 'b']", "[1, 2]", "[('a', 1), ('b', 2)]", "['a': 1, 'b': 2]"],
+      "correct": 0,
+      "explain": "Khi truyền trực tiếp một Dictionary vào hàm list(), Python mặc định chuyển đổi danh sách các khóa (keys) thành list.",
+      "hints": [
+        "Thao tác lặp hoặc ép kiểu trực tiếp trên dict luôn ưu tiên keys.",
+        "Thu được danh sách các khóa của từ điển."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\ns = {1, 2, 3}\ns.discard(10)\nprint(s)",
+      "options": ["{1, 2, 3}", "KeyError", "set()", "None"],
+      "correct": 0,
+      "explain": "discard() không phát sinh lỗi nếu phần tử cần xóa không tồn tại trong Set, do đó tập hợp giữ nguyên {1, 2, 3}.",
+      "hints": [
+        "discard loại bỏ an toàn.",
+        "Không có phần tử 10 thì Set không thay đổi và không ném ngoại lệ."
+      ]
+    },
+    {
+      "text": "Hàm built-in nào dùng để trả về giá trị nhỏ nhất trong một Tuple các số nguyên?",
+      "options": ["min()", "tup.min()", "minimum()", "smallest()"],
+      "correct": 0,
+      "explain": "Hàm tích hợp sẵn min(iterable) dùng để tìm giá trị nhỏ nhất của các đối tượng tập hợp trong Python.",
+      "hints": [
+        "Tuple không có phương thức .min().",
+        "Dùng hàm toàn cục viết tắt của từ 'minimum'."
+      ]
+    },
+    {
+      "text": "Cho đoạn code sau:\nd = {'a': 1}\nd.setdefault('a', 99)\nprint(d['a'])",
+      "options": ["1", "99", "None", "KeyError"],
+      "correct": 0,
+      "explain": "setdefault(key, default) chỉ thêm cặp key: default nếu key CHƯA tồn tại. Vì key 'a' đã tồn tại nên hàm giữ nguyên giá trị 1.",
+      "hints": [
+        "setdefault không ghi đè giá trị của key đã có.",
+        "Giá trị ban đầu của khóa 'a' được bảo toàn."
+      ]
+    }
+  ]
+}
