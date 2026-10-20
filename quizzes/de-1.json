@@ -1,122 +1,96 @@
-        "text": "Cho đoạn chương trình kiểm tra năm nhuận đối với biến year:\n\nyear = 1900\nif (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):\n    ket_qua = \"Nam nhuan\"\nelse:\n    ket_qua = \"Nam thuong\"\nprint(ket_qua)\n\nKết quả in ra màn hình và giá trị chân lý của hai vế quanh toán tử or lần lượt là:",
+[
+  {
+    "id": "q-python-conditions-50",
+    "code": "PY-COND-50",
+    "title": "Cấu Trúc Rẽ Nhánh",
+    "desc": "Ôn tập giá trị bool, toán tử logic, if/elif/else, điều kiện lồng nhau và biểu thức điều kiện rút gọn.",
+    "duration": 60,
+    "createdAt": "2026-10-19",
+    "questions": [
+      {
+        "text": "Trong ngôn ngữ lập trình Python, hai giá trị thuộc kiểu dữ liệu logic (bool) được viết đúng cú pháp là:",
         "options": [
-          "Nam nhuan (Vế trái False, vế phải True)",
-          "Nam thuong (Vế trái False, vế phải False)",
-          "Nam nhuan (Vế trái True, vế phải False)",
-          "Nam thuong (Vế trái True, vế phải False)"
+          "true và false",
+          "True và False",
+          "TRUE và FALSE",
+          "1 và 0"
         ],
         "correct": 1,
-        "explain": "Năm 1900 không chia hết cho 400; tuy chia hết cho 4 nhưng chia hết cho 100 nên vế phải sai. Kết quả là năm thường.",
+        "explain": "Python viết hai giá trị logic bằng True và False, phân biệt chữ hoa chữ thường.",
         "hints": [
-          "Năm nhuận nếu chia hết cho 400, hoặc chia hết cho 4 nhưng không chia hết cho 100.",
-          "Với 1900, kiểm tra riêng điều kiện chia hết cho 400 và nhóm điều kiện bên phải."
+          "Python phân biệt chữ hoa và chữ thường trong tên hằng logic.",
+          "Hãy nhớ cách viết chuẩn của hai giá trị bool trong Python."
         ]
       },
       {
-        "text": "Cho đoạn chương trình tính tiền điện bậc thang (đơn giản hóa) cho số kWh tiêu thụ kwh:\n\nkwh = 120\nif kwh <= 50:\n    tien = kwh * 1.5\nelif kwh <= 100:\n    tien = 50 * 1.5 + (kwh - 50) * 2.0\nelse:\n    tien = 50 * 1.5 + 50 * 2.0 + (kwh - 100) * 3.0\nprint(int(tien))\n\nKết quả in ra màn hình là:",
+        "text": "Cho biến x = 15. Biểu thức nào sau đây dùng để kiểm tra xem x có bằng 15 hay không?",
         "options": [
-          "360",
-          "235",
-          "215",
-          "175"
+          "x = 15",
+          "x == 15",
+          "x := 15",
+          "x === 15"
         ],
         "correct": 1,
-        "explain": "Tiền điện = 50×1.5 + 50×2 + 20×3 = 75 + 100 + 60 = 235.",
+        "explain": "Toán tử == dùng để so sánh bằng; dấu = dùng để gán giá trị.",
         "hints": [
-          "Vì kwh = 120 nên dùng nhánh else.",
-          "Tính 50 kWh đầu, 50 kWh tiếp theo và phần vượt 100 kWh."
+          "Dấu gán và dấu so sánh bằng không giống nhau.",
+          "Muốn kiểm tra bằng nhau, hãy dùng toán tử so sánh gồm hai dấu bằng."
         ]
       },
       {
-        "text": "Cho đoạn chương trình biến đổi ba biến a, b, c:\n\na = 6\nb = 4\nc = 9\nif a > b:\n    a, b = b, a\nif b > c:\n    b, c = c, b\nif a > b:\n    a, b = b, a\nprint(a, b, c)\n\nKết quả in ra màn hình là:",
+        "text": "Cho đoạn chương trình sau:\n\na = 7\nb = 12\nkq = (a >= b)\n\nGiá trị của biến kq sau khi thực hiện đoạn chương trình trên là:",
         "options": [
-          "9 6 4",
-          "4 6 9",
-          "4 9 6",
-          "6 4 9"
+          "True",
+          "False",
+          "7",
+          "Chương trình báo lỗi."
         ],
         "correct": 1,
-        "explain": "Ba lần đổi chỗ đưa ba giá trị về thứ tự tăng dần: 4, 6, 9.",
+        "explain": "7 >= 12 là sai nên biểu thức trả về False.",
         "hints": [
-          "Theo dõi từng lần hoán đổi và cập nhật ngay giá trị.",
-          "Ba phép so sánh-hoán đổi kiểu này giúp đưa các số về thứ tự tăng dần."
+          "So sánh hai số 7 và 12 theo dấu >=.",
+          "Biểu thức so sánh trả về True hoặc False, không trả về chính số."
         ]
       },
       {
-        "text": "Cho ba số dương a = 3, b = 4, c = 8. Đoạn chương trình sau kiểm tra xem a, b, c có tạo thành độ dài 3 cạnh của một tam giác hay không:\n\na, b, c = 3, 4, 8\nif (a + b > c) and (a + c > b) and (b + c > a):\n    if a == b == c:\n        loai = \"Deu\"\n    elif a == b or b == c or a == c:\n        loai = \"Can\"\n    else:\n        loai = \"Thuong\"\nelse:\n    loai = \"Khong phai tam giac\"\nprint(loai)\n\nKết quả in ra màn hình là:",
+        "text": "Thứ tự ưu tiên thực hiện của các toán tử logic trong Python (khi không có dấu ngoặc tròn) từ cao xuống thấp là:",
         "options": [
-          "Deu",
-          "Can",
-          "Thuong",
-          "Khong phai tam giac"
-        ],
-        "correct": 3,
-        "explain": "3 + 4 > 8 sai nên ba số không tạo thành tam giác.",
-        "hints": [
-          "Kiểm tra bất đẳng thức tam giác trước khi phân loại tam giác.",
-          "Tổng hai cạnh nhỏ nhất phải lớn hơn cạnh còn lại; thử 3 + 4 với 8."
-        ]
-      },
-      {
-        "text": "(Nâng cao) Trong Python, toán tử and và or khi thao tác trên các giá trị không phải bool sẽ trả về chính giá trị của toán hạng quyết định kết quả (chứ không ép kiểu sang True/False). Cho đoạn chương trình:\n\na = 0\nb = 5\nc = 8\nx = a or b and c\nif x > 6:\n    y = x - b\nelse:\n    y = x + b\nprint(x, y)\n\nKết quả in ra màn hình là:",
-        "options": [
-          "True 6",
-          "5 10",
-          "8 3",
-          "0 5"
+          "and → or → not",
+          "not → or → and",
+          "not → and → or",
+          "Thực hiện từ trái sang phải, ba toán tử có cùng mức ưu tiên."
         ],
         "correct": 2,
-        "explain": "and có ưu tiên cao hơn or: 0 or (5 and 8) trả về 8; 8 > 6 nên y = 8 - 5 = 3.",
+        "explain": "Thứ tự ưu tiên là not, rồi and, rồi or.",
         "hints": [
-          "and trả về toán hạng falsy đầu tiên hoặc toán hạng cuối nếu tất cả truthy; or trả về toán hạng truthy đầu tiên.",
-          "Vì and có ưu tiên cao hơn or, hãy nhóm thành 0 or (5 and 8)."
+          "Hãy nhớ độ ưu tiên của not, and, or.",
+          "Toán tử đứng trước trong thứ tự ưu tiên sẽ được xử lý trước."
         ]
       },
       {
-        "text": "(Nâng cao) Cho đoạn chương trình có nhiều nhánh biến đổi biến liên tiếp:\n\nx = 7\ny = 4\nz = 2\nif x % y >= z:\n    x = x - y\n    if y // z == 2 and not (x < z):\n        y = y + x\n        if y % 3 == 1:\n            z = z + y\n        else:\n            z = z * 2\n    else:\n        y = y - x\nelif x + y > 10:\n    z = 100\nprint(x, y, z)\n\nKết quả in ra màn hình là:",
+        "text": "Cho biểu thức logic:\n\nx = not True or False\n\nGiá trị của biến x là:",
         "options": [
-          "3 7 9",
-          "3 7 4",
-          "3 1 2",
-          "7 4 100"
+          "True",
+          "False",
+          "None",
+          "Chương trình báo lỗi cú pháp."
         ],
-        "correct": 0,
-        "explain": "x % y = 3 >= 2; x thành 3, y // z = 2 và not(3 < 2) đúng; y thành 7, y % 3 = 1 nên z thành 9.",
+        "correct": 1,
+        "explain": "not True thành False; False or False cho kết quả False.",
         "hints": [
-          "Thực hiện các phép tính theo đúng thứ tự và cập nhật biến sau mỗi dòng.",
-          "Tính x % y trước; sau khi đổi x, kiểm tra y // z và not (x < z)."
+          "Thực hiện not trước, rồi mới xét or.",
+          "Đổi not True thành giá trị đối lập, sau đó tính phép or."
         ]
       },
       {
-        "text": "(Nâng cao) Cần chú ý bẫy về so sánh mắt xích (chained comparisons) trong Python. Cho đoạn chương trình:\n\na = 5\nb = 3\np = (a > b == False)\nq = ((a > b) == False)\nprint(p, q)\n\nKết quả in ra màn hình là:",
+        "text": "Từ khóa nào được sử dụng trong Python để kiểm tra thêm một điều kiện mới khi điều kiện của câu lệnh if phía trước bị sai (False)?",
         "options": [
-          "False False",
-          "True True",
-          "False True",
-          "True False"
+          "else if",
+          "elseif",
+          "elif",
+          "otherwise"
         ],
-        "correct": 0,
-        "explain": "a > b là True nhưng b == False là False; chained comparison cho p=False. q là (True == False), cũng False.",
+        "correct": 2,
+        "explain": "Trong Python, từ khóa kiểm tra điều kiện tiếp theo là elif.",
         "hints": [
-          "So sánh mắt xích a > b == False không giống hẳn với (a > b) == False.",
-          "Trong chained comparison, Python kiểm tra cả a > b và b == False."
-        ]
-      },
-      {
-        "text": "(Nâng cao) Cho đoạn chương trình kết hợp biểu thức điều kiện rút gọn lồng nhau và cập nhật biến:\n\na = 4\nb = 9\nc = 6\nd = (a + b if a * 2 > b else b - a) if (c % a == 2 and b // a == 2) else (a * c)\nif d >= 5:\n    a = d if d % 2 == 0 else d + 1\n    b = a // 2 if a > 6 else a * 2\nprint(d, a, b)\n\nKết quả in ra màn hình là:",
-        "options": [
-          "13 14 7",
-          "5 5 9",
-          "24 24 12",
-          "5 6 12"
-        ],
-        "correct": 3,
-        "explain": "Điều kiện của d đúng nhưng a*2 > b sai nên d = b-a = 5; d lẻ nên a = 6, rồi b = a*2 = 12.",
-        "hints": [
-          "Xác định điều kiện ngoài của phép gán d trước.",
-          "Tính c % a và b // a; sau đó chọn nhánh của biểu thức điều kiện rút gọn và cập nhật a, b."
-        ]
-      }
-    ]
-  }
-]
+          "Từ khóa này bắt đầu bằng chữ 'el' và dùng cho nhánh điều kiện tiếp theo.",
