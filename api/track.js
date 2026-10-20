@@ -1,5 +1,7 @@
 
-// api/track.js — lưu tiến độ thi và kết quả từng câu vào Upstash Redis.
+// api/track.js — QuizMaster VN
+// CommonJS cho Vercel; lưu tiến độ Redis, Telegram tùy chọn.
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -9,27 +11,15 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // Điền thông tin Telegram của bạn tại đây.
-  const botToken = "7314382101:AAGpK17uSbmG6yu54qfiPCx0CaghxTevFpc";
-  const chatId = "6916057009";
-
   const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
   const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 
-  if (
-  !botToken ||
-  !chatId ||
-  botToken === "DAN_BOT_TOKEN_VAO_DAY" ||
-  chatId === "DAN_TELEGRAM_CHAT_ID_VAO_DAY"
-) {
-  return res.status(500).json({
-    ok: false,
-    error: "Thiếu Telegram Bot Token hoặc Chat ID"
-  });
-}
-  }
+  // Telegram lấy từ Vercel Environment Variables.
+  const botToken = process.env.TELEGRAM_BOT_TOKEN || "";
+  const chatId = process.env.TELEGRAM_CHAT_ID || "";
 
   if (!redisUrl || !redisToken) {
+    console.error("[track.js] Missing Redis environment variables");
     return res.status(500).json({
       ok: false,
       error: "Missing Upstash Redis environment variables"
@@ -37,40 +27,40 @@ module.exports = async function handler(req, res) {
   }
 
   const input = req.body || {};
-  const safeString = (value, max = 200) =>
+  const clean = (value, max = 200) =>
     String(value ?? "").slice(0, max);
 
-  const eventType = safeString(input.eventType || "PROGRESS", 40);
   const now = new Date().toISOString();
+  const sessionId = clean(input.sessionId, 120);
 
   const answerResults = {};
-
   if (
     input.answerResults &&
     typeof input.answerResults === "object" &&
     !Array.isArray(input.answerResults)
   ) {
     for (const [key, value] of Object.entries(input.answerResults).slice(0, 200)) {
-      answerResults[safeString(key, 5)] = {
-        selected: safeString(value?.selected, 20).toUpperCase(),
+      answerResults[clean(key, 5)] = {
+        selected: clean(value?.selected, 20).toUpperCase(),
         isCorrect: value?.isCorrect === true
       };
     }
   }
 
   const data = {
-    eventType,
-    playerName: safeString(input.playerName || "Ẩn danh", 80),
-    quizCode: safeString(input.quizCode || "QUIZ", 40),
-    quizTitle: safeString(input.quizTitle || "Đề thi", 120),
+    sessionId,
+    eventType: clean(input.eventType || "PROGRESS", 40),
+    playerName: clean(input.playerName || "Ẩn danh", 80),
+    quizCode: clean(input.quizCode || "QUIZ", 40),
+    quizTitle: clean(input.quizTitle || "Đề thi", 120),
     currentQuestion: Math.max(0, Number(input.currentQuestion) || 0),
     totalQuestions: Math.max(0, Number(input.totalQuestions) || 0),
-    actionDetail: safeString(input.actionDetail || "Cập nhật tiến độ", 180),
+    actionDetail: clean(input.actionDetail || "Cập nhật tiến độ", 180),
     answeredCount: Math.max(0, Number(input.answeredCount) || 0),
     correctCount: Math.max(0, Number(input.correctCount) || 0),
-    answerSheet: safeString(input.answerSheet || "Chưa chọn câu nào", 3500),
+    answerSheet: clean(input.answerSheet || "Chưa chọn câu nào", 3500),
     answerResults,
-    timeLeft: safeString(input.timeLeft || "--:--", 20),
+    timeLeft: clean(input.timeLeft || "--:--", 20),
     updatedAt: now
   };
 
@@ -88,13 +78,16 @@ module.exports = async function handler(req, res) {
     });
 
     if (!response.ok) {
-      throw new Error("Redis request failed");
+      throw new Error(`Redis HTTP ${response.status}`);
     }
 
     const result = await response.json();
 
-    if (Array.isArray(result) && result.some(item => item.error)) {
-      throw new Error("Redis command failed");
+    if (Array.isArray(result)) {
+      const failed = result.find(item => item && item.error);
+      if (failed) {
+        throw new Error(String(failed.error));
+      }
     }
 
     return result;
@@ -105,11 +98,6 @@ module.exports = async function handler(req, res) {
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
-
-  const answers =
-    data.answerSheet && data.answerSheet !== "Chưa chọn câu nào"
-      ? escapeHtml(data.answerSheet)
-      : "Chưa chọn câu nào";
 
   const progress = data.totalQuestions
     ? Math.min(
@@ -123,25 +111,23 @@ module.exports = async function handler(req, res) {
     `👤 Thí sinh: <b>${escapeHtml(data.playerName)}</b>`,
     `📝 Đề: <b>${escapeHtml(data.quizCode)} — ${escapeHtml(data.quizTitle)}</b>`,
     `📍 Câu hiện tại: <b>${data.currentQuestion}/${data.totalQuestions}</b>`,
-    `📈 Tiến độ trả lời: <b>${progress}%</b> (${data.answeredCount}/${data.totalQuestions})`,
+    `📈 Tiến độ: <b>${progress}%</b> (${data.answeredCount}/${data.totalQuestions})`,
     `✅ Số câu đúng tạm tính: <b>${data.correctCount}</b>`,
     `⏳ Thời gian còn: <code>${escapeHtml(data.timeLeft)}</code>`,
     `⚡ Hoạt động: ${escapeHtml(data.actionDetail)}`,
     "",
     "🧾 <b>BẢNG ĐÁP ÁN</b>",
-    `<code>${answers}</code>`,
+    `<code>${escapeHtml(data.answerSheet)}</code>`,
     `🕒 Cập nhật: ${now.replace("T", " ").slice(0, 19)} UTC`
   ].join("\n");
 
   try {
-    // Lưu dữ liệu lượt thi hiện tại.
+    // Lưu dữ liệu tổng quan.
     await redis([
       ["SET", "quizmaster:live:latest", JSON.stringify(data)]
     ]);
 
-    // Lưu theo sessionId để dashboard có thể hiển thị nhiều lượt thi.
-    const sessionId = safeString(input.sessionId, 120);
-
+    // Lưu từng lượt thi để dashboard nhiều thí sinh đọc được.
     if (sessionId) {
       await redis([
         [
@@ -164,107 +150,89 @@ module.exports = async function handler(req, res) {
       ]);
     }
 
-    
-    // Gửi Telegram độc lập: không để lỗi Telegram làm hỏng
-    // phản hồi API khi dữ liệu Redis đã được lưu thành công.
-    try {
-      const stored = await redis([
-        ["GET", "quizmaster:live:telegram_message_id"]
-      ]);
+    // Telegram tùy chọn. Redis đã lưu thì lỗi Telegram không làm API thất bại.
+    if (botToken && chatId) {
+      try {
+        const stored = await redis([
+          ["GET", "quizmaster:live:telegram_message_id"]
+        ]);
 
-      const messageId = stored?.[0]?.result
-        ? Number(stored[0].result)
-        : null;
+        const messageId = stored?.[0]?.result
+          ? Number(stored[0].result)
+          : null;
 
-      async function sendTelegram(method, body) {
-        const response = await fetch(
-          `https://api.telegram.org/bot${botToken}/${method}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-          }
-        );
+        async function telegram(method, body) {
+          const response = await fetch(
+            `https://api.telegram.org/bot${botToken}/${method}`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body)
+            }
+          );
 
-        return {
-          httpOk: response.ok,
-          data: await response.json()
-        };
-      }
+          const result = await response.json();
 
-      if (messageId) {
-        const edited = await sendTelegram("editMessageText", {
-          chat_id: chatId,
-          message_id: messageId,
-          text: message,
-          parse_mode: "HTML",
-          disable_web_page_preview: true
-        });
-
-        if (!edited.httpOk || !edited.data.ok) {
-          const sent = await sendTelegram("sendMessage", {
-            chat_id: chatId,
-            text: message,
-            parse_mode: "HTML",
-            disable_web_page_preview: true
-          });
-
-          if (!sent.httpOk || !sent.data.ok) {
+          if (!response.ok || !result.ok) {
             throw new Error(
-              sent.data?.description || "Telegram send failed"
+              result.description || `Telegram HTTP ${response.status}`
             );
           }
 
+          return result;
+        }
+
+        const body = {
+          chat_id: chatId,
+          text: message,
+          parse_mode: "HTML",
+          disable_web_page_preview: true
+        };
+
+        if (messageId) {
+          try {
+            await telegram("editMessageText", {
+              ...body,
+              message_id: messageId
+            });
+          } catch (editError) {
+            const sent = await telegram("sendMessage", body);
+            await redis([
+              [
+                "SET",
+                "quizmaster:live:telegram_message_id",
+                String(sent.result.message_id)
+              ]
+            ]);
+          }
+        } else {
+          const sent = await telegram("sendMessage", body);
           await redis([
             [
               "SET",
               "quizmaster:live:telegram_message_id",
-              String(sent.data.result.message_id)
+              String(sent.result.message_id)
             ]
           ]);
         }
-      } else {
-        const sent = await sendTelegram("sendMessage", {
-          chat_id: chatId,
-          text: message,
-          parse_mode: "HTML",
-          disable_web_page_preview: true
-        });
-
-        if (!sent.httpOk || !sent.data.ok) {
-          throw new Error(
-            sent.data?.description || "Telegram send failed"
-          );
-        }
-
-        await redis([
-          [
-            "SET",
-            "quizmaster:live:telegram_message_id",
-            String(sent.data.result.message_id)
-          ]
-        ]);
+      } catch (telegramError) {
+        console.error(
+          "[track.js] Telegram error:",
+          telegramError?.message || telegramError
+        );
       }
-    } catch (telegramError) {
-      console.error(
-        "[track.js] Telegram error:",
-        telegramError?.message || telegramError
-      );
     }
 
-    // Redis đã lưu dữ liệu thì trả thành công,
-    // kể cả khi Telegram tạm thời không gửi được.
     return res.status(200).json({
       ok: true,
       updatedAt: now
     });
-
   } catch (error) {
-    console.error("[track.js]", error);
+    console.error("[track.js] Redis/storage error:", error?.message || error);
 
-    return res.status(502).json({
+    return res.status(500).json({
       ok: false,
-      error: "Tracking backend failed"
+      error: "Không thể lưu tiến độ. Kiểm tra cấu hình và log Redis trên Vercel."
     });
   }
-}
+};
