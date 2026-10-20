@@ -465,10 +465,6 @@
                 <h3 class="text-lg font-bold text-zinc-900">Nhập tên của bạn để bắt đầu</h3>
             </div>
             <input id="custom-player-name-input" type="text" placeholder="Nhập họ và tên..." class="w-full px-4 py-3 border border-zinc-300 text-sm focus:outline-none focus:border-zinc-900">
-            <label class="flex items-start gap-2 text-xs text-zinc-600 leading-relaxed">
-                <input id="telegram-progress-consent" type="checkbox" class="mt-0.5">
-                <span>Đồng ý chia sẻ tiến độ làm bài và đáp án đã chọn qua Telegram.</span>
-            </label>
             <div class="flex justify-end gap-3 pt-2">
                 <button onclick="app.closeNameModal(false)" class="px-5 py-2.5 border border-zinc-200 text-xs font-bold uppercase">Hủy</button>
                 <button onclick="app.closeNameModal(true)" class="px-6 py-2.5 bg-[#1b1d1f] text-white text-xs font-bold uppercase">Vào Thi</button>
@@ -1191,7 +1187,7 @@
                 modal.classList.replace('flex', 'hidden');
                 if (!isConfirmed) return;
 
-                this.telegramTrackingEnabled = !!document.getElementById('telegram-progress-consent')?.checked;
+                this.telegramTrackingEnabled = true;
                 if (this.telegramReportInterval) clearInterval(this.telegramReportInterval);
                 this.telegramReportInterval = null;
                 this.playerName = document.getElementById('custom-player-name-input').value.trim() || 'Thí sinh ẩn danh';
