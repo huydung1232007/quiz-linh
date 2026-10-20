@@ -1,528 +1,706 @@
-[
-  {
-    "id": "q-python-general-01",
-    "code": "PY-GEN-01",
-    "title": "Ôn Tập Tổng Hợp Python Cuối Kỳ",
-    "desc": "Hệ thống câu hỏi ôn tập xâu, danh sách, numpy và matplotlib.",
-    "duration": 60,
-    "createdAt": "2026-10-19",
-    "questions": [
-      {
-        "text": "Cho xâu s = “1, 2, 3, 4, 5”. Muốn xoá bỏ kí tự “,” và thay thế bằng dấu “ ” ta sử dụng lần lượt những câu lệnh nào?",
-        "options": [
-          "remove() và join()",
-          "split() và join()",
-          "del() và replace()",
-          "split() và replace()"
-        ],
-        "correct": 1,
-        "explain": "Ta có thể dùng split(',') để tách xâu thành danh sách, sau đó dùng ' '.join() để nối các phần tử lại bằng dấu khoảng trắng."
-      },
-      {
-        "text": "Khởi tạo danh sách a gồm 20 số 1 là?",
-        "options": [
-          "Tất cả đều sai",
-          "a = 1..20",
-          "a = [1] * 20",
-          "a = [1..20]",
-          "e. a = [1*20]"
-        ],
-        "correct": 2,
-        "explain": "Trong Python, nhân một danh sách với số nguyên n sẽ lặp lại các phần tử n lần. Cú pháp a = [1] * 20 tạo danh sách 20 số 1."
-      },
-      {
-        "text": "Giá trị nào sau đây là số thực?",
-        "options": [
-          "5j",
-          "3.5 + j",
-          "–1991",
-          "1.2e3"
-        ],
-        "correct": 3,
-        "explain": "1.2e3 là ký pháp khoa học biểu diễn số thực 1200.0 (kiểu float)."
-      },
-      {
-        "text": "Khai báo một danh sách rỗng a?",
-        "options": [
-          "a = 0",
-          "a = ()",
-          "a = [0]",
-          "a == []",
-          "e. a = {}",
-          "f. a = []"
-        ],
-        "correct": 5,
-        "explain": "Danh sách (list) rỗng trong Python được khai báo bằng cặp ngoặc vuông rỗng a = []."
-      },
-      {
-        "text": "Cho biết kết quả của x sau khi thực hiện, với x = 8:\n\nx //= (5 + 8 > 3**2 % 4 <= 3) * 3",
-        "options": [
-          "Giá trị khác",
-          "3",
-          "1",
-          "2"
-        ],
-        "correct": 3,
-        "explain": "Biểu thức so sánh cho kết quả True (1). 1 * 3 = 3. Phép chia lấy nguyên x //= 3 tương đương 8 // 3 = 2."
-      },
-      {
-        "text": "Điền từ khóa thích hợp để thoát khỏi vòng lặp khi x là “banana”:\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor x in fruits:\n  if x == \"banana\":\n       [___] \n  print(x)",
-        "options": [
-          "continue",
-          "break",
-          "exit",
-          "pass"
-        ],
-        "correct": 1,
-        "explain": "Lệnh 'break' được dùng để thoát hẳn khỏi vòng lặp hiện tại."
-      },
-      {
-        "text": "Để lấy ra phần tử cuối cùng trong danh sách a và xóa nó khỏi danh sách, phương án nào sau đây đúng?",
-        "options": [
-          "x=a[len(a)]",
-          "x=a[len(a)-1]",
-          "x=pop(a)",
-          "Tất cả đều sai",
-          "e. x=a.pop()"
-        ],
-        "correct": 4,
-        "explain": "Phương thức a.pop() lấy ra và xóa phần tử ở cuối danh sách."
-      },
-      {
-        "text": "Phát biểu nào sau đây là sai?",
-        "options": [
-          "Có thể truy cập từng kí tự của chuỗi thông qua chỉ số",
-          "Python không có kiểu dữ liệu kí tự",
-          "Chỉ số bắt đầu từ 0",
-          "Có thể thay đổi từng kí tự của một chuỗi"
-        ],
-        "correct": 3,
-        "explain": "Chuỗi (string) trong Python là kiểu dữ liệu bất biến, không thể thay đổi trực tiếp từng ký tự."
-      },
-      {
-        "text": "Tính giá trị trung bình của mảng numpy arr là?",
-        "options": [
-          "arr.average()",
-          "Tất cả đều sai",
-          "np.mean(arr)",
-          "mean(arr)",
-          "e. arr.mean()"
-        ],
-        "correct": 2,
-        "explain": "Hàm np.mean(arr) hoặc arr.mean() dùng để tính giá trị trung bình của mảng Numpy."
-      },
-      {
-        "text": "Chọn phát biểu sai trong các phát biểu sau?",
-        "options": [
-          "Trong lệnh join, kí tự nối tuỳ thuộc vào câu lệnh",
-          "split() có tác dụng tách xâu",
-          "Lệnh join() nối các phần tử của một danh sách thành một xâu, ngăn cách bởi dấu cách",
-          "Kí tự mặc định để phân cách split() là dấu cách"
-        ],
-        "correct": 2,
-        "explain": "Lệnh join() nối các phần tử bằng chính chuỗi gọi nó chứ không mặc định là dấu cách."
-      },
-      {
-        "text": "Làm thế nào để tạo biểu đồ 3D trong Matplotlib?",
-        "options": [
-          "create_3d_plot()",
-          "Tất cả đều sai",
-          "scatter_3d()",
-          "plot() với tham số projection='3d'",
-          "e. plot_3d()"
-        ],
-        "correct": 3,
-        "explain": "Khởi tạo hệ trục tọa độ 3D thông qua tham số projection='3d'."
-      },
-      {
-        "text": "Điền vào chỗ trống để hoàn thiện cấu trúc điều kiện nếu a lớn hơn b:\na = 50; b = 10\n\n [___]  a  [___]  b  [___] \n  print(\"Python programming\")",
-        "options": [
-          "if > :",
-          "if a > b:",
-          "when a > b:",
-          "check a > b:"
-        ],
-        "correct": 1,
-        "explain": "Cú pháp câu lệnh điều kiện chuẩn trong Python là 'if điều kiện:'."
-      },
-      {
-        "text": "Lệnh chuẩn hóa mảng arr trong numpy trong [0 .. 1]?",
-        "options": [
-          "Tất cả đều sai",
-          "(arr – arr.mean()) / arr.std()",
-          "(arr – arr.min()) / (arr.max() – arr.min())",
-          "arr.normalize()",
-          "e. np.scale(arr)"
-        ],
-        "correct": 2,
-        "explain": "Công thức chuẩn hóa Min-Max: (arr - arr.min()) / (arr.max() - arr.min())."
-      },
-      {
-        "text": "Câu lệnh nào dùng để tính độ dài của chuỗi s?",
-        "options": [
-          "s.len()",
-          "Tất cả đều sai",
-          "s.length()",
-          "len(s)",
-          "e. length(s)"
-        ],
-        "correct": 3,
-        "explain": "Hàm len(s) trả về độ dài của chuỗi."
-      },
-      {
-        "text": "Vẽ biểu đồ đường với import matplotlib.pyplot as plt?",
-        "options": [
-          "plot(x, y)",
-          "Tất cả đều sai",
-          "plt.pot(x, y)",
-          "plt(x, y)",
-          "e. plot.plt(x, y)"
-        ],
-        "correct": 1,
-        "explain": "Cú pháp chuẩn phải là plt.plot(x, y)."
-      },
-      {
-        "text": "Kết quả của chương trình sau là bao nhiêu?\ndef f(a, b):\n      return a + b + N\nN = 5\nf(3, 3)",
-        "options": [
-          "Tất cả đều sai",
-          "Lỗi",
-          "5",
-          "6",
-          "e. 11"
-        ],
-        "correct": 4,
-        "explain": "3 + 3 + 5 = 11."
-      },
-      {
-        "text": "Cho biết ý nghĩa của k trong đoạn chương trình sau:\n\nn = int(input('Nhập n <= 1000: '))\nk = 0; n = abs(n)\nwhile n != 0:\n    n //= 10\n    k += 1",
-        "options": [
-          "k là số chữ số có nghĩa của n.",
-          "k là số chữ số khác 0 của n.",
-          "k là chữ số hàng đơn vị của n.",
-          "k là chữ số khác 0 lớn nhất của n."
-        ],
-        "correct": 0,
-        "explain": "Vòng lặp chia liên tục cho 10 đếm số lần chia chính là số chữ số của n."
-      },
-      {
-        "text": "Kết quả của chương trình sau:\ndef my_function(x):\n          return 3 * x\nprint(my_function(3))\nprint(my_function(5))\nprint(my_function(9))",
-        "options": [
-          "9, 5, 27",
-          "3, 5, 9",
-          "Lỗi",
-          "9, 15, 27",
-          "e. Tất cả đều sai"
-        ],
-        "correct": 3,
-        "explain": "Kết quả lần lượt là 3*3=9, 3*5=15, 3*9=27."
-      },
-      {
-        "text": "Muốn nạp tất cả thành phần trong module, sử dụng?",
-        "options": [
-          "#",
-          "__all__",
-          ".",
-          "all",
-          "e. *"
-        ],
-        "correct": 4,
-        "explain": "Dùng dấu sao (*) để nạp toàn bộ module."
-      },
-      {
-        "text": "Dấu nào sau đây để chú thích từng dòng trong code?",
-        "options": [
-          "#",
-          "--",
-          "/*  */ hoặc <!--   -->",
-          "// hoặc ///"
-        ],
-        "correct": 0,
-        "explain": "Dùng dấu # để chú thích một dòng trong Python."
-      },
-      {
-        "text": "Cho biết kết quả của ttl trong đoạn chương trình sau\nT1 = (1, 9, 1, 6, 3, 4)\nttl = 0\nfor x in T1:\n    ttl+=x\nprint (ttl)",
-        "options": [
-          "25",
-          "23",
-          "Đáp án khác",
-          "24"
-        ],
-        "correct": 3,
-        "explain": "Tổng các phần tử trong tuple là 1+9+1+6+3+4 = 24."
-      },
-      {
-        "text": "Chọn lệnh đúng để sử dụng phương thức remove xóa “banana” trong danh sách fruits:\nfruits = [\"apple\", \"banana\", \"cherry\"]\n [___]",
-        "options": [
-          "remove(fruits, \"banana\")",
-          "fruits.remove(\"banana\")",
-          "fruits.delete(\"banana\")",
-          "del fruits(\"banana\")"
-        ],
-        "correct": 1,
-        "explain": "Cú pháp chuẩn gọi phương thức remove của danh sách là fruits.remove(\"banana\")."
-      },
-      {
-        "text": "Khi sử dụng module random trong numpy, cú pháp để trả về số ngẫu nhiên trong [0 .. 100] là?",
-        "options": [
-          "random.randint(100)",
-          "Tất cả đều sai",
-          "random.randint()",
-          "random.rand()",
-          "e. random.rand(100)"
-        ],
-        "correct": 1,
-        "explain": "Hàm randint của numpy yêu cầu truyền khoảng giá trị hoặc np.random.randint(0, 101)."
-      },
-      {
-        "text": "Trong các biểu thức so sánh nào cho kết quả True? Cho a = None; b = None",
-        "options": [
-          "a == b",
-          "a == False",
-          "b == NULL",
-          "a == []"
-        ],
-        "correct": 0,
-        "explain": "a và b đều có giá trị None nên a == b cho kết quả True."
-      },
-      {
-        "text": "Đoạn chương trình sau có mục đích gì?\ntry:\n    pass\nexcept (TypeError, ZeroDivisionError):\n    print(\"Python Quiz\")",
-        "options": [
-          "In ra ' Python Quiz ' nếu một trong hai ngoại lệ TypeError và ZeroDivisionError xảy ra.",
-          "Chỉ in ra ' Python Quiz ' khi cả hai ngoại lệ TypeError và ZeroDivisionError cùng xảy ra.",
-          "In ra ' Python Quiz ' nếu có ngoại lệ xảy ra (không quan trọng là ngoại lệ gì).",
-          "In ra ' Python Quiz ' nếu không có ngoại lệ xảy ra."
-        ],
-        "correct": 0,
-        "explain": "Except bắt các lỗi được liệt kê trong tuple."
-      },
-      {
-        "text": "Cho biết kết quả của đoạn chương trình sau?\ntry:\n    print(\"throw\")\nexcept:\n    print(\"except\")\nfinally:\n    print(\"finally\")",
-        "options": [
-          "finally – throw",
-          "throw – finally",
-          "finally – except",
-          "except – finally"
-        ],
-        "correct": 1,
-        "explain": "Try thực thi không lỗi in ra throw, sau đó khối finally luôn chạy in ra finally."
-      },
-      {
-        "text": "Cho biết kết quả của đoạn chương trình sau:\n\ns1={1,2,3,4,5}\ns2={4,5}\n\nprint (\"A\") if s2.issubset(s1) else print (\"B\")",
-        "options": [
-          "Lỗi",
-          "\"B\"",
-          "\"A\" \"B\"",
-          "\"A\""
-        ],
-        "correct": 3,
-        "explain": "s2 là tập con của s1 nên issubset trả về True, in ra A."
-      },
-      {
-        "text": "Chọn phát biểu đúng trong các phát biểu sau?",
-        "options": [
-          "Số lượng giá trị được truyền vào hàm bằng số tham số trong khai báo của hàm.",
-          "Tất cả đều sai",
-          "Cả 3 phát biểu trên đều đúng.",
-          "Lời gọi hàm không có lỗi nếu tham số được truyền chưa có giá trị.",
-          "e. Tham số là giá trị được truyền vào khi gọi hàm."
-        ],
-        "correct": 4,
-        "explain": "Tham số (arguments) là các giá trị truyền vào khi gọi hàm."
-      },
-      {
-        "text": "Điền từ khóa thích hợp để dừng vòng lặp nếu i là 3:\ni = 1\nwhile i < 6:\n    if i == 3:\n     [___] \n    i += 1",
-        "options": [
-          "break",
-          "continue",
-          "stop",
-          "return"
-        ],
-        "correct": 0,
-        "explain": "Dùng break để dừng hẳn vòng lặp."
-      },
-      {
-        "text": "Mục đích của hàm xlabel() trong Matplotlib là?",
-        "options": [
-          "Đặt nhãn y-axis",
-          "Đặt nhãn cho x-axis",
-          "Đặt chú thích biểu đồ",
-          "Đặt tên cho biểu đồ"
-        ],
-        "correct": 1,
-        "explain": "xlabel() dùng để đặt tên cho trục hoành (trục X)."
-      },
-      {
-        "text": "Trong numpy, tại sao SHAPE của mảng có ý nghĩa?",
-        "options": [
-          "Số mỗi phần tử trên mỗi chiều",
-          "Số lượng cột",
-          "Tất cả đều sai",
-          "Số lượng dòng"
-        ],
-        "correct": 0,
-        "explain": "Shape cho biết kích thước số lượng phần tử trên mỗi chiều của mảng."
-      },
-      {
-        "text": "Trong Python, cấu trúc try … exception… dùng để làm gì?",
-        "options": [
-          "Tất cả đều sai",
-          "Để bắt lấy các giá trị đang xử lý trong khối lệnh",
-          "Xử lý các ngoại lệ tránh chương trình dừng đột ngột",
-          "Kiểm tra đoạn lệnh có đúng với yêu cầu chức năng"
-        ],
-        "correct": 2,
-        "explain": "Cấu trúc try...except giúp xử lý lỗi phát sinh khi chạy chương trình."
-      },
-      {
-        "text": "Lệnh nào sau đây dùng để truy xuất phần tử đầu tiên trong set set1",
-        "options": [
-          "Đáp án khác",
-          "set1[0]",
-          "set1.top()",
-          "set1.pop()"
-        ],
-        "correct": 0,
-        "explain": "Set là kiểu dữ liệu không có thứ tự nên không thể truy xuất bằng chỉ số [0]."
-      },
-      {
-        "text": "Cho biết kết quả khi chạy đoạn chương trình sau:\n\ns = 0\nfor i in range(3):\n    s = s + 2 * i\nprint(s)",
-        "options": [
-          "8",
-          "12",
-          "10",
-          "6"
-        ],
-        "correct": 3,
-        "explain": "s = 0 + 2*0 + 2*1 + 2*2 = 6."
-      },
-      {
-        "text": "Để sắp xếp danh sách a?",
-        "options": [
-          "a.reverse()",
-          "sort(a)",
-          "a.sort()",
-          "Tất cả đều sai",
-          "e. reverse(a)"
-        ],
-        "correct": 2,
-        "explain": "Phương thức a.sort() dùng để sắp xếp danh sách."
-      },
-      {
-        "text": "Cho biết kết quả của đoạn chương trình sau?\n\ndic = {\"a\":2, \"b\": 3}\ndic.pop(\"a\"); dic.pop(\"b\")\nprint(dic)",
-        "options": [
-          "[]",
-          "Lỗi",
-          "Đáp án khác",
-          "None",
-          "e. {}"
-        ],
-        "correct": 4,
-        "explain": "Xóa hết các phần tử thì từ điển trở thành rỗng {}."
-      },
-      {
-        "text": "Kết quả của đoạn chương trình sau:\n\nl1=[1,2,3,4,5]\nl2=[4,5,6,7,8]\ns1=set(l1); s2=set(l2)\ncommons = s1 & s2\ncommonlist = list(commons)\nprint (commonlist)",
-        "options": [
-          "[4, 5]",
-          "[1, 2, 3]",
-          "[1, 2, 3, 4, 5, 6, 7, 8]",
-          "[6, 7, 8]"
-        ],
-        "correct": 0,
-        "explain": "Phép giao hai set lấy các phần tử chung là 4 và 5."
-      },
-      {
-        "text": "Chọn từ khóa đúng để định nghĩa hàm trả về giá trị của x + 5:\ndef my_function(x):\n         [___]   [___]",
-        "options": [
-          "return x + 5",
-          "output x + 5",
-          "print x + 5",
-          "give x + 5"
-        ],
-        "correct": 0,
-        "explain": "Dùng từ khóa return để trả về kết quả từ hàm."
-      },
-      {
-        "text": "Làm thế nào để vẽ biểu đồ đường đơn giản?",
-        "options": [
-          "plot(x_values, y_values)",
-          "Tất cả đều sai",
-          "lineplot(x_values, y_values)",
-          "draw_line(x_values, y_values)",
-          "e. create_line_graph(x_values, y_values)"
-        ],
-        "correct": 1,
-        "explain": "Cú pháp đúng phải gọi qua plt.plot(x, y)."
-      },
-      {
-        "text": "Cho biết giá trị của x sau khi thực hiện đoạn lệnh sau:\nx, a, b = 0, 5, 5\nif a > 0:\n    if b < 0: \n        x = x + 5 \n    elif a > 5:\n        x = x + 4\n    else:\n        x = x + 3\nelse:\n    x = x + 2",
-        "options": [
-          "3",
-          "6",
-          "2",
-          "5",
-          "e. 4"
-        ],
-        "correct": 0,
-        "explain": "a>0 đúng, b<0 sai, a>5 sai, chạy nhánh else nhỏ: x = 0 + 3 = 3."
-      },
-      {
-        "text": "Cú pháp để in giá trị 8 trong mảng sau là?\narr = np.array([[1,2,3,4,5], [6,7,8,9,10]])",
-        "options": [
-          "Tất cả đều sai",
-          "print(arr[3, 0])",
-          "print(arr[2, 3])",
-          "print(arr[7, 2])",
-          "e. print(arr[1, 2])"
-        ],
-        "correct": 4,
-        "explain": "Số 8 ở hàng chỉ số 1, cột chỉ số 2 -> arr[1, 2]."
-      },
-      {
-        "text": "Cho biết kết quả của lệnh sau:\n\nprint(10 // 3, 10 % 3, 10 / 3, sep = \", \")",
-        "options": [
-          "3.3333333333333335 , 1 , 3",
-          "3 , 3.3333333333333335 , 1",
-          "1 , 3 , 3.3333333333333335",
-          "3 , 1 , 3.3333333333333335"
-        ],
-        "correct": 3,
-        "explain": "10 // 3 = 3, 10 % 3 = 1, 10 / 3 = 3.333..."
-      },
-      {
-        "text": "Điền … để được kết quả 66 44 22 trong đoạn lệnh sau?\n\nfor i in range(6, 0, … ):\n\n    print(str(i) * 2)",
-        "options": [
-          "-2",
-          "-1",
-          "None",
-          "0"
-        ],
-        "correct": 0,
-        "explain": "Bước nhảy -2 giúp range sinh ra các giá trị 6, 4, 2."
-      },
-      {
-        "text": "Giá trị của m là bao nhiêu sau biết kết quả là 5:\n\ndef tinhSum(a, b):\n        return a + b\ns = tinhSum(1, m)\nprint(s)",
-        "options": [
-          "4",
-          "1",
-          "Tất cả đều sai",
-          "3",
-          "e. 2"
-        ],
-        "correct": 0,
-        "explain": "1 + m = 5 suy ra m = 4."
-      },
-      {
-        "text": "Lệnh đặt nhãn x và y và tiêu đề của biểu đồ?",
-        "options": [
-          "Tất cả đều sai",
-          "ax.(xlabel='Year', ylabel='Amount', title='Title of Graph')",
-          "ax.set((xlabel, ylabel, title), ('Year', 'Amount’,     'Title of Graph'))",
-          "ax.set(xlabel='Year'), ax.set(ylabel='Amount'), ax.set(title='Title of Graph')",
-          "e. ax.set(xlabel='Year', ylabel='Amount', title='Title of Graph')"
-        ],
-        "correct": 4,
-        "explain": "Hàm ax.set() cấu hình đồng thời xlabel, ylabel và title."
-      }
-    ]
-  }
-]
+{
+  "id": "q-python-general-01",
+  "code": "PY-GEN-01",
+  "title": "Đề Ôn Thầy - 1",
+  "desc": "Hệ thống câu hỏi ôn tập xâu, danh sách, numpy và matplotlib.",
+  "duration": 120,
+  "createdAt": "2026-10-20",
+  "questions": [
+    {
+      "text": "Cho xâu s = “1, 2, 3, 4, 5”. Muốn xoá bỏ kí tự “,” và thay thế bằng dấu “ ” ta sử dụng lần lượt những câu lệnh nào?",
+      "options": [
+        "remove() và join()",
+        "split() và join()",
+        "del() và replace()",
+        "split() và replace()"
+      ],
+      "correct": 1,
+      "explain": "Ta có thể dùng split(',') để tách xâu thành danh sách, sau đó dùng ' '.join() để nối các phần tử lại bằng dấu khoảng trắng.",
+      "hints": [
+        "Bước đầu tiên cần tách chuỗi dựa vào dấu phẩy để thu được danh sách các số.",
+        "Bước thứ hai dùng phương thức nối danh sách các chuỗi con lại với nhau bằng khoảng trắng."
+      ]
+    },
+    {
+      "text": "Khởi tạo danh sách a gồm 20 số 1 là?",
+      "options": [
+        "Tất cả đều sai",
+        "a = 1..20",
+        "a = [1] * 20",
+        "a = [1..20]",
+        "a = [1*20]"
+      ],
+      "correct": 2,
+      "explain": "Trong Python, nhân một danh sách với số nguyên n sẽ lặp lại các phần tử n lần. Cú pháp a = [1] * 20 tạo danh sách 20 số 1.",
+      "hints": [
+        "Toán tử nhân (*) đặt ngoài ngoặc vuông giúp nhân bản số lượng phần tử của danh sách.",
+        "Phân biệt rõ [1] * 20 (lặp phần tử 20 lần) với [1 * 20] (danh sách chỉ có 1 phần tử mang giá trị 20)."
+      ]
+    },
+    {
+      "text": "Giá trị nào sau đây là số thực?",
+      "options": [
+        "5j",
+        "3.5 + j",
+        "–1991",
+        "1.2e3"
+      ],
+      "correct": 3,
+      "explain": "1.2e3 là ký pháp khoa học biểu diễn số thực 1200.0 (kiểu float).",
+      "hints": [
+        "Các số có hậu tố 'j' thuộc kiểu số phức (complex), còn –1991 là số nguyên (int).",
+        "Ký hiệu khoa học có chữ 'e' (như 1.2e3 = 1.2 * 10^3) luôn thuộc kiểu số thực (float) trong Python."
+      ]
+    },
+    {
+      "text": "Khai báo một danh sách rỗng a?",
+      "options": [
+        "a = 0",
+        "a = ()",
+        "a = [0]",
+        "a == []",
+        "a = {}",
+        "a = []"
+      ],
+      "correct": 5,
+      "explain": "Danh sách (list) rỗng trong Python được khai báo bằng cặp ngoặc vuông rỗng a = [].",
+      "hints": [
+        "Khai báo biến cần dùng phép gán 1 dấu bằng (=), không phải phép so sánh (==).",
+        "Danh sách (list) sử dụng cặp dấu ngoặc vuông rỗng []."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của x sau khi thực hiện, với x = 8:\n\nx //= (5 + 8 > 3**2 % 4 <= 3) * 3",
+      "options": [
+        "Giá trị khác",
+        "3",
+        "1",
+        "2"
+      ],
+      "correct": 3,
+      "explain": "Biểu thức so sánh cho kết quả True (1). 1 * 3 = 3. Phép chia lấy nguyên x //= 3 tương đương 8 // 3 = 2.",
+      "hints": [
+        "Tính giá trị trong ngoặc trước: 5 + 8 = 13 và 3**2 % 4 = 9 % 4 = 1. Xét xem 13 > 1 <= 3 là True (1) hay False (0).",
+        "Lấy kết quả True (bằng 1) nhân với 3 được 3, sau đó lấy x = 8 chia lấy phần nguyên cho 3 (8 // 3)."
+      ]
+    },
+    {
+      "text": "Điền từ khóa thích hợp để thoát khỏi vòng lặp khi x là “banana”:\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor x in fruits:\n  if x == \"banana\":\n       [___] \n  print(x)",
+      "options": [
+        "continue",
+        "break",
+        "exit",
+        "pass"
+      ],
+      "correct": 1,
+      "explain": "Lệnh 'break' được dùng để thoát hẳn khỏi vòng lặp hiện tại.",
+      "hints": [
+        "continue chỉ bỏ qua lượt lặp hiện tại, còn đề bài yêu cầu thoát hẳn khỏi vòng lặp.",
+        "Hãy chọn từ khóa chuẩn trong Python dùng để kết thúc vòng lặp ngay lập tức."
+      ]
+    },
+    {
+      "text": "Để lấy ra phần tử cuối cùng trong danh sách a và xóa nó khỏi danh sách, phương án nào sau đây đúng?",
+      "options": [
+        "x=a[len(a)]",
+        "x=a[len(a)-1]",
+        "x=pop(a)",
+        "Tất cả đều sai",
+        "x=a.pop()"
+      ],
+      "correct": 4,
+      "explain": "Phương thức a.pop() lấy ra và xóa phần tử ở cuối danh sách.",
+      "hints": [
+        "Truy cập qua chỉ số a[len(a)-1] chỉ đọc giá trị chứ không xóa phần tử khỏi danh sách.",
+        "Phương thức pop() gọi trực tiếp từ đối tượng danh sách a và không truyền tham số sẽ lấy ra kèm xóa phần tử cuối."
+      ]
+    },
+    {
+      "text": "Phát biểu nào sau đây là sai?",
+      "options": [
+        "Có thể truy cập từng kí tự của chuỗi thông qua chỉ số",
+        "Python không có kiểu dữ liệu kí tự",
+        "Chỉ số bắt đầu từ 0",
+        "Có thể thay đổi từng kí tự của một chuỗi"
+      ],
+      "correct": 3,
+      "explain": "Chuỗi (string) trong Python là kiểu dữ liệu bất biến, không thể thay đổi trực tiếp từng ký tự.",
+      "hints": [
+        "Trong Python, một ký tự đơn thực chất là một chuỗi (str) có độ dài bằng 1.",
+        "Hãy nhớ lại tính chất bất biến (immutable) của kiểu dữ liệu chuỗi (str)."
+      ]
+    },
+    {
+      "text": "Tính giá trị trung bình của mảng numpy arr là?",
+      "options": [
+        "arr.average()",
+        "Tất cả đều sai",
+        "np.mean(arr)",
+        "mean(arr)",
+        "arr.mean()"
+      ],
+      "correct": 2,
+      "explain": "Hàm np.mean(arr) dùng để tính giá trị trung bình cộng của mảng Numpy.",
+      "hints": [
+        "Trong thư viện NumPy (viết tắt là np), hàm tính trung bình cộng có tên tiếng Anh là 'mean'.",
+        "Cú pháp chuẩn gọi từ thư viện np là np.mean(arr)."
+      ]
+    },
+    {
+      "text": "Chọn phát biểu sai trong các phát biểu sau?",
+      "options": [
+        "Trong lệnh join, kí tự nối tuỳ thuộc vào câu lệnh",
+        "split() có tác dụng tách xâu",
+        "Lệnh join() nối các phần tử của một danh sách thành một xâu, ngăn cách bởi dấu cách",
+        "Kí tự mặc định để phân cách split() là dấu cách"
+      ],
+      "correct": 2,
+      "explain": "Lệnh join() nối các phần tử bằng chính chuỗi gọi nó chứ không mặc định là dấu cách.",
+      "hints": [
+        "Cú pháp của join là <chuỗi_nối>.join(danh_sách).",
+        "Ký tự ngăn cách hoàn toàn phụ thuộc vào chuỗi đứng trước dấu chấm chứ không cố định là dấu cách."
+      ]
+    },
+    {
+      "text": "Làm thế nào để tạo biểu đồ 3D trong Matplotlib?",
+      "options": [
+        "create_3d_plot()",
+        "Tất cả đều sai",
+        "scatter_3d()",
+        "plot() với tham số projection='3d'",
+        "plot_3d()"
+      ],
+      "correct": 3,
+      "explain": "Khởi tạo hệ trục tọa độ 3D thông qua tham số projection='3d'.",
+      "hints": [
+        "Matplotlib không có các hàm rời tên là create_3d_plot() hay plot_3d().",
+        "Để vẽ 3D, ta cần cấu hình phép chiếu không gian thông qua tham số projection='3d'."
+      ]
+    },
+    {
+      "text": "Điền vào chỗ trống để hoàn thiện cấu trúc điều kiện nếu a lớn hơn b:\na = 50; b = 10\n\n [___]  a  [___]  b  [___] \n  print(\"Python programming\")",
+      "options": [
+        "if > :",
+        "if a > b:",
+        "when a > b:",
+        "check a > b:"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp câu lệnh điều kiện chuẩn trong Python là 'if điều kiện:'.",
+      "hints": [
+        "Câu lệnh rẽ nhánh trong Python bắt đầu bằng từ khóa 'if' và kết thúc dòng điều kiện bằng dấu hai chấm ':'.",
+        "So sánh lớn hơn sử dụng toán tử '>'."
+      ]
+    },
+    {
+      "text": "Lệnh chuẩn hóa mảng arr trong numpy trong [0 .. 1]?",
+      "options": [
+        "Tất cả đều sai",
+        "(arr – arr.mean()) / arr.std()",
+        "(arr – arr.min()) / (arr.max() – arr.min())",
+        "arr.normalize()",
+        "np.scale(arr)"
+      ],
+      "correct": 2,
+      "explain": "Công thức chuẩn hóa Min-Max: (arr - arr.min()) / (arr.max() - arr.min()).",
+      "hints": [
+        "Để đưa mọi giá trị về đoạn [0, 1] (Min-Max Scaling), phần tử nhỏ nhất phải trở thành 0 và lớn nhất trở thành 1.",
+        "Lấy mảng trừ đi giá trị nhỏ nhất (arr.min()), sau đó chia cho khoảng biến thiên (arr.max() - arr.min())."
+      ]
+    },
+    {
+      "text": "Câu lệnh nào dùng để tính độ dài của chuỗi s?",
+      "options": [
+        "s.len()",
+        "Tất cả đều sai",
+        "s.length()",
+        "len(s)",
+        "length(s)"
+      ],
+      "correct": 3,
+      "explain": "Hàm len(s) trả về độ dài của chuỗi.",
+      "hints": [
+        "Trong Python, tính độ dài là một hàm tích hợp sẵn (built-in function) chứ không phải phương thức chấm từ chuỗi.",
+        "Tên hàm viết tắt gồm 3 chữ cái đầu của từ 'length'."
+      ]
+    },
+    {
+      "text": "Vẽ biểu đồ đường với import matplotlib.pyplot as plt?",
+      "options": [
+        "plot(x, y)",
+        "Tất cả đều sai",
+        "plt.pot(x, y)",
+        "plt(x, y)",
+        "plot.plt(x, y)"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp chuẩn phải là plt.plot(x, y). Do các phương án đều viết sai hoặc thiếu tiền tố plt nên chọn 'Tất cả đều sai'.",
+      "hints": [
+        "Khi đã khai báo `import matplotlib.pyplot as plt`, lệnh vẽ biểu đồ đường chuẩn phải là `plt.plot(x, y)`.",
+        "Hãy kiểm tra kỹ chính tả từng phương án xem có phương án nào viết đúng `plt.plot(x, y)` hay không."
+      ]
+    },
+    {
+      "text": "Kết quả của chương trình sau là bao nhiêu?\ndef f(a, b):\n      return a + b + N\nN = 5\nf(3, 3)",
+      "options": [
+        "Tất cả đều sai",
+        "Lỗi",
+        "5",
+        "6",
+        "11"
+      ],
+      "correct": 4,
+      "explain": "3 + 3 + 5 = 11.",
+      "hints": [
+        "Biến toàn cục N = 5 được khởi tạo trước khi hàm f(3, 3) được gọi nên hàm f hoàn toàn đọc được giá trị của N.",
+        "Thay a = 3, b = 3 và N = 5 vào biểu thức a + b + N."
+      ]
+    },
+    {
+      "text": "Cho biết ý nghĩa của k trong đoạn chương trình sau:\n\nn = int(input('Nhập n <= 1000: '))\nk = 0; n = abs(n)\nwhile n != 0:\n    n //= 10\n    k += 1",
+      "options": [
+        "k là số chữ số có nghĩa của n.",
+        "k là số chữ số khác 0 của n.",
+        "k là chữ số hàng đơn vị của n.",
+        "k là chữ số khác 0 lớn nhất của n."
+      ],
+      "correct": 0,
+      "explain": "Vòng lặp chia liên tục cho 10 đếm số lần chia chính là số chữ số của n.",
+      "hints": [
+        "Mỗi lần thực hiện phép chia lấy nguyên `n //= 10`, chữ số hàng đơn vị của n sẽ bị cắt bỏ.",
+        "Biến k đếm tổng số lần cắt chữ số cho đến khi n bằng 0."
+      ]
+    },
+    {
+      "text": "Kết quả của chương trình sau:\ndef my_function(x):\n          return 3 * x\nprint(my_function(3))\nprint(my_function(5))\nprint(my_function(9))",
+      "options": [
+        "9, 5, 27",
+        "3, 5, 9",
+        "Lỗi",
+        "9, 15, 27",
+        "Tất cả đều sai"
+      ],
+      "correct": 3,
+      "explain": "Kết quả lần lượt là 3*3=9, 3*5=15, 3*9=27.",
+      "hints": [
+        "Hàm my_function(x) trả về giá trị gấp 3 lần đối số x truyền vào.",
+        "Nhân lần lượt 3, 5, 9 với 3."
+      ]
+    },
+    {
+      "text": "Muốn nạp tất cả thành phần trong module, sử dụng?",
+      "options": [
+        "#",
+        "__all__",
+        ".",
+        "all",
+        "*"
+      ],
+      "correct": 4,
+      "explain": "Dùng dấu sao (*) trong cú pháp `from module import *` để nạp toàn bộ thành phần của module.",
+      "hints": [
+        "Hãy nhớ lại cú pháp `from math import ...` khi muốn lấy tất cả các hàm trong thư viện math.",
+        "Ký tự đại diện (wildcard) cho 'tất cả' trong câu lệnh import là dấu sao."
+      ]
+    },
+    {
+      "text": "Dấu nào sau đây để chú thích từng dòng trong code?",
+      "options": [
+        "#",
+        "--",
+        "/*  */ hoặc <!--   -->",
+        "// hoặc ///"
+      ],
+      "correct": 0,
+      "explain": "Dùng dấu # để chú thích một dòng trong Python.",
+      "hints": [
+        "Các dấu // hay /* */ là của ngôn ngữ C/C++/Java, còn <!-- --> là của HTML.",
+        "Python sử dụng ký hiệu dấu thăng để bắt đầu một dòng chú thích (comment)."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của ttl trong đoạn chương trình sau\nT1 = (1, 9, 1, 6, 3, 4)\nttl = 0\nfor x in T1:\n    ttl+=x\nprint (ttl)",
+      "options": [
+        "25",
+        "23",
+        "Đáp án khác",
+        "24"
+      ],
+      "correct": 3,
+      "explain": "Tổng các phần tử trong tuple là 1+9+1+6+3+4 = 24.",
+      "hints": [
+        "Vòng lặp duyệt qua từng số x trong Tuple T1 và cộng dồn vào biến ttl.",
+        "Tính tổng: 1 + 9 + 1 + 6 + 3 + 4."
+      ]
+    },
+    {
+      "text": "Chọn lệnh đúng để sử dụng phương thức remove xóa “banana” trong danh sách fruits:\nfruits = [\"apple\", \"banana\", \"cherry\"]\n [___]",
+      "options": [
+        "remove(fruits, \"banana\")",
+        "fruits.remove(\"banana\")",
+        "fruits.delete(\"banana\")",
+        "del fruits(\"banana\")"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp chuẩn gọi phương thức remove của danh sách là fruits.remove(\"banana\").",
+      "hints": [
+        "remove là một phương thức của đối tượng List nên phải được gọi thông qua dấu chấm: `tên_list.remove(...)`.",
+        "Truyền giá trị phần tử cần xóa (\"banana\") vào trong cặp ngoặc đơn."
+      ]
+    },
+    {
+      "text": "Khi sử dụng module random trong numpy, cú pháp để trả về số ngẫu nhiên trong [0 .. 100] là?",
+      "options": [
+        "random.randint(100)",
+        "Tất cả đều sai",
+        "random.randint()",
+        "random.rand()",
+        "random.rand(100)"
+      ],
+      "correct": 1,
+      "explain": "Trong numpy, random.randint(100) chỉ sinh số nguyên từ 0 đến 99 (không bao gồm 100), còn rand(100) tạo mảng 100 số thực trong [0, 1). Muốn lấy trong [0..100] phải dùng randint(101) hoặc randint(0, 101).",
+      "hints": [
+        "Lưu ý rằng `random.randint(100)` chỉ trả về số nguyên từ 0 đến 99 (cận trên 100 không được lấy), còn `random.rand(100)` tạo mảng gồm 100 phần tử.",
+        "Vì không có phương án nào lấy được tới giá trị 100 đúng yêu cầu [0 .. 100], hãy cân nhắc đáp án 'Tất cả đều sai'."
+      ]
+    },
+    {
+      "text": "Trong các biểu thức so sánh nào cho kết quả True? Cho a = None; b = None",
+      "options": [
+        "a == b",
+        "a == False",
+        "b == NULL",
+        "a == []"
+      ],
+      "correct": 0,
+      "explain": "a và b đều có giá trị None nên a == b cho kết quả True.",
+      "hints": [
+        "Trong Python, giá trị `None` chỉ bằng chính `None`, không bằng `False`, không bằng `[]` và Python không có từ khóa `NULL`.",
+        "Vì cả a và b đều cùng bằng `None` nên phép so sánh `a == b` là đúng."
+      ]
+    },
+    {
+      "text": "Đoạn chương trình sau có mục đích gì?\ntry:\n    pass\nexcept (TypeError, ZeroDivisionError):\n    print(\"Python Quiz\")",
+      "options": [
+        "In ra ' Python Quiz ' nếu một trong hai ngoại lệ TypeError và ZeroDivisionError xảy ra.",
+        "Chỉ in ra ' Python Quiz ' khi cả hai ngoại lệ TypeError và ZeroDivisionError cùng xảy ra.",
+        "In ra ' Python Quiz ' nếu có ngoại lệ xảy ra (không quan trọng là ngoại lệ gì).",
+        "In ra ' Python Quiz ' nếu không có ngoại lệ xảy ra."
+      ],
+      "correct": 0,
+      "explain": "Except bắt các lỗi được liệt kê trong tuple: chỉ cần 1 trong 2 lỗi xảy ra sẽ thực thi khối except.",
+      "hints": [
+        "Tại một thời điểm thực thi lệnh, chỉ có một ngoại lệ được phát sinh.",
+        "Khi gom nhiều tên lỗi vào một Tuple sau từ khóa `except`, khối lệnh sẽ chạy nếu gặp bất kỳ lỗi nào nằm trong danh sách đó."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của đoạn chương trình sau?\ntry:\n    print(\"throw\")\nexcept:\n    print(\"except\")\nfinally:\n    print(\"finally\")",
+      "options": [
+        "finally – throw",
+        "throw – finally",
+        "finally – except",
+        "except – finally"
+      ],
+      "correct": 1,
+      "explain": "Try thực thi không lỗi in ra throw, sau đó khối finally luôn chạy in ra finally.",
+      "hints": [
+        "Lệnh `print(\"throw\")` trong khối `try` hoàn toàn hợp lệ và không gây ra lỗi nào nên khối `except` bị bỏ qua.",
+        "Khối `finally` luôn luôn được thực thi ở cuối cùng dù có lỗi hay không."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của đoạn chương trình sau:\n\ns1={1,2,3,4,5}\ns2={4,5}\n\nprint (\"A\") if s2.issubset(s1) else print (\"B\")",
+      "options": [
+        "Lỗi",
+        "\"B\"",
+        "\"A\" \"B\"",
+        "\"A\""
+      ],
+      "correct": 3,
+      "explain": "s2 là tập con của s1 nên issubset trả về True, in ra A.",
+      "hints": [
+        "Phương thức `s2.issubset(s1)` kiểm tra xem mọi phần tử của tập `s2` có nằm trong tập `s1` hay không.",
+        "Vì 4 và 5 đều thuộc `s1` nên điều kiện là `True`, chương trình thực hiện lệnh đứng trước từ khóa `if`."
+      ]
+    },
+    {
+      "text": "Chọn phát biểu đúng trong các phát biểu sau?",
+      "options": [
+        "Số lượng giá trị được truyền vào hàm bằng số tham số trong khai báo của hàm.",
+        "Tất cả đều sai",
+        "Cả 3 phát biểu trên đều đúng.",
+        "Lời gọi hàm không có lỗi nếu tham số được truyền chưa có giá trị.",
+        "Tham số là giá trị được truyền vào khi gọi hàm."
+      ],
+      "correct": 4,
+      "explain": "Tham số (arguments) là các giá trị truyền vào khi gọi hàm (số lượng đối số truyền vào có thể ít hơn nếu hàm có tham số mặc định hoặc *args).",
+      "hints": [
+        "Trong Python, nhờ có tham số mặc định (default arguments) và `*args`, số giá trị truyền vào khi gọi hàm không nhất thiết lúc nào cũng bằng số tham số khai báo.",
+        "Hãy chọn định nghĩa khái niệm cơ bản về giá trị được truyền vào khi gọi hàm."
+      ]
+    },
+    {
+      "text": "Điền từ khóa thích hợp để dừng vòng lặp nếu i là 3:\ni = 1\nwhile i < 6:\n    if i == 3:\n     [___] \n    i += 1",
+      "options": [
+        "break",
+        "continue",
+        "stop",
+        "return"
+      ],
+      "correct": 0,
+      "explain": "Dùng break để dừng hẳn vòng lặp.",
+      "hints": [
+        "Python không có từ khóa `stop`, còn `return` chỉ dùng bên trong hàm.",
+        "Để dừng ngay vòng lặp `while` khi đạt điều kiện `i == 3`, ta dùng lệnh `break`."
+      ]
+    },
+    {
+      "text": "Mục đích của hàm xlabel() trong Matplotlib là?",
+      "options": [
+        "Đặt nhãn y-axis",
+        "Đặt nhãn cho x-axis",
+        "Đặt chú thích biểu đồ",
+        "Đặt tên cho biểu đồ"
+      ],
+      "correct": 1,
+      "explain": "xlabel() dùng để đặt tên cho trục hoành (trục X).",
+      "hints": [
+        "Tên hàm ghép từ chữ 'x' (trục hoành X) và 'label' (nhãn).",
+        "`title()` đặt tên biểu đồ, `legend()` đặt chú thích, `ylabel()` đặt nhãn trục Y, còn `xlabel()` đặt nhãn trục X."
+      ]
+    },
+    {
+      "text": "Trong numpy, tại sao SHAPE của mảng có ý nghĩa?",
+      "options": [
+        "Số mỗi phần tử trên mỗi chiều",
+        "Số lượng cột",
+        "Tất cả đều sai",
+        "Số lượng dòng"
+      ],
+      "correct": 0,
+      "explain": "Shape cho biết kích thước số lượng phần tử trên mỗi chiều của mảng.",
+      "hints": [
+        "Thuộc tính `.shape` của mảng NumPy trả về một Tuple như `(hàng, cột)` hoặc `(chiều_1, chiều_2, chiều_3)`.",
+        "Nó không chỉ biểu diễn riêng số dòng hay số cột mà biểu diễn số phần tử trên từng chiều của mảng."
+      ]
+    },
+    {
+      "text": "Trong Python, cấu trúc try … exception… dùng để làm gì?",
+      "options": [
+        "Tất cả đều sai",
+        "Để bắt lấy các giá trị đang xử lý trong khối lệnh",
+        "Xử lý các ngoại lệ tránh chương trình dừng đột ngột",
+        "Kiểm tra đoạn lệnh có đúng với yêu cầu chức năng"
+      ],
+      "correct": 2,
+      "explain": "Cấu trúc try...except giúp xử lý lỗi phát sinh khi chạy chương trình, tránh việc chương trình bị dừng đột ngột.",
+      "hints": [
+        "Từ khóa `exception` (ngoại lệ) dùng để chỉ các lỗi phát sinh trong quá trình chạy chương trình (runtime error).",
+        "Cấu trúc này giúp bắt và xử lý ngoại lệ để chương trình không bị văng lỗi dừng đột ngột."
+      ]
+    },
+    {
+      "text": "Lệnh nào sau đây dùng để truy xuất phần tử đầu tiên trong set set1",
+      "options": [
+        "Đáp án khác",
+        "set1[0]",
+        "set1.top()",
+        "set1.pop()"
+      ],
+      "correct": 0,
+      "explain": "Set là kiểu dữ liệu không có thứ tự nên không có khái niệm phần tử đầu tiên và không thể truy xuất bằng chỉ số [0].",
+      "hints": [
+        "Set (tập hợp) là cấu trúc dữ liệu KHÔNG có thứ tự (unordered) nên không hỗ trợ chỉ số `set1[0]`.",
+        "`set1.pop()` chỉ lấy ra một phần tử bất kỳ và xóa nó đi, nên không có lệnh nào trong 3 lệnh kia truy xuất phần tử đầu tiên."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả khi chạy đoạn chương trình sau:\n\ns = 0\nfor i in range(3):\n    s = s + 2 * i\nprint(s)",
+      "options": [
+        "8",
+        "12",
+        "10",
+        "6"
+      ],
+      "correct": 3,
+      "explain": "s = 0 + 2*0 + 2*1 + 2*2 = 6.",
+      "hints": [
+        "`range(3)` sinh ra các giá trị `i = 0, 1, 2` (không bao gồm 3).",
+        "Tính tổng: `2*0 + 2*1 + 2*2`."
+      ]
+    },
+    {
+      "text": "Để sắp xếp danh sách a?",
+      "options": [
+        "a.reverse()",
+        "sort(a)",
+        "a.sort()",
+        "Tất cả đều sai",
+        "reverse(a)"
+      ],
+      "correct": 2,
+      "explain": "Phương thức a.sort() dùng để sắp xếp danh sách.",
+      "hints": [
+        "`reverse()` chỉ đảo ngược thứ tự hiện tại chứ không sắp xếp theo giá trị.",
+        "Để sắp xếp trực tiếp danh sách `a`, ta gọi phương thức `.sort()` từ đối tượng `a` (hoặc hàm `sorted(a)`)."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của đoạn chương trình sau?\n\ndic = {\"a\":2, \"b\": 3}\ndic.pop(\"a\"); dic.pop(\"b\")\nprint(dic)",
+      "options": [
+        "[]",
+        "Lỗi",
+        "Đáp án khác",
+        "None",
+        "{}"
+      ],
+      "correct": 4,
+      "explain": "Xóa hết các phần tử thì từ điển trở thành rỗng {}.",
+      "hints": [
+        "Hai lệnh `dic.pop(\"a\")` và `dic.pop(\"b\")` lần lượt xóa cả hai cặp khóa-giá trị khỏi từ điển `dic`.",
+        "Một Dictionary khi rỗng sẽ được in ra màn hình bằng cặp dấu ngoặc nhọn `{}`."
+      ]
+    },
+    {
+      "text": "Kết quả của đoạn chương trình sau:\n\nl1=[1,2,3,4,5]\nl2=[4,5,6,7,8]\ns1=set(l1); s2=set(l2)\ncommons = s1 & s2\ncommonlist = list(commons)\nprint (commonlist)",
+      "options": [
+        "[4, 5]",
+        "[1, 2, 3]",
+        "[1, 2, 3, 4, 5, 6, 7, 8]",
+        "[6, 7, 8]"
+      ],
+      "correct": 0,
+      "explain": "Phép giao hai set (&) lấy các phần tử chung là 4 và 5.",
+      "hints": [
+        "Toán tử `&` giữa hai tập hợp `s1` và `s2` là phép tìm giao (lấy các phần tử xuất hiện ở cả hai tập hợp).",
+        "Tìm các số vừa có trong `l1` vừa có trong `l2`."
+      ]
+    },
+    {
+      "text": "Chọn từ khóa đúng để định nghĩa hàm trả về giá trị của x + 5:\ndef my_function(x):\n         [___]   [___]",
+      "options": [
+        "return x + 5",
+        "output x + 5",
+        "print x + 5",
+        "give x + 5"
+      ],
+      "correct": 0,
+      "explain": "Dùng từ khóa return để trả về kết quả từ hàm.",
+      "hints": [
+        "`print` chỉ in ra màn hình chứ không trả giá trị về cho lời gọi hàm.",
+        "Từ khóa chuẩn trong Python để trả kết quả về từ một hàm là `return`."
+      ]
+    },
+    {
+      "text": "Làm thế nào để vẽ biểu đồ đường đơn giản?",
+      "options": [
+        "plot(x_values, y_values)",
+        "Tất cả đều sai",
+        "lineplot(x_values, y_values)",
+        "draw_line(x_values, y_values)",
+        "create_line_graph(x_values, y_values)"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp đúng trong matplotlib phải gọi qua đối tượng module hoặc axes như plt.plot(x_values, y_values).",
+      "hints": [
+        "Trong thư viện `matplotlib.pyplot as plt`, lệnh vẽ phải được gọi thông qua `plt.plot(...)` chứ không gọi rời `plot(...)`.",
+        "Do các phương án đưa ra đều thiếu đối tượng gọi hoặc sai tên hàm nên chọn 'Tất cả đều sai'."
+      ]
+    },
+    {
+      "text": "Cho biết giá trị của x sau khi thực hiện đoạn lệnh sau:\nx, a, b = 0, 5, 5\nif a > 0:\n    if b < 0: \n        x = x + 5 \n    elif a > 5:\n        x = x + 4\n    else:\n        x = x + 3\nelse:\n    x = x + 2",
+      "options": [
+        "3",
+        "6",
+        "2",
+        "5",
+        "4"
+      ],
+      "correct": 0,
+      "explain": "a>0 đúng, b<0 sai, a>5 sai, chạy nhánh else nhỏ: x = 0 + 3 = 3.",
+      "hints": [
+        "Với `a = 5, b = 5`, điều kiện ngoài `a > 0` là ĐÚNG nên chương trình đi vào khối `if` bên trong.",
+        "Ở bên trong: `b < 0` là SAI (5 không nhỏ hơn 0), `a > 5` cũng SAI (5 không lớn hơn 5), vậy chương trình chạy vào nhánh `else` bên trong."
+      ]
+    },
+    {
+      "text": "Cú pháp để in giá trị 8 trong mảng sau là?\narr = np.array([[1,2,3,4,5], [6,7,8,9,10]])",
+      "options": [
+        "Tất cả đều sai",
+        "print(arr[3, 0])",
+        "print(arr[2, 3])",
+        "print(arr[7, 2])",
+        "print(arr[1, 2])"
+      ],
+      "correct": 4,
+      "explain": "Số 8 ở hàng chỉ số 1, cột chỉ số 2 -> arr[1, 2].",
+      "hints": [
+        "Chỉ số hàng và cột trong NumPy đều bắt đầu từ 0: hàng 0 là `[1, 2, 3, 4, 5]`, hàng 1 là `[6, 7, 8, 9, 10]`.",
+        "Số 8 nằm ở hàng thứ hai (chỉ số 1) và cột thứ ba (chỉ số 2)."
+      ]
+    },
+    {
+      "text": "Cho biết kết quả của lệnh sau:\n\nprint(10 // 3, 10 % 3, 10 / 3, sep = \", \")",
+      "options": [
+        "3.3333333333333335 , 1 , 3",
+        "3 , 3.3333333333333335 , 1",
+        "1 , 3 , 3.3333333333333335",
+        "3 , 1 , 3.3333333333333335"
+      ],
+      "correct": 3,
+      "explain": "10 // 3 = 3, 10 % 3 = 1, 10 / 3 = 3.333...",
+      "hints": [
+        "`//` là chia lấy phần nguyên, `%` là chia lấy phần dư, và `/` là chia số thực thông thường.",
+        "Tính theo đúng thứ tự: `10 // 3` bằng 3, `10 % 3` bằng 1, và `10 / 3` bằng 3.3333333333333335."
+      ]
+    },
+    {
+      "text": "Điền … để được kết quả 66 44 22 trong đoạn lệnh sau?\n\nfor i in range(6, 0, … ):\n\n    print(str(i) * 2)",
+      "options": [
+        "-2",
+        "-1",
+        "None",
+        "0"
+      ],
+      "correct": 0,
+      "explain": "Bước nhảy -2 giúp range sinh ra các giá trị 6, 4, 2.",
+      "hints": [
+        "Để in ra `66`, `44`, `22` thì biến `i` phải nhận lần lượt các giá trị giảm dần là `6`, `4`, `2`.",
+        "Đi từ 6 giảm xuống 4 rồi 2 cần bước nhảy âm là `-2`."
+      ]
+    },
+    {
+      "text": "Giá trị của m là bao nhiêu sau biết kết quả là 5:\n\ndef tinhSum(a, b):\n        return a + b\ns = tinhSum(1, m)\nprint(s)",
+      "options": [
+        "4",
+        "1",
+        "Tất cả đều sai",
+        "3",
+        "2"
+      ],
+      "correct": 0,
+      "explain": "1 + m = 5 suy ra m = 4.",
+      "hints": [
+        "Hàm `tinhSum(1, m)` trả về tổng `1 + m` và gán vào biến `s`.",
+        "Để `s` in ra bằng 5 thì `1 + m = 5`, từ đó suy ra giá trị của `m`."
+      ]
+    },
+    {
+      "text": "Lệnh đặt nhãn x và y và tiêu đề của biểu đồ?",
+      "options": [
+        "Tất cả đều sai",
+        "ax.(xlabel='Year', ylabel='Amount', title='Title of Graph')",
+        "ax.set((xlabel, ylabel, title), ('Year', 'Amount’,     'Title of Graph'))",
+        "ax.set(xlabel='Year'), ax.set(ylabel='Amount'), ax.set(title='Title of Graph')",
+        "ax.set(xlabel='Year', ylabel='Amount', title='Title of Graph')"
+      ],
+      "correct": 4,
+      "explain": "Phương thức ax.set() cho phép truyền đồng thời các tham số từ khóa xlabel, ylabel và title trong một lần gọi.",
+      "hints": [
+        "Đối tượng trục `ax` trong Matplotlib cung cấp phương thức `.set()` để thiết lập nhanh nhiều thuộc tính cùng lúc.",
+        "Các thuộc tính được truyền dưới dạng đối số từ khóa (keyword arguments): `ax.set(xlabel=..., ylabel=..., title=...)`."
+      ]
+    }
+  ]
+}
