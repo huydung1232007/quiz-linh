@@ -43,9 +43,9 @@ h2{letter-spacing:-.035em}
 button{transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}
 button:hover{transform:translateY(-1px)}
 button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid #a5b4fc;outline-offset:3px}
-#session-list>button{background:linear-gradient(145deg,rgba(25,35,58,.82),rgba(14,22,39,.8))!important;border-color:rgba(148,163,184,.15)!important;border-radius:18px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
-#session-list>button:hover{border-color:rgba(165,180,252,.55)!important;background:rgba(37,48,78,.7)!important;box-shadow:0 12px 28px rgba(0,0,0,.16)}
-#session-list>button.border-indigo-400{border-color:rgba(165,180,252,.85)!important;background:linear-gradient(135deg,rgba(99,102,241,.17),rgba(45,212,191,.05))!important;box-shadow:0 0 0 1px rgba(165,180,252,.08),0 12px 35px rgba(79,70,229,.09)}
+#session-list .session-card{background:linear-gradient(145deg,rgba(25,35,58,.82),rgba(14,22,39,.8))!important;border-color:rgba(148,163,184,.15)!important;border-radius:18px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+#session-list .session-card:hover{border-color:rgba(165,180,252,.55)!important;background:rgba(37,48,78,.7)!important;box-shadow:0 12px 28px rgba(0,0,0,.16)}
+#session-list .session-card.border-indigo-400{border-color:rgba(165,180,252,.85)!important;background:linear-gradient(135deg,rgba(99,102,241,.17),rgba(45,212,191,.05))!important;box-shadow:0 0 0 1px rgba(165,180,252,.08),0 12px 35px rgba(79,70,229,.09)}
 #session-list .h-1\\.5{height:5px}
 #session-list .bg-gradient-to-r{background-image:linear-gradient(90deg,#818cf8,#5eead4)!important}
 #toggle-notification-composer{min-width:230px}
@@ -168,13 +168,31 @@ a.rounded-xl:hover{border-color:rgba(165,180,252,.4)!important;background:rgba(2
 const $ = id => document.getElementById(id);
 let lastUpdated = '';
 let selectedSessionId = '';
+const HIDDEN_SESSIONS_KEY = 'quizmaster_hidden_sessions_v1';
+function getHiddenSessions(){ try { return new Set(JSON.parse(localStorage.getItem(HIDDEN_SESSIONS_KEY) || '[]')); } catch { return new Set(); } }
+function hideSession(sessionId){
+  if(!sessionId) return;
+  if(!confirm('Ẩn lượt thi này khỏi danh sách dashboard? Dữ liệu gốc trong Redis không bị xóa.')) return;
+  const hidden = getHiddenSessions(); hidden.add(sessionId);
+  localStorage.setItem(HIDDEN_SESSIONS_KEY, JSON.stringify([...hidden]));
+  if(selectedSessionId === sessionId) selectedSessionId = '';
+  refresh();
+}
+function restoreHiddenSessions(){
+  localStorage.removeItem(HIDDEN_SESSIONS_KEY);
+  refresh();
+}
 function esc(s){return String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function renderSessions(sessions, latest){
   const list = $('session-list');
-  const all = Array.isArray(sessions) ? sessions : [];
+  const source = Array.isArray(sessions) ? sessions : [];
+  const hidden = getHiddenSessions();
+  const all = source.filter(s => !hidden.has(String(s.sessionId || '')));
   $('session-count').textContent = `${all.length} lượt thi`;
+  const hiddenCount = hidden.size;
   if (!all.length) {
-    list.innerHTML = '<div class="text-sm text-slate-500 py-4">Chưa có lượt thi nào. Khi thí sinh bắt đầu, danh sách sẽ hiện ở đây.</div>';
+    list.innerHTML = `<div class="text-sm text-slate-500 py-4">Không còn lượt thi nào đang hiển thị. ${hiddenCount ? `<button type="button" id="restore-hidden-sessions" class="underline text-indigo-300">Hiện lại ${hiddenCount} lượt đã ẩn</button>` : 'Khi thí sinh bắt đầu, danh sách sẽ hiện ở đây.'}</div>`;
+    $('restore-hidden-sessions')?.addEventListener('click', restoreHiddenSessions);
     return;
   }
   if (!selectedSessionId || !all.some(s => s.sessionId === selectedSessionId)) {
@@ -188,14 +206,16 @@ function renderSessions(sessions, latest){
     const age = Date.now() - new Date(s.updatedAt || 0).getTime();
     const state = submitted ? 'Đã nộp bài' : age > 120000 ? 'Không hoạt động' : 'Đang thi';
     const stateClass = submitted ? 'text-sky-300' : age > 120000 ? 'text-amber-300' : 'text-emerald-300';
-    return `<button type="button" data-session="${esc(s.sessionId||'')}" class="text-left rounded-2xl border p-4 transition ${active?'border-indigo-400 bg-indigo-500/10':'border-white/10 bg-slate-900/50 hover:border-white/30'}">
+    return `<div class="relative min-w-0"><button type="button" data-session="${esc(s.sessionId||'')}" class="session-card w-full text-left rounded-2xl border p-4 pr-16 transition ${active?'border-indigo-400 bg-indigo-500/10':'border-white/10 bg-slate-900/50 hover:border-white/30'}">
       <div class="flex items-start justify-between gap-2"><div class="font-bold truncate">${esc(s.playerName||'Ẩn danh')}</div><span class="text-xs ${stateClass} whitespace-nowrap">${state}</span></div>
       <div class="text-xs text-slate-400 mt-1">${esc(s.quizCode||'QUIZ')} · ${esc(s.quizTitle||'Đề thi')}</div>
       <div class="flex justify-between text-xs text-slate-400 mt-4"><span>Câu ${Number(s.currentQuestion)||0}/${total}</span><span>${answered}/${total} đã chọn</span></div>
       <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden mt-2"><div class="h-full bg-gradient-to-r from-indigo-500 to-emerald-400" style="width:${pct}%"></div></div>
       <div class="text-[11px] text-slate-500 mt-2">Cập nhật ${s.updatedAt ? new Date(s.updatedAt).toLocaleString('vi-VN') : '—'}</div>
-    </button>`;
+    </button><button type="button" data-hide-session="${esc(s.sessionId||'')}" title="Ẩn lượt thi" aria-label="Ẩn lượt thi" class="absolute right-3 top-3 z-10 rounded-lg border border-rose-400/30 bg-rose-500/10 px-2 py-1 text-xs text-rose-300 hover:bg-rose-500/20">Xóa</button></div>`;
   }).join('');
+  list.querySelectorAll('[data-hide-session]').forEach(btn => btn.addEventListener('click', event => { event.stopPropagation(); hideSession(btn.dataset.hideSession); }));
+  if(hiddenCount){ const restore = document.createElement('button'); restore.type='button'; restore.className='col-span-full justify-self-start text-xs underline text-indigo-300 mt-1'; restore.textContent=`Hiện lại ${hiddenCount} lượt đã ẩn`; restore.addEventListener('click', restoreHiddenSessions); list.appendChild(restore); }
   list.querySelectorAll('[data-session]').forEach(btn => btn.addEventListener('click', () => {
     selectedSessionId = btn.dataset.session;
     lastSentNotificationId = '';
