@@ -3,7 +3,7 @@
   "code": "PY-03",
   "title": "List",
   "desc": "Hệ thống 50 câu hỏi trắc nghiệm chuyên sâu về List, phương thức, cắt lát, tham chiếu và các bài toán truy vết nâng cao trong Python.",
-  "duration": 50,
+  "duration": 120,
   "createdAt": "2026-10-20",
   "questions": [
     {
