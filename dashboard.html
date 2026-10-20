@@ -60,6 +60,8 @@ button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid #a
 #notification-send-status,#notification-ack-status{padding:8px 11px;border-radius:10px;background:rgba(5,10,21,.35)}
 #answer-grid .answer{border-radius:15px!important;min-height:78px;transition:all .18s ease}
 #answer-grid .answer.selected{background:rgba(45,212,191,.1)!important;border-color:rgba(94,234,212,.68)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
+#answer-grid .answer.correct{background:rgba(16,185,129,.16)!important;border-color:rgba(52,211,153,.9)!important;box-shadow:inset 0 0 0 1px rgba(52,211,153,.12)}
+#answer-grid .answer.wrong{background:rgba(239,68,68,.16)!important;border-color:rgba(248,113,113,.9)!important;box-shadow:inset 0 0 0 1px rgba(248,113,113,.12)}
 #answer-grid .answer.empty{background:rgba(30,41,59,.22)!important;border-color:rgba(148,163,184,.11)!important}
 #bar{background-image:linear-gradient(90deg,#818cf8,#5eead4)!important;box-shadow:0 0 18px rgba(94,234,212,.16)}
 #percent{color:#72f0c8!important}
@@ -152,8 +154,8 @@ a.rounded-xl:hover{border-color:rgba(165,180,252,.4)!important;background:rgba(2
   </section>
   <section class="glass rounded-3xl p-6 md:p-8">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-      <div><h2 class="text-xl font-bold">Bảng đáp án từng câu</h2><p class="text-sm text-slate-400 mt-1">Hiển thị đáp án đã chọn; dấu gạch ngang là câu chưa trả lời.</p></div>
-      <div class="flex items-center gap-3 text-xs"><span><i class="fa-solid fa-circle text-emerald-400 mr-1"></i>Đã chọn</span><span><i class="fa-solid fa-circle text-slate-600 mr-1"></i>Chưa chọn</span></div>
+      <div><h2 class="text-xl font-bold">Bảng đáp án từng câu</h2><p class="text-sm text-slate-400 mt-1">Xanh lá: đúng · Đỏ: sai · Gạch ngang: chưa trả lời.</p></div>
+      <div class="flex items-center gap-3 text-xs"><span><i class="fa-solid fa-circle text-emerald-400 mr-1"></i>Đúng</span><span><i class="fa-solid fa-circle text-red-400 mr-1"></i>Sai</span><span><i class="fa-solid fa-circle text-slate-600 mr-1"></i>Chưa chọn</span></div>
     </div>
     <div id="answer-grid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-3">
       <div class="text-slate-500 text-sm col-span-full py-8 text-center">Chưa có đáp án để hiển thị.</div>
@@ -246,10 +248,15 @@ function renderDetail(d){
     const m=part.trim().match(/Câu\s+(\d+)\s*:\s*([A-F])/i);
     if(m) answers[Number(m[1])]=m[2].toUpperCase();
   });
+  const results = d.answerResults && typeof d.answerResults === 'object' ? d.answerResults : {};
   const count=Math.min(total,200);
   $('answer-grid').innerHTML=count?Array.from({length:count},(_,i)=>{
     const n=i+1, a=answers[n];
-    return `<div class="answer ${a?'selected':'empty'} rounded-xl p-3 text-center"><div class="text-[10px] text-slate-400">CÂU ${n}</div><div class="text-xl font-extrabold mt-1 ${a?'text-emerald-300':'text-slate-500'}">${a||'—'}</div></div>`;
+    const result = results[String(n)] || results[n];
+    const hasResult = !!a && result && typeof result.isCorrect === 'boolean';
+    const state = !a ? 'empty' : hasResult ? (result.isCorrect ? 'correct' : 'wrong') : 'selected';
+    const answerColor = !a ? 'text-slate-500' : hasResult ? (result.isCorrect ? 'text-emerald-300' : 'text-red-300') : 'text-sky-200';
+    return `<div class="answer ${state} rounded-xl p-3 text-center"><div class="text-[10px] text-slate-400">CÂU ${n}</div><div class="text-xl font-extrabold mt-1 ${answerColor}">${a||'—'}</div></div>`;
   }).join(''):'<div class="text-slate-500 text-sm col-span-full py-8 text-center">Chưa có câu hỏi.</div>';
 }
 let lastSentNotificationId = '';
