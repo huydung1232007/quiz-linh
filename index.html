@@ -32,14 +32,12 @@
             width: 85px;
         }
 
-        /* Giữ nguyên thụt lề và TỰ ĐỘNG XUỐNG DÒNG cho câu hỏi/code dài */
         .preserve-space {
             white-space: pre-wrap !important;
             word-wrap: break-word !important;
             font-family: 'Fira Code', Consolas, Monaco, monospace, sans-serif;
         }
 
-        /* Tùy chỉnh khung code block tối giống VS Code */
         pre.code-box, pre.code-box code {
             white-space: pre-wrap !important;
             word-break: break-word !important;
@@ -286,7 +284,7 @@
 
                     <div id="exam-options-list" class="space-y-3"></div>
 
-                    <!-- GỢI Ý TỪNG CẤP ĐỘ: dùng trường hints trong JSON -->
+                    <!-- GỢI Ý TỪNG CẤP ĐỘ -->
                     <div id="hint-section" class="hidden mt-5 border border-zinc-200 bg-zinc-50 p-4">
                         <div class="flex items-center justify-between gap-3 mb-3">
                             <div class="flex items-center gap-2">
@@ -322,7 +320,6 @@
                             <button onclick="app.shuffleActiveExam()" class="text-zinc-900 font-bold hover:underline"><i class="fa-solid fa-shuffle mr-1"></i> Đảo ngay</button>
                         </div>
                         
-                        <!-- HAI NÚT: GHI CHÚ VÀ CHẠY CODE -->
                         <div class="flex gap-2">
                             <button onclick="app.toggleNoteModal()" class="flex-1 py-2.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-[10px] font-bold uppercase border border-zinc-300 flex items-center justify-center gap-1.5 transition">
                                 <i class="fa-regular fa-note-sticky text-amber-500"></i> <span id="note-btn-label">Note (0)</span>
@@ -394,7 +391,6 @@
         </div>
     </footer>
 
-
     <!-- POPUP THÔNG BÁO TỪ DASHBOARD -->
     <div id="teacher-notification-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="teacher-notification-title">
       <div class="w-full max-w-lg overflow-hidden rounded-2xl border border-indigo-200 bg-white shadow-2xl">
@@ -435,10 +431,9 @@
         </div>
     </div>
 
-    <!-- ==================== MODAL PYTHON RUNNER (THÊM MỚI TẠI ĐÂY) ==================== -->
+    <!-- MODAL PYTHON RUNNER -->
     <div id="modal-python-runner" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60] hidden items-center justify-center p-4">
         <div class="bg-white max-w-4xl w-full flex flex-col shadow-2xl border border-zinc-200 h-[85vh] sm:h-[75vh]">
-            <!-- Header Modal -->
             <div class="flex items-center justify-between border-b border-zinc-200 px-6 py-4 bg-zinc-50">
                 <div class="flex items-center gap-2">
                     <i class="fa-brands fa-python text-xl text-emerald-600"></i>
@@ -447,18 +442,15 @@
                 <button onclick="app.closePythonRunner()" class="text-zinc-400 hover:text-zinc-900 transition"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             
-            <!-- Vùng Editor & IO -->
             <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
-                <!-- Vùng Trái: Code Editor -->
                 <div class="w-full md:w-2/3 p-5 flex flex-col border-b md:border-b-0 md:border-r border-zinc-200">
                     <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Code Python (Chỉnh sửa tùy ý)</label>
                     <textarea id="py-code-input" class="w-full flex-1 p-4 bg-[#1e1e1e] text-[#d4d4d8] font-mono text-sm focus:outline-none resize-none border border-zinc-800 rounded-lg custom-scroll whitespace-pre" spellcheck="false" placeholder="Nhập code Python vào đây..."></textarea>
                 </div>
-                <!-- Vùng Phải: Input & Output -->
                 <div class="w-full md:w-1/3 p-5 flex flex-col bg-zinc-50 space-y-4">
                     <div class="flex flex-col">
                         <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Đầu vào (Lệnh input)</label>
-                        <textarea id="py-stdin" class="w-full h-24 p-3 bg-white border border-zinc-300 text-xs font-mono focus:outline-none focus:border-zinc-900 resize-none rounded-lg custom-scroll whitespace-pre" placeholder="Nếu code có lệnh input(), hãy nhập dữ liệu tại đây. Mỗi dòng tương ứng 1 lệnh input()..."></textarea>
+                        <textarea id="py-stdin" class="w-full h-24 p-3 bg-white border border-zinc-300 text-xs font-mono focus:outline-none focus:border-zinc-900 resize-none rounded-lg custom-scroll whitespace-pre" placeholder="Nếu code có lệnh input(), hãy nhập dữ liệu tại đây..."></textarea>
                     </div>
                     <div class="flex-1 flex flex-col min-h-[12rem]">
                         <label class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Đầu ra (Output)</label>
@@ -467,7 +459,6 @@
                 </div>
             </div>
             
-            <!-- Footer Buttons -->
             <div class="px-6 py-4 border-t border-zinc-200 bg-zinc-50 flex justify-end gap-3">
                 <button onclick="document.getElementById('py-output').textContent=''" class="px-5 py-2.5 border border-zinc-300 text-zinc-600 text-xs font-bold uppercase tracking-wider hover:border-zinc-900 transition">Xóa Output</button>
                 <button onclick="app.runPythonCode()" class="px-6 py-2.5 bg-[#1b1d1f] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition flex items-center gap-2 shadow-md">
@@ -476,7 +467,6 @@
             </div>
         </div>
     </div>
-    <!-- =================================================================================== -->
 
     <!-- MODAL NHẬP TÊN -->
     <div id="modal-player-name" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
@@ -531,11 +521,8 @@
     </div>
 
     <!-- THƯ VIỆN BÊN NGOÀI -->
-    <!-- Prism.js: Tô sáng cú pháp -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    
-    <!-- Skulpt: Engine chạy code Python trực tiếp trên trình duyệt -->
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
 
@@ -563,7 +550,7 @@
                         hints: [
                             "Hãy tính phần dư của 12 khi chia cho 5.",
                             "12 % 5 bằng 2, nên điều kiện 12 % 5 == 0 là False.",
-                            "Chương trình đi vào nhánh else và thực hiện a = 12 - 2. Hãy xác định giá trị được in ra."
+                            "Chương trình đi vào nhánh else và thực hiện a = 12 - 2."
                         ]
                     }
                 ]
@@ -580,7 +567,7 @@
             userAnswers: {},
             flaggedQuestions: new Set(),
             currentQIndex: 0,
-            hintIndex: {}, // Số gợi ý đã mở theo từng câu hỏi
+            hintIndex: {},
             history: [],
             historyOnlyCompleted: false,
             timerSeconds: 0,
@@ -685,7 +672,6 @@
                     const q = this.examQuestions[Number(idx)];
                     const isCorrect = !!q && Number(value) === Number(q.correct);
                     if (isCorrect) correctCount++;
-                    // Dùng số câu bắt đầu từ 1 để khớp bảng đáp án trên dashboard.
                     answerResults[String(Number(idx) + 1)] = {
                         selected: String.fromCharCode(65 + Number(value)),
                         isCorrect
@@ -729,7 +715,6 @@
 
                 window.addEventListener('keydown', (e) => {
                     if (document.getElementById('view-exam').classList.contains('hidden')) return;
-                    // Không kích hoạt phím tắt khi đang nhập liệu vào note hoặc code runner
                     if (['TEXTAREA', 'INPUT'].includes(document.activeElement.tagName)) return;
 
                     const key = e.key.toUpperCase();
@@ -742,7 +727,6 @@
                     }
                 });
 
-                // Kéo thả hộp note
                 const box = document.getElementById('floating-note-box');
                 const header = document.getElementById('note-header-drag');
                 let isDragging = false, startX, startY, initialX, initialY;
@@ -769,22 +753,17 @@
                 document.addEventListener('mouseup', () => { isDragging = false; });
             },
 
-            // ---------------- TÍNH NĂNG PYTHON RUNNER ----------------
             openPythonRunner() {
                 document.getElementById('modal-python-runner').classList.replace('hidden', 'flex');
-                
-                // Trích xuất tự động code từ câu hỏi hiện tại để đỡ phải gõ lại
                 const q = this.examQuestions[this.currentQIndex];
                 const codeInput = document.getElementById('py-code-input');
                 if (q && (q.text.includes('\n') || q.text.includes('='))) {
-                    // Loại bỏ dòng văn bản thông thường (nếu có)
                     const lines = q.text.split('\n');
                     const codeLines = lines.filter(l => !l.toLowerCase().includes('cho đoạn chương trình') && !l.toLowerCase().includes('kết quả in ra'));
                     codeInput.value = codeLines.join('\n').trim();
                 } else {
                     codeInput.value = 'print("Xin chào từ Em Bô!")';
                 }
-                
                 document.getElementById('py-output').textContent = '';
                 document.getElementById('py-stdin').value = '';
             },
@@ -799,15 +778,11 @@
                 const stdinStr = document.getElementById('py-stdin').value;
                 
                 outputEl.textContent = 'Đang chạy...\n';
-                
                 const inputLines = stdinStr.split('\n');
                 let inputCursor = 0;
 
-                // Cấu hình môi trường chạy Python bằng Skulpt
                 Sk.configure({
-                    output: function(text) {
-                        outputEl.textContent += text;
-                    },
+                    output: function(text) { outputEl.textContent += text; },
                     read: function(x) {
                         if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
                             throw "File not found: '" + x + "'";
@@ -816,30 +791,24 @@
                     inputfun: function(promptStr) {
                         return new Promise((resolve) => {
                             if (inputCursor < inputLines.length && inputLines[inputCursor] !== undefined) {
-                                resolve(inputLines[inputCursor++]); // Đọc dữ liệu từ ô Input
+                                resolve(inputLines[inputCursor++]);
                             } else {
-                                // Nếu hết dữ liệu ở ô input thì bật prompt của trình duyệt
                                 const val = prompt(promptStr || 'Nhập input cho Python:');
                                 resolve(val !== null ? val : '');
                             }
                         });
                     },
-                    execLimit: 5000 // Chống lặp vô hạn (Giới hạn 5 giây)
+                    execLimit: 5000
                 });
 
-                // Thực thi code
                 Sk.misceval.asyncToPromise(() => {
-                    outputEl.textContent = ''; // Xóa chữ Đang chạy
+                    outputEl.textContent = '';
                     return Sk.importMainWithBody("<stdin>", false, code, true);
-                }).then(() => {
-                    // Chạy thành công
-                }, (err) => {
+                }).then(() => {}, (err) => {
                     outputEl.textContent += '\n[LỖI] ' + err.toString();
                 });
             },
-            // ---------------------------------------------------------
 
-            // LƯU TIẾN ĐỘ TỰ ĐỘNG
             saveProgress() {
                 if (!this.activeQuiz) return;
                 const progress = {
@@ -902,7 +871,7 @@
                     this.renderExamQuestion();
                     this.startTimer();
                     this.updateNoteButtonLabel();
-                    this.trackProgress('START', 'Bắt đầu làm bài');
+                    this.trackProgress('START', 'Bắt đầu làm bài (Tiếp tục)');
                     this.startTeacherNotificationPolling();
                     if (this.telegramTrackingEnabled) {
                         this.telegramReportInterval = setInterval(() => {
@@ -919,7 +888,6 @@
                 this.checkSavedProgress();
             },
 
-            // CÁC HÀM XỬ LÝ GIAO DIỆN
             toggleNoteModal() {
                 const box = document.getElementById('floating-note-box');
                 this.isNoteOpen = !this.isNoteOpen;
@@ -1118,41 +1086,38 @@
 
             renderEditorQuestions() {
                 document.getElementById('editor-questions-list').innerHTML = this.editorQuestions.map((q, idx) => {
-    // Đảm bảo q.options luôn là một mảng, nếu chưa có thì mặc định 4 ô trống
-    if (!Array.isArray(q.options)) q.options = ['', '', '', ''];
-    
-    return `
-        <div class="bg-white p-6 border border-zinc-200 space-y-4">
-            <div class="flex items-center justify-between">
-                <span class="px-3 py-1 bg-zinc-900 text-white font-bold text-xs uppercase">Câu hỏi ${idx + 1}</span>
-                <div class="flex items-center gap-3">
-                    <button onclick="app.addEditorOption(${idx})" class="text-xs text-emerald-600 font-semibold hover:underline">+ Thêm đáp án</button>
-                    <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-600 font-semibold hover:underline">Xóa câu</button>
-                </div>
-            </div>
-            <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="3" class="w-full p-3 border border-zinc-300 text-sm font-mono">${this.escapeHtml(q.text)}</textarea>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                ${q.options.map((optText, optIdx) => {
-                    const letter = String.fromCharCode(65 + optIdx);
+                    if (!Array.isArray(q.options)) q.options = ['', '', '', ''];
                     return `
-                        <div class="flex items-center gap-2">
-                            <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} onchange="app.editorQuestions[${idx}].correct =${optIdx}" title="Chọn làm đáp án đúng">
-                            <span class="text-xs font-bold w-4">${letter}.</span>
-                            <input type="text" value="${this.escapeHtml(optText || '')}" oninput="app.editorQuestions[${idx}].options[${optIdx}] = this.value" class="flex-1 px-3 py-2 border border-zinc-300 text-sm" placeholder="Nội dung đáp án...">
-                            ${q.options.length > 2 ? `<button onclick="app.removeEditorOption(${idx}, ${optIdx})" class="text-zinc-400 hover:text-rose-600 px-1 text-xs" title="Xóa đáp án này"><i class="fa-solid xmark"></i>×</button>` : ''}
+                        <div class="bg-white p-6 border border-zinc-200 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 bg-zinc-900 text-white font-bold text-xs uppercase">Câu hỏi ${idx + 1}</span>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="app.addEditorOption(${idx})" class="text-xs text-emerald-600 font-semibold hover:underline">+ Thêm đáp án</button>
+                                    <button onclick="app.removeEditorQuestion(${idx})" class="text-xs text-rose-600 font-semibold hover:underline">Xóa câu</button>
+                                </div>
+                            </div>
+                            <textarea oninput="app.editorQuestions[${idx}].text = this.value" rows="3" class="w-full p-3 border border-zinc-300 text-sm font-mono">${this.escapeHtml(q.text)}</textarea>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                ${q.options.map((optText, optIdx) => {
+                                    const letter = String.fromCharCode(65 + optIdx);
+                                    return `
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="correct-${idx}" ${q.correct === optIdx ? 'checked' : ''} onchange="app.editorQuestions[${idx}].correct = ${optIdx}" title="Chọn làm đáp án đúng">
+                                            <span class="text-xs font-bold w-4">${letter}.</span>
+                                            <input type="text" value="${this.escapeHtml(optText || '')}" oninput="app.editorQuestions[${idx}].options[${optIdx}] = this.value" class="flex-1 px-3 py-2 border border-zinc-300 text-sm" placeholder="Nội dung đáp án...">
+                                            ${q.options.length > 2 ? `<button onclick="app.removeEditorOption(${idx}, ${optIdx})" class="text-zinc-400 hover:text-rose-600 px-1 text-xs" title="Xóa đáp án này">×</button>` : ''}
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+
+                            <input type="text" value="${this.escapeHtml(q.explain || '')}" oninput="app.editorQuestions[${idx}].explain = this.value" placeholder="Giải thích chi tiết đáp án..." class="w-full px-3.5 py-2 border border-zinc-200 bg-zinc-50 text-xs">
                         </div>
                     `;
-                }).join('')}
-            </div>
-
-            <input type="text" value="${this.escapeHtml(q.explain || '')}" oninput="app.editorQuestions[${idx}].explain = this.value" placeholder="Giải thích chi tiết đáp án..." class="w-full px-3.5 py-2 border border-zinc-200 bg-zinc-50 text-xs">
-        </div>
-    `;
-}).join('');
+                }).join('');
             },
 
-            // Thêm đáp án cho câu hỏi trong trình soạn đề (tối đa 26 lựa chọn A-Z)
             addEditorOption(questionIndex) {
                 const q = this.editorQuestions[questionIndex];
                 if (!q) return;
@@ -1162,7 +1127,6 @@
                 this.renderEditorQuestions();
             },
 
-            // Xóa đáp án và cập nhật chỉ số đáp án đúng
             removeEditorOption(questionIndex, optionIndex) {
                 const q = this.editorQuestions[questionIndex];
                 if (!q || !Array.isArray(q.options)) return;
@@ -1315,7 +1279,6 @@
                             item.options = [];
                         }
                     }
-                    // Hỗ trợ correct là chỉ số 0-based hoặc chữ cái A/B/C...
                     if (typeof item.correct === 'string' && /^[A-Z]$/i.test(item.correct.trim())) {
                         item.correct = item.correct.trim().toUpperCase().charCodeAt(0) - 65;
                     } else if (typeof item.correct === 'string' && item.correct.trim() !== '' && !Number.isNaN(Number(item.correct))) {
@@ -1339,7 +1302,7 @@
                 this.renderExamQuestion();
                 this.startTimer();
                 this.updateNoteButtonLabel();
-                this.trackProgress('START', 'Bắt đầu làm bài');
+                this.trackProgress('START', 'Bắt đầu làm bài thi');
                 this.startTeacherNotificationPolling();
                 if (this.telegramTrackingEnabled) {
                     this.telegramReportInterval = setInterval(() => {
@@ -1387,6 +1350,7 @@
                 this.hintIndex[key] = shown + 1;
                 this.renderHintPanel(q);
                 this.saveProgress();
+                this.trackProgress('HINT', `Đã mở gợi ý số ${shown + 1} cho <b>Câu ${this.currentQIndex + 1}</b>`);
             },
 
             renderHintPanel(q) {
@@ -1431,7 +1395,7 @@
             renderExamQuestion() {
                 const q = this.examQuestions[this.currentQIndex];
                 if (!q) {
-                    document.getElementById('exam-question-text').textContent = 'Không tìm thấy câu hỏi. Hãy kiểm tra dữ liệu JSON.';
+                    document.getElementById('exam-question-text').textContent = 'Không tìm thấy câu hỏi.';
                     document.getElementById('exam-options-list').innerHTML = '';
                     document.getElementById('hint-section')?.classList.add('hidden');
                     return;
@@ -1442,7 +1406,6 @@
 
                 document.getElementById('exam-question-counter').textContent = `Câu hỏi ${this.currentQIndex + 1} / ${total}`;
                 
-                // Bọc code vào khung code tối chuẩn màu Prism.js
                 const textEl = document.getElementById('exam-question-text');
                 if (q.text.includes('\n') || q.text.includes('=') || q.text.includes('print')) {
                     textEl.innerHTML = `<pre class="code-box"><code class="language-python">${this.escapeHtml(q.text)}</code></pre>`;
@@ -1491,57 +1454,75 @@
                     document.getElementById('note-char-count').textContent = `${textarea.value.length} ký tự`;
                 }
 
-                if (window.Prism) {
-                    Prism.highlightAll();
-                }
+                if (window.Prism) Prism.highlightAll();
             },
 
             selectOption(optIdx) {
                 this.userAnswers[this.currentQIndex] = optIdx;
                 this.renderExamQuestion();
+                this.saveProgress();
+
+                const q = this.examQuestions[this.currentQIndex];
+                const pickedChar = String.fromCharCode(65 + optIdx);
+                const rightChar = q ? String.fromCharCode(65 + q.correct) : '?';
+                const isRight = q && optIdx === q.correct;
+
                 this.trackProgress(
                     'SELECT_ANSWER',
-                    `Chọn đáp án ${String.fromCharCode(65 + optIdx)} ở câu ${this.currentQIndex + 1}`
+                    `Chọn <b>${pickedChar}</b> ở <b>Câu ${this.currentQIndex + 1}</b> (${isRight ? '✅ ĐÚNG' : `❌ SAI - Đáp án chuẩn: ${rightChar}`})`
                 );
             },
 
             toggleFlagCurrent() {
-                if (this.flaggedQuestions.has(this.currentQIndex)) this.flaggedQuestions.delete(this.currentQIndex);
-                else this.flaggedQuestions.add(this.currentQIndex);
+                const isNowFlagged = !this.flaggedQuestions.has(this.currentQIndex);
+                if (isNowFlagged) {
+                    this.flaggedQuestions.add(this.currentQIndex);
+                } else {
+                    this.flaggedQuestions.delete(this.currentQIndex);
+                }
                 this.renderExamQuestion();
+                this.saveProgress();
+
+                this.trackProgress(
+                    'FLAG_QUESTION',
+                    isNowFlagged 
+                        ? `🚩 Đã <b>ĐÁNH DẤU XEM LẠI</b> ở <b>Câu ${this.currentQIndex + 1}</b>` 
+                        : `🏳️ Đã <b>HỦY ĐÁNH DẤU</b> ở <b>Câu ${this.currentQIndex + 1}</b>`
+                );
             },
 
-            prevQuestion() {
-                if (this.currentQIndex > 0) {
-                    this.currentQIndex--;
-                    this.renderExamQuestion();
-                    this.trackProgress('NAVIGATE', `Quay về câu ${this.currentQIndex + 1}`);
-                }
+            prevQuestion() { 
+                if (this.currentQIndex > 0) { 
+                    this.currentQIndex--; 
+                    this.renderExamQuestion(); 
+                    this.trackProgress('CHANGE_QUESTION', `Lùi về xem <b>Câu ${this.currentQIndex + 1}</b>`);
+                } 
             },
-            nextQuestion() {
-                if (this.currentQIndex < this.examQuestions.length - 1) {
-                    this.currentQIndex++;
-                    this.renderExamQuestion();
-                    this.trackProgress('NAVIGATE', `Chuyển sang câu ${this.currentQIndex + 1}`);
-                }
+
+            nextQuestion() { 
+                if (this.currentQIndex < this.examQuestions.length - 1) { 
+                    this.currentQIndex++; 
+                    this.renderExamQuestion(); 
+                    this.trackProgress('CHANGE_QUESTION', `Chuyển sang xem <b>Câu ${this.currentQIndex + 1}</b>`);
+                } 
             },
-            jumpToQuestion(idx) {
-                this.currentQIndex = idx;
-                this.renderExamQuestion();
-                this.trackProgress('NAVIGATE', `Nhảy đến câu ${this.currentQIndex + 1}`);
+
+            jumpToQuestion(idx) { 
+                this.currentQIndex = idx; 
+                this.renderExamQuestion(); 
+                this.trackProgress('CHANGE_QUESTION', `Nhảy tới <b>Câu ${this.currentQIndex + 1}</b>`);
             },
 
             submitExam(auto = false) {
                 const total = this.examQuestions.length;
-                if (total === 0) return alert('Đề thi chưa có câu hỏi hợp lệ. Hãy kiểm tra file JSON.');
+                if (total === 0) return alert('Đề thi chưa có câu hỏi hợp lệ.');
                 const answered = Object.keys(this.userAnswers).length;
                 if (!auto && answered < total && !confirm(`Bạn mới làm ${answered}/${total} câu. Nộp bài sớm?`)) return;
 
                 clearInterval(this.timerInterval);
                 if (this.telegramReportInterval) clearInterval(this.telegramReportInterval);
                 this.telegramReportInterval = null;
-                this.trackProgress('SUBMIT', 'Đã nộp bài');
-                localStorage.removeItem(PROGRESS_KEY); // Xóa tiến độ
+                localStorage.removeItem(PROGRESS_KEY);
 
                 let correctCount = 0;
                 const wrongQuestions = [];
@@ -1554,7 +1535,11 @@
                 const elapsedSec = Math.max(1, Math.floor((Date.now() - this.startTime) / 1000));
                 const elapsedStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`;
 
-                // Ghi lại từng lượt nộp bài để đánh dấu đề đã làm và hiển thị lịch sử.
+                this.trackProgress(
+                    'SUBMIT',
+                    `🎉 <b>ĐÃ NỘP BÀI!</b> Điểm: <b>${score10}/10</b> (${correctCount}/${total} câu đúng) - Thời gian: <b>${elapsedStr}</b>`
+                );
+
                 const now = new Date();
                 const historyEntry = {
                     id: `attempt-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
