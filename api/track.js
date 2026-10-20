@@ -20,10 +20,10 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  const safeString = (value, max = 200) =>
-    String(value ?? "").slice(0, max);
-
   const input = req.body || {};
+  const safeString = (v, max = 200) =>
+    String(v ?? "").slice(0, max);
+
   const now = new Date().toISOString();
 
   const data = {
@@ -37,7 +37,10 @@ module.exports = async function handler(req, res) {
     actionDetail: safeString(input.actionDetail || "Cập nhật tiến độ", 180),
     answeredCount: Math.max(0, Number(input.answeredCount) || 0),
     correctCount: Math.max(0, Number(input.correctCount) || 0),
-    answerSheet: safeString(input.answerSheet || "Chưa chọn câu nào", 3500),
+    answerSheet: safeString(
+      input.answerSheet || "Chưa chọn câu nào",
+      3500
+    ),
     answerResults:
       input.answerResults &&
       typeof input.answerResults === "object" &&
@@ -54,48 +57,54 @@ module.exports = async function handler(req, res) {
     "Content-Type": "application/json"
   };
 
-  // Gửi pipeline và chỉ rõ lệnh/key nào gây lỗi.
+  // Thực thi từng lệnh để xác định chính xác key gây lỗi.
   async function redis(commands) {
-    const response = await fetch(`${redisBase}/pipeline`, {
-      method: "POST",
-      headers: redisHeaders,
-      body: JSON.stringify(commands)
-    });
+    const results = [];
 
-    if (!response.ok) {
-      const body = await response.text();
-      throw new Error(
-        `Redis HTTP ${response.status}: ${body.slice(0, 500)}`
-      );
-    }
+    for (const command of commands) {
+      const response = await fetch(redisBase, {
+        method: "POST",
+        headers: redisHeaders,
+        body: JSON.stringify(command)
+      });
 
-    const result = await response.json();
+      const raw = await response.text();
+      let payload;
 
-    if (!Array.isArray(result)) {
-      throw new Error("Redis returned an invalid pipeline response");
-    }
-
-    for (let i = 0; i < result.length; i++) {
-      if (result[i]?.error) {
-        const command = commands[i] || [];
+      try {
+        payload = JSON.parse(raw);
+      } catch {
         throw new Error(
-          `Redis ${command[0] || "UNKNOWN"} ` +
-          `${command[1] || "unknown-key"}: ${result[i].error}`
+          `Redis ${command[0]} ${command[1]}: ` +
+          `HTTP ${response.status}; phản hồi không hợp lệ`
         );
       }
+
+      if (!response.ok || payload.error) {
+        const detail =
+          typeof payload.error === "string"
+            ? payload.error
+            : JSON.stringify(payload.error || payload);
+
+        throw new Error(
+          `Redis ${command[0]} ${command[1]}: ${detail}`
+        );
+      }
+
+      results.push(payload);
     }
 
-    return result;
+    return results;
   }
 
-  const escapeHtml = (value) =>
-    String(value)
+  const escapeHtml = (s) =>
+    String(s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
 
   const answers =
-    data.answerSheet && data.answerSheet !== "Chưa chọn câu nào"
+    data.answerSheet !== "Chưa chọn câu nào"
       ? escapeHtml(data.answerSheet)
       : "Chưa chọn câu nào";
 
@@ -103,7 +112,7 @@ module.exports = async function handler(req, res) {
     ? Math.min(
         100,
         Math.round(
-          (data.answeredCount / data.totalQuestions) * 100
+          data.answeredCount / data.totalQuestions * 100
         )
       )
     : 0;
@@ -124,12 +133,12 @@ module.exports = async function handler(req, res) {
   ].join("\n");
 
   try {
-    // 1. Lưu trạng thái mới nhất, giống cách của code cũ.
+    // Giữ nguyên key tiến độ của code cũ.
     await redis([
       ["SET", "quizmaster:live:latest", JSON.stringify(data)]
     ]);
 
-    // 2. Lưu trạng thái riêng của session nếu frontend gửi sessionId.
+    // Lưu từng session nếu frontend gửi sessionId.
     if (data.sessionId) {
       await redis([
         [
@@ -141,14 +150,17 @@ module.exports = async function handler(req, res) {
         ]
       ]);
 
-      // Giữ nguyên tên key cũ để không tự ý làm lệch dashboard.
+      // Dùng key mới để tránh xung đột kiểu dữ liệu cũ.
       await redis([
-        ["SADD", "quizmaster:live:sessions", data.sessionId],
-        ["EXPIRE", "quizmaster:live:sessions", "604800"]
+        ["SADD", "quizmaster:live:sessions:v2", data.sessionId]
+      ]);
+
+      await redis([
+        ["EXPIRE", "quizmaster:live:sessions:v2", "604800"]
       ]);
     }
 
-    // 3. Telegram là tùy chọn; không cấu hình thì vẫn lưu tiến độ.
+    // Telegram không bắt buộc; không cấu hình thì vẫn lưu tiến độ.
     if (botToken && chatId) {
       const stored = await redis([
         ["GET", "quizmaster:live:telegram_message_id"]
@@ -158,7 +170,7 @@ module.exports = async function handler(req, res) {
         ? Number(stored[0].result)
         : null;
 
-      const telegramRequest = async (method, payload) => {
+      async function telegram(method, payload) {
         const response = await fetch(
           `https://api.telegram.org/bot${botToken}/${method}`,
           {
@@ -172,18 +184,18 @@ module.exports = async function handler(req, res) {
 
         if (!response.ok || !result.ok) {
           throw new Error(
-            `Telegram ${method} failed: ${
+            `Telegram ${method}: ${
               result.description || response.status
             }`
           );
         }
 
         return result;
-      };
+      }
 
       if (messageId) {
         try {
-          await telegramRequest("editMessageText", {
+          await telegram("editMessageText", {
             chat_id: chatId,
             message_id: messageId,
             text: message,
@@ -191,10 +203,9 @@ module.exports = async function handler(req, res) {
             disable_web_page_preview: true
           });
         } catch (error) {
-          // Tin cũ không sửa được thì gửi tin mới.
           console.error("[Telegram edit]", error.message);
 
-          const sent = await telegramRequest("sendMessage", {
+          const sent = await telegram("sendMessage", {
             chat_id: chatId,
             text: message,
             parse_mode: "HTML",
@@ -210,7 +221,7 @@ module.exports = async function handler(req, res) {
           ]);
         }
       } else {
-        const sent = await telegramRequest("sendMessage", {
+        const sent = await telegram("sendMessage", {
           chat_id: chatId,
           text: message,
           parse_mode: "HTML",
