@@ -6,8 +6,8 @@ export default async function handler(req, res) {
   }
 
   // Điền token và chat ID Telegram tại đây, chỉ trong API phía máy chủ.
-  const botToken = "DAN_BOT_TOKEN_VAO_DAY";
-  const chatId = "DAN_TELEGRAM_CHAT_ID_VAO_DAY";
+  const botToken = "7314382101:AAGpK17uSbmG6yu54qfiPCx0CaghxTevFpc";
+  const chatId = "6916057009";
   const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
   const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 
