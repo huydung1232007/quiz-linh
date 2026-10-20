@@ -1,127 +1,50 @@
-console.log("DASHBOARD API LOADED");
-module.exports = async function handler(req, res) {
-  if (req.method !== "GET") {
-    res.setHeader("Allow", "GET");
-    return res.status(405).json({
-      ok: false,
-      error: "Method not allowed"
-    });
+export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return res.status(405).json({ ok: false, error: 'Method not allowed' });
   }
-
-  var redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-  var redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
-
-  if (!redisUrl || !redisToken) {
-    return res.status(500).json({
-      ok: false,
-      error: "Dashboard storage is not configured"
-    });
-  }
-
-  var base = redisUrl.replace(/\/+$/, "");
-  var headers = {
-    Authorization: "Bearer " + redisToken,
-    "Content-Type": "application/json"
-  };
-
-  async function redis(command) {
-    var response = await fetch(base, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(command)
-    });
-
-    var raw = await response.text();
-    var result;
-
-    try {
-      result = JSON.parse(raw);
-    } catch (e) {
-      throw new Error(
-        "Redis returned invalid JSON. HTTP " + response.status
-      );
-    }
-
-    if (!response.ok || result.error) {
-      throw new Error(
-        "Redis " + command[0] + ": " +
-        (typeof result.error === "string"
-          ? result.error
-          : JSON.stringify(result.error || result))
-      );
-    }
-
-    return result.result;
-  }
-
-  function parseSession(raw) {
-    if (!raw || typeof raw !== "string") return null;
-
-    try {
-      return JSON.parse(raw);
-    } catch (e) {
-      return null;
-    }
-  }
+  
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return res.status(500).json({ ok: false, error: 'Missing Redis Config' });
 
   try {
-    // Danh sách session mới dùng Redis Set.
-    var ids = await redis([
-      "SMEMBERS",
-      "quizmaster:live:sessions:v2"
-    ]);
-
-    var sessionIds = Array.isArray(ids) ? ids.slice(0, 100) : [];
-
-    var sessions = await Promise.all(
-      sessionIds.map(async function (id) {
-        var raw = await redis([
-          "GET",
-          "quizmaster:live:session:" + String(id)
-        ]);
-
-        return parseSession(raw);
-      })
-    );
-
-    sessions = sessions.filter(Boolean);
-
-    var latestRaw = await redis([
-      "GET",
-      "quizmaster:live:latest"
-    ]);
-
-    var latest = parseSession(latestRaw);
-
-    if (sessions.length === 0 && latest) {
-      sessions = [latest];
-    } else if (latest && latest.sessionId) {
-      var exists = sessions.some(function (session) {
-        return session.sessionId === latest.sessionId;
-      });
-
-      if (!exists) sessions.push(latest);
+    const base = url.replace(/\/+$/, "");
+    const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+    
+    // Hàm gọi Redis an toàn, không dùng pipeline để tránh lỗi Vercel
+    async function redis(command) {
+      const r = await fetch(base, { method: "POST", headers, body: JSON.stringify(command) });
+      const data = await r.json();
+      if (data.error) throw new Error(data.error);
+      return data.result;
     }
 
-    sessions.sort(function (a, b) {
-      return (
-        (Date.parse(b.updatedAt || "") || 0) -
-        (Date.parse(a.updatedAt || "") || 0)
-      );
-    });
+    // Lấy danh sách ID các thí sinh đang thi từ key v2
+    const ids = await redis(["SMEMBERS", "quizmaster:live:sessions:v2"]) || [];
+    
+    // Lấy dữ liệu hoạt động gần nhất
+    const latestRaw = await redis(["GET", "quizmaster:live:latest"]);
+    let latest = null;
+    try { if (latestRaw) latest = JSON.parse(latestRaw); } catch(e){}
 
-    return res.status(200).json({
-      ok: true,
-      data: sessions[0] || latest || null,
-      sessions: sessions
-    });
-  } catch (error) {
-    console.error("[api/dashboard.js]", error);
+    // Lấy chi tiết từng lượt thi
+    const sessions = [];
+    for (const id of ids) {
+        const safeId = String(id).replace(/[^a-zA-Z0-9_-]/g, '_');
+        const raw = await redis(["GET", `quizmaster:live:session:${safeId}`]);
+        if (raw) {
+            try { sessions.push(JSON.parse(raw)); } catch(e){}
+        }
+    }
+    
+    // Sắp xếp người mới thao tác lên đầu
+    sessions.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    if (!sessions.length && latest) sessions.push(latest);
 
-    return res.status(500).json({
-      ok: false,
-      error: "Unable to load dashboard",
-      detail: String(error.message || error)
-    });
+    return res.status(200).json({ ok: true, data: sessions[0] || latest || null, sessions });
+  } catch (err) {
+    console.error("[api/dashboard.js]", err);
+    return res.status(500).json({ ok: false, error: err.message });
   }
-};
+}
