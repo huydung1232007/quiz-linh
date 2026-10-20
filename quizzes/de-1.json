@@ -1,96 +1,100 @@
-[
-  {
-    "id": "q-python-conditions-50",
-    "code": "PY-COND-50",
-    "title": "Cấu Trúc Rẽ Nhánh",
-    "desc": "Ôn tập giá trị bool, toán tử logic, if/elif/else, điều kiện lồng nhau và biểu thức điều kiện rút gọn.",
-    "duration": 60,
-    "createdAt": "2026-10-19",
-    "questions": [
-      {
-        "text": "Trong ngôn ngữ lập trình Python, hai giá trị thuộc kiểu dữ liệu logic (bool) được viết đúng cú pháp là:",
-        "options": [
-          "true và false",
-          "True và False",
-          "TRUE và FALSE",
-          "1 và 0"
-        ],
-        "correct": 1,
-        "explain": "Python viết hai giá trị logic bằng True và False, phân biệt chữ hoa chữ thường.",
-        "hints": [
-          "Python phân biệt chữ hoa và chữ thường trong tên hằng logic.",
-          "Hãy nhớ cách viết chuẩn của hai giá trị bool trong Python."
-        ]
-      },
-      {
-        "text": "Cho biến x = 15. Biểu thức nào sau đây dùng để kiểm tra xem x có bằng 15 hay không?",
-        "options": [
-          "x = 15",
-          "x == 15",
-          "x := 15",
-          "x === 15"
-        ],
-        "correct": 1,
-        "explain": "Toán tử == dùng để so sánh bằng; dấu = dùng để gán giá trị.",
-        "hints": [
-          "Dấu gán và dấu so sánh bằng không giống nhau.",
-          "Muốn kiểm tra bằng nhau, hãy dùng toán tử so sánh gồm hai dấu bằng."
-        ]
-      },
-      {
-        "text": "Cho đoạn chương trình sau:\n\na = 7\nb = 12\nkq = (a >= b)\n\nGiá trị của biến kq sau khi thực hiện đoạn chương trình trên là:",
-        "options": [
-          "True",
-          "False",
-          "7",
-          "Chương trình báo lỗi."
-        ],
-        "correct": 1,
-        "explain": "7 >= 12 là sai nên biểu thức trả về False.",
-        "hints": [
-          "So sánh hai số 7 và 12 theo dấu >=.",
-          "Biểu thức so sánh trả về True hoặc False, không trả về chính số."
-        ]
-      },
-      {
-        "text": "Thứ tự ưu tiên thực hiện của các toán tử logic trong Python (khi không có dấu ngoặc tròn) từ cao xuống thấp là:",
-        "options": [
-          "and → or → not",
-          "not → or → and",
-          "not → and → or",
-          "Thực hiện từ trái sang phải, ba toán tử có cùng mức ưu tiên."
-        ],
-        "correct": 2,
-        "explain": "Thứ tự ưu tiên là not, rồi and, rồi or.",
-        "hints": [
-          "Hãy nhớ độ ưu tiên của not, and, or.",
-          "Toán tử đứng trước trong thứ tự ưu tiên sẽ được xử lý trước."
-        ]
-      },
-      {
-        "text": "Cho biểu thức logic:\n\nx = not True or False\n\nGiá trị của biến x là:",
-        "options": [
-          "True",
-          "False",
-          "None",
-          "Chương trình báo lỗi cú pháp."
-        ],
-        "correct": 1,
-        "explain": "not True thành False; False or False cho kết quả False.",
-        "hints": [
-          "Thực hiện not trước, rồi mới xét or.",
-          "Đổi not True thành giá trị đối lập, sau đó tính phép or."
-        ]
-      },
-      {
-        "text": "Từ khóa nào được sử dụng trong Python để kiểm tra thêm một điều kiện mới khi điều kiện của câu lệnh if phía trước bị sai (False)?",
-        "options": [
-          "else if",
-          "elseif",
-          "elif",
-          "otherwise"
-        ],
-        "correct": 2,
-        "explain": "Trong Python, từ khóa kiểm tra điều kiện tiếp theo là elif.",
-        "hints": [
-          "Từ khóa này bắt đầu bằng chữ 'el' và dùng cho nhánh điều kiện tiếp theo.",
+{
+  "id": "q-python-conditions-50",
+  "code": "PY-COND-50",
+  "title": "Cấu Trúc Rẽ Nhánh",
+  "desc": "Ôn tập giá trị bool, toán tử logic, if/elif/else, điều kiện lồng nhau và biểu thức điều kiện rút gọn.",
+  "duration": 60,
+  "createdAt": "2026-10-19",
+  "questions": [
+    {
+      "text": "Trong ngôn ngữ lập trình Python, hai giá trị thuộc kiểu dữ liệu logic (bool) được viết đúng cú pháp là:",
+      "options": [
+        "true và false",
+        "True và False",
+        "TRUE và FALSE",
+        "1 và 0"
+      ],
+      "correct": 1,
+      "explain": "Python viết hai giá trị logic bằng True và False, phân biệt chữ hoa chữ thường.",
+      "hints": [
+        "Python phân biệt chữ hoa và chữ thường trong tên hằng logic.",
+        "Hãy nhớ cách viết chuẩn của hai giá trị bool trong Python."
+      ]
+    },
+    {
+      "text": "Cho biến x = 15. Biểu thức nào sau đây dùng để kiểm tra xem x có bằng 15 hay không?",
+      "options": [
+        "x = 15",
+        "x == 15",
+        "x := 15",
+        "x === 15"
+      ],
+      "correct": 1,
+      "explain": "Toán tử == dùng để so sánh bằng; dấu = dùng để gán giá trị.",
+      "hints": [
+        "Dấu gán và dấu so sánh bằng không giống nhau.",
+        "Muốn kiểm tra bằng nhau, hãy dùng toán tử so sánh gồm hai dấu bằng."
+      ]
+    },
+    {
+      "text": "Cho đoạn chương trình sau:\n\na = 7\nb = 12\nkq = (a >= b)\n\nGiá trị của biến kq sau khi thực hiện đoạn chương trình trên là:",
+      "options": [
+        "True",
+        "False",
+        "7",
+        "Chương trình báo lỗi."
+      ],
+      "correct": 1,
+      "explain": "7 >= 12 là sai nên biểu thức trả về False.",
+      "hints": [
+        "So sánh hai số 7 và 12 theo dấu >=.",
+        "Biểu thức so sánh trả về True hoặc False, không trả về chính số."
+      ]
+    },
+    {
+      "text": "Thứ tự ưu tiên thực hiện của các toán tử logic trong Python (khi không có dấu ngoặc tròn) từ cao xuống thấp là:",
+      "options": [
+        "and → or → not",
+        "not → or → and",
+        "not → and → or",
+        "Thực hiện từ trái sang phải, ba toán tử có cùng mức ưu tiên."
+      ],
+      "correct": 2,
+      "explain": "Thứ tự ưu tiên là not, rồi and, rồi or.",
+      "hints": [
+        "Hãy nhớ độ ưu tiên của not, and, or.",
+        "Toán tử đứng trước trong thứ tự ưu tiên sẽ được xử lý trước."
+      ]
+    },
+    {
+      "text": "Cho biểu thức logic:\n\nx = not True or False\n\nGiá trị của biến x là:",
+      "options": [
+        "True",
+        "False",
+        "None",
+        "Chương trình báo lỗi cú pháp."
+      ],
+      "correct": 1,
+      "explain": "not True thành False; False or False cho kết quả False.",
+      "hints": [
+        "Thực hiện not trước, rồi mới xét or.",
+        "Đổi not True thành giá trị đối lập, sau đó tính phép or."
+      ]
+    },
+    {
+      "text": "Từ khóa nào được sử dụng trong Python để kiểm tra thêm một điều kiện mới khi điều kiện của câu lệnh if phía trước bị sai (False)?",
+      "options": [
+        "else if",
+        "elseif",
+        "elif",
+        "otherwise"
+      ],
+      "correct": 2,
+      "explain": "Trong Python, từ khóa kiểm tra điều kiện tiếp theo là elif.",
+      "hints": [
+        "Từ khóa này bắt đầu bằng chữ 'el' và dùng cho nhánh điều kiện tiếp theo.",
+        "Đây là viết tắt của 'else if' trong Python."
+      ]
+    }
+  ]
+}
