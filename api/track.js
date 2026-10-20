@@ -17,13 +17,16 @@ export default async function handler(req, res) {
   const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 
   if (
-    botToken === "7314382101:AAGpK17uSbmG6yu54qfiPCx0CaghxTevFpc" ||
-    chatId === "6916057009"
-  ) {
-    return res.status(500).json({
-      ok: false,
-      error: "Hãy điền Bot Token và Chat ID trong api/track.js"
-    });
+  !botToken ||
+  !chatId ||
+  botToken === "DAN_BOT_TOKEN_VAO_DAY" ||
+  chatId === "DAN_TELEGRAM_CHAT_ID_VAO_DAY"
+) {
+  return res.status(500).json({
+    ok: false,
+    error: "Thiếu Telegram Bot Token hoặc Chat ID"
+  });
+}
   }
 
   if (!redisUrl || !redisToken) {
