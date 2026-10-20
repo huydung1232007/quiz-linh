@@ -573,6 +573,7 @@
             isNoteOpen: false,
             telegramTrackingEnabled: true,
             telegramReportInterval: null,
+            trackingSessionId: null,
 
             async trackProgress(eventType, actionDetail) {
                 if (!this.activeQuiz) return;
@@ -591,6 +592,7 @@
                 }
                 const seconds = Math.max(0, Number(this.timerSeconds) || 0);
                 const payload = {
+                    sessionId: this.trackingSessionId || (this.trackingSessionId = (crypto.randomUUID ? crypto.randomUUID() : `s-${Date.now()}-${Math.random().toString(36).slice(2)}`)),
                     eventType,
                     playerName: this.playerName || 'Ẩn danh',
                     quizCode: this.activeQuiz.code || 'QUIZ',
@@ -1194,6 +1196,7 @@
                 if (this.telegramReportInterval) clearInterval(this.telegramReportInterval);
                 this.telegramReportInterval = null;
                 this.playerName = document.getElementById('custom-player-name-input').value.trim() || 'Thí sinh ẩn danh';
+                this.trackingSessionId = (crypto.randomUUID ? crypto.randomUUID() : `s-${Date.now()}-${Math.random().toString(36).slice(2)}`);
                 localStorage.setItem('qm_player_name', this.playerName);
 
                 const quiz = this.quizzes.find(q => q.id === this.pendingQuizId);
