@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz cuối kì</title>
+    <title>quiz cuối kì - Huy Dũng & Em Bô</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Thư viện tô màu cú pháp Python (Prism.js Dark Theme) -->
@@ -680,9 +680,16 @@
                         .map(n => `Câu ${n}: ${answers[n]}`).join(' | ')
                     : 'Chưa chọn câu nào';
                 let correctCount = 0;
+                const answerResults = {};
                 for (const [idx, value] of Object.entries(this.userAnswers || {})) {
                     const q = this.examQuestions[Number(idx)];
-                    if (q && Number(value) === Number(q.correct)) correctCount++;
+                    const isCorrect = !!q && Number(value) === Number(q.correct);
+                    if (isCorrect) correctCount++;
+                    // Dùng số câu bắt đầu từ 1 để khớp bảng đáp án trên dashboard.
+                    answerResults[String(Number(idx) + 1)] = {
+                        selected: String.fromCharCode(65 + Number(value)),
+                        isCorrect
+                    };
                 }
                 const seconds = Math.max(0, Number(this.timerSeconds) || 0);
                 const payload = {
@@ -697,6 +704,7 @@
                     answeredCount: Object.keys(this.userAnswers || {}).length,
                     correctCount,
                     answerSheet,
+                    answerResults,
                     timeLeft: `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`
                 };
                 try {
