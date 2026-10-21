@@ -1,752 +1,810 @@
-[
-  {
-    "id": "q-npy-01",
-    "text": "Để sử dụng thư viện NumPy trong Python, cú pháp khai báo nào sau đây là chuẩn và phổ biến nhất?",
-    "options": [
-      "import numpy",
-      "import numpy as np",
-      "from numpy import *",
-      "import np from numpy"
-    ],
-    "correct": 1,
-    "explain": "Cú pháp 'import numpy as np' là tiêu chuẩn được cộng đồng Python sử dụng rộng rãi để gọi thư viện NumPy với tên viết tắt là np.",
-    "hints": [
-      "Xem lại slide số 16 về thiết lập thư viện."
-    ]
-  },
-  {
-    "id": "q-npy-02",
-    "text": "Đoạn code sau trả về kết quả gì?\nimport numpy as np\narr = np.array([1, 2, 3])\nprint(arr.shape)",
-    "options": [
-      "(3, 1)",
-      "[3]",
-      "(3,)",
-      "3"
-    ],
-    "correct": 2,
-    "explain": "Mảng arr là mảng 1 chiều có 3 phần tử, nên thuộc tính shape sẽ trả về một tuple dạng (3,).",
-    "hints": [
-      "Thuộc tính shape của numpy array luôn trả về một tuple."
-    ]
-  },
-  {
-    "id": "q-npy-03",
-    "text": "Lệnh nào sau đây dùng để tạo một ma trận 2x3 toàn số 0?",
-    "options": [
-      "np.zeros(2, 3)",
-      "np.zeros((2, 3))",
-      "np.zero([2, 3])",
-      "np.matrix(0, 2, 3)"
-    ],
-    "correct": 1,
-    "explain": "Hàm np.zeros nhận vào tham số shape dưới dạng tuple hoặc list, nên np.zeros((2, 3)) là hợp lệ.",
-    "hints": [
-      "Tham số shape phải được truyền như một cấu trúc duy nhất (tuple/list)."
-    ]
-  },
-  {
-    "id": "q-npy-04",
-    "text": "Cho đoạn code:\nimport numpy as np\narr = np.ones((2, 2))\nprint(arr)",
-    "options": [
-      "[[0. 0.]\n [0. 0.]]",
-      "[[1 1]\n [1 1]]",
-      "[[1. 1.]\n [1. 1.]]",
-      "[[1, 1],\n [1, 1]]"
-    ],
-    "correct": 2,
-    "explain": "np.ones tạo mảng toàn số 1 với kiểu dữ liệu mặc định là float, nên kết quả có dấu chấm thập phân.",
-    "hints": [
-      "Lưu ý kiểu dữ liệu mặc định của np.ones là float64."
-    ]
-  },
-  {
-    "id": "q-npy-05",
-    "text": "Đoạn code `np.arange(1, 6, 2)` sẽ tạo ra mảng nào?",
-    "options": [
-      "[1, 2, 3, 4, 5, 6]",
-      "[1, 3, 5]",
-      "[1, 3, 5, 7]",
-      "[2, 4, 6]"
-    ],
-    "correct": 1,
-    "explain": "np.arange(start, stop, step) tạo mảng từ start (1) đến dưới stop (6) với bước nhảy là step (2).",
-    "hints": [
-      "Cú pháp tương tự hàm range() trong Python thuần."
-    ]
-  },
-  {
-    "id": "q-npy-06",
-    "text": "Hàm nào sau đây tạo ra một ma trận 3x3 toàn số 7?",
-    "options": [
-      "np.full((3, 3), 7)",
-      "np.fill((3, 3), 7)",
-      "np.ones((3, 3)) * 7",
-      "Cả A và C đều đúng"
-    ],
-    "correct": 3,
-    "explain": "np.full((3, 3), 7) tạo mảng toàn số 7. Cách np.ones((3, 3)) * 7 cũng tạo ra kết quả tương đương qua phép nhân vô hướng.",
-    "hints": [
-      "Có nhiều cách để đạt được cùng một kết quả trong NumPy."
-    ]
-  },
-  {
-    "id": "q-npy-07",
-    "text": "Lệnh `np.eye(3)` dùng để làm gì?",
-    "options": [
-      "Tạo ma trận 3x3 với các phần tử ngẫu nhiên",
-      "Tạo ma trận 3x3 toàn số 0",
-      "Tạo ma trận đơn vị 3x3",
-      "Tạo mảng 1 chiều có 3 phần tử bằng 1"
-    ],
-    "correct": 2,
-    "explain": "np.eye(n) hoặc np.identity(n) dùng để tạo ma trận đơn vị kích thước nxn (đường chéo chính bằng 1, còn lại bằng 0).",
-    "hints": [
-      "Ma trận đơn vị là ma trận vuông có đường chéo chính chứa toàn số 1."
-    ]
-  },
-  {
-    "id": "q-npy-08",
-    "text": "Mục đích của việc sử dụng lệnh `np.random.seed(42)` trước khi gọi các hàm ngẫu nhiên là gì?",
-    "options": [
-      "Tạo ra một mảng có 42 phần tử ngẫu nhiên",
-      "Giới hạn giá trị ngẫu nhiên tối đa là 42",
-      "Khởi tạo ma trận ngẫu nhiên 42x42",
-      "Giữ nguyên kết quả của các hàm sinh số ngẫu nhiên trong các lần chạy khác nhau"
-    ],
-    "correct": 3,
-    "explain": "np.random.seed(id_memory) thiết lập state cho bộ sinh số ngẫu nhiên, giúp kết quả random không đổi giữa các lần thực thi.",
-    "hints": [
-      "Tính năng này rất quan trọng để có thể tái tạo (reproduce) lại kết quả trong phân tích dữ liệu."
-    ]
-  },
-  {
-    "id": "q-npy-09",
-    "text": "Cho mảng X như sau:\nX = np.array([[1, 2, 3, 4], [4, 5, 6, 2], [7, 8, 9, 1]])\nKết quả của lệnh `print(X[1, 2])` là gì?",
-    "options": [
-      "5",
-      "6",
-      "8",
-      "9"
-    ],
-    "correct": 1,
-    "explain": "X[1, 2] truy cập vào dòng có chỉ số 1 (dòng thứ hai) và cột có chỉ số 2 (cột thứ ba). Giá trị tương ứng là 6.",
-    "hints": [
-      "Chỉ số trong Python bắt đầu từ 0."
-    ]
-  },
-  {
-    "id": "q-npy-10",
-    "text": "Với X = np.array([[1, 2, 3, 4], [4, 5, 6, 2], [7, 8, 9, 1], [2, 5, 1, 5]]), đoạn code `X[:2, :2]` sẽ lấy ra phần nào?",
-    "options": [
-      "[[1, 2], [4, 5]]",
-      "[[5, 6], [8, 9]]",
-      "[[1, 2, 3], [4, 5, 6]]",
-      "[[7, 8], [2, 5]]"
-    ],
-    "correct": 0,
-    "explain": "X[:2, :2] lấy 2 dòng đầu tiên (chỉ số 0, 1) và 2 cột đầu tiên (chỉ số 0, 1) của ma trận X.",
-    "hints": [
-      "Cú pháp `:n` nghĩa là lấy từ đầu cho đến trước n."
-    ]
-  },
-  {
-    "id": "q-npy-11",
-    "text": "Đoạn mã `X[-2:, -2:]` dùng để làm gì với ma trận X?",
-    "options": [
-      "Truy cập 2 dòng và 2 cột đầu tiên",
-      "Truy cập 2 dòng và 2 cột cuối cùng",
-      "Bỏ qua 2 dòng và 2 cột cuối cùng",
-      "Đảo ngược ma trận"
-    ],
-    "correct": 1,
-    "explain": "Chỉ số âm -2 chỉ đến phần tử thứ 2 từ dưới/phải đếm lên. `-2:` nghĩa là lấy từ vị trí đó đến hết.",
-    "hints": [
-      "Chỉ số âm trong Python được dùng để truy xuất từ cuối lên."
-    ]
-  },
-  {
-    "id": "q-npy-12",
-    "text": "Đoạn code `X[[0, 2], :]` truy xuất các phần tử nào của ma trận 2 chiều X?",
-    "options": [
-      "Truy cập từ dòng 0 đến dòng 2",
-      "Truy cập vào cột 0 và cột 2",
-      "Truy cập vào dòng 0 và dòng 2 (cách lấy indices không liên tục)",
-      "Truy cập dòng 0 và cột 2"
-    ],
-    "correct": 2,
-    "explain": "Sử dụng list `[0, 2]` ở vị trí của index dòng sẽ chỉ định lấy cụ thể dòng 0 và dòng 2. Ký tự `:` ở cột nghĩa là lấy tất cả các cột.",
-    "hints": [
-      "Đây là kĩ thuật 'Advanced indexing' trong NumPy."
-    ]
-  },
-  {
-    "id": "q-npy-13",
-    "text": "Phương thức nào sau đây chuyển vị (đổi hàng thành cột) của ma trận `arr`?",
-    "options": [
-      "np.transpose(arr)",
-      "arr.T",
-      "Cả A và B đều đúng",
-      "arr.reverse()"
-    ],
-    "correct": 2,
-    "explain": "Ta có thể dùng hàm `np.transpose(arr)` hoặc gọi trực tiếp thuộc tính `arr.T` để chuyển vị ma trận.",
-    "hints": [
-      "Ký tự T viết hoa là cách viết tắt phổ biến cho phép chuyển vị (Transpose)."
-    ]
-  },
-  {
-    "id": "q-npy-14",
-    "text": "Lệnh `arr.reshape(2, -1)` có ý nghĩa gì đối với một ma trận?",
-    "options": [
-      "Báo lỗi vì không có kích thước chiều âm",
-      "Biến đổi ma trận về 2 dòng, tự động tính toán số cột phù hợp",
-      "Biến đổi ma trận về 2 cột, số dòng tự động tính",
-      "Loại bỏ 1 chiều của ma trận"
-    ],
-    "correct": 1,
-    "explain": "Trong `reshape`, khi sử dụng giá trị `-1`, NumPy sẽ tự động tính toán chiều còn lại dựa trên tổng số phần tử của mảng.",
-    "hints": [
-      "Giá trị -1 là một 'placeholder' thông minh trong hàm reshape."
-    ]
-  },
-  {
-    "id": "q-npy-15",
-    "text": "Hàm nào sau đây được dùng để ghép các ma trận dọc theo một trục được chỉ định (axis)?",
-    "options": [
-      "np.stack",
-      "np.concatenate",
-      "np.vstack",
-      "np.hsplit"
-    ],
-    "correct": 1,
-    "explain": "Hàm `np.concatenate((arr1, arr2), axis=position)` được sử dụng để ghép các mảng lại với nhau theo một trục (axis) xác định.",
-    "hints": [
-      "Các hàm vstack, hstack cũng để ghép nhưng đã cố định trục cụ thể."
-    ]
-  },
-  {
-    "id": "q-npy-16",
-    "text": "Để chia (tách) một mảng `arr` thành nhiều mảng con, ta có thể dùng hàm nào?",
-    "options": [
-      "np.divide",
-      "np.separate",
-      "np.split",
-      "np.extract"
-    ],
-    "correct": 2,
-    "explain": "NumPy cung cấp các hàm như `np.split`, `np.vsplit`, `np.hsplit` để tách một ma trận ra làm nhiều phần.",
-    "hints": [
-      "Split có nghĩa là tách/chia cắt."
-    ]
-  },
-  {
-    "id": "q-npy-17",
-    "text": "Mục đích của hàm `np.expand_dims(arr, axis=position)` là gì?",
-    "options": [
-      "Xóa một chiều của ma trận",
-      "Mở rộng số lượng phần tử của ma trận",
-      "Thêm một chiều (dimension) mới vào ma trận ở vị trí axis",
-      "Tính định thức của ma trận"
-    ],
-    "correct": 2,
-    "explain": "`np.expand_dims` được dùng để thêm một chiều mới (với kích thước là 1) vào mảng tại vị trí `axis` được chỉ định.",
-    "hints": [
-      "Từ 'expand_dims' là viết tắt của 'expand dimensions' (mở rộng số chiều)."
-    ]
-  },
-  {
-    "id": "q-npy-18",
-    "text": "Lệnh `np.linalg.pinv(arr)` thực hiện phép toán gì?",
-    "options": [
-      "Tính ma trận giả nghịch đảo",
-      "Tính ma trận nghịch đảo ma trận vuông",
-      "Tính định thức của ma trận",
-      "Tính tổng giá trị đường chéo"
-    ],
-    "correct": 1,
-    "explain": "Theo slide, `np.linalg.pinv(arr)` được chú thích là dùng để tính ma trận nghịch đảo ma trận vuông (lưu ý: pinv thực chất là pseudo-inverse nhưng slide ghi là nghịch đảo ma trận vuông).",
-    "hints": [
-      "Hàm nằm trong phân hệ linalg (Linear Algebra - Đại số tuyến tính)."
-    ]
-  },
-  {
-    "id": "q-npy-19",
-    "text": "Để tính định thức của ma trận vuông, ta sử dụng hàm nào trong NumPy?",
-    "options": [
-      "np.trace(arr)",
-      "np.linalg.det(arr)",
-      "np.linalg.norm(arr)",
-      "np.dot(arr, arr)"
-    ],
-    "correct": 1,
-    "explain": "Hàm `np.linalg.det(arr)` được sử dụng để tính định thức (determinant) của ma trận.",
-    "hints": [
-      "Determinant trong tiếng Anh viết tắt là 'det'."
-    ]
-  },
-  {
-    "id": "q-npy-20",
-    "text": "Đoạn code `np.trace(arr)` trả về kết quả gì?",
-    "options": [
-      "Chuyển vị của ma trận",
-      "Tổng giá trị trên đường chéo chính của ma trận",
-      "Ma trận đơn vị",
-      "Tích các phần tử trên đường chéo chính"
-    ],
-    "correct": 1,
-    "explain": "Hàm `np.trace(arr)` trả về tổng các phần tử nằm trên đường chéo chính của ma trận.",
-    "hints": [
-      "Đây là khái niệm 'vết' của ma trận trong đại số tuyến tính."
-    ]
-  },
-  {
-    "id": "q-npy-21",
-    "text": "Phép nhân hai ma trận (matrix multiplication) A và B trong NumPy CÓ THỂ được thực hiện bằng cách nào sau đây?",
-    "options": [
-      "np.dot(A, B)",
-      "A.dot(B)",
-      "A @ B",
-      "Tất cả các cách trên"
-    ],
-    "correct": 3,
-    "explain": "NumPy hỗ trợ nhiều cú pháp cho phép nhân hai ma trận: `np.dot(A, B)`, phương thức `A.dot(B)`, và toán tử `@`.",
-    "hints": [
-      "Toán tử @ được giới thiệu trong các phiên bản Python mới chuyên dành cho nhân ma trận."
-    ]
-  },
-  {
-    "id": "q-npy-22",
-    "text": "Đoạn mã `arr * 5` sẽ thực hiện điều gì?",
-    "options": [
-      "Báo lỗi do không thể nhân mảng với số nguyên",
-      "Lặp lại mảng arr 5 lần",
-      "Nhân từng phần tử (element-wise) của mảng arr với 5",
-      "Tạo ra ma trận kích thước 5x5 từ arr"
-    ],
-    "correct": 2,
-    "explain": "Phép toán `arr * value` sẽ áp dụng phép nhân với giá trị đó lên từng phần tử của mảng (Broadcasting).",
-    "hints": [
-      "Đừng nhầm lẫn với thao tác nhân list trong Python thuần."
-    ]
-  },
-  {
-    "id": "q-npy-23",
-    "text": "Để tìm VỊ TRÍ (chỉ số - index) của phần tử có giá trị lớn nhất trong mảng `arr`, ta dùng hàm nào?",
-    "options": [
-      "np.max(arr)",
-      "np.maximum(arr)",
-      "np.argmax(arr)",
-      "np.argsort(arr)"
-    ],
-    "correct": 2,
-    "explain": "Hàm `argmax(arr, axis=position)` trả về chỉ số (indice/vị trí) của phần tử có giá trị max.",
-    "hints": [
-      "Chữ 'arg' trong toán học thường ám chỉ tham số/vị trí tạo ra giá trị cực trị."
-    ]
-  },
-  {
-    "id": "q-npy-24",
-    "text": "Hàm `np.argsort(arr)` trả về kết quả gì?",
-    "options": [
-      "Mảng đã được sắp xếp tăng dần",
-      "Mảng đã được sắp xếp giảm dần",
-      "Mảng chứa các chỉ số (indices) của các phần tử nếu mảng được sắp xếp tăng dần",
-      "Số lượng phần tử được sắp xếp"
-    ],
-    "correct": 2,
-    "explain": "`argsort` không trả về mảng giá trị đã sắp xếp, mà trả về mảng các *vị trí* (indices) xếp theo thứ tự tăng/giảm dần.",
-    "hints": [
-      "Giống như argmax trả về vị trí max, argsort trả về các vị trí để sắp xếp."
-    ]
-  },
-  {
-    "id": "q-npy-25",
-    "text": "Hàm `np.exp(arr)` tính toán biểu thức toán học nào đối với các phần tử trong mảng?",
-    "options": [
-      "Tính e^(x)",
-      "Tính x^2",
-      "Tính logarit cơ số e",
-      "Tính 10^x"
-    ],
-    "correct": 0,
-    "explain": "Hàm `np.exp(arr)` tính số mũ với cơ số tự nhiên e, công thức f(x) = e^x cho từng phần tử của mảng.",
-    "hints": [
-      "exp là viết tắt của exponential (hàm mũ)."
-    ]
-  },
-  {
-    "id": "q-npy-26",
-    "text": "Tham số `keepdims=True` trong các hàm của NumPy như `sum()` hay `mean()` có tác dụng gì?",
-    "options": [
-      "Loại bỏ các giá trị NaN trong mảng",
-      "Thay đổi số lượng phần tử của mảng",
-      "Giữ nguyên số lượng chiều (shape) của mảng gốc sau khi tính toán (chiều bị tiêu giảm sẽ có kích thước 1)",
-      "Báo lỗi nếu mảng không phải là hình vuông"
-    ],
-    "correct": 2,
-    "explain": "Khi sử dụng `keepdims=True`, mảng kết quả sẽ giữ nguyên số chiều so với mảng gốc (các trục bị tính toán sẽ có độ dài là 1).",
-    "hints": [
-      "'keep dims' = keep dimensions (giữ nguyên số chiều)."
-    ]
-  },
-  {
-    "id": "q-npy-27",
-    "text": "Để lưu MỘT ma trận numpy vào file với định dạng đặc trưng của NumPy (.npy), ta sử dụng lệnh nào?",
-    "options": [
-      "np.savetxt(file, arr)",
-      "np.savez(file, arr)",
-      "np.save(file, arr)",
-      "np.dump(file, arr)"
-    ],
-    "correct": 2,
-    "explain": "Lệnh `np.save(file, arr)` dùng để lưu/đọc ma trận vào file .npy.",
-    "hints": [
-      "Lưu file đơn giản nhất dùng hàm 'save'."
-    ]
-  },
-  {
-    "id": "q-npy-28",
-    "text": "Hàm `np.savez(file, arr1, arr2)` khác với `np.save()` như thế nào?",
-    "options": [
-      "np.savez lưu dữ liệu dưới định dạng text",
-      "np.savez cho phép lưu nhiều ma trận (arrays) vào cùng một file .npz",
-      "np.savez tự động nén file với mức độ cao nhất",
-      "np.savez chỉ dùng để tải (load) dữ liệu"
-    ],
-    "correct": 1,
-    "explain": "Theo slide, `np.savez` được sử dụng để lưu *nhiều* ma trận vào một file định dạng .npz.",
-    "hints": [
-      "Chữ 'z' trong 'savez' ám chỉ khả năng lưu trữ nhiều array như một kho nén zip (npz)."
-    ]
-  },
-  {
-    "id": "q-npy-29",
-    "text": "Để đọc một ma trận từ file text (.txt, .csv), ta nên sử dụng lệnh nào của NumPy?",
-    "options": [
-      "np.load(file)",
-      "np.loadtxt(file)",
-      "np.readtxt(file)",
-      "np.read_csv(file)"
-    ],
-    "correct": 1,
-    "explain": "`np.loadtxt(file)` được sử dụng chuyên biệt để load (đọc) ma trận từ định dạng file text.",
-    "hints": [
-      "Tên hàm kết hợp giữa 'load' (tải) và 'txt' (text)."
-    ]
-  },
-  {
-    "id": "q-npy-30",
-    "text": "Cho đoạn code: `np.random.randn(2, 3)`. Nó sẽ trả về kết quả thuộc loại nào?",
-    "options": [
-      "Ma trận 2x3 gồm các số nguyên ngẫu nhiên",
-      "Ma trận 2x3 với các phần tử 0 và 1",
-      "Ma trận 2x3 ngẫu nhiên (theo phân phối chuẩn)",
-      "Báo lỗi cú pháp"
-    ],
-    "correct": 2,
-    "explain": "`np.random.randn(shape)` sinh ra ma trận ngẫu nhiên (thường theo phân phối chuẩn tiêu chuẩn) với kích thước chỉ định.",
-    "hints": [
-      "Hậu tố 'n' trong randn thường tượng trưng cho 'normal distribution' (phân phối chuẩn)."
-    ]
-  },
-  {
-    "id": "q-npy-31",
-    "text": "Đoạn code sau tính giá trị gì của ma trận A: `np.min(A, axis=0)`?",
-    "options": [
-      "Phần tử nhỏ nhất của toàn bộ ma trận",
-      "Phần tử nhỏ nhất trên từng dòng",
-      "Phần tử nhỏ nhất trên từng cột",
-      "Vị trí phần tử nhỏ nhất của ma trận"
-    ],
-    "correct": 2,
-    "explain": "Trong NumPy, phép tính aggregation dọc theo `axis=0` sẽ thực hiện dọc theo các cột (lấy giá trị nhỏ nhất của mỗi cột). Chú ý: slide ghi axis 0|cột, 1|hàng.",
-    "hints": [
-      "Trục 0 (axis=0) tương ứng với việc thao tác chạy dọc theo các hàng (tức là xử lý trên từng cột)."
-    ]
-  },
-  {
-    "id": "q-npy-32",
-    "text": "Lệnh `np.diag(arr)` có thể làm được gì?",
-    "options": [
-      "Chỉ dùng để lấy đường chéo của ma trận vuông",
-      "Chỉ dùng để tạo ma trận đường chéo từ mảng 1D",
-      "Tạo ma trận đường chéo (nếu input là 1D) HOẶC trả về đường chéo (nếu input là 2D)",
-      "Tính tổng các phần tử trên đường chéo"
-    ],
-    "correct": 2,
-    "explain": "Hàm `np.diag` hoạt động theo cả hai chiều: tạo ma trận đường chéo từ mảng hoặc trích xuất mảng đường chéo từ ma trận.",
-    "hints": [
-      "Hàm này linh hoạt tùy thuộc vào tham số đầu vào là mảng 1 chiều hay 2 chiều."
-    ]
-  },
-  {
-    "id": "q-npy-33",
-    "text": "Cho mảng `A = np.arange(12)`. Nếu thực hiện `A.reshape(3, -1)`, mảng sẽ có kích thước là bao nhiêu?",
-    "options": [
-      "(3, 3)",
-      "(3, 4)",
-      "(4, 3)",
-      "(3, -1)"
-    ],
-    "correct": 1,
-    "explain": "Mảng có 12 phần tử. Reshape với số hàng là 3, số cột `-1` sẽ được NumPy tự động tính là 12 / 3 = 4. Do đó shape là (3, 4).",
-    "hints": [
-      "Lấy tổng số phần tử chia cho kích thước các chiều đã biết để tìm chiều bị khuyết (-1)."
-    ]
-  },
-  {
-    "id": "q-npy-34",
-    "text": "Nếu muốn gộp 2 ma trận A và B xếp chồng LÊN NHAU (theo chiều dọc), hàm nào sau đây là trực tiếp nhất?",
-    "options": [
-      "np.hstack([A, B])",
-      "np.vstack([A, B])",
-      "np.dstack([A, B])",
-      "np.transpose([A, B])"
-    ],
-    "correct": 1,
-    "explain": "`vstack` (vertical stack) dùng để xếp chồng các ma trận lên nhau theo chiều dọc.",
-    "hints": [
-      "Chữ 'v' viết tắt của 'vertical' (chiều dọc)."
-    ]
-  },
-  {
-    "id": "q-npy-35",
-    "text": "Hàm `np.linalg.norm(arr, ord='fro')` được sử dụng để làm gì?",
-    "options": [
-      "Chuẩn hóa dữ liệu trong mảng về khoảng [0, 1]",
-      "Tính chuẩn Frobenius của ma trận",
-      "Tìm vector riêng của ma trận",
-      "Sắp xếp ma trận theo chuẩn"
-    ],
-    "correct": 1,
-    "explain": "Lệnh `np.linalg.norm(arr, ord='fro')` được sử dụng để tính chuẩn Frobenious của ma trận.",
-    "hints": [
-      "Xem phần phép toán ma trận trong thư viện linalg."
-    ]
-  },
-  {
-    "id": "q-npy-36",
-    "text": "Để lấy một số lượng `num_indices` phần tử ở vị trí ĐẦU TIÊN của một array 1D, cú pháp nào là đúng?",
-    "options": [
-      "array[:num_indices]",
-      "array[:-num_indices]",
-      "array[num_indices:]",
-      "array[-num_indices:]"
-    ],
-    "correct": 0,
-    "explain": "Cú pháp `array[:num_indices]` lấy từ đầu mảng đến vị trí chỉ số `num_indices - 1`, tương ứng lấy `num_indices` phần tử đầu tiên.",
-    "hints": [
-      "Dấu `:` đặt phía trước nghĩa là bắt đầu lấy từ đầu mảng (index 0)."
-    ]
-  },
-  {
-    "id": "q-npy-37",
-    "text": "Đoạn mã sau trả về kết quả gì?\nB = np.array([10, 20, 30, 40])\nprint(B[-1])",
-    "options": [
-      "10",
-      "30",
-      "40",
-      "Báo lỗi"
-    ],
-    "correct": 2,
-    "explain": "Chỉ số `-1` tương ứng với phần tử cuối cùng của mảng, trong trường hợp này là 40.",
-    "hints": [
-      "Trong Python, index -1 luôn chỉ đến phần tử nằm ở cuối mảng."
-    ]
-  },
-  {
-    "id": "q-npy-38",
-    "text": "Cấu trúc dữ liệu NumPy Arrays khác List thuần của Python ở điểm chính nào khi phân tích dữ liệu lớn?",
-    "options": [
-      "List hỗ trợ tính toán tốt hơn",
-      "NumPy array có tốc độ thực thi nhanh hơn và hỗ trợ tính toán đại số/vector tốt hơn",
-      "NumPy array chỉ chứa được số nguyên",
-      "NumPy array cho phép phần tử khác kiểu dữ liệu dễ dàng hơn List"
-    ],
-    "correct": 1,
-    "explain": "NumPy arrays có tốc độ thực thi vượt trội và hỗ trợ các hàm tính toán đại số ma trận, vector cấp cao, điều mà List thuần không làm được trực tiếp.",
-    "hints": [
-      "NumPy được thiết kế tối ưu bằng C để xử lý toán học (Numerical Python)."
-    ]
-  },
-  {
-    "id": "q-npy-39",
-    "text": "Cho ma trận B có kích thước 3 chiều (28, 28, 3). Nếu ta gọi `np.dsplit(B, 3)`, lệnh này sẽ tách ma trận theo chiều nào?",
-    "options": [
-      "Chiều dọc (hàng)",
-      "Chiều ngang (cột)",
-      "Chiều sâu (chiều thứ 3)",
-      "Không thể tách được"
-    ],
-    "correct": 2,
-    "explain": "`dsplit` (depth split) tách mảng theo chiều sâu (depth/chiều thứ 3) của ma trận 3D.",
-    "hints": [
-      "Chữ 'd' trong dsplit, dstack tượng trưng cho 'depth' (chiều sâu)."
-    ]
-  },
-  {
-    "id": "q-npy-40",
-    "text": "Cho A = np.array([1, 5, 2]), B = np.array([4, 1, 6]). Lệnh `np.maximum(A, B)` trả về?",
-    "options": [
-      "[4, 5, 6]",
-      "6",
-      "[1, 1, 2]",
-      "Báo lỗi"
-    ],
-    "correct": 0,
-    "explain": "Hàm `np.maximum(A, B)` so sánh hai mảng theo từng vị trí (element-wise) và trả về mảng gồm các giá trị lớn hơn tương ứng: max(1,4)=4, max(5,1)=5, max(2,6)=6.",
-    "hints": [
-      "Lưu ý sự khác biệt giữa `np.max` (tìm lớn nhất trong 1 mảng) và `np.maximum` (so sánh 2 mảng)."
-    ]
-  },
-  {
-    "id": "q-npy-41",
-    "text": "Lệnh `np.linalg.det(np.eye(2))` sẽ trả về kết quả bằng bao nhiêu?",
-    "options": [
-      "0.0",
-      "1.0",
-      "2.0",
-      "Báo lỗi"
-    ],
-    "correct": 1,
-    "explain": "`np.eye(2)` tạo ma trận đơn vị 2x2. Định thức (det) của mọi ma trận đơn vị đều bằng 1.",
-    "hints": [
-      "Định thức của ma trận đơn vị chéo (tích các số 1) trừ đi đường chéo phụ (tích các số 0)."
-    ]
-  },
-  {
-    "id": "q-npy-42",
-    "text": "Khi import `import numpy as np`, 'np' đóng vai trò là gì?",
-    "options": [
-      "Một hàm trong thư viện numpy",
-      "Tên định danh thay thế (alias) cho thư viện numpy",
-      "Một biến hằng số trong numpy",
-      "Một lớp (class) của numpy"
-    ],
-    "correct": 1,
-    "explain": "Từ khóa `as np` cho phép gán một alias (tên viết tắt) cho module để gọi các hàm ngắn gọn hơn.",
-    "hints": [
-      "Nó giúp giảm công sức phải gõ chữ 'numpy' nhiều lần."
-    ]
-  },
-  {
-    "id": "q-npy-43",
-    "text": "Lệnh nào để đếm vị trí (index) của giá trị NHỎ NHẤT trong mảng theo từng DÒNG của ma trận 2D `arr`?",
-    "options": [
-      "np.min(arr, axis=1)",
-      "np.argmin(arr, axis=0)",
-      "np.argmin(arr, axis=1)",
-      "np.argmin(arr)"
-    ],
-    "correct": 2,
-    "explain": "`np.argmin` trả về index của giá trị min. Đặt `axis=1` sẽ thực hiện thao tác dọc theo từng dòng (trục ngang).",
-    "hints": [
-      "axis=1 tương ứng với thao tác trên từng dòng (tính chỉ số cột cho mỗi dòng)."
-    ]
-  },
-  {
-    "id": "q-npy-44",
-    "text": "Nếu muốn lưu giữ cả hình dạng mảng gốc 2D (ví dụ 3x4 -> 3x1) khi tính tổng theo cột, bạn cần gọi hàm sum như thế nào?",
-    "options": [
-      "np.sum(arr, axis=1, keepdims=True)",
-      "np.sum(arr, axis=0, keepdims=False)",
-      "np.sum(arr, axis=0)",
-      "np.sum(arr, axis=1)"
-    ],
-    "correct": 0,
-    "explain": "Để giữ nguyên chiều của mảng sau phép tính aggregation, ta phải truyền thêm tham số `keepdims=True`.",
-    "hints": [
-      "Tham số `keepdims=True` là chìa khóa để bảo tồn số chiều gốc."
-    ]
-  },
-  {
-    "id": "q-npy-45",
-    "text": "Cho mảng A có hình dạng (shape) là (2, 3). Nếu ta gọi `A.reshape(-1)`, hình dạng mảng mới sẽ là?",
-    "options": [
-      "(2, 3)",
-      "(6, 1)",
-      "(6,)",
-      "Báo lỗi"
-    ],
-    "correct": 2,
-    "explain": "Gọi `reshape(-1)` không có chiều nào khác đồng nghĩa với việc yêu cầu NumPy duỗi thẳng (flatten) toàn bộ mảng về dạng 1 chiều.",
-    "hints": [
-      "Tham số -1 đứng một mình có nghĩa là 'duỗi thẳng tất cả thành 1 mảng 1D'."
-    ]
-  },
-  {
-    "id": "q-npy-46",
-    "text": "Theo tài liệu, ký hiệu nào được quy định đối với tham số `axis` trong numpy array 2D?",
-    "options": [
-      "0 | hàng, 1 | cột",
-      "0 | cột, 1 | hàng",
-      "0 | dòng, 1 | trang",
-      "Không có sự phân biệt"
-    ],
-    "correct": 1,
-    "explain": "Theo slide số 17, `axis: 0 | cột  1 | hàng` được ghi chú cụ thể để hỗ trợ ghi nhớ thao tác dọc theo trục.",
-    "hints": [
-      "Tuy hơi ngược với trực giác một số người, nhưng trục 0 quét qua các hàng (nghĩa là gộp theo cột)."
-    ]
-  },
-  {
-    "id": "q-npy-47",
-    "text": "Lệnh `sys.path` trong Python (đề cập khi cài đặt NumPy) thường được dùng để làm gì?",
-    "options": [
-      "Thực thi file numpy",
-      "Xem đường dẫn đến thư mục chứa các gói thư viện/Scripts của Python",
-      "Cài đặt thư viện tự động",
-      "Xóa các gói đã cài đặt"
-    ],
-    "correct": 1,
-    "explain": "Lệnh `print(sys.path)` giúp xem danh sách đường dẫn tìm kiếm của module, để kiểm tra xem Python có trỏ đúng đến nơi cài pip và numpy không.",
-    "hints": [
-      "Module `sys` cung cấp các biến và hàm thao tác sâu với môi trường chạy Python."
-    ]
-  },
-  {
-    "id": "q-npy-48",
-    "text": "Lệnh `np.arange(3)` tạo ra mảng có giá trị nào?",
-    "options": [
-      "[1, 2, 3]",
-      "[0, 1, 2]",
-      "[0, 1, 2, 3]",
-      "[3, 3, 3]"
-    ],
-    "correct": 1,
-    "explain": "Cú pháp rút gọn của arange với 1 tham số sẽ tính start mặc định là 0, step mặc định là 1. Do đó nó tạo mảng từ 0 đến 2.",
-    "hints": [
-      "Start mặc định luôn là 0."
-    ]
-  },
-  {
-    "id": "q-npy-49",
-    "text": "Khi khai báo ma trận ngẫu nhiên `B = np.array(np.arange(12))`, kết quả của `B` là gì?",
-    "options": [
-      "Một ma trận 3x4 có các số ngẫu nhiên",
-      "Một mảng 1D gồm các số từ 0 đến 11",
-      "Một mảng 1D gồm 12 số ngẫu nhiên",
-      "Báo lỗi"
-    ],
-    "correct": 1,
-    "explain": "`np.arange(12)` sinh ra một mảng có 12 số từ 0 đến 11, không phải số ngẫu nhiên.",
-    "hints": [
-      "arange tạo mảng theo dãy số tiến, randn/randint mới tạo số ngẫu nhiên."
-    ]
-  },
-  {
-    "id": "q-npy-50",
-    "text": "Để lấy một số lượng `num_indices` phần tử ở vị trí CUỐI CÙNG của một array 1D, cú pháp nào sau đây là chính xác?",
-    "options": [
-      "array[-num_indices:]",
-      "array[:-num_indices]",
-      "array[:num_indices]",
-      "array[-num_indices:-1]"
-    ],
-    "correct": 0,
-    "explain": "Cú pháp `array[-num_indices:]` bắt đầu từ vị trí âm (ngược từ dưới lên) với khoảng cách `num_indices`, và dấu `:` chỉ định lấy đến tận cùng của mảng.",
-    "hints": [
-      "Dấu `:` nằm phía sau chỉ định việc kéo dài đến phần tử cuối cùng của mảng."
-    ]
-  }
-]
+{
+  "id": "q-numpy-50",
+  "code": "PY-NPY-50",
+  "title": "NumPy",
+  "desc": "Ôn tập cú pháp NumPy, tạo mảng, truy xuất và biến đổi mảng, phép toán số học, đại số tuyến tính và đọc ghi dữ liệu.",
+  "duration": 120,
+  "createdAt": "2026-10-21",
+  "questions": [
+    {
+      "id": "q-npy-01",
+      "text": "Để sử dụng thư viện NumPy trong Python, cú pháp khai báo nào sau đây là chuẩn và phổ biến nhất?",
+      "options": [
+        "import numpy",
+        "import numpy as np",
+        "from numpy import *",
+        "import np from numpy"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp 'import numpy as np' là tiêu chuẩn được cộng đồng Python sử dụng rộng rãi để gọi thư viện NumPy với tên viết tắt là np.",
+      "hints": [
+        "Trong Python, một module có thể được nạp bằng từ khóa `import`; cú pháp thường cho phép đặt tên ngắn bằng `as`.",
+        "Hãy chọn cách vừa nạp `numpy`, vừa gán cho nó bí danh `np` để gọi hàm theo dạng `np.array(...)`."
+      ]
+    },
+    {
+      "id": "q-npy-02",
+      "text": "Đoạn code sau trả về kết quả gì?\nimport numpy as np\narr = np.array([1, 2, 3])\nprint(arr.shape)",
+      "options": [
+        "(3, 1)",
+        "[3]",
+        "(3,)",
+        "3"
+      ],
+      "correct": 2,
+      "explain": "Mảng arr là mảng 1 chiều có 3 phần tử, nên thuộc tính shape sẽ trả về một tuple dạng (3,).",
+      "hints": [
+        "`shape` mô tả kích thước theo từng chiều, chứ không chỉ là tổng số phần tử.",
+        "Với mảng 1D có 3 phần tử, `shape` chứa đúng một số kích thước; dấu phẩy cho biết đây là tuple một phần tử."
+      ]
+    },
+    {
+      "id": "q-npy-03",
+      "text": "Lệnh nào sau đây dùng để tạo một ma trận 2x3 toàn số 0?",
+      "options": [
+        "np.zeros(2, 3)",
+        "np.zeros((2, 3))",
+        "np.zero([2, 3])",
+        "np.matrix(0, 2, 3)"
+      ],
+      "correct": 1,
+      "explain": "Hàm np.zeros nhận vào tham số shape dưới dạng tuple hoặc list, nên np.zeros((2, 3)) là hợp lệ.",
+      "hints": [
+        "`zeros` là hàm tạo mảng khởi đầu bằng số 0; kích thước nhiều chiều được truyền như một đối số shape.",
+        "Để có 2 hàng và 3 cột, truyền cặp kích thước `(2, 3)` thành một đối số duy nhất."
+      ]
+    },
+    {
+      "id": "q-npy-04",
+      "text": "Cho đoạn code:\nimport numpy as np\narr = np.ones((2, 2))\nprint(arr)",
+      "options": [
+        "[[0. 0.]\n [0. 0.]]",
+        "[[1 1]\n [1 1]]",
+        "[[1. 1.]\n [1. 1.]]",
+        "[[1, 1],\n [1, 1]]"
+      ],
+      "correct": 2,
+      "explain": "np.ones tạo mảng toàn số 1 với kiểu dữ liệu mặc định là float, nên kết quả có dấu chấm thập phân.",
+      "hints": [
+        "`ones` tạo mảng có mọi phần tử bằng 1; nếu không chỉ định kiểu dữ liệu, NumPy thường dùng số thực.",
+        "Xem kỹ cách in số thực: `1.0` thường hiển thị thành `1.` trong mảng NumPy, khác với số nguyên `1`."
+      ]
+    },
+    {
+      "id": "q-npy-05",
+      "text": "Đoạn code `np.arange(1, 6, 2)` sẽ tạo ra mảng nào?",
+      "options": [
+        "[1, 2, 3, 4, 5, 6]",
+        "[1, 3, 5]",
+        "[1, 3, 5, 7]",
+        "[2, 4, 6]"
+      ],
+      "correct": 1,
+      "explain": "np.arange(start, stop, step) tạo mảng từ start (1) đến dưới stop (6) với bước nhảy là step (2).",
+      "hints": [
+        "Cú pháp `arange(start, stop, step)` bắt đầu tại `start`, tăng theo `step` và không lấy `stop`.",
+        "Bắt đầu từ 1, lần lượt cộng 2; dừng trước khi chạm hoặc vượt mốc 6."
+      ]
+    },
+    {
+      "id": "q-npy-06",
+      "text": "Hàm nào sau đây tạo ra một ma trận 3x3 toàn số 7?",
+      "options": [
+        "np.full((3, 3), 7)",
+        "np.fill((3, 3), 7)",
+        "np.ones((3, 3)) * 7",
+        "Cả A và C đều đúng"
+      ],
+      "correct": 3,
+      "explain": "np.full((3, 3), 7) tạo mảng toàn số 7. Cách np.ones((3, 3)) * 7 cũng tạo ra kết quả tương đương qua phép nhân vô hướng.",
+      "hints": [
+        "Có hàm nhận trực tiếp kích thước và giá trị lấp đầy; ngoài ra có thể tạo mảng toàn 1 rồi nhân với một số.",
+        "So sánh `np.full((3, 3), 7)` với `np.ones((3, 3)) * 7`: cả hai đều tạo 9 phần tử mang giá trị 7."
+      ]
+    },
+    {
+      "id": "q-npy-07",
+      "text": "Lệnh `np.eye(3)` dùng để làm gì?",
+      "options": [
+        "Tạo ma trận 3x3 với các phần tử ngẫu nhiên",
+        "Tạo ma trận 3x3 toàn số 0",
+        "Tạo ma trận đơn vị 3x3",
+        "Tạo mảng 1 chiều có 3 phần tử bằng 1"
+      ],
+      "correct": 2,
+      "explain": "np.eye(n) hoặc np.identity(n) dùng để tạo ma trận đơn vị kích thước nxn (đường chéo chính bằng 1, còn lại bằng 0).",
+      "hints": [
+        "Ma trận đơn vị là ma trận vuông có 1 trên đường chéo chính và 0 ở các vị trí khác.",
+        "Với kích thước 3, hãy hình dung ba số 1 nằm ở các vị trí (0,0), (1,1), (2,2); các ô còn lại là 0."
+      ]
+    },
+    {
+      "id": "q-npy-08",
+      "text": "Mục đích của việc sử dụng lệnh `np.random.seed(42)` trước khi gọi các hàm ngẫu nhiên là gì?",
+      "options": [
+        "Tạo ra một mảng có 42 phần tử ngẫu nhiên",
+        "Giới hạn giá trị ngẫu nhiên tối đa là 42",
+        "Khởi tạo ma trận ngẫu nhiên 42x42",
+        "Giữ nguyên kết quả của các hàm sinh số ngẫu nhiên trong các lần chạy khác nhau"
+      ],
+      "correct": 3,
+      "explain": "np.random.seed(42) đặt seed cho bộ sinh số ngẫu nhiên, giúp chuỗi kết quả có thể tái lập giữa các lần chạy trong cùng điều kiện.",
+      "hints": [
+        "`seed` không quyết định kích thước hay giới hạn giá trị; nó đặt trạng thái ban đầu cho bộ sinh số giả ngẫu nhiên.",
+        "Khi dùng cùng seed và cùng chuỗi lệnh ngẫu nhiên, kết quả có thể tái lập để kiểm thử hoặc so sánh."
+      ]
+    },
+    {
+      "id": "q-npy-09",
+      "text": "Cho mảng X như sau:\nX = np.array([[1, 2, 3, 4], [4, 5, 6, 2], [7, 8, 9, 1]])\nKết quả của lệnh `print(X[1, 2])` là gì?",
+      "options": [
+        "5",
+        "6",
+        "8",
+        "9"
+      ],
+      "correct": 1,
+      "explain": "X[1, 2] truy cập vào dòng có chỉ số 1 (dòng thứ hai) và cột có chỉ số 2 (cột thứ ba). Giá trị tương ứng là 6.",
+      "hints": [
+        "Chỉ số NumPy bắt đầu từ 0: chỉ số dòng 1 là dòng thứ hai, chỉ số cột 2 là cột thứ ba.",
+        "Đọc dòng thứ hai `[4, 5, 6, 2]`, rồi lấy phần tử ở vị trí chỉ số 2 trong dòng đó."
+      ]
+    },
+    {
+      "id": "q-npy-10",
+      "text": "Với X = np.array([[1, 2, 3, 4], [4, 5, 6, 2], [7, 8, 9, 1], [2, 5, 1, 5]]), đoạn code `X[:2, :2]` sẽ lấy ra phần nào?",
+      "options": [
+        "[[1, 2], [4, 5]]",
+        "[[5, 6], [8, 9]]",
+        "[[1, 2, 3], [4, 5, 6]]",
+        "[[7, 8], [2, 5]]"
+      ],
+      "correct": 0,
+      "explain": "X[:2, :2] lấy 2 dòng đầu tiên (chỉ số 0, 1) và 2 cột đầu tiên (chỉ số 0, 1) của ma trận X.",
+      "hints": [
+        "Trong lát cắt `X[a:b, c:d]`, phần trước dấu phẩy chọn dòng, phần sau chọn cột; điểm kết thúc không được lấy.",
+        "`:2` chọn chỉ số 0 và 1. Áp dụng quy tắc đó cho cả dòng lẫn cột để xác định vùng 2×2 ở góc trên bên trái."
+      ]
+    },
+    {
+      "id": "q-npy-11",
+      "text": "Đoạn mã `X[-2:, -2:]` dùng để làm gì với ma trận X?",
+      "options": [
+        "Truy cập 2 dòng và 2 cột đầu tiên",
+        "Truy cập 2 dòng và 2 cột cuối cùng",
+        "Bỏ qua 2 dòng và 2 cột cuối cùng",
+        "Đảo ngược ma trận"
+      ],
+      "correct": 1,
+      "explain": "Chỉ số âm -2 chỉ đến phần tử thứ 2 từ dưới/phải đếm lên. `-2:` nghĩa là lấy từ vị trí đó đến hết.",
+      "hints": [
+        "Chỉ số âm đếm ngược từ cuối mảng; `-1` là phần tử cuối và `-2` là phần tử kế cuối.",
+        "Trong `-2:`, bắt đầu ở phần tử kế cuối rồi lấy đến hết. Dùng quy tắc này cho cả trục dòng và trục cột."
+      ]
+    },
+    {
+      "id": "q-npy-12",
+      "text": "Đoạn code `X[[0, 2], :]` truy xuất các phần tử nào của ma trận 2 chiều X?",
+      "options": [
+        "Truy cập từ dòng 0 đến dòng 2",
+        "Truy cập vào cột 0 và cột 2",
+        "Truy cập vào dòng 0 và dòng 2 (cách lấy indices không liên tục)",
+        "Truy cập dòng 0 và cột 2"
+      ],
+      "correct": 2,
+      "explain": "Sử dụng list `[0, 2]` ở vị trí của index dòng sẽ chỉ định lấy cụ thể dòng 0 và dòng 2. Ký tự `:` ở cột nghĩa là lấy tất cả các cột.",
+      "hints": [
+        "Dấu `:` ở vị trí cột nghĩa là lấy tất cả cột; danh sách chỉ số trong ngoặc vuông có thể chọn các dòng không liền nhau.",
+        "`[0, 2]` chỉ định hai chỉ số cụ thể, không phải một khoảng liên tục từ 0 đến 2."
+      ]
+    },
+    {
+      "id": "q-npy-13",
+      "text": "Phương thức nào sau đây chuyển vị (đổi hàng thành cột) của ma trận `arr`?",
+      "options": [
+        "np.transpose(arr)",
+        "arr.T",
+        "Cả A và B đều đúng",
+        "arr.reverse()"
+      ],
+      "correct": 2,
+      "explain": "Ta có thể dùng hàm `np.transpose(arr)` hoặc gọi trực tiếp thuộc tính `arr.T` để chuyển vị ma trận.",
+      "hints": [
+        "Chuyển vị hoán đổi trục dòng và cột của mảng 2D.",
+        "Có cả hàm cấp module và thuộc tính viết tắt để thực hiện phép chuyển vị; hãy nhận ra hai cú pháp tương đương."
+      ]
+    },
+    {
+      "id": "q-npy-14",
+      "text": "Lệnh `arr.reshape(2, -1)` có ý nghĩa gì đối với một ma trận?",
+      "options": [
+        "Báo lỗi vì không có kích thước chiều âm",
+        "Biến đổi ma trận về 2 dòng, tự động tính toán số cột phù hợp",
+        "Biến đổi ma trận về 2 cột, số dòng tự động tính",
+        "Loại bỏ 1 chiều của ma trận"
+      ],
+      "correct": 1,
+      "explain": "Trong `reshape`, khi sử dụng giá trị `-1`, NumPy sẽ tự động tính toán chiều còn lại dựa trên tổng số phần tử của mảng.",
+      "hints": [
+        "`reshape` đổi hình dạng nhưng không tự thêm hoặc xóa phần tử; tổng số phần tử phải được giữ nguyên.",
+        "Giá trị `-1` cho phép NumPy tự suy ra một chiều. Khi cố định số hàng là 2, số cột được tính từ tổng phần tử chia cho 2."
+      ]
+    },
+    {
+      "id": "q-npy-15",
+      "text": "Hàm nào sau đây được dùng để ghép các ma trận dọc theo một trục được chỉ định (axis)?",
+      "options": [
+        "np.stack",
+        "np.concatenate",
+        "np.vstack",
+        "np.hsplit"
+      ],
+      "correct": 1,
+      "explain": "Hàm `np.concatenate((arr1, arr2), axis=position)` được sử dụng để ghép các mảng lại với nhau theo một trục (axis) xác định.",
+      "hints": [
+        "Ghép mảng theo trục được chỉ định khác với xếp chồng theo chiều dọc/ngang bằng các hàm tiện ích.",
+        "Tìm hàm tổng quát có tham số `axis`; `concatenate` ghép các mảng tương thích dọc theo trục đã chọn."
+      ]
+    },
+    {
+      "id": "q-npy-16",
+      "text": "Để chia (tách) một mảng `arr` thành nhiều mảng con, ta có thể dùng hàm nào?",
+      "options": [
+        "np.divide",
+        "np.separate",
+        "np.split",
+        "np.extract"
+      ],
+      "correct": 2,
+      "explain": "NumPy cung cấp các hàm như `np.split`, `np.vsplit`, `np.hsplit` để tách một ma trận ra làm nhiều phần.",
+      "hints": [
+        "Tên hàm gợi ý thao tác: `split` là tách, còn `concatenate` là ghép.",
+        "Trong các lựa chọn, hãy chọn hàm tổng quát dùng để chia một mảng thành các phần/mảng con."
+      ]
+    },
+    {
+      "id": "q-npy-17",
+      "text": "Mục đích của hàm `np.expand_dims(arr, axis=position)` là gì?",
+      "options": [
+        "Xóa một chiều của ma trận",
+        "Mở rộng số lượng phần tử của ma trận",
+        "Thêm một chiều (dimension) mới vào ma trận ở vị trí axis",
+        "Tính định thức của ma trận"
+      ],
+      "correct": 2,
+      "explain": "`np.expand_dims` được dùng để thêm một chiều mới (với kích thước là 1) vào mảng tại vị trí `axis` được chỉ định.",
+      "hints": [
+        "`expand_dims` không tạo thêm dữ liệu; nó thêm một trục mới có độ dài 1.",
+        "Ví dụ, mảng shape `(3,)` khi thêm trục ở `axis=1` sẽ thành `(3, 1)` — số phần tử vẫn là 3."
+      ]
+    },
+    {
+      "id": "q-npy-18",
+      "text": "Lệnh `np.linalg.pinv(arr)` thực hiện phép toán gì?",
+      "options": [
+        "Tính ma trận giả nghịch đảo",
+        "Tính ma trận nghịch đảo ma trận vuông",
+        "Tính định thức của ma trận",
+        "Tính tổng giá trị đường chéo"
+      ],
+      "correct": 0,
+      "explain": "np.linalg.pinv(arr) tính ma trận giả nghịch đảo (Moore–Penrose pseudoinverse), không chỉ riêng nghịch đảo của ma trận vuông khả nghịch. Vì vậy đáp án đúng là 'Tính ma trận giả nghịch đảo'.",
+      "hints": [
+        "`pinv` là viết tắt của pseudoinverse; nó khác với nghịch đảo thông thường ở phạm vi áp dụng.",
+        "Ma trận giả nghịch đảo có thể được tính cả với ma trận không vuông hoặc không khả nghịch theo nghĩa thông thường."
+      ]
+    },
+    {
+      "id": "q-npy-19",
+      "text": "Để tính định thức của ma trận vuông, ta sử dụng hàm nào trong NumPy?",
+      "options": [
+        "np.trace(arr)",
+        "np.linalg.det(arr)",
+        "np.linalg.norm(arr)",
+        "np.dot(arr, arr)"
+      ],
+      "correct": 1,
+      "explain": "Hàm `np.linalg.det(arr)` được sử dụng để tính định thức (determinant) của ma trận.",
+      "hints": [
+        "Định thức là một đại lượng của ma trận vuông; tên tiếng Anh là determinant.",
+        "Hãy tìm hàm trong nhóm `np.linalg` có tên viết tắt `det`, thay vì hàm tính vết hoặc chuẩn."
+      ]
+    },
+    {
+      "id": "q-npy-20",
+      "text": "Đoạn code `np.trace(arr)` trả về kết quả gì?",
+      "options": [
+        "Chuyển vị của ma trận",
+        "Tổng giá trị trên đường chéo chính của ma trận",
+        "Ma trận đơn vị",
+        "Tích các phần tử trên đường chéo chính"
+      ],
+      "correct": 1,
+      "explain": "Hàm `np.trace(arr)` trả về tổng các phần tử nằm trên đường chéo chính của ma trận.",
+      "hints": [
+        "`trace` (vết ma trận) không đổi chỗ hàng-cột và cũng không nhân các phần tử.",
+        "Cộng các phần tử nằm trên đường chéo chính: từ góc trên bên trái đi xuống góc dưới bên phải."
+      ]
+    },
+    {
+      "id": "q-npy-21",
+      "text": "Phép nhân hai ma trận (matrix multiplication) A và B trong NumPy CÓ THỂ được thực hiện bằng cách nào sau đây?",
+      "options": [
+        "np.dot(A, B)",
+        "A.dot(B)",
+        "A @ B",
+        "Tất cả các cách trên"
+      ],
+      "correct": 3,
+      "explain": "NumPy hỗ trợ nhiều cú pháp cho phép nhân hai ma trận: `np.dot(A, B)`, phương thức `A.dot(B)`, và toán tử `@`.",
+      "hints": [
+        "Phép nhân ma trận có nhiều cách viết trong NumPy; cần phân biệt nó với phép nhân từng phần tử bằng `*`.",
+        "Kiểm tra từng lựa chọn: hàm `np.dot`, phương thức `.dot` và toán tử `@` đều có thể biểu diễn phép nhân ma trận trong trường hợp phù hợp."
+      ]
+    },
+    {
+      "id": "q-npy-22",
+      "text": "Đoạn mã `arr * 5` sẽ thực hiện điều gì?",
+      "options": [
+        "Báo lỗi do không thể nhân mảng với số nguyên",
+        "Lặp lại mảng arr 5 lần",
+        "Nhân từng phần tử (element-wise) của mảng arr với 5",
+        "Tạo ra ma trận kích thước 5x5 từ arr"
+      ],
+      "correct": 2,
+      "explain": "Phép toán `arr * value` sẽ áp dụng phép nhân với giá trị đó lên từng phần tử của mảng (Broadcasting).",
+      "hints": [
+        "Khi nhân một mảng với một số đơn, NumPy áp dụng phép toán cho từng phần tử.",
+        "Nếu mảng là `[2, 4, 6]`, phép nhân với 5 cho kết quả tương ứng `[10, 20, 30]`; không phải lặp lại danh sách."
+      ]
+    },
+    {
+      "id": "q-npy-23",
+      "text": "Để tìm VỊ TRÍ (chỉ số - index) của phần tử có giá trị lớn nhất trong mảng `arr`, ta dùng hàm nào?",
+      "options": [
+        "np.max(arr)",
+        "np.maximum(arr)",
+        "np.argmax(arr)",
+        "np.argsort(arr)"
+      ],
+      "correct": 2,
+      "explain": "Hàm `argmax(arr, axis=position)` trả về chỉ số (indice/vị trí) của phần tử có giá trị max.",
+      "hints": [
+        "`max` trả về giá trị lớn nhất, còn `argmax` trả về vị trí của giá trị lớn nhất.",
+        "Nếu cần index chứ không phải giá trị, hãy chọn hàm có tiền tố `arg`; lưu ý mặc định mảng nhiều chiều có thể được xem như đã làm phẳng."
+      ]
+    },
+    {
+      "id": "q-npy-24",
+      "text": "Hàm `np.argsort(arr)` trả về kết quả gì?",
+      "options": [
+        "Mảng đã được sắp xếp tăng dần",
+        "Mảng đã được sắp xếp giảm dần",
+        "Mảng chứa các chỉ số (indices) của các phần tử nếu mảng được sắp xếp tăng dần",
+        "Số lượng phần tử được sắp xếp"
+      ],
+      "correct": 2,
+      "explain": "`argsort` không trả về mảng giá trị đã sắp xếp, mà trả về mảng các *vị trí* (indices) xếp theo thứ tự tăng/giảm dần.",
+      "hints": [
+        "`sort` sắp xếp giá trị; `argsort` cho biết thứ tự chỉ số để tạo ra thứ tự đó.",
+        "Ví dụ, với `[30, 10, 20]`, thứ tự tăng dần ứng với các vị trí `[1, 2, 0]`, không phải các giá trị đã sắp xếp."
+      ]
+    },
+    {
+      "id": "q-npy-25",
+      "text": "Hàm `np.exp(arr)` tính toán biểu thức toán học nào đối với các phần tử trong mảng?",
+      "options": [
+        "Tính e^(x)",
+        "Tính x^2",
+        "Tính logarit cơ số e",
+        "Tính 10^x"
+      ],
+      "correct": 0,
+      "explain": "Hàm `np.exp(arr)` tính số mũ với cơ số tự nhiên e, công thức f(x) = e^x cho từng phần tử của mảng.",
+      "hints": [
+        "Trong toán học, ký hiệu `exp(x)` thường có nghĩa là hàm mũ với cơ số Euler `e`.",
+        "Áp dụng công thức `e^x` riêng cho từng phần tử của mảng; đừng nhầm với bình phương hay logarit."
+      ]
+    },
+    {
+      "id": "q-npy-26",
+      "text": "Tham số `keepdims=True` trong các hàm của NumPy như `sum()` hay `mean()` có tác dụng gì?",
+      "options": [
+        "Loại bỏ các giá trị NaN trong mảng",
+        "Thay đổi số lượng phần tử của mảng",
+        "Giữ nguyên số lượng chiều (shape) của mảng gốc sau khi tính toán (chiều bị tiêu giảm sẽ có kích thước 1)",
+        "Báo lỗi nếu mảng không phải là hình vuông"
+      ],
+      "correct": 2,
+      "explain": "Khi sử dụng `keepdims=True`, mảng kết quả sẽ giữ nguyên số chiều so với mảng gốc (các trục bị tính toán sẽ có độ dài là 1).",
+      "hints": [
+        "Các phép rút gọn như `sum` hoặc `mean` có thể làm giảm số chiều của kết quả.",
+        "`keepdims=True` giữ lại trục đã tính với kích thước 1; ví dụ tổng theo từng dòng của shape `(3, 4)` có thể giữ shape `(3, 1)`."
+      ]
+    },
+    {
+      "id": "q-npy-27",
+      "text": "Để lưu MỘT ma trận numpy vào file với định dạng đặc trưng của NumPy (.npy), ta sử dụng lệnh nào?",
+      "options": [
+        "np.savetxt(file, arr)",
+        "np.savez(file, arr)",
+        "np.save(file, arr)",
+        "np.dump(file, arr)"
+      ],
+      "correct": 2,
+      "explain": "np.save(file, arr) dùng để lưu một mảng NumPy vào file định dạng .npy. Để đọc file .npy, thường dùng np.load(file).",
+      "hints": [
+        "Định dạng `.npy` là định dạng nhị phân đặc trưng để lưu một mảng NumPy.",
+        "Nhớ phân biệt lệnh lưu một mảng, lệnh lưu nhiều mảng trong `.npz`, và lệnh đọc dữ liệu trở lại."
+      ]
+    },
+    {
+      "id": "q-npy-28",
+      "text": "Hàm `np.savez(file, arr1, arr2)` khác với `np.save()` như thế nào?",
+      "options": [
+        "np.savez lưu dữ liệu dưới định dạng text",
+        "np.savez cho phép lưu nhiều ma trận (arrays) vào cùng một file .npz",
+        "np.savez tự động nén file với mức độ cao nhất",
+        "np.savez chỉ dùng để tải (load) dữ liệu"
+      ],
+      "correct": 1,
+      "explain": "Theo slide, `np.savez` được sử dụng để lưu *nhiều* ma trận vào một file định dạng .npz.",
+      "hints": [
+        "`.npy` thường lưu một mảng, còn `.npz` là gói có thể chứa nhiều mảng.",
+        "Với hai mảng đầu vào, hãy chọn hàm có tên gần giống `save` nhưng hỗ trợ lưu nhiều mảng trong cùng tệp."
+      ]
+    },
+    {
+      "id": "q-npy-29",
+      "text": "Để đọc một ma trận từ file text (.txt, .csv), ta nên sử dụng lệnh nào của NumPy?",
+      "options": [
+        "np.load(file)",
+        "np.loadtxt(file)",
+        "np.readtxt(file)",
+        "np.read_csv(file)"
+      ],
+      "correct": 1,
+      "explain": "`np.loadtxt(file)` được sử dụng chuyên biệt để load (đọc) ma trận từ định dạng file text.",
+      "hints": [
+        "Tệp văn bản chứa các giá trị được biểu diễn dưới dạng text; hàm đọc cần phân tích các dòng và cột văn bản.",
+        "Trong các lựa chọn, tìm hàm NumPy có tên `loadtxt`, chuyên dùng để đọc dữ liệu dạng văn bản."
+      ]
+    },
+    {
+      "id": "q-npy-30",
+      "text": "Cho đoạn code: `np.random.randn(2, 3)`. Nó sẽ trả về kết quả thuộc loại nào?",
+      "options": [
+        "Ma trận 2x3 gồm các số nguyên ngẫu nhiên",
+        "Ma trận 2x3 với các phần tử 0 và 1",
+        "Ma trận 2x3 ngẫu nhiên (theo phân phối chuẩn)",
+        "Báo lỗi cú pháp"
+      ],
+      "correct": 2,
+      "explain": "`np.random.randn(shape)` sinh ra ma trận ngẫu nhiên (thường theo phân phối chuẩn tiêu chuẩn) với kích thước chỉ định.",
+      "hints": [
+        "`randn` sinh giá trị ngẫu nhiên theo phân phối chuẩn tiêu chuẩn, không phải chỉ gồm 0 và 1.",
+        "Hai số truyền vào là kích thước theo hai chiều: 2 hàng, 3 cột; các giá trị là số thực ngẫu nhiên."
+      ]
+    },
+    {
+      "id": "q-npy-31",
+      "text": "Đoạn code sau tính giá trị gì của ma trận A: `np.min(A, axis=0)`?",
+      "options": [
+        "Phần tử nhỏ nhất của toàn bộ ma trận",
+        "Phần tử nhỏ nhất trên từng dòng",
+        "Phần tử nhỏ nhất trên từng cột",
+        "Vị trí phần tử nhỏ nhất của ma trận"
+      ],
+      "correct": 2,
+      "explain": "Trong NumPy, phép tính aggregation dọc theo `axis=0` sẽ thực hiện dọc theo các cột (lấy giá trị nhỏ nhất của mỗi cột). Chú ý: slide ghi axis 0|cột, 1|hàng.",
+      "hints": [
+        "`axis=0` nghĩa là rút gọn theo trục đầu tiên; kết quả giữ lại các vị trí theo trục cột.",
+        "Với ma trận có nhiều hàng, so sánh các giá trị cùng cột với nhau rồi lấy giá trị nhỏ nhất cho mỗi cột."
+      ]
+    },
+    {
+      "id": "q-npy-32",
+      "text": "Lệnh `np.diag(arr)` có thể làm được gì?",
+      "options": [
+        "Chỉ dùng để lấy đường chéo của ma trận vuông",
+        "Chỉ dùng để tạo ma trận đường chéo từ mảng 1D",
+        "Tạo ma trận đường chéo (nếu input là 1D) HOẶC trả về đường chéo (nếu input là 2D)",
+        "Tính tổng các phần tử trên đường chéo"
+      ],
+      "correct": 2,
+      "explain": "Hàm `np.diag` hoạt động theo cả hai chiều: tạo ma trận đường chéo từ mảng hoặc trích xuất mảng đường chéo từ ma trận.",
+      "hints": [
+        "`diag` có hành vi phụ thuộc vào số chiều của đầu vào.",
+        "Đầu vào 1D sẽ được đặt lên đường chéo của ma trận; đầu vào 2D thì hàm trích các phần tử đường chéo thành mảng."
+      ]
+    },
+    {
+      "id": "q-npy-33",
+      "text": "Cho mảng `A = np.arange(12)`. Nếu thực hiện `A.reshape(3, -1)`, mảng sẽ có kích thước là bao nhiêu?",
+      "options": [
+        "(3, 3)",
+        "(3, 4)",
+        "(4, 3)",
+        "(3, -1)"
+      ],
+      "correct": 1,
+      "explain": "Mảng có 12 phần tử. Reshape với số hàng là 3, số cột `-1` sẽ được NumPy tự động tính là 12 / 3 = 4. Do đó shape là (3, 4).",
+      "hints": [
+        "`arange(12)` tạo 12 phần tử, bắt đầu từ 0 và kết thúc trước 12.",
+        "Sau khi reshape thành 3 hàng, chia tổng 12 phần tử cho 3 để suy ra số cột còn lại."
+      ]
+    },
+    {
+      "id": "q-npy-34",
+      "text": "Nếu muốn gộp 2 ma trận A và B xếp chồng LÊN NHAU (theo chiều dọc), hàm nào sau đây là trực tiếp nhất?",
+      "options": [
+        "np.hstack([A, B])",
+        "np.vstack([A, B])",
+        "np.dstack([A, B])",
+        "np.transpose([A, B])"
+      ],
+      "correct": 1,
+      "explain": "`vstack` (vertical stack) dùng để xếp chồng các ma trận lên nhau theo chiều dọc.",
+      "hints": [
+        "`vstack` là viết tắt của vertical stack; `hstack` là horizontal stack.",
+        "Xếp chồng lên nhau làm tăng số hàng, còn ghép cạnh nhau làm tăng số cột — chọn hàm đúng với hướng ghép."
+      ]
+    },
+    {
+      "id": "q-npy-35",
+      "text": "Hàm `np.linalg.norm(arr, ord='fro')` được sử dụng để làm gì?",
+      "options": [
+        "Chuẩn hóa dữ liệu trong mảng về khoảng [0, 1]",
+        "Tính chuẩn Frobenius của ma trận",
+        "Tìm vector riêng của ma trận",
+        "Sắp xếp ma trận theo chuẩn"
+      ],
+      "correct": 1,
+      "explain": "Lệnh `np.linalg.norm(arr, ord='fro')` được sử dụng để tính chuẩn Frobenious của ma trận.",
+      "hints": [
+        "`norm` tính độ lớn/chuẩn của vector hoặc ma trận; tham số `ord` chọn loại chuẩn.",
+        "Giá trị `ord='fro'` là tên viết tắt của một chuẩn ma trận phổ biến, không phải thao tác chuẩn hóa về khoảng 0 đến 1."
+      ]
+    },
+    {
+      "id": "q-npy-36",
+      "text": "Để lấy một số lượng `num_indices` phần tử ở vị trí ĐẦU TIÊN của một array 1D, cú pháp nào là đúng?",
+      "options": [
+        "array[:num_indices]",
+        "array[:-num_indices]",
+        "array[num_indices:]",
+        "array[-num_indices:]"
+      ],
+      "correct": 0,
+      "explain": "Cú pháp `array[:num_indices]` lấy từ đầu mảng đến vị trí chỉ số `num_indices - 1`, tương ứng lấy `num_indices` phần tử đầu tiên.",
+      "hints": [
+        "Trong lát cắt `array[:n]`, điểm bắt đầu được bỏ trống nên mặc định từ đầu mảng.",
+        "Điểm kết thúc `n` không được lấy, vì vậy các chỉ số được chọn là `0` đến `n-1`, tổng cộng n phần tử."
+      ]
+    },
+    {
+      "id": "q-npy-37",
+      "text": "Đoạn mã sau trả về kết quả gì?\nB = np.array([10, 20, 30, 40])\nprint(B[-1])",
+      "options": [
+        "10",
+        "30",
+        "40",
+        "Báo lỗi"
+      ],
+      "correct": 2,
+      "explain": "Chỉ số `-1` tương ứng với phần tử cuối cùng của mảng, trong trường hợp này là 40.",
+      "hints": [
+        "Trong NumPy, chỉ số âm đếm từ cuối mảng: `-1` là phần tử cuối cùng.",
+        "Với `[10, 20, 30, 40]`, chỉ số `-1` trỏ đến giá trị nằm ngoài cùng bên phải."
+      ]
+    },
+    {
+      "id": "q-npy-38",
+      "text": "Cấu trúc dữ liệu NumPy Arrays khác List thuần của Python ở điểm chính nào khi phân tích dữ liệu lớn?",
+      "options": [
+        "List hỗ trợ tính toán tốt hơn",
+        "NumPy array có tốc độ thực thi nhanh hơn và hỗ trợ tính toán đại số/vector tốt hơn",
+        "NumPy array chỉ chứa được số nguyên",
+        "NumPy array cho phép phần tử khác kiểu dữ liệu dễ dàng hơn List"
+      ],
+      "correct": 1,
+      "explain": "NumPy arrays có tốc độ thực thi vượt trội và hỗ trợ các hàm tính toán đại số ma trận, vector cấp cao, điều mà List thuần không làm được trực tiếp.",
+      "hints": [
+        "NumPy được thiết kế cho tính toán số trên mảng nhiều chiều và các phép toán vector hóa.",
+        "List Python linh hoạt, nhưng các phép toán số học trên NumPy array thường áp dụng theo phần tử và được tối ưu cho dữ liệu số lớn."
+      ]
+    },
+    {
+      "id": "q-npy-39",
+      "text": "Cho ma trận B có kích thước 3 chiều (28, 28, 3). Nếu ta gọi `np.dsplit(B, 3)`, lệnh này sẽ tách ma trận theo chiều nào?",
+      "options": [
+        "Chiều dọc (hàng)",
+        "Chiều ngang (cột)",
+        "Chiều sâu (chiều thứ 3)",
+        "Không thể tách được"
+      ],
+      "correct": 2,
+      "explain": "`dsplit` (depth split) tách mảng theo chiều sâu (depth/chiều thứ 3) của ma trận 3D.",
+      "hints": [
+        "Tên `dsplit` gợi ý depth split; hàm này áp dụng cho mảng có ít nhất 3 chiều.",
+        "Với shape `(28, 28, 3)`, hai chiều đầu là hàng/cột, chiều cuối có độ dài 3; `dsplit` chia theo chiều cuối."
+      ]
+    },
+    {
+      "id": "q-npy-40",
+      "text": "Cho A = np.array([1, 5, 2]), B = np.array([4, 1, 6]). Lệnh `np.maximum(A, B)` trả về?",
+      "options": [
+        "[4, 5, 6]",
+        "6",
+        "[1, 1, 2]",
+        "Báo lỗi"
+      ],
+      "correct": 0,
+      "explain": "Hàm `np.maximum(A, B)` so sánh hai mảng theo từng vị trí (element-wise) và trả về mảng gồm các giá trị lớn hơn tương ứng: max(1,4)=4, max(5,1)=5, max(2,6)=6.",
+      "hints": [
+        "`maximum` so sánh hai mảng theo từng vị trí, không tìm một giá trị lớn nhất duy nhất cho toàn bộ dữ liệu.",
+        "So sánh cặp phần tử tương ứng: `max(1,4)`, `max(5,1)` và `max(2,6)`; kết quả gồm ba giá trị."
+      ]
+    },
+    {
+      "id": "q-npy-41",
+      "text": "Lệnh `np.linalg.det(np.eye(2))` sẽ trả về kết quả bằng bao nhiêu?",
+      "options": [
+        "0.0",
+        "1.0",
+        "2.0",
+        "Báo lỗi"
+      ],
+      "correct": 1,
+      "explain": "`np.eye(2)` tạo ma trận đơn vị 2x2. Định thức (det) của mọi ma trận đơn vị đều bằng 1.",
+      "hints": [
+        "`np.eye(2)` tạo ma trận đơn vị 2×2; định thức của ma trận đơn vị luôn bằng 1.",
+        "Ma trận này có đường chéo chính là 1 và các phần tử còn lại bằng 0; áp dụng tính chất định thức của ma trận đơn vị."
+      ]
+    },
+    {
+      "id": "q-npy-42",
+      "text": "Khi import `import numpy as np`, 'np' đóng vai trò là gì?",
+      "options": [
+        "Một hàm trong thư viện numpy",
+        "Tên định danh thay thế (alias) cho thư viện numpy",
+        "Một biến hằng số trong numpy",
+        "Một lớp (class) của numpy"
+      ],
+      "correct": 1,
+      "explain": "Từ khóa `as np` cho phép gán một alias (tên viết tắt) cho module để gọi các hàm ngắn gọn hơn.",
+      "hints": [
+        "Cú pháp `module as alias` đặt một tên khác để gọi module ngắn gọn hơn.",
+        "`np` không phải hàm hay lớp; nó là bí danh được gán cho module `numpy` khi import."
+      ]
+    },
+    {
+      "id": "q-npy-43",
+      "text": "Lệnh nào để đếm vị trí (index) của giá trị NHỎ NHẤT trong mảng theo từng DÒNG của ma trận 2D `arr`?",
+      "options": [
+        "np.min(arr, axis=1)",
+        "np.argmin(arr, axis=0)",
+        "np.argmin(arr, axis=1)",
+        "np.argmin(arr)"
+      ],
+      "correct": 2,
+      "explain": "`np.argmin` trả về index của giá trị min. Đặt `axis=1` sẽ thực hiện thao tác dọc theo từng dòng (trục ngang).",
+      "hints": [
+        "`argmin` trả về chỉ số của phần tử nhỏ nhất; `min` chỉ trả về giá trị nhỏ nhất.",
+        "`axis=1` thao tác theo từng dòng, nên mỗi dòng có một chỉ số chỉ vị trí phần tử nhỏ nhất của chính dòng đó."
+      ]
+    },
+    {
+      "id": "q-npy-44",
+      "text": "Nếu muốn tính tổng từng dòng của mảng 2D và giữ số chiều để kết quả có shape (3, 1) từ mảng gốc shape (3, 4), bạn cần gọi hàm sum như thế nào?",
+      "options": [
+        "np.sum(arr, axis=1, keepdims=True)",
+        "np.sum(arr, axis=0, keepdims=False)",
+        "np.sum(arr, axis=0)",
+        "np.sum(arr, axis=1)"
+      ],
+      "correct": 0,
+      "explain": "axis=1 tính tổng theo từng dòng, tạo một kết quả cho mỗi dòng. keepdims=True giữ lại chiều đã rút gọn với kích thước 1, nên shape kết quả là (3, 1).",
+      "hints": [
+        "`sum` tính tổng; `axis=1` tạo một tổng cho mỗi dòng của mảng 2D.",
+        "Muốn shape `(3, 1)` từ `(3, 4)`, hãy rút gọn chiều cột nhưng giữ trục đó lại với kích thước 1."
+      ]
+    },
+    {
+      "id": "q-npy-45",
+      "text": "Cho mảng A có hình dạng (shape) là (2, 3). Nếu ta gọi `A.reshape(-1)`, hình dạng mảng mới sẽ là?",
+      "options": [
+        "(2, 3)",
+        "(6, 1)",
+        "(6,)",
+        "Báo lỗi"
+      ],
+      "correct": 2,
+      "explain": "Gọi `reshape(-1)` không có chiều nào khác đồng nghĩa với việc yêu cầu NumPy duỗi thẳng (flatten) toàn bộ mảng về dạng 1 chiều.",
+      "hints": [
+        "Shape `(2, 3)` cho biết tổng cộng có 6 phần tử; `reshape(-1)` yêu cầu một chiều tự suy ra độ dài.",
+        "Duỗi mảng thành một dãy duy nhất gồm toàn bộ 6 phần tử; shape 1D được viết bằng tuple chỉ có một số và dấu phẩy."
+      ]
+    },
+    {
+      "id": "q-npy-46",
+      "text": "Theo tài liệu, ký hiệu nào được quy định đối với tham số `axis` trong numpy array 2D?",
+      "options": [
+        "0 | hàng, 1 | cột",
+        "0 | cột, 1 | hàng",
+        "0 | dòng, 1 | trang",
+        "Không có sự phân biệt"
+      ],
+      "correct": 1,
+      "explain": "Theo slide số 17, `axis: 0 | cột  1 | hàng` được ghi chú cụ thể để hỗ trợ ghi nhớ thao tác dọc theo trục.",
+      "hints": [
+        "Với mảng 2D, quy ước cần nhớ là `axis=0` ứng với thao tác theo cột và `axis=1` ứng với thao tác theo hàng.",
+        "Khi rút gọn `axis=0`, mỗi cột cho ra một kết quả; khi rút gọn `axis=1`, mỗi hàng cho ra một kết quả."
+      ]
+    },
+    {
+      "id": "q-npy-47",
+      "text": "Lệnh `sys.path` trong Python (đề cập khi cài đặt NumPy) thường được dùng để làm gì?",
+      "options": [
+        "Thực thi file numpy",
+        "Xem đường dẫn đến thư mục chứa các gói thư viện/Scripts của Python",
+        "Cài đặt thư viện tự động",
+        "Xóa các gói đã cài đặt"
+      ],
+      "correct": 1,
+      "explain": "Lệnh `print(sys.path)` giúp xem danh sách đường dẫn tìm kiếm của module, để kiểm tra xem Python có trỏ đúng đến nơi cài pip và numpy không.",
+      "hints": [
+        "`sys.path` là danh sách các thư mục Python tìm kiếm khi import module; nó không tự cài đặt hay chạy thư viện.",
+        "Nếu muốn kiểm tra Python tìm gói ở đâu, hãy nghĩ đến danh sách đường dẫn tìm kiếm module, có thể xem bằng `print(sys.path)`."
+      ]
+    },
+    {
+      "id": "q-npy-48",
+      "text": "Lệnh `np.arange(3)` tạo ra mảng có giá trị nào?",
+      "options": [
+        "[1, 2, 3]",
+        "[0, 1, 2]",
+        "[0, 1, 2, 3]",
+        "[3, 3, 3]"
+      ],
+      "correct": 1,
+      "explain": "Cú pháp rút gọn của arange với 1 tham số sẽ tính start mặc định là 0, step mặc định là 1. Do đó nó tạo mảng từ 0 đến 2.",
+      "hints": [
+        "Khi `arange` chỉ nhận một đối số, đối số đó là mốc dừng; điểm bắt đầu mặc định là 0 và bước nhảy mặc định là 1.",
+        "Với `np.arange(3)`, liệt kê các số bắt đầu từ 0 nhưng dừng trước 3."
+      ]
+    },
+    {
+      "id": "q-npy-49",
+      "text": "Khi khai báo ma trận ngẫu nhiên `B = np.array(np.arange(12))`, kết quả của `B` là gì?",
+      "options": [
+        "Một ma trận 3x4 có các số ngẫu nhiên",
+        "Một mảng 1D gồm các số từ 0 đến 11",
+        "Một mảng 1D gồm 12 số ngẫu nhiên",
+        "Báo lỗi"
+      ],
+      "correct": 1,
+      "explain": "`np.arange(12)` sinh ra một mảng có 12 số từ 0 đến 11, không phải số ngẫu nhiên.",
+      "hints": [
+        "Với mảng 1D, `arange(12)` tạo các số liên tiếp bắt đầu từ 0; bọc bằng `np.array` không làm nó thành ma trận 2D.",
+        "Không có lệnh reshape hay lồng danh sách để tạo nhiều hàng, vì vậy kết quả vẫn là mảng một chiều."
+      ]
+    },
+    {
+      "id": "q-npy-50",
+      "text": "Để lấy một số lượng `num_indices` phần tử ở vị trí CUỐI CÙNG của một array 1D, cú pháp nào sau đây là chính xác?",
+      "options": [
+        "array[-num_indices:]",
+        "array[:-num_indices]",
+        "array[:num_indices]",
+        "array[-num_indices:-1]"
+      ],
+      "correct": 0,
+      "explain": "Cú pháp `array[-num_indices:]` bắt đầu từ vị trí âm (ngược từ dưới lên) với khoảng cách `num_indices`, và dấu `:` chỉ định lấy đến tận cùng của mảng.",
+      "hints": [
+        "Lát cắt âm giúp lấy phần tử tính từ cuối mảng; dấu `:` ở cuối nghĩa là lấy đến hết.",
+        "Để lấy n phần tử cuối, bắt đầu ở chỉ số âm `-n` rồi lấy đến cuối; không dùng `:-n` vì cách đó loại bỏ n phần tử cuối."
+      ]
+    }
+  ]
+}
