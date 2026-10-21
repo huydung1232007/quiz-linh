@@ -1,24 +1,24 @@
 {
-  "id": "q-python-general-45",
-  "code": "PY-GENERAL-45",
-  "title": "Ôn tập Python tổng hợp",
-  "desc": "Ôn tập Python: vòng lặp, hàm, ngoại lệ, kiểu dữ liệu, NumPy và Matplotlib.",
-  "duration": 60,
+  "id": "q-python-q4-45",
+  "code": "PY-Q4-45",
+  "title": "Đề Ôn Thầy - 4",
+  "desc": "Hệ thống câu hỏi ôn tập tổng hợp Python, NumPy, Matplotlib và cấu trúc dữ liệu.",
+  "duration": 120,
   "createdAt": "2026-10-21",
   "questions": [
     {
-      "text": "Điền …  để in các giá trị i nhỏ hơn 6 ở khối lệnh sau:\ni = 1\n [___]  i < 6  [___] \n    print(i)\n    i += 1",
+      "text": "Điền …  để in các giá trị i nhỏ hơn 6 ở khối lệnh sau:\ni = 1\n [___]  i < 6  [___] \n    print(i)\n    i += 1",
       "options": [
-        "while; :",
-        "for; :",
-        "if; :",
-        "while; ;"
+        "while, :",
+        "for, :",
+        "if, :",
+        "loop, :"
       ],
       "correct": 0,
-      "explain": "Dùng `while i < 6:` để lặp khi i còn nhỏ hơn 6. Mỗi lượt in i rồi tăng i lên 1, nên các giá trị được in là 1 đến 5.",
+      "explain": "Cấu trúc vòng lặp while trong Python bắt đầu bằng từ khóa 'while', tiếp theo là điều kiện và kết thúc bằng dấu hai chấm ':'.",
       "hints": [
-        "Cấu trúc lặp có điều kiện trong Python gồm từ khóa nào và dấu nào ở cuối dòng điều kiện?",
-        "Dòng cần tạo dạng `while điều_kiện:`."
+        "Khối lệnh này lặp lại liên tục khi điều kiện còn đúng.",
+        "Từ khóa chỉ vòng lặp dựa trên điều kiện và dấu kết thúc dòng lệnh bắt đầu khối lệnh."
       ]
     },
     {
@@ -30,13 +30,14 @@
         "arr.shape()"
       ],
       "correct": 1,
-      "explain": "`shape` là thuộc tính của mảng NumPy, truy cập bằng `arr.shape` và trả về tuple kích thước các chiều. Không gọi nó như hàm.",
+      "explain": "Trong NumPy (Python), '.shape' là một thuộc tính (attribute) chứ không phải phương thức, dùng để lấy kích thước của mảng.",
       "hints": [
-        "Phân biệt thuộc tính với phương thức: có cần dấu ngoặc tròn sau `shape` không?"
+        "Kích thước mảng được lưu như một thuộc tính, không phải là hàm.",
+        "Hãy loại bỏ các đáp án có dấu ngoặc tròn ()."
       ]
     },
     {
-      "text": "Cho biết ý  nghĩa của k trong đoạn chương trình sau:\n\nn = int(input('Nhập n <= 1000: '))\n\nk = 0; n = abs(n)\n\nwhile n != 0:\n\n    n //= 10\n\n    k += 1",
+      "text": "Cho biết ý  nghĩa của k trong đoạn chương trình sau:\n\nn = int(input('Nhập n <= 1000: '))\n\nk = 0; n = abs(n)\n\nwhile n != 0:\n\n    n //= 10\n\n    k += 1",
       "options": [
         "k là chữ số khác 0 lớn nhất của n.",
         "k là số chữ số khác 0 của n.",
@@ -44,43 +45,45 @@
         "k là chữ số hàng đơn vị của n."
       ],
       "correct": 2,
-      "explain": "Mỗi vòng lặp chia n nguyên cho 10 và tăng k lên 1, tức là loại bỏ lần lượt từng chữ số. Vì vậy k đếm số chữ số của |n|; với số nguyên dương thông thường, đó là số chữ số có nghĩa theo cách dùng trong câu hỏi.",
+      "explain": "Vòng lặp chia nguyên n cho 10 liên tục cho đến khi n bằng 0. Mỗi lần chia, k tăng lên 1, nên k chính là tổng số chữ số của n (số chữ số có nghĩa).",
       "hints": [
-        "Mỗi lần `n //= 10`, một chữ số ở cuối bị loại bỏ. k tăng bao nhiêu lần?"
+        "Mỗi vòng lặp n bị loại bỏ chữ số cuối cùng bằng phép chia nguyên // 10.",
+        "k đếm số lần loại bỏ chữ số cho đến khi số đó bằng 0."
       ]
     },
     {
-      "text": "Kết quả của chương trình sau là bao nhiêu?\ndef kq(name):\n      s = \"Tôi tên là: \"\n      s = s + name\n      return s\nprint(kq(\"Xuân\"))",
+      "text": "Kết quả của chương trình sau là bao nhiêu?\ndef kq(name):\n      s = \"Tôi tên là: \"\n      s = s + name\n      return s\nprint(kq(\"Xuân\"))",
       "options": [
         "\"Tôi tên là: \"",
         "Tất cả đều sai",
         "\"Xuân\"",
         "\"Tôi tên là: Xuân\"",
-        "e. Chương trình bị lỗi"
+        "Chương trình bị lỗi"
       ],
       "correct": 3,
-      "explain": "Hàm tạo chuỗi ban đầu `Tôi tên là: `, nối thêm `name` là `Xuân`, rồi trả về chuỗi `Tôi tên là: Xuân`.",
+      "explain": "Hàm nối chuỗi 'Tôi tên là: ' với tham số name truyền vào là 'Xuân'.",
       "hints": [
-        "Theo dõi giá trị của `s` sau phép nối chuỗi `s + name`."
+        "Toán tử + dùng để nối hai chuỗi lại với nhau.",
+        "Chuỗi trả về bao gồm chuỗi gốc s và biến name được truyền vào."
       ]
     },
     {
-      "text": "Điền … để in thông báo khi điều kiện sai:\ni = 1\nwhile i < 6:\n    print(i)\n    i += 1\n [___] \n    print(\"i is no longer less than 6\")",
+      "text": "Điền … để in thông báo khi điều kiện sai:\ni = 1\nwhile i < 6:\n    print(i)\n    i += 1\n [___] \n    print(\"i is no longer less than 6\")",
       "options": [
         "else:",
         "elif:",
         "except:",
-        "finally:"
+        "otherwise:"
       ],
       "correct": 0,
-      "explain": "Khối `else` đặt sau vòng lặp while sẽ chạy khi điều kiện `i < 6` trở thành False và vòng lặp kết thúc bình thường.",
+      "explain": "Trong Python, vòng lặp while có thể đi kèm với khối 'else:'. Khối này sẽ được thực thi khi điều kiện của while trả về False.",
       "hints": [
-        "Cần dùng nhánh nào để chạy khi điều kiện while không còn đúng?",
-        "Nhánh này đi cùng if/while và không cần thêm điều kiện."
+        "Giống như câu lệnh if, vòng lặp while/for cũng có thể kết hợp với một từ khóa để chạy code khi điều kiện rẽ nhánh sai hoặc lặp xong.",
+        "Từ khóa này có nghĩa là 'ngược lại'."
       ]
     },
     {
-      "text": "Đoạn chương trình sau có mục đích gì?\ntry:\n# đoạn code có thể gây ra lỗi\n    pass\nexcept (TypeError, ZeroDivisionError):\n    print(\"Python Quiz\")",
+      "text": "Đoạn chương trình sau có mục đích gì?\ntry:\n# đoạn code có thể gây ra lỗi\n    pass\nexcept (TypeError, ZeroDivisionError):\n    print(\"Python Quiz\")",
       "options": [
         "In ra ' Python Quiz ' nếu không có ngoại lệ xảy ra.",
         "In ra ' Python Quiz ' nếu một trong hai ngoại lệ TypeError và ZeroDivisionError xảy ra.",
@@ -88,25 +91,27 @@
         "In ra ' Python Quiz ' nếu có ngoại lệ xảy ra (không quan trọng là ngoại lệ gì)."
       ],
       "correct": 1,
-      "explain": "`except (TypeError, ZeroDivisionError)` bắt một trong hai loại ngoại lệ được liệt kê. Nếu xảy ra một trong hai lỗi đó, chương trình in `Python Quiz`.",
+      "explain": "Cú pháp except với tuple các lỗi sẽ bắt bất kỳ lỗi nào xuất hiện nằm trong tuple đó (ở đây là TypeError hoặc ZeroDivisionError).",
       "hints": [
-        "Danh sách ngoại lệ trong `except (...)` có nghĩa là bắt đồng thời hay bắt bất kỳ loại nào trong danh sách?"
+        "Khi except chứa một tuple nhiều lỗi, nó hoạt động như toán tử OR.",
+        "Chỉ cần 1 trong các lỗi được liệt kê xảy ra là khối lệnh except sẽ chạy."
       ]
     },
     {
-      "text": "Cho biết kết quả của đoạn chương trình sau?\ndef myfunc():\n    try:\n          print('Monday')\n    finally:\n          print('Tuesday')\nmyfunc()",
+      "text": "Cho biết kết quả của đoạn chương trình sau?\ndef myfunc():\n    try:\n          print('Monday')\n    finally:\n          print('Tuesday')\nmyfunc()",
       "options": [
         "Monday Tuesday",
         "Tuesday Monday",
         "Lỗi",
         "Tuesday",
-        "e. Monday",
-        "f. Tất cả đều sai"
+        "Monday",
+        "Tất cả đều sai"
       ],
       "correct": 0,
-      "explain": "Khối `try` in `Monday` trước. Khối `finally` luôn được thực thi sau đó nên in `Tuesday`. Hai dòng được in theo thứ tự Monday rồi Tuesday.",
+      "explain": "Khối try thực thi in ra 'Monday', sau đó khối finally luôn luôn được thực thi bất kể có lỗi hay không, in tiếp 'Tuesday'.",
       "hints": [
-        "Lệnh trong `finally` chạy trước hay sau phần thân `try`?"
+        "Code trong 'try' không có lỗi nên sẽ chạy bình thường.",
+        "Khối 'finally' là khối lệnh luôn luôn được chạy vào cuối, bất kể có exception hay không."
       ]
     },
     {
@@ -118,9 +123,10 @@
         "Để bắt lấy các giá trị đang xử lý trong khối lệnh"
       ],
       "correct": 1,
-      "explain": "`try ... except` dùng để xử lý ngoại lệ: chương trình thử chạy khối `try`, và nếu xảy ra ngoại lệ phù hợp thì chuyển sang khối `except` thay vì kết thúc đột ngột.",
+      "explain": "Mục đích chính của try...except là để bắt và xử lý các lỗi (ngoại lệ - exceptions) phát sinh trong lúc chạy (runtime), giúp chương trình không bị crash.",
       "hints": [
-        "Hãy nghĩ đến mục đích của việc bắt lỗi khi chương trình đang chạy."
+        "Từ exception có nghĩa là 'ngoại lệ' (lỗi).",
+        "Nó giúp chương trình xử lý tình huống lỗi một cách chủ động thay vì bị treo/crash."
       ]
     },
     {
@@ -132,9 +138,11 @@
         "List"
       ],
       "correct": 3,
-      "explain": "List có thứ tự, có thể thay đổi sau khi tạo và cho phép các phần tử trùng lặp. Set không giữ các phần tử trùng, tuple không thể thay đổi.",
+      "explain": "List là kiểu dữ liệu có thứ tự, có thể thay đổi (mutable) và cho phép các phần tử trùng lặp. Tuple thì không thể thay đổi, còn Set thì không có thứ tự và không cho trùng lặp.",
       "hints": [
-        "Chọn kiểu dữ liệu vừa có thứ tự, vừa sửa đổi được, vừa cho phép phần tử lặp."
+        "Tuple có thứ tự nhưng không thể thay đổi.",
+        "Set có thể thay đổi nhưng không có thứ tự và không cho trùng lặp.",
+        "List đáp ứng đủ 3 yếu tố: có thứ tự, mutable, cho trùng lặp."
       ]
     },
     {
@@ -146,9 +154,10 @@
         "Lỗi thực thi"
       ],
       "correct": 0,
-      "explain": "`format('An')` thay phần giữ chỗ `{0}` bằng đối số đầu tiên là `An`, nên kết quả là `Chào An`.",
+      "explain": "Phương thức format() sẽ thay thế '{0}' bằng tham số đầu tiên được truyền vào (ở đây là 'An').",
       "hints": [
-        "Chỉ số `{0}` đại diện cho đối số đầu tiên truyền vào `format()`."
+        "{0} là một placeholder, sẽ được thay thế bởi đối số có index 0 trong hàm format().",
+        "Chuỗi sẽ được định dạng và điền giá trị trực tiếp vào phần placeholder."
       ]
     },
     {
@@ -158,12 +167,13 @@
         "Đánh dấu trên y-axis",
         "Đánh dấu trên x-axis",
         "Vị trí của đánh dấu",
-        "e. Tất cả đều sai"
+        "Tất cả đều sai"
       ],
       "correct": 2,
-      "explain": "`xticks()` trong Matplotlib dùng để lấy hoặc đặt các vị trí đánh dấu trên trục x; có thể truyền thêm nhãn tương ứng.",
+      "explain": "Trong thư viện Matplotlib, xticks() được sử dụng để lấy hoặc thiết lập các điểm đánh dấu (ticks) và nhãn trên trục x.",
       "hints": [
-        "Chữ x trong tên `xticks` cho biết trục nào?"
+        "Chữ 'x' đứng đầu đại diện cho trục hoành (x-axis).",
+        "Ticks là các vạch đánh dấu giá trị trên trục tọa độ."
       ]
     },
     {
@@ -175,9 +185,10 @@
         "import math from sqrt"
       ],
       "correct": 2,
-      "explain": "Cú pháp `from math import sqrt` nhập trực tiếp hàm `sqrt` từ module `math`, sau đó có thể gọi `sqrt(...)`.",
+      "explain": "Cú pháp import một thành phần cụ thể từ một module trong Python là: 'from <tên_module> import <tên_thành_phần>'.",
       "hints": [
-        "Dạng cú pháp là `from tên_module import tên_hàm`."
+        "Phải chỉ định nguồn (from) trước, sau đó mới đến thành phần cần nạp (import).",
+        "Module lớn (math) chứa thành phần nhỏ (sqrt)."
       ]
     },
     {
@@ -187,12 +198,13 @@
         "Tất cả đều sai",
         "np.subtract(arr1, arr2)",
         "np.min(arr1, arr2)",
-        "e. np.minus(arr1, arr2)"
+        "np.minus(arr1, arr2)"
       ],
       "correct": 2,
-      "explain": "`np.subtract(arr1, arr2)` thực hiện phép trừ từng phần tử tương ứng của hai mảng NumPy tương thích kích thước.",
+      "explain": "Trong thư viện NumPy, hàm np.subtract(arr1, arr2) dùng để trừ các phần tử tương ứng của mảng arr2 cho arr1.",
       "hints": [
-        "Hãy nhớ tên hàm NumPy tương đương với phép toán subtract."
+        "Numpy sử dụng tên tiếng Anh đầy đủ của phép trừ.",
+        "Phép trừ tiếng Anh là 'subtract'."
       ]
     },
     {
@@ -202,12 +214,13 @@
         "print(a1)",
         "print(a[0])",
         "print(a[1])",
-        "e. print(a0)"
+        "print(a0)"
       ],
       "correct": 2,
-      "explain": "Python đánh chỉ số danh sách từ 0, vì vậy phần tử đầu tiên nằm ở `a[0]`.",
+      "explain": "Chỉ số (index) của List trong Python bắt đầu từ 0, nên phần tử đầu tiên là a[0].",
       "hints": [
-        "Chỉ số của phần tử đầu tiên trong list Python là 0 hay 1?"
+        "Python là ngôn ngữ đếm chỉ số (index) bắt đầu từ 0 (zero-indexed).",
+        "Để truy cập phần tử mảng, ta dùng dấu ngoặc vuông []."
       ]
     },
     {
@@ -219,13 +232,14 @@
         "raise"
       ],
       "correct": 3,
-      "explain": "`raise` dùng để chủ động phát sinh ngoại lệ. Có thể kết hợp với điều kiện `if` để phát sinh lỗi khi điều kiện không thỏa mãn.",
+      "explain": "Từ khóa 'raise' được sử dụng để chủ động phát sinh (throw) một ngoại lệ/lỗi khi một điều kiện cụ thể được thỏa mãn.",
       "hints": [
-        "Từ khóa nào trong Python dùng để chủ động ném ra một ngoại lệ?"
+        "Từ khóa này có nghĩa là 'nâng lên' hoặc 'phát sinh'.",
+        "Nó dùng để ném ra một exception tùy chỉnh."
       ]
     },
     {
-      "text": "Điền … để khi vòng lặp gặp giá trị “banana” sẽ nhảy tới giá trị tiếp theo\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor x in fruits:\n  if x == \"banana\":\n       [___] \n  print(x)",
+      "text": "Điền … để khi vòng lặp gặp giá trị “banana” sẽ nhảy tới giá trị tiếp theo\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor x in fruits:\n  if x == \"banana\":\n       [___] \n  print(x)",
       "options": [
         "continue",
         "break",
@@ -233,10 +247,10 @@
         "return"
       ],
       "correct": 0,
-      "explain": "`continue` bỏ qua phần còn lại của lượt lặp hiện tại và chuyển sang phần tử tiếp theo. Vì vậy banana không được in.",
+      "explain": "Lệnh continue sẽ bỏ qua các câu lệnh còn lại trong vòng lặp hiện tại và chuyển sang vòng lặp tiếp theo.",
       "hints": [
-        "Từ khóa nào bỏ qua phần còn lại của lượt lặp hiện tại?",
-        "Phân biệt lệnh bỏ qua một lượt với lệnh kết thúc toàn bộ vòng lặp."
+        "Từ khóa này có nghĩa là 'tiếp tục'.",
+        "Nó khác với 'break' (phá vỡ/dừng hoàn toàn vòng lặp)."
       ]
     },
     {
@@ -248,9 +262,10 @@
         "-754"
       ],
       "correct": 0,
-      "explain": "Tiền tố `0b` biểu thị số nhị phân. `1011110010₂ = 512 + 128 + 64 + 32 + 16 + 2 = 754` trong hệ thập phân.",
+      "explain": "Tiền tố 0b chỉ định đây là số nhị phân. 1011110010 (cơ số 2) = 512 + 128 + 64 + 32 + 16 + 2 = 754 (cơ số 10).",
       "hints": [
-        "Cộng các lũy thừa của 2 ứng với những bit bằng 1."
+        "Tiền tố 0b (binary) có nghĩa đây là số nhị phân.",
+        "Sử dụng phép tính tổng các lũy thừa của 2: 2^9 + 2^7 + 2^6 + 2^5 + 2^4 + 2^1."
       ]
     },
     {
@@ -260,12 +275,13 @@
         "Dữ liệu",
         "Tất cả đều đúng",
         "Tham số",
-        "e. Giá trị"
+        "Giá trị"
       ],
       "correct": 3,
-      "explain": "Tham số được đặt trong phần khai báo hàm, ví dụ `def f(x):`; bên trong hàm, `x` được dùng như một biến. Đối số là giá trị truyền vào khi gọi hàm.",
+      "explain": "Khi khai báo hàm, các biến được khai báo trong dấu ngoặc đơn gọi là tham số (parameters). Khi gọi hàm, giá trị truyền vào gọi là đối số (arguments).",
       "hints": [
-        "Phân biệt tên nằm trong phần định nghĩa hàm với giá trị truyền vào khi gọi hàm."
+        "Lưu ý phân biệt giữa định nghĩa hàm (parameter) và lúc gọi hàm (argument).",
+        "Trong tiếng Việt, lúc khai báo hàm gọi là 'tham số'."
       ]
     },
     {
@@ -277,26 +293,28 @@
         "{1, 2, 3, 4, 5, 6, 7, 8, 9}"
       ],
       "correct": 3,
-      "explain": "`set(T1)` tạo tập hợp từ tuple và loại bỏ các giá trị trùng lặp. Các phần tử khác nhau là 1 đến 9; thứ tự hiển thị của set không được đảm bảo.",
+      "explain": "Hàm set() biến đổi tuple thành một tập hợp (set). Set tự động loại bỏ các phần tử trùng lặp và không đảm bảo thứ tự (mặc dù với các số nguyên nhỏ trên Python thường in ra có thứ tự).",
       "hints": [
-        "Set chỉ giữ các giá trị duy nhất, không giữ các lần xuất hiện lặp."
+        "Tập hợp (set) trong Python không chứa các giá trị trùng lặp.",
+        "Set được biểu diễn bằng cặp dấu ngoặc nhọn {}."
       ]
     },
     {
-      "text": "Chương trình sau bị lỗi ở dòng lệnh thứ bao nhiêu?\n(1)    def add(a, b):\n(2)            x = a + b\n(3)            return(x)\n(4)    add(1, 2)\n(5)    add(5, 6)",
+      "text": "Chương trình sau bị lỗi ở dòng lệnh thứ bao nhiêu?\n(1)    def add(a, b):\n(2)            x = a + b\n(3)            return(x)\n(4)    add(1, 2)\n(5)    add(5, 6)",
       "options": [
         "1",
         "2",
         "Không có lỗi",
         "4",
-        "e. 3",
-        "f. Tất cả đều sai",
-        "g. 5"
+        "3",
+        "Tất cả đều sai",
+        "5"
       ],
       "correct": 2,
-      "explain": "Định nghĩa hàm ở dòng 1–3 có thụt lề đúng; các lời gọi `add(1, 2)` và `add(5, 6)` cũng hợp lệ. Không có lỗi cú pháp trong đoạn mã đã cho.",
+      "explain": "Đoạn chương trình hoàn toàn hợp lệ trong Python. Cú pháp định nghĩa hàm và gọi hàm đều đúng, return(x) cũng không gây lỗi.",
       "hints": [
-        "Kiểm tra xem hàm có phần thân được thụt lề đúng và các lời gọi có đủ hai đối số không."
+        "Cú pháp khai báo def, thụt lề, và return đều hoàn toàn hợp lệ.",
+        "Các lệnh gọi hàm cũng có tham số hợp lệ."
       ]
     },
     {
@@ -308,24 +326,25 @@
         "Tất cả đều sai"
       ],
       "correct": 2,
-      "explain": "Trong Python, `True` và `1` được xem là bằng nhau khi so sánh và được coi là cùng một giá trị trong set; tương tự, `False` và `0` cũng vậy.",
+      "explain": "Trong cấu trúc dữ liệu Set của Python, 1 và True được đánh giá là bằng nhau (tương tự 0 và False), do đó chúng sẽ bị ghi đè/loại bỏ trùng lặp nếu cả hai cùng xuất hiện.",
       "hints": [
-        "Thử nhớ kết quả của phép so sánh `1 == True`."
+        "Set trong Python xử lý giá trị boolean dưới dạng số nguyên (True là 1, False là 0).",
+        "Nếu bỏ cả 1 và True vào set, nó sẽ chỉ lưu trữ một giá trị duy nhất."
       ]
     },
     {
-      "text": "Cho biết kết quả của T1 & T2 trong đoạn chương trình sau:\nT1 = (1, 9, 1, 6, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 2)\nT2 = ()\nfor x in T1:\n   if x not in T2:\n      T2+=(x,)\nprint (T1); print (T2)\n\nT1 =  [___] \n\nT2 =  [___]",
+      "text": "Cho biết kết quả của T1 & T2 trong đoạn chương trình sau:\nT1 = (1, 9, 1, 6, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 2)\nT2 = ()\nfor x in T1:\n   if x not in T2:\n      T2+=(x,)\nprint (T1); print (T2)\n\nT1 =  [___] \n\nT2 =  [___]",
       "options": [
-        "T1 giữ nguyên; T2 = (1, 9, 6, 3, 4, 5, 2, 7, 8)",
-        "T1 và T2 đều trở thành set",
-        "T1 giữ nguyên; T2 = (1, 9, 1, 6, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 2)",
-        "Chương trình báo lỗi"
+        "(1, 9, 1, 6, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 2), (1, 9, 6, 3, 4, 5, 2, 7, 8)",
+        "(1, 9, 6, 3, 4, 5, 2, 7, 8), (1, 9, 1, 6, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 2)",
+        "Lỗi thực thi",
+        "Tất cả đều sai"
       ],
       "correct": 0,
-      "explain": "T1 không thay đổi. T2 được tạo bằng cách duyệt T1 và chỉ thêm x khi x chưa có trong T2, nên giữ thứ tự xuất hiện đầu tiên của mỗi giá trị: (1, 9, 6, 3, 4, 5, 2, 7, 8).",
+      "explain": "Vòng lặp đi qua từng phần tử của T1, nếu chưa có trong T2 thì thêm vào. T1 giữ nguyên giá trị, còn T2 chứa các giá trị duy nhất từ T1 theo đúng thứ tự xuất hiện lần đầu.",
       "hints": [
-        "Theo dõi điều kiện `if x not in T2` khi duyệt lần lượt các phần tử của T1.",
-        "T2 chỉ thêm những giá trị chưa xuất hiện, đồng thời giữ thứ tự xuất hiện lần đầu."
+        "Biến T1 không bị tác động nên vẫn giữ nguyên dãy giá trị ban đầu.",
+        "Biến T2 lưu các giá trị của T1 nhưng đã lọc các số trùng lặp."
       ]
     },
     {
@@ -337,13 +356,14 @@
         "Hiển thị chú thích"
       ],
       "correct": 3,
-      "explain": "`legend()` hiển thị chú thích của biểu đồ, thường dựa trên nhãn được gán cho các đường hoặc đối tượng vẽ.",
+      "explain": "Trong Matplotlib, hàm legend() được sử dụng để hiển thị hộp chú thích (ghi chú) giải thích ý nghĩa các đường/ký hiệu trên biểu đồ.",
       "hints": [
-        "Chú thích giúp người xem biết mỗi đường trên biểu đồ đại diện cho dữ liệu nào."
+        "Từ 'legend' trong ngữ cảnh bản đồ/đồ thị có nghĩa là 'chú giải'.",
+        "Nó dùng để phân biệt đường nào có ý nghĩa gì thông qua màu sắc hoặc nhãn."
       ]
     },
     {
-      "text": "Sau khi thực hiện lệnh sau, biến s sẽ có kết quả là:\n\ns1 =\"3986443\"\n\ns2 = \"\"\n\nfor ch in s1:\n\n    if int(ch) % 2 == 0:\n\n        s2 = s2 + ch\n\nprint(s2)",
+      "text": "Sau khi thực hiện lệnh sau, biến s sẽ có kết quả là:\n\ns1 =\"3986443\"\n\ns2 = \"\"\n\nfor ch in s1:\n\n    if int(ch) % 2 == 0:\n\n        s2 = s2 + ch\n\nprint(s2)",
       "options": [
         "8644",
         "443",
@@ -351,9 +371,10 @@
         "3986443"
       ],
       "correct": 0,
-      "explain": "Chuỗi `3986443` được duyệt từng ký tự. Chỉ các chữ số chẵn được nối vào `s2`: 8, 6, 4, 4, nên kết quả là `8644`.",
+      "explain": "Đoạn code duyệt qua từng ký tự của chuỗi s1, chuyển nó sang kiểu số và kiểm tra nếu chia hết cho 2 (số chẵn) thì ghép vào s2. Các số chẵn là 8, 6, 4, 4.",
       "hints": [
-        "Lọc từng ký tự có giá trị số chia hết cho 2 rồi giữ nguyên thứ tự."
+        "Điều kiện `int(ch) % 2 == 0` chỉ lấy các chữ số chẵn.",
+        "Hãy nhặt ra các số chẵn trong chuỗi ban đầu theo đúng thứ tự."
       ]
     },
     {
@@ -365,9 +386,10 @@
         "8aa"
       ],
       "correct": 1,
-      "explain": "`hex(2218)` trả về chuỗi biểu diễn số nguyên ở hệ thập lục phân, có tiền tố `0x`. 2218 ở hệ 16 là `8aa`, nên kết quả là `0x8aa`.",
+      "explain": "Hàm hex() chuyển đổi một số nguyên thành chuỗi biểu diễn dưới dạng hệ cơ số 16 (hexadecimal) với tiền tố '0x'. 2218 chia 16 ra hệ hex là 8aa.",
       "hints": [
-        "Hàm `hex()` trả về chuỗi có tiền tố nào để chỉ hệ 16?"
+        "Hệ thập lục phân (hexadecimal) trong Python luôn có tiền tố '0x'.",
+        "Chú ý sự khác biệt giữa 0o (bát phân - octal) và 0x."
       ]
     },
     {
@@ -379,9 +401,10 @@
         "a = {10,20,30}"
       ],
       "correct": 0,
-      "explain": "Dấu ngoặc vuông `[]` khai báo list. Vì vậy `[10,20,30]` là danh sách gồm ba phần tử; ngoặc tròn thường tạo tuple, còn ngoặc nhọn tạo set trong trường hợp này.",
+      "explain": "Danh sách (List) trong Python được khai báo bằng cách đặt các phần tử bên trong cặp dấu ngoặc vuông [ ].",
       "hints": [
-        "List Python được bao quanh bởi loại dấu ngoặc nào?"
+        "Danh sách (List) dùng ngoặc vuông [].",
+        "Tuple dùng ngoặc tròn (), còn Set/Dict dùng ngoặc nhọn {}."
       ]
     },
     {
@@ -391,12 +414,13 @@
         "Đặt nhãn tam giác",
         "Đặt màu tam giác",
         "Vẽ một lưới tam giác",
-        "e. Tạo về mặt tam giác 3D"
+        "Tạo về mặt tam giác 3D"
       ],
       "correct": 3,
-      "explain": "`triplot()` trong Matplotlib dùng để vẽ lưới tam giác, thường dựa trên phép tam giác hóa các điểm.",
+      "explain": "Hàm plt.triplot() trong Matplotlib dùng để vẽ lưới tam giác phi cấu trúc (unstructured triangular grid).",
       "hints": [
-        "Tên hàm bắt đầu bằng `tri` và liên quan đến lưới tam giác."
+        "Chữ 'tri' đại diện cho 'triangle' (tam giác).",
+        "Plot là vẽ đồ thị. Kết hợp lại là vẽ một mạng/lưới các hình tam giác."
       ]
     },
     {
@@ -408,9 +432,10 @@
         "if(z >= -5 or z <= -1) and (z >= 1 or z <= 5): print('TRUE')"
       ],
       "correct": 1,
-      "explain": "Điều kiện đúng là `z >= -5 and z <= -1` hoặc `z >= 1 and z <= 5`. Dùng `and` để kiểm tra z nằm trong từng khoảng, và `or` để chọn một trong hai khoảng.",
+      "explain": "Sử dụng 'and' để giới hạn z nằm trong một khoảng, và 'or' để kết nối 2 khoảng khác nhau.",
       "hints": [
-        "Mỗi khoảng cần đồng thời thỏa mãn cận dưới và cận trên; giữa hai khoảng dùng phép hoặc."
+        "Để nằm TRONG một đoạn, giá trị phải lớn hơn biên dưới VÀ (and) nhỏ hơn biên trên.",
+        "Để kết nối HOẶC hai đoạn với nhau, dùng toán tử 'or'."
       ]
     },
     {
@@ -422,9 +447,10 @@
         "Helloword"
       ],
       "correct": 1,
-      "explain": "`a` là `Hello`, `b` là `world`; phép nối thêm một dấu cách ở giữa nên `print(c)` in `Hello world`.",
+      "explain": "Toán tử '+' dùng để nối chuỗi. Biến c sẽ là sự kết hợp của 'Hello', khoảng trắng ' ', và 'world'.",
       "hints": [
-        "Theo dõi các chuỗi được nối và chú ý chuỗi dấu cách `\" \"`."
+        "Lưu ý chuỗi 'world' viết thường hoàn toàn.",
+        "Có một khoảng trắng ' ' được nối ở giữa hai biến."
       ]
     },
     {
@@ -434,16 +460,17 @@
         "Hiển thị lưới (grid)",
         "Tất cả đều sai",
         "Đặt màu sắc cho lưới",
-        "e. Xóa đường lưới"
+        "Xóa đường lưới"
       ],
       "correct": 1,
-      "explain": "`grid()` trong Matplotlib bật hoặc tắt đường lưới trên biểu đồ; gọi `grid()` theo cách thông thường sẽ hiển thị lưới.",
+      "explain": "Trong Matplotlib, hàm grid() dùng để bật/tắt (hiển thị) các đường lưới (grid lines) trên đồ thị.",
       "hints": [
-        "Hàm này có tên trùng với thành phần lưới của biểu đồ."
+        "Hàm này kích hoạt việc vẽ các đường kẻ chéo/ngang trên nền đồ thị để dễ nhìn dữ liệu hơn.",
+        "Từ 'grid' trong tiếng Anh nghĩa là 'lưới'."
       ]
     },
     {
-      "text": "Chương trình sau giải quyết bài toán gì?\n\nn = input(\"Nhập n\")\n\ns = \"\"\n\nfor i in range(n):\n\n    if i % 2 == 0:\n\n        s.append(i)\n\nprint(s)",
+      "text": "Chương trình sau giải quyết bài toán gì?\n\nn = input(\"Nhập n\")\n\ns = \"\"\n\nfor i in range(n):\n\n    if i % 2 == 0:\n\n        s.append(i)\n\nprint(s)",
       "options": [
         "In ra một chuỗi các số lẻ từ 0 đến n",
         "In ra một chuỗi các số từ 0 đến n",
@@ -451,10 +478,10 @@
         "Chương trình bị lỗi"
       ],
       "correct": 3,
-      "explain": "Chương trình bị lỗi: `input()` trả về chuỗi nên `range(n)` không nhận chuỗi; ngoài ra chuỗi `s` không có phương thức `append()`. Vì vậy đáp án là chương trình bị lỗi.",
+      "explain": "Chương trình bị lỗi vì 2 lý do: input() trả về kiểu string nên range(n) sẽ văng lỗi TypeError; ngoài ra s là kiểu chuỗi (string) không có phương thức append().",
       "hints": [
-        "Kiểm tra kiểu dữ liệu trả về từ input() và kiểu của biến s.",
-        "range() cần số nguyên; append() là phương thức thường dùng của list, không phải str."
+        "Hàm input() luôn trả về một chuỗi (string), chưa được ép kiểu sang int để dùng cho hàm range().",
+        "Biến s là chuỗi (string) nhưng lại gọi phương thức append() của list."
       ]
     },
     {
@@ -464,16 +491,17 @@
         "Tạo ma trận đơn vị",
         "Tất cả đều sai",
         "Tạo mảng toàn 1",
-        "e. Tạo mảng toàn 0"
+        "Tạo mảng toàn 0"
       ],
       "correct": 4,
-      "explain": "`np.zeros((3, 4))` tạo mảng NumPy có 3 hàng và 4 cột, mọi phần tử ban đầu đều bằng 0.",
+      "explain": "Hàm np.zeros(shape) trong numpy tạo ra một mảng mới có kích thước shape và khởi tạo tất cả các giá trị bằng 0.",
       "hints": [
-        "Tên hàm `zeros` gợi ý giá trị được khởi tạo trong mảng."
+        "Tên hàm là zeros, có nghĩa là số 0.",
+        "Hàm này chuyên dùng để tạo ma trận chứa toàn số 0."
       ]
     },
     {
-      "text": "Cho biết kết quả khi chạy đoạn chương trình sau:\n\ns = 0\n\nfor i in range(3):\n\n    s = s + 2 * i\n\nprint(s)",
+      "text": "Cho biết kết quả khi chạy đoạn chương trình sau:\n\ns = 0\n\nfor i in range(3):\n\n    s = s + 2 * i\n\nprint(s)",
       "options": [
         "12",
         "8",
@@ -481,9 +509,10 @@
         "10"
       ],
       "correct": 2,
-      "explain": "`range(3)` tạo các giá trị 0, 1, 2. Tổng được cộng là `2×0 + 2×1 + 2×2 = 0 + 2 + 4 = 6`.",
+      "explain": "Vòng lặp range(3) chạy qua các giá trị i: 0, 1, 2. s = 0 + (2*0) + (2*1) + (2*2) = 0 + 0 + 2 + 4 = 6.",
       "hints": [
-        "Liệt kê các giá trị i mà `range(3)` sinh ra rồi cộng `2*i`."
+        "Hàm range(3) tạo ra dãy số: 0, 1, 2.",
+        "Tính tổng s qua từng vòng lặp với công thức + 2*i."
       ]
     },
     {
@@ -495,10 +524,10 @@
         "(“age”: “20”)"
       ],
       "correct": 2,
-      "explain": "Dictionary được viết bằng cặp ngoặc nhọn và các cặp key:value. Trong các lựa chọn, phương án c thể hiện cấu trúc đó theo ý định của câu hỏi; khi viết Python thực tế cần dùng dấu nháy thẳng ASCII quanh chuỗi, ví dụ {\"age\": \"20\"}.",
+      "explain": "Dictionary được khai báo bằng ngoặc nhọn {}, chứa các cặp key: value. Key phải là chuỗi (nếu không khai báo biến trước đó), nên cách chuẩn là {'age': '20'} hoặc {'age': 20}.",
       "hints": [
-        "Dictionary dùng ngoặc nhọn và dấu hai chấm để ngăn cách key với value.",
-        "Nếu key/value là chuỗi, hãy đặt chúng trong dấu nháy thẳng."
+        "Dictionary dùng ngoặc nhọn {}.",
+        "Key là chữ (string) thì phải được đặt trong dấu ngoặc kép."
       ]
     },
     {
@@ -510,9 +539,10 @@
         "Đáp án khác"
       ],
       "correct": 0,
-      "explain": "Từ khóa `global` trong hàm khai báo rằng tên biến được tham chiếu là biến toàn cục; việc gán cho biến đó sẽ tác động đến biến cùng tên ở phạm vi toàn cục.",
+      "explain": "Để thay đổi giá trị của một biến toàn cục (global variable) từ bên trong một hàm, bạn phải khai báo biến đó bằng từ khóa 'global' bên trong hàm.",
       "hints": [
-        "Từ khóa này chỉ rõ biến thuộc phạm vi toàn cục."
+        "Từ khóa này có nghĩa là 'toàn cục', cho phép biến có phạm vi ở bất cứ đâu.",
+        "Nó bắt đầu bằng chữ 'g'."
       ]
     },
     {
@@ -524,13 +554,14 @@
         "Các item (key:value) có thể được trùng lặp"
       ],
       "correct": 1,
-      "explain": "Dictionary không yêu cầu các value cùng kiểu và các value có thể trùng lặp. Khóa phải là duy nhất; nếu gán lại cùng một key thì giá trị cũ bị thay thế.",
+      "explain": "Trong Dictionary, các 'key' phải là duy nhất (không trùng lặp), nhưng các 'value' thì hoàn toàn có thể trùng nhau và có thể có nhiều kiểu dữ liệu khác nhau.",
       "hints": [
-        "Trong dictionary, hãy phân biệt quy tắc đối với key và value."
+        "Key giống như số nhà/CMND, phải là duy nhất.",
+        "Tuy nhiên Value giống như cư dân, có thể trùng lặp tùy ý."
       ]
     },
     {
-      "text": "Cho biết kết quả của đoạn chương trình sau?\nnumber = 5.0\ntry:\n    r = 10/number\n    print(r)\nexcept:\n    print(\"Oops! Error occurred.\")",
+      "text": "Cho biết kết quả của đoạn chương trình sau?\nnumber = 5.0\ntry:\n    r = 10/number\n    print(r)\nexcept:\n    print(\"Oops! Error occurred.\")",
       "options": [
         "2.0",
         "2.0 Oops! Error occurred",
@@ -538,9 +569,10 @@
         "Oops! Error occurred"
       ],
       "correct": 0,
-      "explain": "`10 / 5.0` cho kết quả `2.0`. Không có ngoại lệ nên khối `except` không chạy; chương trình chỉ in `2.0`.",
+      "explain": "Phép toán 10 / 5.0 không sinh ra lỗi và kết quả là số thực 2.0. Khối except sẽ bị bỏ qua vì không có ngoại lệ nào xảy ra.",
       "hints": [
-        "Phép chia `/` với một toán hạng kiểu float sẽ trả về kết quả dạng float."
+        "Chia cho số thực sẽ luôn trả ra số thực (float).",
+        "Code trong 'try' hoạt động bình thường, không có lỗi chia cho 0 nên khối 'except' không được thực thi."
       ]
     },
     {
@@ -550,12 +582,13 @@
         "Tất cả đều sai",
         "a.intersection(b)",
         "np.common(a, b)",
-        "e. np.intersect1d(a, b)"
+        "np.intersect1d(a, b)"
       ],
       "correct": 4,
-      "explain": "`np.intersect1d(a, b)` trả về các phần tử chung của hai mảng NumPy, với kết quả được sắp xếp và loại bỏ phần tử trùng.",
+      "explain": "Hàm np.intersect1d(a, b) trong NumPy trả về giao (phần tử chung) của hai mảng 1 chiều (những phần tử vừa có ở a, vừa có ở b).",
       "hints": [
-        "Tìm hàm NumPy có tên chứa `intersect` và dùng cho mảng một chiều."
+        "Chữ 'intersect' nghĩa là giao nhau.",
+        "Lệnh trong numpy thường thêm '1d' vào sau để xử lý mảng một chiều (1D)."
       ]
     },
     {
@@ -565,12 +598,13 @@
         "min(a)",
         "a.smallest()",
         "a.min()",
-        "e. a.minimum()"
+        "a.minimum()"
       ],
       "correct": 1,
-      "explain": "`min(a)` là hàm dựng sẵn của Python trả về phần tử nhỏ nhất trong danh sách `a`. Các lựa chọn còn lại không phải cách gọi hợp lệ tương ứng.",
+      "explain": "Hàm tích hợp sẵn min() của Python được dùng để tìm phần tử có giá trị nhỏ nhất trong một iterable (ví dụ: list, tuple).",
       "hints": [
-        "Dùng hàm dựng sẵn nhận một iterable để tìm giá trị nhỏ nhất."
+        "Trong Python thuần túy (không phải numpy), min là một hàm built-in nhận tham số chứ không phải là phương thức của List.",
+        "Cú pháp đúng là func(object) thay vì object.func()."
       ]
     },
     {
@@ -580,12 +614,13 @@
         "arr.cumprod()",
         "prod(arr)",
         "np.multiply(arr)",
-        "e. Tất cả đều sai"
+        "Tất cả đều sai"
       ],
       "correct": 0,
-      "explain": "`np.cumprod(arr)` tính tích tích lũy: mỗi vị trí là tích của các phần tử từ đầu mảng đến vị trí đó. Có thể chỉ định `axis` cho mảng nhiều chiều.",
+      "explain": "Trong NumPy, np.cumprod() được dùng để tính tích tích lũy (cumulative product) của các phần tử dọc theo một trục được chỉ định.",
       "hints": [
-        "`cum` nghĩa là tích lũy, còn `prod` là tích."
+        "Tích lũy tiếng Anh là 'cumulative', viết tắt là 'cum'.",
+        "Phép nhân (tích) là 'product', viết tắt là 'prod'."
       ]
     },
     {
@@ -595,12 +630,13 @@
         "Báo lỗi",
         "[7, 3, 1, 9]",
         "[7, 3, 8, 9]",
-        "e. [7, 8, 1, 9]"
+        "[7, 8, 1, 9]"
       ],
       "correct": 4,
-      "explain": "`remove(3)` xóa phần tử có giá trị bằng 3 khỏi danh sách, không phải xóa phần tử ở chỉ số 3. Danh sách còn lại là `[7, 8, 1, 9]`.",
+      "explain": "Phương thức remove(x) tìm phần tử đầu tiên trong List có giá trị bằng x và xóa nó. Do đó số 3 bị xóa đi.",
       "hints": [
-        "Phân biệt `remove(value)` với `pop(index)`."
+        "Tham số của phương thức remove() là GIÁ TRỊ cần xóa, không phải index.",
+        "Do đó, phần tử mang giá trị 3 sẽ bị loại bỏ."
       ]
     },
     {
@@ -612,10 +648,10 @@
         "27"
       ],
       "correct": 2,
-      "explain": "Với x = 5: `x**2` = 25; `1 // 5` = 0; `3 % 3` = 0, nên biểu thức bằng 25 - 0 + 0 * 2 = 25.",
+      "explain": "Thứ tự ưu tiên tính toán: 5**2 = 25. Kế đến tính (1 // 5) = 0 và (3 % 3 * 2) = 0 * 2 = 0. Vậy phép tính tương đương với: 25 - 0 + 0 = 25.",
       "hints": [
-        "Xét thứ tự ưu tiên: lũy thừa trước, rồi // và %, sau đó phép cộng/trừ.",
-        "Tính riêng từng phép chia lấy nguyên và chia lấy dư."
+        "Lũy thừa (**) tính trước nhất.",
+        "Tiếp theo tính nhân/chia/chia dư (*, /, //, %). Chú ý 1 // 5 = 0 và 3 % 3 = 0."
       ]
     },
     {
@@ -625,12 +661,13 @@
         "Đặt nhãn cho tọa độ cực",
         "Tạo đồ thị tọa độ cực",
         "Tất cả đều sai",
-        "e. Chỉnh lưới tọa độ cực"
+        "Chỉnh lưới tọa độ cực"
       ],
       "correct": 2,
-      "explain": "`polar()` trong Matplotlib tạo hoặc sử dụng hệ trục tọa độ cực để biểu diễn dữ liệu theo góc và bán kính.",
+      "explain": "Trong Matplotlib, plt.polar() được sử dụng để vẽ một đồ thị trên hệ tọa độ cực (polar coordinate system).",
       "hints": [
-        "Tọa độ cực dùng góc và khoảng cách đến gốc thay cho x và y thông thường."
+        "Từ 'polar' trong toán học và đồ họa ám chỉ hệ tọa độ cực (dùng bán kính r và góc theta).",
+        "Hàm này thiết lập và tạo biểu đồ cho loại tọa độ này."
       ]
     },
     {
@@ -642,9 +679,10 @@
         "Custom Modules & User-defined Modules"
       ],
       "correct": 0,
-      "explain": "Cách phân loại phổ biến là built-in modules (module có sẵn của Python) và user-defined modules (module do người dùng tự tạo).",
+      "explain": "Modules trong Python thường được chia thành 2 loại cơ bản là: Built-in Modules (các thư viện tích hợp sẵn của Python) và User-defined Modules (do người lập trình tự tạo ra).",
       "hints": [
-        "Một nhóm được cung cấp sẵn bởi Python, nhóm còn lại do lập trình viên tạo."
+        "Có hai loại chính: một loại do Python cài sẵn (tích hợp), một loại do người dùng tự viết.",
+        "Thuật ngữ chuẩn xác là 'Built-in' và 'User-defined'."
       ]
     },
     {
@@ -656,9 +694,10 @@
         "‘Chào {0} An’"
       ],
       "correct": 3,
-      "explain": "`print('Chào {0}', 'An')` không gọi `format()`, nên `{0}` vẫn giữ nguyên. `print()` in hai đối số, ngăn cách bằng một dấu cách: `Chào {0} An`.",
+      "explain": "Ở đây chúng ta đang truyền vào hàm print() hai tham số riêng biệt phân cách bởi dấu phẩy, chứ không gọi phương thức .format(). Do đó print sẽ in chuỗi thứ nhất và chuỗi thứ hai cách nhau bằng 1 khoảng trắng.",
       "hints": [
-        "Khác với `.format()`, `print()` không tự thay thế phần giữ chỗ `{0}`."
+        "Để ý dấu phẩy ngăn cách giữa hai giá trị, chứ không phải chấm .format()",
+        "Hàm print() sẽ in lần lượt các đối số cách nhau bằng dấu cách (space)."
       ]
     }
   ]
