@@ -4,7 +4,7 @@
     "code": "PY-01",
     "title": "Hàm",
     "desc": "Hệ thống 50 câu hỏi trắc nghiệm ôn tập về hàm trong Python từ cơ bản đến nâng cao.",
-    "duration": 45,
+    "duration": 105,
     "questions": [
       {
         "text": "Từ khóa nào sau đây được sử dụng để bắt đầu định nghĩa một hàm thông thường trong Python?",
