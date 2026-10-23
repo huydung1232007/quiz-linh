@@ -94,3 +94,359 @@
         ],
         "correct": 1,
         "explain": "Gợi ý: find và index khác nhau thế nào khi không tìm thấy?\n\nGiải thích: str.index(\"z\") gây ValueError khi không tìm thấy ký tự. Vì vậy phép gán x không hoàn tất."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\na = [3, 1, 2]\nx = a.sort()",
+        "options": [
+          "[3, 2, 1]",
+          "[1, 2, 3]",
+          "None",
+          "Báo lỗi"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Phân biệt kết quả trả về của sort với list sau khi sắp xếp.\n\nGiải thích: a.sort() sửa a tại chỗ thành [1,2,3] nhưng trả về None, được gán cho x."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\ndef f(*args, **kwargs):\n    return sum(args) + kwargs.get(\"bonus\", 0)\nx = f(2, 3, bonus=10)",
+        "options": [
+          "15",
+          "10",
+          "5",
+          "20"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: *args thu thập đối số vị trí; **kwargs thu thập đối số có tên.\n\nGiải thích: args=(2,3), kwargs={\"bonus\":10}. Tổng là 2+3+10=15."
+      },
+      {
+        "text": "Cặp (x, y) sau cùng là gì?\n\nn = 4\ndef inc():\n    global n\n    n += 2\n    return n\nx = n\ny = inc()",
+        "options": [
+          "(6, 4)",
+          "Báo lỗi",
+          "(6, 6)",
+          "(4, 6)"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: global cho phép hàm gán lại biến toàn cục.\n\nGiải thích: x nhận giá trị cũ 4. Hàm tăng biến toàn cục n lên 6 rồi trả về cho y."
+      },
+      {
+        "text": "Kết quả in ra chính xác là gì?\n\nname = \"An\"\nprint(f\"{name}:{7:03d}\", end=\"\")",
+        "options": [
+          "An:700",
+          "An:7",
+          "An:007",
+          "Báo lỗi"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Định dạng 03d bổ sung số 0 để đủ ba chữ số.\n\nGiải thích: name được thay bằng An; 7 được định dạng thành 007."
+      },
+      {
+        "text": "Đã chạy import random. Lệnh nào trả về một số nguyên ngẫu nhiên có thể nhận cả 0 và 100?",
+        "options": [
+          "random.random(0, 100)",
+          "random.randint(0, 100)",
+          "random.randrange(0, 100)",
+          "random.choice(100)"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: randint của thư viện chuẩn bao gồm cả hai cận.\n\nGiải thích: random.randint(0,100) nhận các số nguyên từ 0 đến 100. randrange(0,100) loại cận 100."
+      },
+      {
+        "text": "Đã chạy import matplotlib.pyplot as plt. Lệnh nào chia Figure thành 2 hàng, 3 cột và chọn ô thứ 4?",
+        "options": [
+          "plt.subplot(2, 3, 4)",
+          "plt.subplot(3, 2, 4)",
+          "plt.subplots(2, 3, 4)",
+          "plt.subplot(2, 4, 3)"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: subplot nhận nrows, ncols, index; index bắt đầu từ 1.\n\nGiải thích: plt.subplot(2,3,4) chọn ô thứ 4 khi đánh số theo hàng, tức ô đầu hàng thứ hai."
+      },
+      {
+        "text": "Với ax là đối tượng Axes, lệnh nào tạo biểu đồ cột ngang với tên ở names, chiều dài cột ở values?",
+        "options": [
+          "ax.bar(names, values)",
+          "ax.plot(names, values)",
+          "ax.hist(values)",
+          "ax.barh(names, values)"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Tên hàm có chữ h chỉ hướng ngang.\n\nGiải thích: Axes.barh tạo các cột ngang. bar tạo cột dọc, hist tạo histogram."
+      },
+      {
+        "text": "Đã gọi ax.plot(x, y, label=\"Nhiệt độ\"). Lệnh nào hiển thị chú thích Nhiệt độ trên biểu đồ?",
+        "options": [
+          "ax.legend()",
+          "ax.grid()",
+          "ax.set_title()",
+          "ax.set_xlabel(\"Nhiệt độ\")"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: label cần được đưa vào legend để hiển thị chú thích.\n\nGiải thích: ax.legend() hiển thị chú thích các đối tượng có label phù hợp."
+      },
+      {
+        "text": "Giá trị cuối của k là bao nhiêu?\n\nn = 50720\nk = s = 0\nwhile n > 0:\n    digit = n % 10\n    if digit != 0:\n        k += 1\n        s += digit\n    n //= 10",
+        "options": [
+          "2",
+          "4",
+          "3",
+          "5"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: k chỉ tăng cho chữ số khác 0.\n\nGiải thích: 50720 có ba chữ số khác 0 là 5,7,2."
+      },
+      {
+        "text": "Giá trị cuối của s là bao nhiêu?\n\nn = 50720\nk = s = 0\nwhile n > 0:\n    digit = n % 10\n    if digit != 0:\n        k += 1\n        s += digit\n    n //= 10",
+        "options": [
+          "12",
+          "14",
+          "13",
+          "15"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Lấy chữ số từ phải sang trái bằng %10.\n\nGiải thích: s=2+7+5=14; hai chữ số 0 không đóng góp."
+      },
+      {
+        "text": "Giá trị cuối của digit là bao nhiêu?\n\nn = 50720\nk = s = 0\nwhile n > 0:\n    digit = n % 10\n    if digit != 0:\n        k += 1\n        s += digit\n    n //= 10",
+        "options": [
+          "0",
+          "2",
+          "7",
+          "5"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: digit giữ chữ số ở lượt cuối, còn n bị chia tiếp.\n\nGiải thích: Lượt cuối bắt đầu với n=5 nên digit=5; sau đó n=0 và dừng."
+      },
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\ndef calc(a, i=0):\n    if i >= len(a):\n        return 0\n    if a[i] % 2 == 0:\n        return a[i] + calc(a, i + 1)\n    return calc(a, i + 1)\na = [3, 4, 2, 5, 6]\nx = calc(a)\ny = calc(a, 3)",
+        "options": [
+          "20",
+          "10",
+          "12",
+          "9"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Chỉ phần tử chẵn được cộng.\n\nGiải thích: Các phần tử chẵn là 4,2,6 nên x=12."
+      },
+      {
+        "text": "Giá trị của y là bao nhiêu?\n\ndef calc(a, i=0):\n    if i >= len(a):\n        return 0\n    if a[i] % 2 == 0:\n        return a[i] + calc(a, i + 1)\n    return calc(a, i + 1)\na = [3, 4, 2, 5, 6]\nx = calc(a)\ny = calc(a, 3)",
+        "options": [
+          "0",
+          "11",
+          "5",
+          "6"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Lời gọi bắt đầu từ chỉ số 3.\n\nGiải thích: Từ chỉ số 3 có 5 và 6. Chỉ 6 chẵn nên y=6."
+      },
+      {
+        "text": "Thay riêng a bằng [1, 3, 5] rồi tính calc(a), hàm trả về gì?\n\ndef calc(a, i=0):\n    if i >= len(a):\n        return 0\n    if a[i] % 2 == 0:\n        return a[i] + calc(a, i + 1)\n    return calc(a, i + 1)\na = [3, 4, 2, 5, 6]\nx = calc(a)\ny = calc(a, 3)",
+        "options": [
+          "9",
+          "0",
+          "None",
+          "Báo lỗi"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Theo nhánh dành cho phần tử lẻ đến điều kiện dừng.\n\nGiải thích: Mọi phần tử đều lẻ nên không được cộng. Nhánh dừng trả 0."
+      },
+      {
+        "text": "List a cuối cùng là gì?\n\na = [1, 2, 3, 4, 5, 6]\nremoved = []\nfor i in range(len(a) - 1, -1, -1):\n    if a[i] % 2 == 0:\n        removed.append(a.pop(i))\nx = sum(a)",
+        "options": [
+          "[2, 4, 6]",
+          "[1, 2, 3]",
+          "[1, 3, 5]",
+          "[1, 3, 5, 6]"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Duyệt chỉ số ngược để xóa phần tử chẵn.\n\nGiải thích: Các phần tử 6,4,2 bị pop; a giữ [1,3,5]."
+      },
+      {
+        "text": "List removed cuối cùng là gì?\n\na = [1, 2, 3, 4, 5, 6]\nremoved = []\nfor i in range(len(a) - 1, -1, -1):\n    if a[i] % 2 == 0:\n        removed.append(a.pop(i))\nx = sum(a)",
+        "options": [
+          "[2, 4, 6]",
+          "[6, 2, 4]",
+          "[6, 4, 2]",
+          "[4, 6, 2]"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Thứ tự append là thứ tự gặp khi duyệt từ phải sang trái.\n\nGiải thích: Lần lượt lấy ra 6,4,2, nên removed=[6,4,2]."
+      },
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\na = [1, 2, 3, 4, 5, 6]\nremoved = []\nfor i in range(len(a) - 1, -1, -1):\n    if a[i] % 2 == 0:\n        removed.append(a.pop(i))\nx = sum(a)",
+        "options": [
+          "9",
+          "12",
+          "15",
+          "21"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Tính tổng list sau khi xóa, không dùng list ban đầu.\n\nGiải thích: a=[1,3,5] nên x=9."
+      },
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\ns = \"abacaba\"\nd = {}\nfor ch in s:\n    d[ch] = d.get(ch, 0) + 1\nx = len(d)\ny = max(d.values())\nz = d.get(\"d\", 0)",
+        "options": [
+          "7",
+          "3",
+          "4",
+          "2"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Dictionary chỉ có một khóa cho mỗi ký tự phân biệt.\n\nGiải thích: Có ba ký tự khác nhau a,b,c nên x=3."
+      },
+      {
+        "text": "Giá trị của y là bao nhiêu?\n\ns = \"abacaba\"\nd = {}\nfor ch in s:\n    d[ch] = d.get(ch, 0) + 1\nx = len(d)\ny = max(d.values())\nz = d.get(\"d\", 0)",
+        "options": [
+          "4",
+          "3",
+          "2",
+          "7"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: values chứa số lần xuất hiện từng ký tự.\n\nGiải thích: a xuất hiện 4 lần, b hai lần, c một lần. Giá trị lớn nhất là 4."
+      },
+      {
+        "text": "Giá trị của z là gì?\n\ns = \"abacaba\"\nd = {}\nfor ch in s:\n    d[ch] = d.get(ch, 0) + 1\nx = len(d)\ny = max(d.values())\nz = d.get(\"d\", 0)",
+        "options": [
+          "None",
+          "Báo lỗi KeyError",
+          "1",
+          "0"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: get trả giá trị mặc định khi không có khóa.\n\nGiải thích: Không có khóa d; d.get(\"d\",0) trả 0 và không thêm khóa mới."
+      },
+      {
+        "text": "Giá trị cuối của x là bao nhiêu?\n\nm = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nx = y = 0\nfor i in range(3):\n    x += m[i][i]\n    y += m[i][2 - i]\n    m[i][i] = 0",
+        "options": [
+          "15",
+          "10",
+          "0",
+          "18"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Cộng giá trị đường chéo chính trước khi thay bằng 0.\n\nGiải thích: x=1+5+9=15."
+      },
+      {
+        "text": "Giá trị cuối của y là bao nhiêu?\n\nm = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nx = y = 0\nfor i in range(3):\n    x += m[i][i]\n    y += m[i][2 - i]\n    m[i][i] = 0",
+        "options": [
+          "15",
+          "10",
+          "0",
+          "12"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Xét thứ tự cộng y và gán phần tử bằng 0 ở tâm ma trận.\n\nGiải thích: Đường chéo phụ đóng góp 3,5,7. Giá trị tâm 5 được cộng trước khi bị đổi nên y=15."
+      },
+      {
+        "text": "Hàng m[1] cuối cùng là gì?\n\nm = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nx = y = 0\nfor i in range(3):\n    x += m[i][i]\n    y += m[i][2 - i]\n    m[i][i] = 0",
+        "options": [
+          "[4, 5, 6]",
+          "[0, 5, 0]",
+          "[4, 0, 6]",
+          "[0, 0, 0]"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Chỉ phần tử m[i][i] bị thay đổi.\n\nGiải thích: Ở hàng chỉ số 1, chỉ m[1][1] thành 0 nên hàng là [4,0,6]."
+      },
+      {
+        "text": "Giá trị cuối của x là bao nhiêu?\n\na = [2, -1, 0, 3]\nx = y = 0\nfor v in a:\n    try:\n        if v < 0:\n            raise ValueError(\"âm\")\n        x += 6 // v\n    except ValueError:\n        y += 1\n    except ZeroDivisionError:\n        y += 2\n    else:\n        y += 3",
+        "options": [
+          "3",
+          "5",
+          "6",
+          "11"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Phép chia chỉ hoàn tất cho 2 và 3.\n\nGiải thích: 6//2=3 và 6//3=2 nên x=5. Hai lượt lỗi không cập nhật x."
+      },
+      {
+        "text": "Giá trị cuối của y là bao nhiêu?\n\na = [2, -1, 0, 3]\nx = y = 0\nfor v in a:\n    try:\n        if v < 0:\n            raise ValueError(\"âm\")\n        x += 6 // v\n    except ValueError:\n        y += 1\n    except ZeroDivisionError:\n        y += 2\n    else:\n        y += 3",
+        "options": [
+          "3",
+          "6",
+          "8",
+          "9"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: else của try chỉ chạy khi khối try không có ngoại lệ.\n\nGiải thích: Hai lượt thành công cộng 3 mỗi lượt; ValueError cộng 1; chia cho 0 cộng 2. Tổng 9."
+      },
+      {
+        "text": "Khi v=-1, nhánh nào thực hiện sau raise?\n\na = [2, -1, 0, 3]\nx = y = 0\nfor v in a:\n    try:\n        if v < 0:\n            raise ValueError(\"âm\")\n        x += 6 // v\n    except ValueError:\n        y += 1\n    except ZeroDivisionError:\n        y += 2\n    else:\n        y += 3",
+        "options": [
+          "except ZeroDivisionError",
+          "except ValueError",
+          "else",
+          "Không nhánh nào"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: raise chủ động phát sinh ngoại lệ được chỉ định.\n\nGiải thích: raise ValueError chuyển điều khiển tới except ValueError; không thực hiện phép chia và không vào else."
+      },
+      {
+        "text": "Giá trị của a.tolist() là gì?\n\nimport numpy as np\na = np.array([[1, 2], [3, 4]])\nb = a.copy()\nb[0, 1] = 10\nc = a * b\nx = c.sum()\ny = np.diag(c)",
+        "options": [
+          "[[1, 2], [3, 4]]",
+          "[[1, 10], [3, 4]]",
+          "[[1, 20], [9, 16]]",
+          "Báo lỗi"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: copy tạo mảng dữ liệu độc lập.\n\nGiải thích: Gán b[0,1]=10 không thay a nên a vẫn [[1,2],[3,4]]."
+      },
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\nimport numpy as np\na = np.array([[1, 2], [3, 4]])\nb = a.copy()\nb[0, 1] = 10\nc = a * b\nx = c.sum()\ny = np.diag(c)",
+        "options": [
+          "30",
+          "46",
+          "36",
+          "50"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Dấu * nhân từng phần tử, không phải nhân ma trận.\n\nGiải thích: c=[[1*1,2*10],[3*3,4*4]]=[[1,20],[9,16]]. Tổng bằng 46."
+      },
+      {
+        "text": "Giá trị của y.tolist() là gì?\n\nimport numpy as np\na = np.array([[1, 2], [3, 4]])\nb = a.copy()\nb[0, 1] = 10\nc = a * b\nx = c.sum()\ny = np.diag(c)",
+        "options": [
+          "[1, 20, 9, 16]",
+          "[20, 9]",
+          "[[1, 0], [0, 16]]",
+          "[1, 16]"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: np.diag trên mảng hai chiều lấy đường chéo chính.\n\nGiải thích: Hai phần tử đường chéo chính của c là 1 và 16."
+      },
+      {
+        "text": "Giá trị cuối của x là bao nhiêu?\n\na = [1, 3, 2, 4, 2, 5]\ni = 0\nx = 0\nout = \"\"\nwhile i < len(a):\n    if a[i] == 2:\n        i += 1\n        continue\n    x += a[i]\n    if x > 6:\n        break\n    out += str(a[i]) + \"_\"\n    i += 1",
+        "options": [
+          "8",
+          "6",
+          "4",
+          "13"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Giá trị làm x vượt ngưỡng vẫn đã được cộng trước break.\n\nGiải thích: Cộng 1 rồi 3 được 4; bỏ qua 2; cộng 4 được 8 thì break."
+      },
+      {
+        "text": "Giá trị cuối của i là bao nhiêu?\n\na = [1, 3, 2, 4, 2, 5]\ni = 0\nx = 0\nout = \"\"\nwhile i < len(a):\n    if a[i] == 2:\n        i += 1\n        continue\n    x += a[i]\n    if x > 6:\n        break\n    out += str(a[i]) + \"_\"\n    i += 1",
+        "options": [
+          "2",
+          "6",
+          "4",
+          "3"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Khi break xảy ra, lệnh tăng i cuối vòng không chạy.\n\nGiải thích: break xảy ra khi i=3, sau khi cộng a[3]=4. i giữ 3."
+      },
+      {
+        "text": "Giá trị của out là gì?\n\na = [1, 3, 2, 4, 2, 5]\ni = 0\nx = 0\nout = \"\"\nwhile i < len(a):\n    if a[i] == 2:\n        i += 1\n        continue\n    x += a[i]\n    if x > 6:\n        break\n    out += str(a[i]) + \"_\"\n    i += 1",
+        "options": [
+          "'1_3_4_'",
+          "'1_3_'",
+          "'1_3_2_'",
+          "'1_'"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Việc nối chuỗi nằm sau kiểm tra ngưỡng và break.\n\nGiải thích: Chỉ 1 và 3 được nối; 2 bị continue, còn 4 làm break trước khi nối."
+      }
+    ]
+  }
+]
