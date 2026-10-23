@@ -1,0 +1,452 @@
+[
+  {
+    "id": "q-python-corp134529-01",
+    "code": "PY-CORP-01",
+    "title": "Đề ôn tập số 1 - Tin học trong kỹ thuật (Python)",
+    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm. Mỗi đoạn code được chạy độc lập bằng Python 3. Các câu có chung đoạn code hỏi trên cùng kết quả thực thi. Được sử dụng tài liệu giấy; không chạy code khi làm bài mô phỏng.",
+    "duration": 75,
+    "createdAt": "2026-10-23",
+    "questions": [
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\nx = 3 * 2**3 // 4 + 7 % 3 - 1",
+        "options": [
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Thực hiện ** trước; *, //, % cùng mức ưu tiên và tính từ trái sang phải.\n\nGiải thích: 2**3 = 8; 3*8//4 = 6; 7%3 = 1. Do đó x = 6 + 1 - 1 = 6."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\na, b = 2, 3\nx = not (a > b) and b == 3 or a < 0",
+        "options": [
+          "True",
+          "False",
+          "None",
+          "Báo lỗi"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: not ưu tiên hơn and; and ưu tiên hơn or.\n\nGiải thích: a>b là False nên not(a>b) là True. b==3 cũng True, vì vậy vế trái của or là True."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\ns = \"123456\"\nx = s[1:-1:2]",
+        "options": [
+          "'246'",
+          "'23456'",
+          "'135'",
+          "'24'"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Vị trí kết thúc của slice không được lấy.\n\nGiải thích: Các chỉ số được lấy là 1 và 3; chỉ số -1 tương ứng 5 bị loại. Kết quả là chuỗi 24."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\na = [1, 2, 3, 4, 5]\nx = a[1:3] + [a[-1]]",
+        "options": [
+          "[2, 3, 5]",
+          "[2, 3, 4, 5]",
+          "[5, 5]",
+          "Báo lỗi"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Dấu + nối hai list; một phần tử phải đặt trong [].\n\nGiải thích: a[1:3] là [2, 3], [a[-1]] là [5]. Nối lại được [2, 3, 5]."
+      },
+      {
+        "text": "Sau khi chạy code, cặp (x, d) là gì?\n\nd = {\"a\": 10, \"b\": 20}\nx = d.pop(\"b\")\nd[\"c\"] = x + 10",
+        "options": [
+          "(20, {'a': 10})",
+          "(20, {'a': 10, 'c': 30})",
+          "('b', {'a': 10, 'c': 30})",
+          "Báo lỗi"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: pop(key) vừa trả về value vừa xóa key.\n\nGiải thích: pop(\"b\") trả về 20 và xóa b. Phép gán sau đó thêm c với giá trị 30."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\na = set([1, 2, 2, 3, 4])\nb = {2, 4, 5}\nx = len(a) - len(a & b) + 1",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Set loại phần tử trùng; & lấy giao.\n\nGiải thích: a chứa 1, 2, 3, 4. Giao với b là {2, 4}; vì vậy x = 4 - 2 + 1 = 3."
+      },
+      {
+        "text": "Kết quả của đoạn code là gì?\n\nt = (1, 2, 3)\nt[1] = 4",
+        "options": [
+          "(1, 2, 3, 4)",
+          "(1, 4, 3)",
+          "[1, 4, 3]",
+          "Báo lỗi TypeError"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Tuple có cho phép gán lại phần tử qua chỉ số không?\n\nGiải thích: Tuple không hỗ trợ gán phần tử. Lệnh t[1] = 4 gây TypeError."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\ns = \"12,34,56\"\nx = \"-\".join(s.split(\",\"))",
+        "options": [
+          "'12-34-56'",
+          "'12 34 56'",
+          "['12', '34', '56']",
+          "'123456'"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: split tạo list; chuỗi đứng trước join là dấu nối.\n\nGiải thích: split(\",\") tạo [\"12\", \"34\", \"56\"]. join dùng dấu gạch nối để ghép các phần."
+      },
+      {
+        "text": "Giá trị của cặp (x, y) là gì?\n\ny = 3\ndef f(a, b=2):\n    x = a + b\n    return x\nx = f(5, y)",
+        "options": [
+          "(8, 3)",
+          "(8, 8)",
+          "(3, 8)",
+          "Báo lỗi"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Tên x được gán bên trong hàm là biến cục bộ.\n\nGiải thích: Trong hàm, x = 5 + 3 = 8 và được trả về cho biến x bên ngoài. y vẫn bằng 3."
+      },
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\nf = lambda a, b=1: a**2 + b\nx = f(3, 4) + f(2) - 5",
+        "options": [
+          "12",
+          "13",
+          "15",
+          "17"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Lời gọi thứ hai có truyền đối số b hay dùng mặc định?\n\nGiải thích: f(3, 4) = 9 + 4 = 13; f(2) = 4 + 1 = 5. Vì vậy x = 13 + 5 - 5 = 13."
+      },
+      {
+        "text": "Kết quả in ra chính xác là gì?\n\nfor i in range(1, 5):\n    if i == 2:\n        continue\n    if i == 4:\n        break\n    print(i, end=\"_\")\nelse:\n    print(\"E\", end=\"\")",
+        "options": [
+          "1_3_E",
+          "1_3_",
+          "1_2_3_4_E",
+          "1_3_4_"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: else của for chỉ chạy khi vòng lặp kết thúc mà không gặp break.\n\nGiải thích: i=1 và i=3 được in. i=2 bị bỏ qua bởi continue. i=4 gây break nên không in E."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\nimport math\nx = math.sqrt(9) + math.ceil(1.2)",
+        "options": [
+          "3.0",
+          "4.0",
+          "5.0",
+          "Báo lỗi"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: sqrt trả về căn bậc hai; ceil làm tròn lên số nguyên.\n\nGiải thích: sqrt(9) = 3.0 và ceil(1.2) = 2. Tổng là 5.0."
+      },
+      {
+        "text": "Đã chạy import matplotlib.pyplot as plt. Lệnh nào vẽ đường màu đỏ, nét liền, đánh dấu từng điểm bằng hình vuông?",
+        "options": [
+          "plt.plot(x, y, \"r-\", marker=\"s\")",
+          "plt.bar(x, y, color=\"red\")",
+          "plt.plot(x, y, \"b--\", marker=\"o\")",
+          "plt.scatter(x, y, color=\"red\", marker=\"s\")"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Phân biệt plot với bar và scatter; r chỉ màu đỏ, s chỉ hình vuông.\n\nGiải thích: plt.plot tạo đường. \"r-\" chỉ màu đỏ và nét liền; marker=\"s\" chỉ điểm đánh dấu hình vuông."
+      },
+      {
+        "text": "Với fig, ax = plt.subplots(), lệnh nào đặt đồng thời nhãn hai trục và tiêu đề?",
+        "options": [
+          "ax.set(xlabel=\"Thời gian\", ylabel=\"Giá trị\", title=\"Kết quả\")",
+          "ax.xlabel(\"Thời gian\", \"Giá trị\", \"Kết quả\")",
+          "plt.legend(\"Thời gian\", \"Giá trị\", \"Kết quả\")",
+          "ax.title = (\"Thời gian\", \"Giá trị\", \"Kết quả\")"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Axes.set nhận các thuộc tính qua đối số có tên.\n\nGiải thích: ax.set(xlabel=..., ylabel=..., title=...) đặt đủ ba thuộc tính. legend dùng cho chú thích các đối tượng vẽ."
+      },
+      {
+        "text": "Với arr là mảng NumPy có shape (2, 3), biểu thức nào tính trung bình từng hàng và trả về mảng shape (2,)?",
+        "options": [
+          "arr.mean(axis=0)",
+          "arr.mean(axis=1)",
+          "arr.mean()",
+          "arr.shape()"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Trung bình từng hàng nghĩa là gộp các cột của mỗi hàng.\n\nGiải thích: axis=1 gộp theo chiều cột, còn một giá trị cho mỗi hàng. axis=0 cho một giá trị cho mỗi cột; mean() không có axis cho trung bình toàn mảng."
+      },
+      {
+        "text": "Với arr = np.array([-2, 3, 9]), np.clip(arr, 0, 5).tolist() là gì?",
+        "options": [
+          "[0, 3, 5]",
+          "[3]",
+          "[-2, 3, 5]",
+          "[0, 3, 9]"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: clip chặn các giá trị vượt hai cận, không lọc bỏ phần tử.\n\nGiải thích: -2 nhỏ hơn 0 nên thành 0; 3 giữ nguyên; 9 lớn hơn 5 nên thành 5."
+      },
+      {
+        "text": "Giá trị cuối của a là bao nhiêu?\n\ni = 19\na = b = 0\nwhile i > 0:\n    a += i % 2\n    i //= 2\n    b += i",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Ghi i ở đầu mỗi lượt rồi lấy phần dư cho 2.\n\nGiải thích: i đầu lượt là 19, 9, 4, 2, 1; phần dư là 1, 1, 0, 0, 1. Tổng a = 3."
+      },
+      {
+        "text": "Giá trị cuối của b là bao nhiêu?\n\ni = 19\na = b = 0\nwhile i > 0:\n    a += i % 2\n    i //= 2\n    b += i",
+        "options": [
+          "16",
+          "17",
+          "18",
+          "19"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: b cộng i sau khi đã chia lấy phần nguyên.\n\nGiải thích: Các giá trị được cộng vào b là 9, 4, 2, 1, 0. Tổng là 16."
+      },
+      {
+        "text": "Khối lệnh while thực hiện bao nhiêu lần?\n\ni = 19\na = b = 0\nwhile i > 0:\n    a += i % 2\n    i //= 2\n    b += i",
+        "options": [
+          "4",
+          "6",
+          "5",
+          "19"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Lượt cuối vẫn chạy khi i bằng 1.\n\nGiải thích: Năm giá trị i đầu lượt thỏa i>0 là 19, 9, 4, 2, 1. Sau đó i=0 và dừng."
+      },
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\ndef fun(n, b=2):\n    if n <= 0:\n        return 1\n    return n + fun(n // b, b)\nx = fun(10)\ny = fun(10, 3)",
+        "options": [
+          "18",
+          "19",
+          "20",
+          "21"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Khai triển cho đến lời gọi có n bằng 0.\n\nGiải thích: fun(10) = 10 + 5 + 2 + 1 + fun(0) = 19 vì fun(0)=1."
+      },
+      {
+        "text": "Giá trị của y là bao nhiêu?\n\ndef fun(n, b=2):\n    if n <= 0:\n        return 1\n    return n + fun(n // b, b)\nx = fun(10)\ny = fun(10, 3)",
+        "options": [
+          "14",
+          "16",
+          "15",
+          "13"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Ở lời gọi này b luôn bằng 3.\n\nGiải thích: fun(10,3) = 10 + 3 + 1 + fun(0,3) = 15."
+      },
+      {
+        "text": "Chỉ tính quá trình đánh giá fun(10), hàm fun được gọi tổng cộng bao nhiêu lần, kể cả lần đầu và lần dừng?\n\ndef fun(n, b=2):\n    if n <= 0:\n        return 1\n    return n + fun(n // b, b)\nx = fun(10)\ny = fun(10, 3)",
+        "options": [
+          "5",
+          "4",
+          "6",
+          "10"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Liệt kê cả lời gọi với n=0.\n\nGiải thích: Các lời gọi có n lần lượt là 10, 5, 2, 1, 0: tổng 5 lần."
+      },
+      {
+        "text": "Giá trị cuối của n là bao nhiêu?\n\ns = \"12223311\"\ni = n = 0\nout = \"\"\nwhile i < len(s) - 1:\n    if s[i] == s[i + 1]:\n        n += 1\n        out += str(i) + \"_\"\n        i += 1\n    i += 1",
+        "options": [
+          "2",
+          "4",
+          "3",
+          "5"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Khi gặp cặp bằng nhau, i tăng hai lần trong một lượt.\n\nGiải thích: Các cặp bằng nhau được ghi nhận ở i=1, 4, 6. Cặp tại i=2 không được kiểm tra vì bước nhảy. n=3."
+      },
+      {
+        "text": "Giá trị cuối của i là bao nhiêu?\n\ns = \"12223311\"\ni = n = 0\nout = \"\"\nwhile i < len(s) - 1:\n    if s[i] == s[i + 1]:\n        n += 1\n        out += str(i) + \"_\"\n        i += 1\n    i += 1",
+        "options": [
+          "6",
+          "7",
+          "9",
+          "8"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Theo dõi cả lần tăng trong if và lần tăng cuối vòng.\n\nGiải thích: i đầu các lượt là 0, 1, 3, 4, 6; sau lượt cuối i=8 nên dừng."
+      },
+      {
+        "text": "Giá trị của out là gì?\n\ns = \"12223311\"\ni = n = 0\nout = \"\"\nwhile i < len(s) - 1:\n    if s[i] == s[i + 1]:\n        n += 1\n        out += str(i) + \"_\"\n        i += 1\n    i += 1",
+        "options": [
+          "'1_2_4_6_'",
+          "'1_4_6_'",
+          "'2_5_7_'",
+          "'1_3_6_'"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Ghi chỉ số trước khi i được tăng.\n\nGiải thích: Chỉ số được nối vào out là 1, 4, 6; mỗi chỉ số kèm một dấu _."
+      },
+      {
+        "text": "Giá trị của n là bao nhiêu?\n\na = [3, 1, 4, 2, 5]\nn = 0\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        a[i], a[i + 1] = a[i + 1], a[i]\n        n += 1",
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Đây là một lượt duyệt đổi chỗ các phần tử liền nhau.\n\nGiải thích: Đổi chỗ tại i=0 và i=2. Hai vị trí còn lại không đổi nên n=2."
+      },
+      {
+        "text": "Giá trị cuối của a[2] là bao nhiêu?\n\na = [3, 1, 4, 2, 5]\nn = 0\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        a[i], a[i + 1] = a[i + 1], a[i]\n        n += 1",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Phải cập nhật list sau mỗi lần đổi chỗ.\n\nGiải thích: List lần lượt thành [1,3,4,2,5], rồi [1,3,2,4,5]. Do đó a[2]=2."
+      },
+      {
+        "text": "List a cuối cùng là gì?\n\na = [3, 1, 4, 2, 5]\nn = 0\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        a[i], a[i + 1] = a[i + 1], a[i]\n        n += 1",
+        "options": [
+          "[1, 2, 3, 4, 5]",
+          "[3, 1, 2, 4, 5]",
+          "[1, 3, 2, 4, 5]",
+          "[1, 3, 4, 2, 5]"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Một lượt duyệt chưa chắc sắp xếp xong toàn bộ list.\n\nGiải thích: Sau hai lần đổi chỗ, list là [1,3,2,4,5]. Vòng lặp không quay lại so sánh 3 với 2."
+      },
+      {
+        "text": "Giá trị cuối của x là bao nhiêu?\n\nm = [[2, 5, 1], [4, 3, 6]]\nx = y = 0\nfor i in range(2):\n    for j in range(3):\n        x += 1\n        if m[i][j] > m[0][j]:\n            m[0][j] = m[i][j]\n        else:\n            y += m[i][j]",
+        "options": [
+          "3",
+          "5",
+          "6",
+          "9"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Không có break; mỗi cặp chỉ số làm x tăng một lần.\n\nGiải thích: Có 2 hàng và 3 cột; khối trong chạy 2*3=6 lần."
+      },
+      {
+        "text": "Giá trị cuối của y là bao nhiêu?\n\nm = [[2, 5, 1], [4, 3, 6]]\nx = y = 0\nfor i in range(2):\n    for j in range(3):\n        x += 1\n        if m[i][j] > m[0][j]:\n            m[0][j] = m[i][j]\n        else:\n            y += m[i][j]",
+        "options": [
+          "8",
+          "11",
+          "14",
+          "21"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Khi i=0, mỗi phần tử được so sánh với chính nó.\n\nGiải thích: Hàng đầu đóng góp 2+5+1=8 vào y. Ở hàng hai, chỉ 3 không lớn hơn 5 nên được cộng thêm. y=11."
+      },
+      {
+        "text": "Giá trị cuối của m[0] là gì?\n\nm = [[2, 5, 1], [4, 3, 6]]\nx = y = 0\nfor i in range(2):\n    for j in range(3):\n        x += 1\n        if m[i][j] > m[0][j]:\n            m[0][j] = m[i][j]\n        else:\n            y += m[i][j]",
+        "options": [
+          "[2, 5, 1]",
+          "[4, 3, 6]",
+          "[4, 5, 1]",
+          "[4, 5, 6]"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Mỗi cột của hàng đầu chỉ được thay nếu giá trị hàng dưới lớn hơn.\n\nGiải thích: Ở hàng dưới, 4 thay 2; 3 không thay 5; 6 thay 1. Kết quả [4,5,6]."
+      },
+      {
+        "text": "Giá trị cuối của n là bao nhiêu?\n\ndata = [\"4\", \"x\", \"0\", \"2\"]\na = []\nn = 0\nfor s in data:\n    try:\n        v = int(s)\n        a.append(8 // v)\n    except ValueError:\n        a.insert(0, -1)\n    except ZeroDivisionError:\n        n += 1\n    finally:\n        n += 1",
+        "options": [
+          "4",
+          "5",
+          "6",
+          "2"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: finally chạy ở mọi lượt; chia cho 0 còn tăng thêm n trong except.\n\nGiải thích: Bốn lượt đều tăng n trong finally. s=\"0\" gây ZeroDivisionError và tăng thêm 1. Tổng n=5."
+      },
+      {
+        "text": "List a cuối cùng là gì?\n\ndata = [\"4\", \"x\", \"0\", \"2\"]\na = []\nn = 0\nfor s in data:\n    try:\n        v = int(s)\n        a.append(8 // v)\n    except ValueError:\n        a.insert(0, -1)\n    except ZeroDivisionError:\n        n += 1\n    finally:\n        n += 1",
+        "options": [
+          "[2, -1, 4]",
+          "[-1, 2, 0, 4]",
+          "[-1, 2, 4]",
+          "[2, 4]"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Khi phép chia lỗi, append chưa hoàn tất nên không thêm phần tử.\n\nGiải thích: \"4\" thêm 2; \"x\" chèn -1 đầu list; \"0\" không thêm gì; \"2\" thêm 4."
+      },
+      {
+        "text": "Ngoại lệ nào xảy ra khi s có giá trị \"0\"?\n\ndata = [\"4\", \"x\", \"0\", \"2\"]\na = []\nn = 0\nfor s in data:\n    try:\n        v = int(s)\n        a.append(8 // v)\n    except ValueError:\n        a.insert(0, -1)\n    except ZeroDivisionError:\n        n += 1\n    finally:\n        n += 1",
+        "options": [
+          "ValueError",
+          "TypeError",
+          "Không có ngoại lệ",
+          "ZeroDivisionError"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: int(\"0\") hợp lệ; xem biểu thức ngay sau đó.\n\nGiải thích: int(\"0\") cho 0; phép 8//0 gây ZeroDivisionError, được nhánh except tương ứng xử lý."
+      },
+      {
+        "text": "Giá trị a.shape là gì?\n\nimport numpy as np\na = np.arange(1, 7).reshape(2, 3)\nb = a[:, 1:] + 2\nc = b.sum(axis=0)\nd = np.clip(c, 0, 12)",
+        "options": [
+          "(3, 2)",
+          "(2, 3)",
+          "(6,)",
+          "(2, 2)"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: reshape nhận số hàng rồi số cột.\n\nGiải thích: arange tạo 1 đến 6, reshape(2,3) xếp thành 2 hàng, 3 cột."
+      },
+      {
+        "text": "Giá trị b.tolist() là gì?\n\nimport numpy as np\na = np.arange(1, 7).reshape(2, 3)\nb = a[:, 1:] + 2\nc = b.sum(axis=0)\nd = np.clip(c, 0, 12)",
+        "options": [
+          "[[4, 5], [7, 8]]",
+          "[[3, 4], [6, 7]]",
+          "[[2, 3], [5, 6]]",
+          "[[4, 7], [5, 8]]"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Giữ tất cả hàng, lấy từ cột chỉ số 1 rồi cộng 2 từng phần tử.\n\nGiải thích: a[:,1:] là [[2,3],[5,6]], cộng 2 được [[4,5],[7,8]]."
+      },
+      {
+        "text": "Giá trị d.tolist() là gì?\n\nimport numpy as np\na = np.arange(1, 7).reshape(2, 3)\nb = a[:, 1:] + 2\nc = b.sum(axis=0)\nd = np.clip(c, 0, 12)",
+        "options": [
+          "[9, 12]",
+          "[11, 13]",
+          "[11, 12]",
+          "[12, 12]"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: sum(axis=0) cộng theo từng cột rồi clip chặn ở cận trên.\n\nGiải thích: c=[4+7,5+8]=[11,13]. clip với hai cận 0 và 12 cho [11,12]."
+      },
+      {
+        "text": "Giá trị cuối của x là bao nhiêu?\n\na = [2, 5, 1, 4]\nx = y = 0\nout = \"\"\nfor i in range(len(a)):\n    for j in range(i + 1, len(a)):\n        x += 1\n        if a[j] < a[i]:\n            y += a[j]\n            out += str(j) + \"_\"\n            break",
+        "options": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: break chỉ thoát vòng for j; vòng for i vẫn tiếp tục.\n\nGiải thích: i=0 kiểm tra j=1,2: 2 lần; i=1 kiểm tra j=2: 1 lần; i=2 kiểm tra j=3: 1 lần; i=3 không có lượt. x=4."
+      },
+      {
+        "text": "Giá trị cuối của y là bao nhiêu?\n\na = [2, 5, 1, 4]\nx = y = 0\nout = \"\"\nfor i in range(len(a)):\n    for j in range(i + 1, len(a)):\n        x += 1\n        if a[j] < a[i]:\n            y += a[j]\n            out += str(j) + \"_\"\n            break",
+        "options": [
+          "1",
+          "3",
+          "4",
+          "2"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Chỉ cộng khi tìm được phần tử nhỏ hơn a[i].\n\nGiải thích: Với i=0 và i=1, phần tử đầu tiên nhỏ hơn đều là a[2]=1. Tổng y=2."
+      },
+      {
+        "text": "Giá trị của out là gì?\n\na = [2, 5, 1, 4]\nx = y = 0\nout = \"\"\nfor i in range(len(a)):\n    for j in range(i + 1, len(a)):\n        x += 1\n        if a[j] < a[i]:\n            y += a[j]\n            out += str(j) + \"_\"\n            break",
+        "options": [
+          "'2_2_'",
+          "'1_2_'",
+          "'2_3_'",
+          "'2_'"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: Một chỉ số j có thể được ghi ở nhiều lượt i khác nhau.\n\nGiải thích: Cả i=0 và i=1 đều gặp điều kiện đúng tại j=2. Mỗi lượt nối \"2_\", nên out=\"2_2_\"."
+      }
+    ]
+  }
+]
