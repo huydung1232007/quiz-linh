@@ -23,6 +23,8 @@
     if(!active || sending) return;
     const item=active,id=popupSession,seen=readSeen(id);seen.add(item.id);
     try{localStorage.setItem('quizmaster_seen_notifications_'+id,JSON.stringify([...seen].slice(-200)));}catch{}
+    try{localStorage.setItem('chat-read-student-'+id,item.id);}catch{}
+    chat.read();
     // Acknowledge this message only; the history chat remains available.
     fetch('/api/notifications',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'ack',sessionId:id,notificationId:item.id})}).catch(()=>{});
     queue=queue.filter(message=>message.id!==item.id);active=null;modal.classList.add('hidden');modal.classList.remove('flex');
