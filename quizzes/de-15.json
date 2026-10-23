@@ -3,7 +3,7 @@
     "id": "q-python-corp134529-01",
     "code": "PY-CORP-01",
     "title": "Đề ôn tập số 1",
-    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm. Mỗi đoạn code được chạy độc lập bằng Python 3. Các câu có chung đoạn code hỏi trên cùng kết quả thực thi. Được sử dụng tài liệu giấy; không chạy code khi làm bài mô phỏng.",
+    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm. Mỗi đoạn code được chạy độc lập bằng Python 3. Các câu có chung đoạn code hỏi trên cùng kết quả thực thi. Được sử dụng tài liệu giấy; không chạy code khi làm bài mô phỏng. Đã bổ sung 2 câu xử lý tập tin. Ký hiệu \\n trong lựa chọn biểu thị ký tự xuống dòng; mỗi đoạn code chạy độc lập theo giả thiết riêng.",
     "duration": 75,
     "createdAt": "2026-10-23",
     "questions": [
@@ -74,15 +74,15 @@
         "explain": "Gợi ý: Set loại phần tử trùng; & lấy giao.\n\nGiải thích: a chứa 1, 2, 3, 4. Giao với b là {2, 4}; vì vậy x = 4 - 2 + 1 = 3."
       },
       {
-        "text": "Kết quả của đoạn code là gì?\n\nt = (1, 2, 3)\nt[1] = 4",
+        "text": "Giả sử numbers.txt chứa chính xác chuỗi \"3\\n7\\n2\\n\". Sau đoạn code, bộ (x, y, z) là gì? Ký hiệu \\n biểu thị ký tự xuống dòng.\n\nwith open(\"numbers.txt\", \"r\", encoding=\"utf-8\") as f:\n    x = sum(int(line.strip()) for line in f)\n    y = f.closed\nz = f.closed",
         "options": [
-          "(1, 2, 3, 4)",
-          "(1, 4, 3)",
-          "[1, 4, 3]",
-          "Báo lỗi TypeError"
+          "Báo lỗi vì truy cập f.closed ngoài with",
+          "(12, True, True)",
+          "(3, False, True)",
+          "(12, False, True)"
         ],
         "correct": 3,
-        "explain": "Gợi ý: Tuple có cho phép gán lại phần tử qua chỉ số không?\n\nGiải thích: Tuple không hỗ trợ gán phần tử. Lệnh t[1] = 4 gây TypeError."
+        "explain": "Gợi ý: Duyệt f lần lượt đọc từng dòng; phân biệt trạng thái tệp bên trong và ngoài with.\n\nGiải thích: Ba dòng chuyển thành số 3,7,2 có tổng 12. Bên trong with tệp đang mở nên y=False; khi ra ngoài tệp đã đóng nên z=True. Thuộc tính closed vẫn truy cập được."
       },
       {
         "text": "Giá trị của x là gì?\n\ns = \"12,34,56\"\nx = \"-\".join(s.split(\",\"))",
@@ -129,15 +129,15 @@
         "explain": "Gợi ý: else của for chỉ chạy khi vòng lặp kết thúc mà không gặp break.\n\nGiải thích: i=1 và i=3 được in. i=2 bị bỏ qua bởi continue. i=4 gây break nên không in E."
       },
       {
-        "text": "Giá trị của x là gì?\n\nimport math\nx = math.sqrt(9) + math.ceil(1.2)",
+        "text": "Tệp result.txt đã có dữ liệu. Cần xóa nội dung cũ và ghi lại từ đầu. Chế độ mở nào phù hợp?",
         "options": [
-          "3.0",
-          "4.0",
-          "5.0",
-          "Báo lỗi"
+          "\"r\"",
+          "\"a\"",
+          "\"w\"",
+          "\"x\""
         ],
         "correct": 2,
-        "explain": "Gợi ý: sqrt trả về căn bậc hai; ceil làm tròn lên số nguyên.\n\nGiải thích: sqrt(9) = 3.0 và ceil(1.2) = 2. Tổng là 5.0."
+        "explain": "Gợi ý: Phân biệt đọc, ghi nối, ghi đè và tạo mới độc quyền.\n\nGiải thích: Chế độ w xóa nội dung cũ khi mở để ghi lại từ đầu. r chỉ đọc; a ghi nối; x gây FileExistsError nếu tệp đã tồn tại."
       },
       {
         "text": "Đã chạy import matplotlib.pyplot as plt. Lệnh nào vẽ đường màu đỏ, nét liền, đánh dấu từng điểm bằng hình vuông?",
