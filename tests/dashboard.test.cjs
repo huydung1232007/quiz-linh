@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+const nodes=new Map();
+function node(id){if(!nodes.has(id))nodes.set(id,{textContent:'',innerHTML:'',value:'',style:{},hidden:false,disabled:false,className:'',classList:{contains(){return true},toggle(){}},addEventListener(){},setAttribute(){},querySelectorAll(){return[]}});return nodes.get(id)}
+const stored=new Map(),context={console,Date,Set,Number,String,Math,Array,Object,JSON,AbortSignal,document:{getElementById:node},localStorage:{getItem:k=>stored.get(k)||null,setItem:(k,v)=>stored.set(k,v),removeItem:k=>stored.delete(k)},setInterval(){},fetch:()=>new Promise(()=>{}),confirm:()=>true};
+vm.createContext(context);vm.runInContext(fs.readFileSync('assets/dashboard.js','utf8'),context);
+node('session-filter').value='all';node('answer-filter').value='all';
+context.sessions=[{sessionId:'one',playerName:'Linh',quizCode:'PY-01',quizTitle:'Hàm',eventType:'PROGRESS',updatedAt:new Date().toISOString(),totalQuestions:3,answeredCount:2,correctCount:1,answerSheet:'Câu 1: A | Câu 2: B',answerResults:{1:{isCorrect:true},2:{isCorrect:false}},timeLeft:'10:00'},{sessionId:'two',playerName:'An',eventType:'SUBMIT',updatedAt:new Date().toISOString(),totalQuestions:2,answeredCount:2}];
+vm.runInContext('renderSessions(sessions)',context);
+assert.equal(node('session-count').textContent,'2 lượt');assert.equal(node('online-count').textContent,1);assert.equal(node('submitted-count').textContent,1);assert(node('student').textContent.includes('Linh'));assert.equal(node('notification-recipient').textContent,'Linh');assert(node('answer-grid').innerHTML.includes('answer correct'));assert(node('answer-grid').innerHTML.includes('answer wrong'));assert(node('answer-grid').innerHTML.includes('answer empty'));
+node('answer-filter').value='wrong';vm.runInContext('renderDetail(detailData)',context);assert(node('answer-grid').innerHTML.includes('CÂU 2'));assert(!node('answer-grid').innerHTML.includes('CÂU 1'));
+node('session-search').value='không tồn tại';vm.runInContext('renderSessions(sessions)',context);assert.equal(node('time').textContent,'—');assert.equal(node('send-notification-btn').disabled,true);assert.equal(node('notification-recipient').textContent,'Chưa chọn');
+node('session-search').value='';stored.set('quizmaster_hidden_sessions_v1','["one","two"]');vm.runInContext('renderSessions(sessions)',context);assert.equal(node('session-count').textContent,'0 lượt');assert.equal(node('restore-hidden-sessions').hidden,false);assert.equal(node('send-notification-btn').disabled,true);
+console.log('PASS: dashboard selection, counts, answer filters, search, hidden sessions and empty detail reset.');
