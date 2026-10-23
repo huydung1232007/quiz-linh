@@ -175,6 +175,9 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                     answerResults,
                     timeLeft: `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`
                 };
+                if (this.questionBankSession !== payload.sessionId) {
+                    payload.examQuestionSet = this.examQuestions.slice(0, 200).map((item,index) => ({number:index+1,text:item.text,options:item.options,correct:item.correct,explain:item.explain ?? item.explanation ?? ''}));
+                }
                 this.trackingPending = (this.trackingPending || 0) + 1;
                 const send = async () => { try {
                     const response = await fetch('/api/track', {
@@ -184,6 +187,7 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                         body: JSON.stringify(payload)
                     });
                     if (!response.ok) console.warn('Telegram tracking API lỗi:', response.status);
+                    else if (payload.examQuestionSet) this.questionBankSession = payload.sessionId;
                 } catch (err) {
                     console.warn('Không gửi được tiến độ Telegram:', err);
                 } finally { this.trackingPending--; } };

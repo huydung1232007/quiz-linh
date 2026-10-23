@@ -3,6 +3,26 @@ const $ = id => document.getElementById(id);
 let lastUpdated = '';
 let selectedSessionId = '';
 let dashboardChat = null, latestReplies = {};
+let reviewNumber=0, reviewSession='', reviewContent=null, reviewError='', reviewRequest=0;
+const questionCache=new Map();
+function resetQuestionReview(){reviewNumber=0;reviewSession='';reviewContent=null;reviewError='';reviewRequest++;}
+async function selectReviewQuestion(number){
+  if(!detailData || !Number.isInteger(number) || number<1 || number>Math.min(200,Number(detailData.totalQuestions)))return;
+  const sessionId=detailData.sessionId, key=sessionId+':'+number, request=++reviewRequest;
+  reviewNumber=number;reviewSession=sessionId;reviewError='';
+  reviewContent=questionCache.get(key) || (detailData.currentQuestionData?.number===number ? detailData.currentQuestionData : null);
+  renderDetail(detailData);
+  $('live-question-heading').scrollIntoView?.({behavior:'smooth',block:'start'});
+  if(reviewContent) return;
+  try{
+    const response=await fetch(`/api/dashboard?sessionId=${encodeURIComponent(sessionId)}&question=${number}&t=${Date.now()}`,{cache:'no-store',signal:AbortSignal.timeout(12000)});
+    const result=await response.json();
+    if(request!==reviewRequest || detailData?.sessionId!==sessionId)return;
+    if(!response.ok || !result.ok || result.question?.number!==number || result.sessionId!==sessionId)throw Error(result.error || 'Không tải được câu hỏi.');
+    reviewContent=result.question;questionCache.set(key,result.question);
+  }catch(error){if(request!==reviewRequest)return;reviewError=error.message;}
+  if(request===reviewRequest && detailData?.sessionId===sessionId)renderCurrentQuestion(detailData);
+}
 function updateChatBadges(){
   document.querySelectorAll?.('[data-chat-session]').forEach(badge=>{
     const latest=latestReplies[badge.dataset.chatSession];
@@ -78,9 +98,26 @@ function renderSessions(sessions){
   renderDetail(filtered.find(s => s.sessionId === selectedSessionId));
 }
 function renderCurrentQuestion(d){
+  if(!d || (reviewSession && reviewSession!==d.sessionId))resetQuestionReview();
+  const reviewing=!!d && reviewNumber>0 && reviewSession===d.sessionId;
+  $('follow-current-question').hidden=!reviewing;
+  $('live-question-heading').textContent=reviewing?'Xem lại câu hỏi':'Câu hỏi đang làm';
+  if(reviewing){
+    $('live-question-caption').textContent=`Bạn đang xem câu ${reviewNumber} · Học viên ${d.eventType==='SUBMIT'?'đã nộp bài, xem gần nhất':'đang ở'} câu ${d.currentQuestion}`;
+    $('live-question-number').textContent=`Câu ${reviewNumber} / ${d.totalQuestions}`;
+    if(!reviewContent){
+      if($('live-question-body').dataset)$('live-question-body').dataset.renderKey='';
+      $('live-question-body').innerHTML=`<div class="empty-state">${esc(reviewError || 'Đang tải nội dung câu hỏi…')}${reviewError?'<br><button type="button" class="button" id="retry-review-question">Thử lại</button>':''}</div>`;
+      if(reviewError)$('retry-review-question').addEventListener('click',()=>selectReviewQuestion(reviewNumber));
+      return;
+    }
+    const letter=d.answerResults?.[String(reviewNumber)]?.selected || String(d.answerSheet||'').split('|').map(part=>part.trim().match(/^Câu\s+(\d+)\s*:\s*([A-L])/i)).find(match=>match && Number(match[1])===reviewNumber)?.[2];
+    const selected=letter ? String(letter).toUpperCase().charCodeAt(0)-65 : null;
+    d={...d,currentQuestion:reviewNumber,currentQuestionData:{...reviewContent,selected}};
+  }
   const question=d?.currentQuestionData;
   $('live-question-number').textContent=d ? `Câu ${d.currentQuestion || 0} / ${d.totalQuestions || 0}` : 'Chưa có câu hỏi';
-  $('live-question-caption').textContent=d?.eventType==='SUBMIT' ? 'Câu xem gần nhất trước khi nộp bài' : 'Nội dung câu học viên đang xem';
+  if(!reviewing)$('live-question-caption').textContent=d?.eventType==='SUBMIT' ? 'Câu xem gần nhất trước khi nộp bài' : 'Nội dung câu học viên đang xem';
   if(!question || question.number!==Number(d.currentQuestion) || !Array.isArray(question.options)) {
     if($('live-question-body').dataset) $('live-question-body').dataset.renderKey='';
     $('live-question-body').innerHTML=`<p class="empty-state">${d ? 'Lượt thi này chưa có nội dung câu hỏi. Học viên cần tải lại trang và tiếp tục bài để đồng bộ.' : 'Chọn một lượt thi để xem nội dung câu hỏi.'}</p>`;
@@ -133,10 +170,12 @@ function renderDetail(d){
     const state=!a?'empty':hasResult?(result.isCorrect?'correct':'wrong'):'selected';
     if(filter!=='all' && state!==filter) continue;
     const label={empty:'Chưa chọn',correct:'Đúng',wrong:'Sai',selected:'Chưa đối chiếu'}[state];
-    cells.push(`<div class="answer ${state}" aria-label="Câu ${n}: ${a||'chưa chọn'} · ${label}"><span>CÂU ${n}</span><strong>${a||'—'}</strong></div>`);
+    const viewing=n===(reviewSession===d.sessionId && reviewNumber ? reviewNumber : Number(d.currentQuestion));
+    cells.push(`<button type="button" data-review-question="${n}" aria-pressed="${viewing}" class="answer ${state} ${viewing?'is-viewing':''}" aria-label="Xem câu ${n}: ${a||'chưa chọn'} · ${label}"><span>CÂU ${n}</span><strong>${a||'—'}</strong></button>`);
   }
   $('answer-grid').innerHTML=cells.join('') || '<div class="empty-state">Không có câu hỏi trong bộ lọc này.</div>';
   $('answer-count').textContent = `Hiển thị ${cells.length}/${total} câu` + (total>200?' · Tối đa 200 câu đầu':'');
+  $('answer-grid').querySelectorAll('[data-review-question]').forEach(button=>button.addEventListener('click',()=>selectReviewQuestion(Number(button.dataset.reviewQuestion))));
 
 }
 let lastSentNotificationId = '';
@@ -233,4 +272,5 @@ $('restore-hidden-sessions').addEventListener('click',restoreHiddenSessions);
 $('session-search').addEventListener('input',()=>renderSessions(cachedSessions));
 $('session-filter').addEventListener('change',()=>renderSessions(cachedSessions));
 $('answer-filter').addEventListener('change',()=>renderDetail(detailData));
+$('follow-current-question').addEventListener('click',()=>{resetQuestionReview();renderDetail(detailData);});
 refresh(); setInterval(refresh,2000);

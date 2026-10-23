@@ -25,10 +25,10 @@ module.exports = async function handler(req, res) {
     String(v ?? "").slice(0, max);
 
   const now = new Date().toISOString();
-  const question = input.currentQuestionData;
+  const normalizeQuestion = question => {
   const options = Array.isArray(question?.options) ? question.options.slice(0, 12).map(option => safeString(option, 8000)) : [];
   const validIndex = index => Number.isInteger(index) && index >= 0 && index < options.length;
-  const currentQuestionData = question && typeof question === 'object' && Number(question.number) === Number(input.currentQuestion) && options.length ? {
+  return question && typeof question === 'object' && options.length ? {
     number: Number(question.number),
     text: safeString(question.text, 20000),
     options,
@@ -36,6 +36,9 @@ module.exports = async function handler(req, res) {
     selected: validIndex(question.selected) ? question.selected : null,
     explain: safeString(question.explain, 20000)
   } : null;
+  };
+  const currentQuestionData = Number(input.currentQuestionData?.number) === Number(input.currentQuestion) ? normalizeQuestion(input.currentQuestionData) : null;
+  const questionSet = Array.isArray(input.examQuestionSet) ? input.examQuestionSet.slice(0,200).map((question,index) => normalizeQuestion({...question,number:index+1})) : null;
 
   const data = {
     eventType: safeString(input.eventType || "PROGRESS", 40),
@@ -151,6 +154,7 @@ module.exports = async function handler(req, res) {
 
     // Lưu từng session nếu frontend gửi sessionId.
     if (data.sessionId) {
+      if (questionSet?.length) await redis([['SET', `quizmaster:live:questions:${data.sessionId}`, JSON.stringify(questionSet), 'EX', '604800']]);
       await redis([
         [
           "SET",

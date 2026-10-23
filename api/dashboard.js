@@ -21,6 +21,15 @@ export default async function handler(req, res) {
       return data.result;
     }
 
+    if (req.query?.question !== undefined) {
+      const sessionId=String(req.query.sessionId || ''), number=Number(req.query.question);
+      if(!/^[a-zA-Z0-9_-]{1,150}$/.test(sessionId) || !Number.isInteger(number) || number<1 || number>200) return res.status(400).json({ok:false,error:'Câu hỏi hoặc lượt thi không hợp lệ.'});
+      const records=await redis(['MGET',`quizmaster:live:questions:${sessionId}`,`quizmaster:live:session:${sessionId}`]);
+      const bank=JSON.parse(records?.[0] || 'null'), session=JSON.parse(records?.[1] || 'null');
+      const question=bank?.[number-1] || (session?.currentQuestionData?.number===number ? session.currentQuestionData : null);
+      if(!session || !question) return res.status(404).json({ok:false,error:'Chưa có nội dung câu này. Học viên cần tải lại trang và tiếp tục bài để đồng bộ đề.'});
+      return res.status(200).json({ok:true,sessionId,question:{...question,selected:null}});
+    }
     // Lấy danh sách ID các thí sinh đang thi từ key v2
     const ids = await redis(["SMEMBERS", "quizmaster:live:sessions:v2"]) || [];
     
