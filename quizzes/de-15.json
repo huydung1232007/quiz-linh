@@ -2,7 +2,7 @@
   {
     "id": "q-python-corp134529-01",
     "code": "PY-CORP-01",
-    "title": "Đề ôn tập số 1 - Tin học trong kỹ thuật (Python)",
+    "title": "Đề ôn tập số 1",
     "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm. Mỗi đoạn code được chạy độc lập bằng Python 3. Các câu có chung đoạn code hỏi trên cùng kết quả thực thi. Được sử dụng tài liệu giấy; không chạy code khi làm bài mô phỏng.",
     "duration": 75,
     "createdAt": "2026-10-23",
