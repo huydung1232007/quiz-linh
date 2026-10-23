@@ -3,7 +3,7 @@
     "id": "q-python-corp134529-03",
     "code": "PY-CORP-03",
     "title": "Đề ôn tập số 3",
-    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm; mỗi câu có đúng một đáp án. Áp dụng Python 3, NumPy và Matplotlib. Các đoạn code chạy độc lập; các câu có cùng code hỏi trên cùng kết quả thực thi, không chạy nối tiếp. Được sử dụng tài liệu giấy, không chạy code khi thi mô phỏng. Gợi ý và giải thích nằm trong explain, cần ẩn khi làm bài. Đề biên soạn mới, không phải đề thi chính thức.",
+    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm; mỗi câu có đúng một đáp án. Áp dụng Python 3, NumPy và Matplotlib. Các đoạn code chạy độc lập; các câu có cùng code hỏi trên cùng kết quả thực thi, không chạy nối tiếp. Được sử dụng tài liệu giấy, không chạy code khi thi mô phỏng. Gợi ý và giải thích nằm trong explain, cần ẩn khi làm bài. Đề biên soạn mới, không phải đề thi chính thức. Đã bổ sung 2 câu xử lý tập tin. Ký hiệu \\n trong lựa chọn biểu thị ký tự xuống dòng; mỗi đoạn code chạy độc lập theo giả thiết riêng.",
     "duration": 75,
     "createdAt": "2026-10-23",
     "questions": [
@@ -19,15 +19,15 @@
         "explain": "Gợi ý: Lũy thừa được tính trước dấu âm đứng trước nó.\n\nGiải thích: -2**2 là -(2**2)=-4. (-2)**2=4 và 2**3=8; tổng là -4+4-8=-8."
       },
       {
-        "text": "Giá trị của x là gì?\n\nx = 4 < 7 <= 6",
+        "text": "Giả sử memo.txt ban đầu chứa chính xác \"AB\". Sau đoạn code, cặp (n, text) là gì?\n\nwith open(\"memo.txt\", \"a\", encoding=\"utf-8\") as f:\n    n = f.write(\"XYZ\")\nwith open(\"memo.txt\", \"r\", encoding=\"utf-8\") as f:\n    text = f.read()",
         "options": [
-          "True",
-          "False",
-          "1",
-          "Báo lỗi"
+          "(5, \"ABXYZ\")",
+          "(3, \"ABXYZ\")",
+          "(2, \"ABXYZ\")",
+          "(3, \"XYZ\")"
         ],
         "correct": 1,
-        "explain": "Gợi ý: So sánh nối tiếp phải thỏa mãn tất cả các cặp so sánh.\n\nGiải thích: 4<7 đúng nhưng 7<=6 sai; cả chuỗi so sánh cho False."
+        "explain": "Gợi ý: Chế độ a giữ dữ liệu cũ; write trả số ký tự vừa ghi.\n\nGiải thích: XYZ được nối sau AB thành ABXYZ. Lần write ghi ba ký tự nên n=3, không phải tổng độ dài tệp."
       },
       {
         "text": "Giá trị của x là gì?\n\ns = \"12\"\nx = len(s * 2) + int(s) - 4",
@@ -96,15 +96,15 @@
         "explain": "Gợi ý: update thêm từng phần tử của iterable vào set.\n\nGiải thích: Sau update, a={1,2,3}; add(2) không tạo phần tử mới. len(a)=3."
       },
       {
-        "text": "Kết quả in ra chính xác là gì?\n\nprint(2, 5, sep=\"-\", end=\"!\")",
+        "text": "Giả sử absent.txt không tồn tại và thư mục hiện tại hợp lệ. Sau đoạn code, điều nào đúng?\n\ntry:\n    with open(\"absent.txt\", \"r\", encoding=\"utf-8\") as f:\n        text = f.read()\nexcept FileNotFoundError:\n    text = \"EMPTY\"",
         "options": [
-          "2-5!",
-          "2 5!",
-          "2-5\n!",
-          "Báo lỗi"
+          "text bằng \"EMPTY\" và absent.txt vẫn chưa được tạo",
+          "text bằng \"\" và absent.txt được tạo",
+          "text bằng None và absent.txt vẫn chưa được tạo",
+          "Chương trình dừng vì FileNotFoundError chưa được bắt"
         ],
         "correct": 0,
-        "explain": "Gợi ý: sep ngăn cách các đối số; end thay phần kết thúc print.\n\nGiải thích: Hai đối số cách nhau bằng dấu -; cuối print là !, không có xuống dòng."
+        "explain": "Gợi ý: Mở bằng r không tự tạo tệp chưa tồn tại.\n\nGiải thích: open gây FileNotFoundError; except bắt lỗi rồi gán text=\"EMPTY\". Không có thao tác nào tạo tệp absent.txt."
       },
       {
         "text": "Giá trị của x là gì?\n\ndef positive(a):\n    if a > 0:\n        return a\nx = positive(-2)",
