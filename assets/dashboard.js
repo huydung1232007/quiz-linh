@@ -75,7 +75,7 @@ function renderDetail(d){
   $('correct').textContent=Number(d.correctCount)||0;
   $('percent').textContent=pct+'%';
   $('bar').style.width=pct+'%';
-  $('activity').textContent=d.actionDetail||'Cập nhật tiến độ';
+  $('activity').textContent=String(d.actionDetail||'Cập nhật tiến độ').replace(/<[^>]*>/g,'');
   const answers={};
   String(d.answerSheet||'').split('|').forEach(part=>{
     const m=part.trim().match(/Câu\s+(\d+)\s*:\s*([A-F])/i);
