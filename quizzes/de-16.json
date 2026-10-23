@@ -3,7 +3,7 @@
     "id": "q-python-corp134529-02",
     "code": "PY-CORP-02",
     "title": "Đề ôn tập số 2",
-    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm; mỗi câu có đúng một đáp án. Áp dụng Python 3, NumPy và Matplotlib. Các đoạn code được chạy độc lập; câu có cùng code hỏi trên cùng kết quả thực thi, không chạy nối tiếp. Được dùng tài liệu giấy; không chạy code khi thi mô phỏng. Gợi ý và giải thích nằm trong explain, cần ẩn khi làm bài. Đề biên soạn mới, không phải đề thi chính thức.",
+    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm; mỗi câu có đúng một đáp án. Áp dụng Python 3, NumPy và Matplotlib. Các đoạn code được chạy độc lập; câu có cùng code hỏi trên cùng kết quả thực thi, không chạy nối tiếp. Được dùng tài liệu giấy; không chạy code khi thi mô phỏng. Gợi ý và giải thích nằm trong explain, cần ẩn khi làm bài. Đề biên soạn mới, không phải đề thi chính thức. Đã bổ sung 2 câu xử lý tập tin. Ký hiệu \\n trong lựa chọn biểu thị ký tự xuống dòng; mỗi đoạn code chạy độc lập theo giả thiết riêng.",
     "duration": 75,
     "createdAt": "2026-10-23",
     "questions": [
@@ -85,15 +85,15 @@
         "explain": "Gợi ý: Dấu ^ là hiệu đối xứng của hai set.\n\nGiải thích: Hiệu đối xứng giữ các phần tử chỉ có ở một trong hai tập: 1 và 4."
       },
       {
-        "text": "Giá trị của x là gì?\n\ns = \"ababc\"\nx = s[:s.index(\"z\")]",
+        "text": "Giả sử letters.txt chứa chính xác chuỗi \"ABCDE\\nFG\\n\". Sau đoạn code, bộ (a, b, c) là gì? Ký hiệu \\n biểu thị ký tự xuống dòng.\n\nwith open(\"letters.txt\", \"r\", encoding=\"utf-8\") as f:\n    a = f.read(3)\n    b = f.readline()\n    c = f.read()",
         "options": [
-          "'ab'",
-          "Báo lỗi",
-          "'ababc'",
-          "'abcd'"
+          "('ABC', 'ABCDE\\n', 'FG\\n')",
+          "('ABC', 'DE\\n', 'FG\\n')",
+          "('ABC', 'DE', 'FG')",
+          "Báo lỗi"
         ],
         "correct": 1,
-        "explain": "Gợi ý: find và index khác nhau thế nào khi không tìm thấy?\n\nGiải thích: str.index(\"z\") gây ValueError khi không tìm thấy ký tự. Vì vậy phép gán x không hoàn tất."
+        "explain": "Gợi ý: Các lần đọc tiếp tục từ vị trí hiện tại, không tự quay về đầu tệp.\n\nGiải thích: read(3) lấy ABC; readline() lấy tiếp DE cùng dấu xuống dòng; read() lấy toàn bộ phần còn lại FG cùng dấu xuống dòng."
       },
       {
         "text": "Giá trị của x là gì?\n\na = [3, 1, 2]\nx = a.sort()",
@@ -129,15 +129,15 @@
         "explain": "Gợi ý: global cho phép hàm gán lại biến toàn cục.\n\nGiải thích: x nhận giá trị cũ 4. Hàm tăng biến toàn cục n lên 6 rồi trả về cho y."
       },
       {
-        "text": "Kết quả in ra chính xác là gì?\n\nname = \"An\"\nprint(f\"{name}:{7:03d}\", end=\"\")",
+        "text": "Sau đoạn code, lines là gì? Giả sử thư mục cho phép tạo và ghi tệp.\n\nwith open(\"parts.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.writelines([\"AB\", \"CD\"])\nwith open(\"parts.txt\", \"r\", encoding=\"utf-8\") as f:\n    lines = f.readlines()",
         "options": [
-          "An:700",
-          "An:7",
-          "An:007",
-          "Báo lỗi"
+          "[\"AB\", \"CD\"]",
+          "[\"AB\\n\", \"CD\\n\"]",
+          "[\"ABCD\"]",
+          "\"ABCD\""
         ],
         "correct": 2,
-        "explain": "Gợi ý: Định dạng 03d bổ sung số 0 để đủ ba chữ số.\n\nGiải thích: name được thay bằng An; 7 được định dạng thành 007."
+        "explain": "Gợi ý: writelines có tự thêm ký tự xuống dòng không?\n\nGiải thích: writelines không tự chèn xuống dòng. Tệp chỉ chứa ABCD trên một dòng nên readlines trả list [\"ABCD\"]."
       },
       {
         "text": "Đã chạy import random. Lệnh nào trả về một số nguyên ngẫu nhiên có thể nhận cả 0 và 100?",
