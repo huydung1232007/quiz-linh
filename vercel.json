@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "buildCommand": "node scripts/build-quizzes.cjs && node scripts/build-courses.cjs && node scripts/build-videos.cjs",
   "redirects": [{"source":"/exams.html","destination":"/","permanent":false}],
   "functions": {
