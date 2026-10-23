@@ -4,6 +4,11 @@
     "strings": "video mp4/Xử_Lý_Chuỗi_Python.mp4",
     "files": "video mp4/Xử_lý_tập_tin_Python.mp4",
     "numpy": "video mp4/Phân_tích_dữ_liệu_NumPy.mp4",
-    "matplotlib": "video mp4/Giải_mã_Matplotlib.mp4"
+    "matplotlib": "video mp4/Giải_mã_Matplotlib.mp4",
+    "basics": "video mp4/Cơ_Bản_Lập_Trình_Python.mp4",
+    "conditions": "video mp4/Cấu_Trúc_Rẽ_Nhánh_Python.mp4",
+    "loops": "video mp4/Cấu_trúc_lặp_Python.mp4",
+    "lists": "video mp4/Dữ_Liệu_Phức_Hợp__List.mp4",
+    "collections": "video mp4/tuple_set_dictionary.mp4"
   }
 }
