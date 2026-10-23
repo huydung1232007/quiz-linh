@@ -2,7 +2,8 @@ const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 const data=new Map(),sets=new Map();
 async function redisFetch(url,options){
   const commands=JSON.parse(options.body);
-  return {ok:true,json:async()=>commands.map(([cmd,key,...args])=>{
+  return {ok:true,json:async()=>commands.map(command=>{
+    const [cmd,key,...args]=command;
     let result=null;
     if(cmd==='GET') result=data.get(key)||null;
     if(cmd==='SET'){if(!args.includes('NX')||!data.has(key)){data.set(key,args[0]);result='OK';}}
@@ -10,6 +11,11 @@ async function redisFetch(url,options){
     if(cmd==='ZREVRANGE')result=(sets.get(key)||[]).slice().sort((a,b)=>b.score-a.score).map(x=>x.id).slice(Number(args[0]),Number(args[1])+1);
     if(cmd==='SADD'){sets.set(key,[{id:args[0]}]);result=1;}
     if(cmd==='SMEMBERS')result=(sets.get(key)||[]).map(x=>x.id);
+    if(cmd==='EVAL'){
+      const keys=command.slice(3,8),values=command.slice(8);
+      if(data.has(keys[0])||!data.has(keys[1]))result=0;
+      else{data.set(keys[2],values[0]);const list=sets.get(keys[3])||[];list.push({score:Number(values[1]),id:values[2]});sets.set(keys[3],list);if(values[3]==='student'){const replies=sets.get(keys[4])||[];replies.push({score:Number(values[1]),id:values[2]});sets.set(keys[4],replies);}result=1;}
+    }
     return {result};
   })};
 }

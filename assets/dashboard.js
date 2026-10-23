@@ -37,14 +37,28 @@ async function pollReplyInbox(){
   } catch {}
 }
 const HIDDEN_SESSIONS_KEY = 'quizmaster_hidden_sessions_v1';
+const deletedSessions=new Set(),deletingSessions=new Set();
 function getHiddenSessions(){ try { return new Set(JSON.parse(localStorage.getItem(HIDDEN_SESSIONS_KEY) || '[]')); } catch { return new Set(); } }
-function hideSession(sessionId){
-  if(!sessionId) return;
-  if(!confirm('Ẩn lượt thi này khỏi danh sách dashboard? Dữ liệu gốc trong Redis không bị xóa.')) return;
-  const hidden = getHiddenSessions(); hidden.add(sessionId);
-  localStorage.setItem(HIDDEN_SESSIONS_KEY, JSON.stringify([...hidden]));
-  if(selectedSessionId === sessionId) selectedSessionId = '';
-  refresh();
+async function hideSession(sessionId){
+  if(!sessionId || deletingSessions.has(sessionId)) return;
+  const session=cachedSessions.find(item=>item.sessionId===sessionId);
+  if(!confirm(`Bạn có muốn xóa vĩnh viễn lượt thi của ${session?.playerName || 'thí sinh này'}? Kết quả, nội dung đề và tin nhắn của lượt thi sẽ bị xóa khỏi Redis, không thể khôi phục.`))return;
+  const notifyKey=prompt('Nhập khóa quản lý (DASHBOARD_NOTIFY_KEY, cùng khóa gửi tin nhắn):');
+  if(!notifyKey)return;
+  deletingSessions.add(sessionId);
+  const status=$('session-action-status');status.textContent='Đang xóa lượt thi…';
+  renderSessions(cachedSessions);
+  try{
+    const response=await fetch('/api/dashboard',{method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(15000),body:JSON.stringify({action:'delete',sessionId,notifyKey})});
+    const result=await response.json();
+    if(!response.ok || !result.ok || result.sessionId!==sessionId)throw Error(result.error || 'Chưa xóa được. Vui lòng thử lại.');
+    deletedSessions.add(sessionId);
+    for(const key of questionCache.keys())if(key.startsWith(sessionId+':'))questionCache.delete(key);
+    delete latestReplies[sessionId];
+    if(selectedSessionId===sessionId){selectedSessionId='';resetQuestionReview();}
+    status.textContent='Đã xóa vĩnh viễn dữ liệu lượt thi khỏi Redis.';
+  }catch(error){status.textContent=error.message;}
+  finally{deletingSessions.delete(sessionId);renderSessions(cachedSessions);}
 }
 function restoreHiddenSessions(){
   localStorage.removeItem(HIDDEN_SESSIONS_KEY);
@@ -75,7 +89,7 @@ function clearDetail(){
 }
 function renderSessions(sessions){
   cachedSessions = Array.isArray(sessions) ? sessions : [];
-  const hidden = getHiddenSessions(), all = cachedSessions.filter(s => !hidden.has(String(s.sessionId || '')));
+  const hidden = getHiddenSessions(), all = cachedSessions.filter(s => !hidden.has(String(s.sessionId || '')) && !deletedSessions.has(s.sessionId));
   $('session-count').textContent = `${all.length} lượt`;
   for(const [id,state] of [['online-count','active'],['submitted-count','submitted'],['idle-count','idle']]) $(id).textContent = all.filter(s => sessionState(s) === state).length;
   const query = $('session-search').value.trim().toLocaleLowerCase('vi'), filter = $('session-filter').value;
@@ -86,7 +100,7 @@ function renderSessions(sessions){
   $('session-list').innerHTML = filtered.map(s => {
     const total=Math.max(0,Number(s.totalQuestions)||0), answered=Math.max(0,Number(s.answeredCount)||0), pct=total?Math.min(100,Math.round(answered/total*100)):0;
     const state=sessionState(s), label={active:'Đang thi',submitted:'Đã nộp',idle:'Tạm ngưng'}[state], active=s.sessionId===selectedSessionId;
-    return `<div class="session-wrap"><button type="button" data-session="${esc(s.sessionId||'')}" aria-pressed="${active}" class="session-card ${active?'active':''}"><div class="session-name">${esc(s.playerName||'Ẩn danh')}</div><div class="session-quiz" title="${esc(s.quizTitle||'Đề thi')}">${esc(s.quizCode||'QUIZ')} · ${esc(s.quizTitle||'Đề thi')}</div><div class="session-info"><span class="state-badge ${state}">${label}</span><span>${answered}/${total} câu · ${pct}%</span></div><div class="mini-track"><span style="width:${pct}%"></span></div></button><button type="button" class="hide-session" data-hide-session="${esc(s.sessionId||'')}" title="Ẩn lượt thi" aria-label="Ẩn lượt thi của ${esc(s.playerName||'Ẩn danh')}">×</button></div>`;
+    return `<div class="session-wrap"><button type="button" data-session="${esc(s.sessionId||'')}" aria-pressed="${active}" class="session-card ${active?'active':''}"><div class="session-name">${esc(s.playerName||'Ẩn danh')}</div><div class="session-quiz" title="${esc(s.quizTitle||'Đề thi')}">${esc(s.quizCode||'QUIZ')} · ${esc(s.quizTitle||'Đề thi')}</div><div class="session-info"><span class="state-badge ${state}">${label}</span><span>${answered}/${total} câu · ${pct}%</span></div><div class="mini-track"><span style="width:${pct}%"></span></div></button><button type="button" class="hide-session" data-hide-session="${esc(s.sessionId||'')}" ${deletingSessions.has(s.sessionId)?'disabled':''} title="Xóa vĩnh viễn lượt thi" aria-label="Xóa lượt thi của ${esc(s.playerName||'Ẩn danh')}">×</button></div>`;
   }).join('');
   $('session-list').querySelectorAll('[data-session]').forEach(btn => btn.addEventListener('click', () => { selectedSessionId=btn.dataset.session; lastSentNotificationId=''; $('notification-ack-status').textContent=''; $('notification-send-status').textContent=''; renderSessions(cachedSessions); }));
   $('session-list').querySelectorAll('[data-hide-session]').forEach(btn => btn.addEventListener('click', () => hideSession(btn.dataset.hideSession)));

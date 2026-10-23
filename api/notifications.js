@@ -234,32 +234,22 @@ export default async function handler(req, res) {
         })()
       };
 
-      await redis([
-        [
-          "SET",
-          `quizmaster:notifications:item:${id}`,
-          JSON.stringify(notification),
-          "EX",
-          604800
-        ],
-        [
-          "ZADD",
-          `quizmaster:notifications:session:${sessionId}`,
-          String(Date.now()),
-          id
-        ],
-        [
-          "EXPIRE",
-          `quizmaster:notifications:session:${sessionId}`,
-          "604800"
-        ]
-      ]);
-
-      if (isReply) await redis([
-        ['ZADD', 'quizmaster:notifications:replies', String(Date.now()), id],
-        ['ZREMRANGEBYRANK', 'quizmaster:notifications:replies', 0, -501],
-        ['EXPIRE', 'quizmaster:notifications:replies', 604800]
-      ]);
+      const script=`
+        if redis.call('EXISTS', KEYS[1])==1 or redis.call('EXISTS', KEYS[2])==0 then return 0 end
+        redis.call('SET', KEYS[3], ARGV[1], 'EX',604800)
+        redis.call('ZADD', KEYS[4], ARGV[2], ARGV[3])
+        redis.call('EXPIRE', KEYS[4],604800)
+        if ARGV[4]=='student' then
+          redis.call('ZADD', KEYS[5], ARGV[2], ARGV[3])
+          redis.call('ZREMRANGEBYRANK', KEYS[5],0,-501)
+          redis.call('EXPIRE', KEYS[5],604800)
+        end
+        return 1`;
+      const saved=await redis([['EVAL',script,5,
+        'quizmaster:deleted:session:'+sessionId,'quizmaster:live:session:'+sessionId,
+        'quizmaster:notifications:item:'+id,'quizmaster:notifications:session:'+sessionId,
+        'quizmaster:notifications:replies',JSON.stringify(notification),String(Date.now()),id,notification.sender]]);
+      if(Number(saved[0]?.result)===0)return res.status(404).json({ok:false,error:'Lượt thi đã bị xóa.'});
 
       return res.status(200).json({
         ok: true,

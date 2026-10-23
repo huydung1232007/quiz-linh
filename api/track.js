@@ -147,32 +147,23 @@ module.exports = async function handler(req, res) {
   ].join('\n');
 
   try {
-    // Giữ nguyên key tiến độ của code cũ.
-    await redis([
-      ["SET", "quizmaster:live:latest", JSON.stringify(data)]
-    ]);
-
-    // Lưu từng session nếu frontend gửi sessionId.
     if (data.sessionId) {
-      if (questionSet?.length) await redis([['SET', `quizmaster:live:questions:${data.sessionId}`, JSON.stringify(questionSet), 'EX', '604800']]);
-      await redis([
-        [
-          "SET",
-          `quizmaster:live:session:${data.sessionId}`,
-          JSON.stringify(data),
-          "EX",
-          "604800"
-        ]
-      ]);
-
-      // Dùng key mới để tránh xung đột kiểu dữ liệu cũ.
-      await redis([
-        ["SADD", "quizmaster:live:sessions:v2", data.sessionId]
-      ]);
-
-      await redis([
-        ["EXPIRE", "quizmaster:live:sessions:v2", "604800"]
-      ]);
+      // Atomic guard: a late heartbeat cannot restore a permanently deleted attempt.
+      const script = `
+        if redis.call('EXISTS', KEYS[1])==1 then return 0 end
+        redis.call('SET', KEYS[2], ARGV[1], 'EX', 604800)
+        redis.call('SET', KEYS[3], ARGV[1])
+        redis.call('SADD', KEYS[4], ARGV[2])
+        redis.call('EXPIRE', KEYS[4], 604800)
+        if ARGV[3]~='' then redis.call('SET', KEYS[5], ARGV[3], 'EX', 604800) end
+        return 1`;
+      const saved=await redis([['EVAL',script,5,
+        'quizmaster:deleted:session:'+data.sessionId,'quizmaster:live:session:'+data.sessionId,
+        'quizmaster:live:latest','quizmaster:live:sessions:v2','quizmaster:live:questions:'+data.sessionId,
+        JSON.stringify(data),data.sessionId,questionSet?.length ? JSON.stringify(questionSet) : '']]);
+      if(Number(saved[0]?.result)===0)return res.status(200).json({ok:true,deleted:true});
+    } else {
+      await redis([['SET','quizmaster:live:latest',JSON.stringify(data)]]);
     }
 
     // Dashboard continues receiving every event; Telegram only gets milestones.

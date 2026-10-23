@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  if (req.method !== 'GET') {
-    res.setHeader('Allow', 'GET');
+  if (!['GET','POST'].includes(req.method)) {
+    res.setHeader('Allow', 'GET, POST');
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
   }
   
@@ -21,6 +21,33 @@ export default async function handler(req, res) {
       return data.result;
     }
 
+    if(req.method==='POST'){
+      const input=req.body || {}, sessionId=String(input.sessionId || '');
+      if(input.action!=='delete' || !/^[a-zA-Z0-9_-]{1,150}$/.test(sessionId))return res.status(400).json({ok:false,error:'Lượt thi không hợp lệ.'});
+      const expected=process.env.DASHBOARD_NOTIFY_KEY;
+      if(!expected)return res.status(503).json({ok:false,error:'Chưa cấu hình khóa quản lý DASHBOARD_NOTIFY_KEY.'});
+      if(typeof input.notifyKey!=='string' || input.notifyKey!==expected)return res.status(401).json({ok:false,error:'Khóa quản lý không đúng.'});
+      const script=`
+        local sid=ARGV[1]
+        redis.call('SET', KEYS[1], '1')
+        local ids=redis.call('ZRANGE', 'quizmaster:notifications:session:'..sid, 0, -1)
+        for _,id in ipairs(ids) do
+          redis.call('DEL', 'quizmaster:notifications:item:'..id, 'quizmaster:notifications:ack:'..id)
+          redis.call('ZREM', 'quizmaster:notifications:replies', id)
+        end
+        redis.call('DEL', 'quizmaster:live:session:'..sid, 'quizmaster:live:questions:'..sid,
+          'quizmaster:notifications:session:'..sid, 'quizmaster:notifications:limit:'..sid,
+          'quizmaster:telegram:event:'..sid..':START', 'quizmaster:telegram:event:'..sid..':SUBMIT')
+        redis.call('SREM', 'quizmaster:live:sessions:v2', sid)
+        local latest=redis.call('GET', 'quizmaster:live:latest')
+        if latest then
+          local ok,value=pcall(cjson.decode,latest)
+          if ok and type(value)=='table' and value.sessionId==sid then redis.call('DEL','quizmaster:live:latest') end
+        end
+        return 1`;
+      await redis(['EVAL',script,1,`quizmaster:deleted:session:${sessionId}`,sessionId]);
+      return res.status(200).json({ok:true,deleted:true,sessionId});
+    }
     if (req.query?.question !== undefined) {
       const sessionId=String(req.query.sessionId || ''), number=Number(req.query.question);
       if(!/^[a-zA-Z0-9_-]{1,150}$/.test(sessionId) || !Number.isInteger(number) || number<1 || number>200) return res.status(400).json({ok:false,error:'Câu hỏi hoặc lượt thi không hợp lệ.'});

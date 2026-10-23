@@ -4,6 +4,11 @@ const context={module:{exports:{}},AbortSignal,console:{error(){}},process:{env:
   const body=JSON.parse(options.body);
   if(url.startsWith('https://api.telegram.org/')){sent.push({url,body});return {ok:!failTelegram,json:async()=>({ok:!failTelegram,result:{message_id:sent.length}})};}
   const [cmd,key,...args]=body;let result=1;
+  if(cmd==='EVAL'){
+    const keys=body.slice(3,8),values=body.slice(8);
+    if(stored.has(keys[0]))result=0;
+    else{stored.set(keys[1],values[0]);stored.set(keys[2],values[0]);if(values[2])stored.set(keys[4],values[2]);}
+  }
   if(cmd==='SET'){if(args.includes('NX')&&stored.has(key))result=null;else{stored.set(key,args[0]);result='OK';}}
   if(cmd==='DEL')stored.delete(key);
   return {ok:true,text:async()=>JSON.stringify({result})};
