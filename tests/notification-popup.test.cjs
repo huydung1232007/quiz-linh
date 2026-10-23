@@ -9,6 +9,8 @@ const teacher={id:'t1',sender:'teacher',message:'Tin nhắn mới'},student={id:
 (async()=>{
   options.onMessages([teacher,student],'one');
   assert.equal(node('teacher-notification-modal').classList.contains('hidden'),false);assert.equal(node('teacher-notification-message').textContent,'Tin nhắn mới');
+  assert.equal(node('teacher-notification-reply-panel').hidden,true);node('teacher-notification-reply-toggle').click();assert.equal(node('teacher-notification-reply-panel').hidden,false);
+  node('teacher-notification-reply').value='Nội dung nháp';node('teacher-notification-reply-toggle').click();assert.equal(node('teacher-notification-reply-panel').hidden,true);node('teacher-notification-reply-toggle').click();assert.equal(node('teacher-notification-reply').value,'Nội dung nháp');
   node('teacher-notification-reply').value='Em đã hiểu';fail=true;await node('teacher-notification-send').click();assert.equal(node('teacher-notification-modal').classList.contains('hidden'),false);assert.equal(node('teacher-notification-reply').value,'Em đã hiểu');
   fail=false;await node('teacher-notification-send').click();const reply=requests.find(r=>r.action==='reply');assert.equal(reply.replyTo,'t1');assert.equal(reply.sessionId,'one');assert.equal(node('teacher-notification-modal').classList.contains('hidden'),true);
   options.onMessages([teacher,student],'one');assert.equal(node('teacher-notification-modal').classList.contains('hidden'),true);

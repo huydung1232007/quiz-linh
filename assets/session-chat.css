@@ -1,2 +1,28 @@
 .chat-history{max-height:290px;min-height:110px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:15px 2px;margin-bottom:14px;overscroll-behavior:contain}.chat-bubble{align-self:flex-start;max-width:88%;padding:11px 14px;border:1px solid #e3e9e1;border-radius:13px 13px 13px 3px;background:#f3f6f0;color:#233c33;overflow-wrap:anywhere}.chat-bubble.mine{align-self:flex-end;background:#28654d;color:white;border-color:#28654d;border-radius:13px 13px 3px 13px}.chat-bubble small{display:block;font-size:10px;opacity:.75;margin-bottom:4px}.chat-bubble p{margin:0;white-space:pre-wrap;font-size:13px;line-height:1.65}.chat-empty{color:#819087;font-size:12px;text-align:center;margin:auto}.chat-unread{display:inline-block;background:#b34e3c;color:white;border-radius:12px;padding:2px 7px;font-size:10px;margin-left:6px}.student-chat{position:fixed;right:22px;bottom:22px;width:350px;max-width:calc(100vw - 28px);z-index:90;font-family:Manrope,'Segoe UI',sans-serif}.student-chat-toggle{margin-left:auto;display:block;background:#28654d;color:white;border:0;border-radius:14px;padding:13px 18px;font-weight:700;box-shadow:0 5px 20px #183c3320;cursor:pointer}.student-chat-panel{background:white;border:1px solid #dbe4d6;border-radius:17px;box-shadow:0 15px 50px #173a3325;margin-bottom:10px;padding:18px}.student-chat-panel h2{font-size:16px;margin:0 0 4px;color:#233c33}.student-chat-panel textarea{width:100%;resize:vertical;border:1px solid #dbe4d6;border-radius:10px;padding:10px;color:#233c33;background:white;font:13px/1.6 'Segoe UI',sans-serif;box-sizing:border-box}.student-chat-panel button{background:#28654d;color:white;border:0;border-radius:9px;padding:10px 16px;cursor:pointer;margin-top:8px;font-weight:700}.student-chat-panel button:disabled{opacity:.5;cursor:not-allowed}.student-chat-panel [role=status]{font-size:11px;color:#819087;margin-top:8px}.student-chat [hidden]{display:none!important}@media(max-width:600px){.student-chat{right:14px;bottom:14px}.chat-history{max-height:230px}.student-chat-panel{max-height:70vh;overflow:auto}}
-.notification-reply label{display:block;font-size:12px;font-weight:700;color:#28654d;margin-bottom:7px}.notification-reply textarea{display:block;width:100%;padding:11px;border:1px solid #dbe4d6;border-radius:10px;resize:vertical;background:white;color:#233c33;font:14px/1.6 'Segoe UI',sans-serif}.notification-reply button{background:#28654d;color:white;border:0;border-radius:10px;padding:11px 18px;font-size:12px;font-weight:700;margin-top:10px;cursor:pointer}.notification-reply button:disabled{opacity:.5;cursor:wait}.notification-reply [role=status]{font-size:12px;color:#a44536;margin-top:5px}#teacher-notification-modal>div{max-height:90vh;overflow-y:auto}
+.notification-overlay{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:22px;background:#18352b70;backdrop-filter:blur(5px);font-family:Manrope,'Segoe UI',sans-serif;color:#233c33}
+.notification-overlay.hidden,.notification-overlay [hidden]{display:none!important}
+.notification-card{width:100%;max-width:490px;max-height:90vh;overflow-y:auto;background:#fff;border:1px solid #dce6d8;border-radius:22px;box-shadow:0 24px 90px #102a3333}
+.notification-header{display:flex;align-items:center;gap:14px;padding:24px 26px;background:#f1f6ed;border-bottom:1px solid #e3ebdd}
+.notification-symbol{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border:1px solid #d5e3cc;border-radius:14px;background:#e3eddc;color:#28654d}
+.notification-symbol svg{width:21px;height:21px}
+.notification-header h2{margin:0;font-size:17px;line-height:1.5;font-weight:750;letter-spacing:-.3px;color:#233c33}
+.notification-header p{margin:3px 0 0;font-size:11px;line-height:1.6;color:#7d8e7c}
+.notification-content{padding:25px 26px}
+#teacher-notification-message{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.85;color:#3c5147}
+.notification-reply{padding-top:22px;margin-top:22px;border-top:1px solid #e5ebe0}
+.notification-reply label{display:block;font-size:12px;font-weight:650;color:#28654d;margin-bottom:9px}
+.notification-reply textarea{display:block;box-sizing:border-box;width:100%;padding:12px 14px;border:1px solid #dbe4d6;border-radius:12px;resize:vertical;background:#fafcf8;color:#233c33;font:14px/1.65 Manrope,'Segoe UI',sans-serif;min-height:98px}
+.notification-reply textarea::placeholder{color:#9aa69a}
+.notification-overlay :is(button,textarea):focus-visible{outline:2px solid #80a77d;outline-offset:3px}
+.notification-send-row{display:flex;justify-content:flex-end}
+.notification-overlay button{font-family:inherit;font-size:12px;font-weight:700;line-height:1.5;border-radius:10px;padding:11px 18px;cursor:pointer;transition:background .15s}
+.notification-reply button{background:#28654d;color:white;border:1px solid #28654d;margin-top:12px;display:flex;align-items:center;gap:12px}
+.notification-reply [role=status]{font-size:12px;color:#a44536;margin:6px 0 0}
+.notification-reply [role=status]:empty{display:none}
+.notification-footer{margin:0 26px;padding:18px 0 22px;border-top:1px solid #e5ebe0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+#teacher-notification-reply-toggle{background:#fff;color:#28654d;border:1px solid #dbe4d6}
+#teacher-notification-reply-toggle:hover{background:#f3f7ef}
+#teacher-notification-ack{background:#28654d;color:white;border:1px solid #28654d;display:flex;gap:14px;align-items:center}
+#teacher-notification-ack:hover,.notification-reply button:hover{background:#1d503b}
+.notification-overlay button:disabled{opacity:.55;cursor:wait}
+@media(max-width:520px){.notification-overlay{padding:16px}.notification-card{border-radius:18px}.notification-header{padding:20px;gap:12px}.notification-header h2{font-size:16px}.notification-content{padding:22px 20px}.notification-footer{margin:0 20px;padding-bottom:20px}}

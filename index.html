@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>em bô · Học Python mỗi ngày</title><script src="https://cdn.tailwindcss.com"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="assets/academy.css"><link rel="stylesheet" href="assets/exam-theme.css"><link rel="stylesheet" href="assets/session-chat.css?v=2"><link rel="stylesheet" href="assets/academy-refresh.css"><script defer src="assets/course-data.js"></script><script defer src="courses-config.js"></script><script defer src="assets/academy.js"></script></head><body>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>em bô · Học Python mỗi ngày</title><script src="https://cdn.tailwindcss.com"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="assets/academy.css"><link rel="stylesheet" href="assets/exam-theme.css"><link rel="stylesheet" href="assets/session-chat.css?v=3"><link rel="stylesheet" href="assets/academy-refresh.css"><script defer src="assets/course-data.js"></script><script defer src="courses-config.js"></script><script defer src="assets/academy.js"></script></head><body>
 <header><a class="brand" href="./">em bô</a><nav><a href="#courses">Khóa học</a><a href="#exams">Kho đề thi</a></nav><button id="manage-button" class="secondary">⚙ Nội dung</button></header>
 <main id="home"><section class="hero"><div><p class="eyebrow">KHÔNG GIAN HỌC TẬP CỦA LINH</p><h1>Hi Phan Thị Hà Linh<br><em>Chúc em may mắn</em></h1><p class="muted">Từ dòng code đầu tiên đến phân tích dữ liệu. Học theo lộ trình, đọc để hiểu sâu và luyện đề để tự tin hơn.</p><div class="actions"><button class="primary" id="continue-button">Bắt đầu học ↗</button><a href="#exams">Khám phá kho đề →</a></div><p class="small muted">◉ Học theo tốc độ của bạn &nbsp; · &nbsp; ✓ Tự động lưu tiến độ</p></div><div class="code-art"><div class="code-top">● ● ● <span>your_next_chapter.py</span></div><pre><i># Bắt đầu từ một bước nhỏ</i>
 <b>def</b> learn_every_day():
@@ -219,20 +219,17 @@ learn_every_day() ▍</pre><div class="code-bottom">✦ Một bài học mới, 
 
     </main><footer><strong>em bô ✦</strong><span>Một không gian nhỏ, cho những bước tiến lớn. · Huy Dũng & Hà Linh</span></footer>
 <dialog id="content-dialog"><form method="dialog" class="section-heading"><h2>Chuẩn bị bài giảng</h2><button class="secondary" aria-label="Đóng">×</button></form><p class="muted">Chọn MP4 và tài liệu để lưu trên trình duyệt này. Để học viên cùng xem, tải video lên hosting, thêm đường dẫn rồi xuất cấu hình.</p><label for="manage-lesson">Bài học</label><select id="manage-lesson"></select><label for="video-file">Video MP4 từ máy</label><input type="file" id="video-file" accept="video/mp4,.mp4"><label for="video-url">Đường dẫn MP4 (HTTPS hoặc đường dẫn trong web)</label><input id="video-url" placeholder="/videos/bai-1.mp4"><div class="actions"><button id="save-video-url" class="secondary">Lưu đường dẫn</button><button id="remove-video" class="secondary">Gỡ video</button></div><label for="material-file">Thêm tài liệu PDF, DOCX, TXT, PowerPoint</label><input type="file" id="material-file" accept=".pdf,.doc,.docx,.txt,.ppt,.pptx"><p id="manage-status" role="status" aria-live="polite"></p><div class="actions"><button class="secondary" id="export-config">↓ Xuất cấu hình</button><label class="secondary">Nhập cấu hình<input type="file" id="import-config" accept=".json" hidden></label></div><p class="muted small">File cấu hình chỉ chứa đường dẫn video. Lưu thành courses-config.json ở thư mục web để dùng chung. File tải từ máy không đi kèm cấu hình và không tự tải lên máy chủ.</p></dialog><div id="toast" role="status" aria-live="polite"></div>    <!-- POPUP THÔNG BÁO TỪ DASHBOARD -->
-    <div id="teacher-notification-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="teacher-notification-title">
-      <div class="w-full max-w-lg overflow-hidden rounded-2xl border border-indigo-200 bg-white shadow-2xl">
-        <div class="flex items-center gap-3 bg-[#1b1d1f] px-6 py-5 text-white">
-          <div class="grid h-11 w-11 place-items-center rounded-xl bg-indigo-500/20 text-indigo-300"><i class="fa-solid fa-bell text-xl"></i></div>
-          <div><div class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">QuizMaster VN</div><h2 id="teacher-notification-title" class="mt-1 text-lg font-extrabold">Thông báo từ giáo viên</h2></div>
+    <div id="teacher-notification-modal" class="notification-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="teacher-notification-title" aria-describedby="teacher-notification-message">
+      <div class="notification-card">
+        <div class="notification-header">
+          <span class="notification-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke-linejoin="round"/><path d="M10 21h4M12 2V1" stroke-linecap="round"/></svg></span>
+          <div><h2 id="teacher-notification-title">Thông báo từ giáo viên</h2><p>Tin nhắn riêng dành cho bạn</p></div>
         </div>
-        <div class="space-y-5 p-6">
-          <p id="teacher-notification-message" class="whitespace-pre-wrap break-words text-sm leading-7 text-zinc-700"></p>
-          <div class="notification-reply"><label for="teacher-notification-reply">Trả lời giáo viên</label><textarea id="teacher-notification-reply" rows="3" maxlength="1200" placeholder="Nhập câu trả lời của bạn…"></textarea><p id="teacher-notification-reply-status" role="status" aria-live="polite"></p><button id="teacher-notification-send" type="button">Gửi trả lời ↗</button></div>
-          <div class="flex items-center justify-between gap-3 border-t border-zinc-100 pt-4">
-            <span class="text-xs text-zinc-400">Vui lòng xác nhận đã đọc.</span>
-            <button id="teacher-notification-ack" type="button" class="rounded-xl bg-indigo-600 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-indigo-700">Đã hiểu</button>
-          </div>
+        <div class="notification-content">
+          <p id="teacher-notification-message"></p>
+          <div id="teacher-notification-reply-panel" class="notification-reply" hidden><label for="teacher-notification-reply">Câu trả lời của bạn</label><textarea id="teacher-notification-reply" rows="3" maxlength="1200" placeholder="Nhập câu trả lời…"></textarea><p id="teacher-notification-reply-status" role="status" aria-live="polite"></p><div class="notification-send-row"><button id="teacher-notification-send" type="button">Gửi trả lời <span aria-hidden="true">↗</span></button></div></div>
         </div>
+        <div class="notification-footer"><button id="teacher-notification-reply-toggle" type="button" aria-expanded="false" aria-controls="teacher-notification-reply-panel">Trả lời</button><button id="teacher-notification-ack" type="button">Đã hiểu <span aria-hidden="true">✓</span></button></div>
       </div>
     </div>
 
@@ -354,4 +351,4 @@ learn_every_day() ▍</pre><div class="code-bottom">✦ Một bài học mới, 
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
 
-<script src="quizzes/catalog.js"></script><script src="assets/quiz-repository.js"></script><script src="assets/exam-engine.js?v=4"></script><script src="assets/session-chat.js?v=2"></script><script src="assets/student-chat.js?v=3"></script><script src="assets/exam-integration.js"></script></body></html>
+<script src="quizzes/catalog.js"></script><script src="assets/quiz-repository.js"></script><script src="assets/exam-engine.js?v=4"></script><script src="assets/session-chat.js?v=2"></script><script src="assets/student-chat.js?v=4"></script><script src="assets/exam-integration.js"></script></body></html>

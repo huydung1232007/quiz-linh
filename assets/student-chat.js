@@ -5,6 +5,9 @@
   document.body.append(root);
   const get=id=>document.getElementById(id),panel=get('student-chat-panel');
   const modal=get('teacher-notification-modal'),reply=get('teacher-notification-reply'),send=get('teacher-notification-send'),replyStatus=get('teacher-notification-reply-status'),close=get('teacher-notification-ack');
+  const replyPanel=get('teacher-notification-reply-panel'),replyToggle=get('teacher-notification-reply-toggle');
+  function setReplyOpen(open){replyPanel.hidden=!open;replyToggle.setAttribute('aria-expanded',String(open));replyToggle.textContent=open?'Ẩn trả lời':'Trả lời';}
+  replyToggle.addEventListener('click',()=>{if(sending)return;setReplyOpen(replyPanel.hidden);if(!replyPanel.hidden)reply.focus();else replyToggle.focus();});
   let active=null,queue=[],popupSession='',sending=false,previousFocus=null;
   const visible=()=>['view-exam','view-result'].some(id=>get(id)?.getClientRects().length>0 && !get(id).classList.contains('hidden'));
   const readSeen=id=>{try{return new Set(JSON.parse(localStorage.getItem('quizmaster_seen_notifications_'+id)||'[]'));}catch{return new Set();}};
@@ -14,10 +17,11 @@
     if(!next) return;
     active=next;previousFocus=document.activeElement;
     get('teacher-notification-message').textContent=next.message||'';reply.value='';replyStatus.textContent='';
-    modal.classList.remove('hidden');modal.classList.add('flex');close.disabled=false;send.disabled=false;reply.focus();
+    setReplyOpen(false);replyToggle.disabled=false;
+    modal.classList.remove('hidden');modal.classList.add('flex');close.disabled=false;send.disabled=false;close.focus();
   }
   function resetPopup(){
-    active=null;queue=[];sending=false;modal.classList.add('hidden');modal.classList.remove('flex');reply.value='';replyStatus.textContent='';close.disabled=false;send.disabled=false;
+    active=null;queue=[];sending=false;modal.classList.add('hidden');modal.classList.remove('flex');reply.value='';replyStatus.textContent='';close.disabled=false;send.disabled=false;replyToggle.disabled=false;setReplyOpen(false);
   }
   async function dismiss(){
     if(!active || sending) return;
@@ -42,7 +46,7 @@
     const message=reply.value.trim(),item=active,id=popupSession;
     if(!item || sending) return;
     if(!message){replyStatus.textContent='Nhập nội dung trước khi gửi.';reply.focus();return;}
-    sending=true;send.disabled=true;close.disabled=true;replyStatus.textContent='Đang gửi…';
+    sending=true;send.disabled=true;close.disabled=true;replyToggle.disabled=true;replyStatus.textContent='Đang gửi…';
     try{
       const response=await fetch('/api/notifications',{method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(15000),body:JSON.stringify({action:'reply',sessionId:id,replyTo:item.id,message})});
       const result=await response.json();
@@ -50,12 +54,12 @@
       if(!response.ok || !result.ok) throw Error(result.error||'Không gửi được. Vui lòng thử lại.');
       sending=false;await dismiss();chat.poll();
     }catch(error){if(active===item) replyStatus.textContent=error.message;}
-    finally{if(id===popupSession){sending=false;send.disabled=false;close.disabled=false;}}
+    finally{if(id===popupSession){sending=false;send.disabled=false;close.disabled=false;replyToggle.disabled=false;}}
   });
   modal.addEventListener('keydown',event=>{
     if(event.key==='Escape'){event.preventDefault();dismiss();}
     if(event.key==='Tab'){
-      const controls=[reply,send,close].filter(control=>!control.disabled),first=controls[0],last=controls.at(-1);
+      const controls=(replyPanel.hidden?[replyToggle,close]:[reply,send,replyToggle,close]).filter(control=>!control.disabled),first=controls[0],last=controls.at(-1);
       if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
       else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
     }
