@@ -1,0 +1,96 @@
+[
+  {
+    "id": "q-python-corp134529-02",
+    "code": "PY-CORP-02",
+    "title": "Đề ôn tập số 2",
+    "desc": "40 câu trắc nghiệm, 75 phút, mỗi câu 0,25 điểm; mỗi câu có đúng một đáp án. Áp dụng Python 3, NumPy và Matplotlib. Các đoạn code được chạy độc lập; câu có cùng code hỏi trên cùng kết quả thực thi, không chạy nối tiếp. Được dùng tài liệu giấy; không chạy code khi thi mô phỏng. Gợi ý và giải thích nằm trong explain, cần ẩn khi làm bài. Đề biên soạn mới, không phải đề thi chính thức.",
+    "duration": 75,
+    "createdAt": "2026-10-23",
+    "questions": [
+      {
+        "text": "Giá trị của x là bao nhiêu?\n\nx = -7 // 3",
+        "options": [
+          "2",
+          "-2",
+          "-3",
+          "3"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Chia lấy phần nguyên làm tròn về âm vô cùng.\n\nGiải thích: -7//3 = -3, không phải -2."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\nx = ((0 or 5) and 8) - 3",
+        "options": [
+          "5",
+          "False",
+          "0",
+          "True"
+        ],
+        "correct": 0,
+        "explain": "Gợi ý: and và or có thể trả về toán hạng, không chỉ bool.\n\nGiải thích: 0 or 5 cho 5; 5 and 8 cho 8; 8 - 3 = 5."
+      },
+      {
+        "text": "Giá trị của s là gì?\n\ns = \"abcdef\"[5:0:-2]",
+        "options": [
+          "'bcde'",
+          "'fedc'",
+          "'eca'",
+          "'fdb'"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Bước âm làm chỉ số giảm dần.\n\nGiải thích: Các chỉ số là 5, 3, 1; ký tự tương ứng f, d, b."
+      },
+      {
+        "text": "Cặp (a, b) sau cùng là gì?\n\na = [1, 2]\nb = a\nb.append(3)",
+        "options": [
+          "([1, 2], [1, 2, 3])",
+          "([1, 2, 3], [1, 2, 3])",
+          "([1, 2, 3], [1, 2])",
+          "Báo lỗi"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: Phép gán b=a có tạo bản sao không?\n\nGiải thích: Hai biến cùng tham chiếu một list. append qua b cũng làm giá trị nhìn qua a thay đổi."
+      },
+      {
+        "text": "Giá trị của t là gì?\n\nt = (2, 7)\nt += (4,)\nt += (7,)",
+        "options": [
+          "(2, 7)",
+          "(2, 7, 4)",
+          "Báo lỗi",
+          "(2, 7, 4, 7)"
+        ],
+        "correct": 3,
+        "explain": "Gợi ý: Tuple một phần tử cần có dấu phẩy.\n\nGiải thích: (4,) và (7,) đều là tuple một phần tử nên được nối vào t."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\nd = {1: \"a\", True: \"b\", 2: \"c\"}\nx = len(d) + len(d[1])",
+        "options": [
+          "5",
+          "4",
+          "3",
+          "Báo lỗi"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: True và 1 được xem là cùng một khóa trong dictionary.\n\nGiải thích: Khóa True ghi đè value của khóa 1 thành b. Dictionary có hai khóa phân biệt; 2 + len(\"b\") = 3."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\nx = {1, 2, 3} ^ {2, 3, 4}",
+        "options": [
+          "{1, 2, 3, 4}",
+          "{2, 3}",
+          "{1, 4}",
+          "{1}"
+        ],
+        "correct": 2,
+        "explain": "Gợi ý: Dấu ^ là hiệu đối xứng của hai set.\n\nGiải thích: Hiệu đối xứng giữ các phần tử chỉ có ở một trong hai tập: 1 và 4."
+      },
+      {
+        "text": "Giá trị của x là gì?\n\ns = \"ababc\"\nx = s[:s.index(\"z\")]",
+        "options": [
+          "'ab'",
+          "Báo lỗi",
+          "'ababc'",
+          "'abcd'"
+        ],
+        "correct": 1,
+        "explain": "Gợi ý: find và index khác nhau thế nào khi không tìm thấy?\n\nGiải thích: str.index(\"z\") gây ValueError khi không tìm thấy ký tự. Vì vậy phép gán x không hoàn tất."
