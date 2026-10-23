@@ -2,6 +2,20 @@
 const $ = id => document.getElementById(id);
 let lastUpdated = '';
 let selectedSessionId = '';
+let dashboardChat = null, latestReplies = {};
+function updateChatBadges(){
+  document.querySelectorAll?.('[data-chat-session]').forEach(badge=>{
+    const latest=latestReplies[badge.dataset.chatSession];
+    badge.hidden=!latest || SessionChat.seen(badge.dataset.chatSession)===latest.id;
+  });
+}
+async function pollReplyInbox(){
+  try {
+    const response=await fetch('/api/notifications?action=inbox&t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(12000)});
+    const result=await response.json();
+    if(response.ok && result.ok){latestReplies=result.latest||{};updateChatBadges();}
+  } catch {}
+}
 const HIDDEN_SESSIONS_KEY = 'quizmaster_hidden_sessions_v1';
 function getHiddenSessions(){ try { return new Set(JSON.parse(localStorage.getItem(HIDDEN_SESSIONS_KEY) || '[]')); } catch { return new Set(); } }
 function hideSession(sessionId){
@@ -36,6 +50,7 @@ function clearDetail(){
   $('notification-send-status').textContent = ''; $('notification-ack-status').textContent = '';
   $('answer-grid').innerHTML = '<div class="empty-state">Chọn một lượt thi để xem đáp án.</div>';
   $('answer-count').textContent = '';
+  dashboardChat?.poll();
 }
 function renderSessions(sessions){
   cachedSessions = Array.isArray(sessions) ? sessions : [];
@@ -54,12 +69,18 @@ function renderSessions(sessions){
   }).join('');
   $('session-list').querySelectorAll('[data-session]').forEach(btn => btn.addEventListener('click', () => { selectedSessionId=btn.dataset.session; lastSentNotificationId=''; $('notification-ack-status').textContent=''; $('notification-send-status').textContent=''; renderSessions(cachedSessions); }));
   $('session-list').querySelectorAll('[data-hide-session]').forEach(btn => btn.addEventListener('click', () => hideSession(btn.dataset.hideSession)));
+  document.querySelectorAll?.('.session-name').forEach(name=>{
+    const id=name.closest('[data-session]').dataset.session;
+    const badge=document.createElement('span');badge.className='chat-unread';badge.dataset.chatSession=id;badge.textContent='Tin mới';badge.hidden=true;name.append(badge);
+  });
+  updateChatBadges();
   renderDetail(filtered.find(s => s.sessionId === selectedSessionId));
 }
 function renderDetail(d){
   if(!d) { clearDetail(); return; }
   detailData = d;
-  $('send-notification-btn').disabled = sendingNotification;
+  dashboardChat?.poll();
+  if(!dashboardChat) $('send-notification-btn').disabled = sendingNotification;
   $('notification-recipient').textContent = d.playerName || 'Ẩn danh';
   $('event-status').className = 'state-badge ' + sessionState(d);
   lastUpdated=d.updatedAt || '';
@@ -155,6 +176,7 @@ async function checkNotificationAcknowledgement(){
     }
   }catch(_){}
 }
+if(window.SessionChat) dashboardChat=SessionChat.mount({role:'teacher',getSession:()=>selectedSessionId,isOpen:()=>!$('notification-composer').classList.contains('hidden'),history:$('dashboard-chat-history'),input:$('notification-message'),button:$('send-notification-btn'),status:$('notification-send-status'),badge:$('dashboard-chat-badge'),onRead:updateChatBadges,onSent:notification=>{lastSentNotificationId=notification.id;checkNotificationAcknowledgement();}});
 const notificationToggle = $('toggle-notification-composer');
 notificationToggle.addEventListener('click', () => {
   const panel = $('notification-composer');
@@ -162,10 +184,11 @@ notificationToggle.addEventListener('click', () => {
   panel.classList.toggle('hidden', !willOpen);
   notificationToggle.setAttribute('aria-expanded', String(willOpen));
   $('notification-toggle-chevron').classList.toggle('rotate-180', willOpen);
-  if (willOpen) $('notification-message').focus();
+  if (willOpen) { $('notification-message').focus();dashboardChat?.read();dashboardChat?.poll(); }
 });
-$('send-notification-btn').addEventListener('click',sendTargetedNotification);
+if(!dashboardChat) $('send-notification-btn').addEventListener('click',sendTargetedNotification);
 setInterval(checkNotificationAcknowledgement,4000);
+if(window.SessionChat){pollReplyInbox();setInterval(pollReplyInbox,8000);}
 
 async function refresh(){
   if(refreshing) return;

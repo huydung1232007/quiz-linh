@@ -2,7 +2,7 @@ const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 const nodes=new Map();
 function node(id){if(!nodes.has(id))nodes.set(id,{textContent:'',innerHTML:'',value:'',style:{},hidden:false,disabled:false,className:'',classList:{contains(){return true},toggle(){}},addEventListener(){},setAttribute(){},querySelectorAll(){return[]}});return nodes.get(id)}
 const stored=new Map(),context={console,Date,Set,Number,String,Math,Array,Object,JSON,AbortSignal,document:{getElementById:node},localStorage:{getItem:k=>stored.get(k)||null,setItem:(k,v)=>stored.set(k,v),removeItem:k=>stored.delete(k)},setInterval(){},fetch:()=>new Promise(()=>{}),confirm:()=>true};
-vm.createContext(context);vm.runInContext(fs.readFileSync('assets/dashboard.js','utf8'),context);
+context.window={};vm.createContext(context);vm.runInContext(fs.readFileSync('assets/dashboard.js','utf8'),context);
 node('session-filter').value='all';node('answer-filter').value='all';
 context.sessions=[{sessionId:'one',playerName:'Linh',quizCode:'PY-01',quizTitle:'Hàm',eventType:'PROGRESS',updatedAt:new Date().toISOString(),totalQuestions:3,answeredCount:2,correctCount:1,answerSheet:'Câu 1: A | Câu 2: B',answerResults:{1:{isCorrect:true},2:{isCorrect:false}},timeLeft:'10:00'},{sessionId:'two',playerName:'An',eventType:'SUBMIT',updatedAt:new Date().toISOString(),totalQuestions:2,answeredCount:2}];
 vm.runInContext('renderSessions(sessions)',context);

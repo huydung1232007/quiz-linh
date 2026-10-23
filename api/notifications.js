@@ -1,6 +1,7 @@
 
  // api/notifications.js — thông báo riêng cho một lượt thi + xác nhận đã đọc.
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
   const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
   const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 
@@ -48,6 +49,17 @@ export default async function handler(req, res) {
     if (req.method === "GET") {
       const action = clean(req.query?.action, 20);
 
+      if (action === 'inbox') {
+        const idsResult = await redis([['ZREVRANGE', 'quizmaster:notifications:replies', 0, 499]]);
+        const ids = idsResult[0]?.result || [];
+        const records = ids.length ? await redis(ids.map(id => ['GET', `quizmaster:notifications:item:${safeId(id)}`])) : [];
+        const latest = {};
+        for (const record of records) {
+          try { const item = JSON.parse(record.result); if (item && !latest[item.sessionId]) latest[item.sessionId] = {id:item.id,createdAt:item.createdAt}; } catch {}
+        }
+        return res.status(200).json({ok:true,latest});
+      }
+
       if (action === "poll") {
         const sessionId = safeId(req.query?.sessionId);
 
@@ -63,7 +75,7 @@ export default async function handler(req, res) {
             "ZREVRANGE",
             `quizmaster:notifications:session:${sessionId}`,
             "0",
-            "19"
+            "99"
           ]
         ]);
 
@@ -146,10 +158,11 @@ export default async function handler(req, res) {
     const action = clean(input.action, 20);
 
     // DASHBOARD: gửi thông báo cho một thí sinh
-    if (action === "send") {
+    if (action === "send" || action === "reply") {
+      const isReply = action === 'reply';
       const expectedKey = process.env.DASHBOARD_NOTIFY_KEY;
 
-      if (!expectedKey) {
+      if (!isReply && !expectedKey) {
         return res.status(503).json({
           ok: false,
           error: "Hãy thêm DASHBOARD_NOTIFY_KEY trong Vercel Environment Variables."
@@ -157,8 +170,8 @@ export default async function handler(req, res) {
       }
 
       if (
-        typeof input.notifyKey !== "string" ||
-        input.notifyKey !== expectedKey
+        !isReply && (typeof input.notifyKey !== "string" ||
+        input.notifyKey !== expectedKey)
       ) {
         return res.status(401).json({
           ok: false,
@@ -174,6 +187,17 @@ export default async function handler(req, res) {
           ok: false,
           error: "Thiếu thí sinh hoặc nội dung."
         });
+      }
+
+      if (isReply) {
+        const parent = await redis([["GET", `quizmaster:notifications:item:${safeId(input.replyTo)}`]]);
+        let teacher;
+        try { teacher = JSON.parse(parent[0]?.result || 'null'); } catch {}
+        if (!teacher || teacher.sessionId !== sessionId || teacher.sender === 'student') {
+          return res.status(403).json({ok:false,error:'Chỉ có thể trả lời tin nhắn giáo viên trong lượt thi này.'});
+        }
+        const limit = await redis([["SET", `quizmaster:notifications:limit:${sessionId}`, '1', 'EX', 2, 'NX']]);
+        if (!limit[0]?.result) return res.status(429).json({ok:false,error:'Vui lòng chờ 2 giây trước khi gửi tiếp.'});
       }
 
       // Kiểm tra lượt thi có tồn tại trong Redis
@@ -194,6 +218,8 @@ export default async function handler(req, res) {
       const notification = {
         id,
         sessionId,
+        sender: isReply ? 'student' : 'teacher',
+        replyTo: isReply ? safeId(input.replyTo) : null,
         message,
         createdAt: new Date().toISOString(),
         playerName: (() => {
@@ -227,6 +253,12 @@ export default async function handler(req, res) {
           `quizmaster:notifications:session:${sessionId}`,
           "604800"
         ]
+      ]);
+
+      if (isReply) await redis([
+        ['ZADD', 'quizmaster:notifications:replies', String(Date.now()), id],
+        ['ZREMRANGEBYRANK', 'quizmaster:notifications:replies', 0, -501],
+        ['EXPIRE', 'quizmaster:notifications:replies', 604800]
       ]);
 
       return res.status(200).json({

@@ -293,6 +293,7 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                 if (!this.activeQuiz) return;
                 const progress = {
                     quizId: this.activeQuiz.id,
+                    trackingSessionId: this.trackingSessionId,
                     playerName: this.playerName,
                     examQuestions: this.examQuestions,
                     userAnswers: this.userAnswers,
@@ -336,6 +337,7 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                     if (!quiz) return;
 
                     this.playerName = progress.playerName;
+                    this.trackingSessionId = progress.trackingSessionId || null;
                     this.activeQuiz = quiz;
                     this.examQuestions = progress.examQuestions;
                     this.userAnswers = progress.userAnswers || {};
@@ -1100,4 +1102,3 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
             else initialize();
         });
         window.examsReady.catch(error => console.error('Khởi tạo phần thi thất bại:', error));
-    
