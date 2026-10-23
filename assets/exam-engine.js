@@ -1058,12 +1058,6 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                 this.history = this.history.slice(0, 200);
                 localStorage.setItem(HISTORY_KEY, JSON.stringify(this.history));
 
-                fetch('/api/submit', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ playerName: this.playerName || 'Ẩn danh', quizCode: this.activeQuiz?.code || 'QUIZ', score: score10, correct: correctCount, total, timeSpent: elapsedStr })
-                }).catch(err => {});
-
                 this.stats.attempts++;
                 this.stats.totalScore += parseFloat(score10);
                 this.saveToStorage();
