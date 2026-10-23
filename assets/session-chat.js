@@ -38,6 +38,7 @@
         messages=(result.notifications||[]).sort((a,b)=>a.createdAt.localeCompare(b.createdAt)||a.id.localeCompare(b.id));
         if(status.textContent.startsWith('Chưa kết nối')) status.textContent='';
         render();
+        options.onMessages?.(messages,id);
         if(options.isOpen()) acknowledge();
       } catch { if(session()===id) status.textContent='Chưa kết nối được trò chuyện, đang thử lại…'; }
       finally {polling=false;}
