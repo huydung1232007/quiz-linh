@@ -103,34 +103,33 @@ module.exports = async function handler(req, res) {
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
 
-  const answers =
-    data.answerSheet !== "Chưa chọn câu nào"
-      ? escapeHtml(data.answerSheet)
-      : "Chưa chọn câu nào";
-
-  const progress = data.totalQuestions
-    ? Math.min(
-        100,
-        Math.round(
-          data.answeredCount / data.totalQuestions * 100
-        )
-      )
-    : 0;
-
+  const total = data.totalQuestions;
+  const answered = Math.min(total, data.answeredCount);
+  const correct = Math.min(answered, data.correctCount);
+  const time = new Date(now).toLocaleString('vi-VN', {timeZone:'Asia/Ho_Chi_Minh',hour12:false});
+  const elapsed = Number.isFinite(Number(input.elapsedSeconds)) ? Math.max(0, Math.floor(Number(input.elapsedSeconds))) : null;
+  const duration = Math.max(0, Number(input.durationMinutes) || 0);
+  const elapsedText = elapsed === null ? 'Chưa có dữ liệu' : String(Math.floor(elapsed / 60)).padStart(2,'0') + ':' + String(elapsed % 60).padStart(2,'0');
+  const isSubmit = data.eventType === 'SUBMIT';
   const message = [
-    "📊 <b>QUIZMASTER LIVE DASHBOARD</b>",
-    `👤 Thí sinh: <b>${escapeHtml(data.playerName)}</b>`,
-    `📝 Đề: <b>${escapeHtml(data.quizCode)} — ${escapeHtml(data.quizTitle)}</b>`,
-    `📍 Câu hiện tại: <b>${data.currentQuestion}/${data.totalQuestions}</b>`,
-    `📈 Tiến độ trả lời: <b>${progress}%</b> (${data.answeredCount}/${data.totalQuestions})`,
-    `✅ Số câu đúng tạm tính: <b>${data.correctCount}</b>`,
-    `⏳ Thời gian còn: <code>${escapeHtml(data.timeLeft)}</code>`,
-    `⚡ Hoạt động: ${escapeHtml(data.actionDetail)}`,
-    "",
-    "🧾 <b>BẢNG ĐÁP ÁN</b>",
-    `<code>${answers}</code>`,
-    `🕒 Cập nhật: ${now.replace("T", " ").slice(0, 19)} UTC`
-  ].join("\n");
+    isSubmit ? '🏁 <b>ĐÃ NỘP BÀI</b>' : '🟢 <b>BẮT ĐẦU LÀM BÀI</b>',
+    '',
+    '👤 <b>' + escapeHtml(data.playerName) + '</b>',
+    '📚 ' + escapeHtml(data.quizTitle),
+    '🏷 Mã đề: <code>' + escapeHtml(data.quizCode) + '</code>',
+    '',
+    ...(isSubmit ? [
+      '🎯 Điểm: <b>' + (total ? correct / total * 10 : 0).toFixed(1) + ' / 10</b>',
+      '✅ Đúng: <b>' + correct + '</b>   ·   ❌ Sai: <b>' + Math.max(0, answered - correct) + '</b>',
+      '📝 Đã trả lời: <b>' + answered + '/' + total + '</b>   ·   Bỏ trống: <b>' + Math.max(0,total - answered) + '</b>',
+      '⏱ Thời gian làm bài: <b>' + elapsedText + '</b>'
+    ] : [
+      '📝 Số câu hỏi: <b>' + total + '</b>',
+      '⏳ Thời lượng: <b>' + (duration ? duration + ' phút' : escapeHtml(data.timeLeft)) + '</b>'
+    ]),
+    '',
+    '🕒 ' + escapeHtml(time) + ' · Giờ Việt Nam'
+  ].join('\n');
 
   try {
     // Giữ nguyên key tiến độ của code cũ.
@@ -160,81 +159,24 @@ module.exports = async function handler(req, res) {
       ]);
     }
 
-    // Telegram không bắt buộc; không cấu hình thì vẫn lưu tiến độ.
-    if (botToken && chatId) {
-      const stored = await redis([
-        ["GET", "quizmaster:live:telegram_message_id"]
-      ]);
-
-      const messageId = stored[0]?.result
-        ? Number(stored[0].result)
-        : null;
-
-      async function telegram(method, payload) {
-        const response = await fetch(
-          `https://api.telegram.org/bot${botToken}/${method}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          }
-        );
-
-        const result = await response.json();
-
-        if (!response.ok || !result.ok) {
-          throw new Error(
-            `Telegram ${method}: ${
-              result.description || response.status
-            }`
-          );
-        }
-
-        return result;
-      }
-
-      if (messageId) {
+    // Dashboard continues receiving every event; Telegram only gets milestones.
+    if (botToken && chatId && data.sessionId && ['START','SUBMIT'].includes(data.eventType)) {
+      const notificationKey = 'quizmaster:telegram:event:' + data.sessionId + ':' + data.eventType;
+      const lock = await redis([['SET', notificationKey, 'sending', 'EX', '60', 'NX']]);
+      if (lock[0]?.result) {
         try {
-          await telegram("editMessageText", {
-            chat_id: chatId,
-            message_id: messageId,
-            text: message,
-            parse_mode: "HTML",
-            disable_web_page_preview: true
+          const response = await fetch('https://api.telegram.org/bot' + botToken + '/sendMessage', {
+            method:'POST', headers:{'Content-Type':'application/json'}, signal:AbortSignal.timeout(10000),
+            body:JSON.stringify({chat_id:chatId,text:message,parse_mode:'HTML',disable_web_page_preview:true,
+              reply_markup:{inline_keyboard:[[{text:'📊 Xem dashboard',url:'https://quiz-linh.vercel.app/dashboard.html'}]]}})
           });
+          const result = await response.json();
+          if (!response.ok || !result.ok) throw new Error('Telegram không gửi được thông báo');
+          await redis([['SET', notificationKey, String(result.result.message_id), 'EX', '604800']]);
         } catch (error) {
-          console.error("[Telegram edit]", error.message);
-
-          const sent = await telegram("sendMessage", {
-            chat_id: chatId,
-            text: message,
-            parse_mode: "HTML",
-            disable_web_page_preview: true
-          });
-
-          await redis([
-            [
-              "SET",
-              "quizmaster:live:telegram_message_id",
-              String(sent.result.message_id)
-            ]
-          ]);
+          await redis([['DEL', notificationKey]]);
+          console.error('[Telegram milestone]', error.message);
         }
-      } else {
-        const sent = await telegram("sendMessage", {
-          chat_id: chatId,
-          text: message,
-          parse_mode: "HTML",
-          disable_web_page_preview: true
-        });
-
-        await redis([
-          [
-            "SET",
-            "quizmaster:live:telegram_message_id",
-            String(sent.result.message_id)
-          ]
-        ]);
       }
     }
 

@@ -151,6 +151,8 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                 const payload = {
                     sessionId: this.trackingSessionId || (this.trackingSessionId = (crypto.randomUUID ? crypto.randomUUID() : `s-${Date.now()}-${Math.random().toString(36).slice(2)}`)),
                     eventType,
+                    elapsedSeconds: this.startTime ? Math.max(0, Math.floor((Date.now() - this.startTime) / 1000)) : 0,
+                    durationMinutes: Number(this.activeQuiz.duration) || 0,
                     playerName: this.playerName || 'Ẩn danh',
                     quizCode: this.activeQuiz.code || 'QUIZ',
                     quizTitle: this.activeQuiz.title || 'Đề thi',
