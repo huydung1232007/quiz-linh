@@ -128,6 +128,8 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
 
             async trackProgress(eventType, actionDetail) {
                 if (!this.activeQuiz) return;
+                if (eventType === 'PERIODIC' && this.trackingPending) return;
+                const question = this.examQuestions[this.currentQIndex];
                 const answers = {};
                 for (const [idx, value] of Object.entries(this.userAnswers || {})) {
                     answers[Number(idx) + 1] = String.fromCharCode(65 + Number(value));
@@ -157,6 +159,14 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                     quizCode: this.activeQuiz.code || 'QUIZ',
                     quizTitle: this.activeQuiz.title || 'Đề thi',
                     currentQuestion: this.currentQIndex + 1,
+                    currentQuestionData: question ? {
+                        number: this.currentQIndex + 1,
+                        text: question.text,
+                        options: question.options,
+                        correct: question.correct,
+                        explain: question.explain ?? question.explanation ?? '',
+                        selected: this.userAnswers[this.currentQIndex] ?? null
+                    } : null,
                     totalQuestions: this.examQuestions.length,
                     actionDetail: actionDetail || 'Cập nhật tiến độ',
                     answeredCount: Object.keys(this.userAnswers || {}).length,
@@ -165,16 +175,20 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                     answerResults,
                     timeLeft: `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`
                 };
-                try {
+                this.trackingPending = (this.trackingPending || 0) + 1;
+                const send = async () => { try {
                     const response = await fetch('/api/track', {
                         method: 'POST',
+                        signal: AbortSignal.timeout(10000),
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
                     if (!response.ok) console.warn('Telegram tracking API lỗi:', response.status);
                 } catch (err) {
                     console.warn('Không gửi được tiến độ Telegram:', err);
-                }
+                } finally { this.trackingPending--; } };
+                this.trackingQueue = (this.trackingQueue || Promise.resolve()).then(send, send);
+                await this.trackingQueue;
             },
 
 
@@ -359,8 +373,8 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                     this.startTeacherNotificationPolling();
                     if (this.telegramTrackingEnabled) {
                         this.telegramReportInterval = setInterval(() => {
-                            this.trackProgress('PERIODIC', 'Báo cáo tiến độ định kỳ mỗi phút');
-                        }, 60000);
+                            this.trackProgress('PERIODIC', 'Đồng bộ tiến độ mỗi 2 giây');
+                        }, 2000);
                     }
                 } catch(e) {
                     this.clearProgressAndHide();
@@ -788,8 +802,8 @@ const STORAGE_KEY = 'quizmaster_vn_quizzes_v6';
                 this.startTeacherNotificationPolling();
                 if (this.telegramTrackingEnabled) {
                     this.telegramReportInterval = setInterval(() => {
-                        this.trackProgress('PERIODIC', 'Báo cáo tiến độ định kỳ mỗi phút');
-                    }, 60000);
+                        this.trackProgress('PERIODIC', 'Đồng bộ tiến độ mỗi 2 giây');
+                    }, 2000);
                 }
             },
 

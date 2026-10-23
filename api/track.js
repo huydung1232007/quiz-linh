@@ -25,6 +25,17 @@ module.exports = async function handler(req, res) {
     String(v ?? "").slice(0, max);
 
   const now = new Date().toISOString();
+  const question = input.currentQuestionData;
+  const options = Array.isArray(question?.options) ? question.options.slice(0, 12).map(option => safeString(option, 8000)) : [];
+  const validIndex = index => Number.isInteger(index) && index >= 0 && index < options.length;
+  const currentQuestionData = question && typeof question === 'object' && Number(question.number) === Number(input.currentQuestion) && options.length ? {
+    number: Number(question.number),
+    text: safeString(question.text, 20000),
+    options,
+    correct: validIndex(question.correct) ? question.correct : null,
+    selected: validIndex(question.selected) ? question.selected : null,
+    explain: safeString(question.explain, 20000)
+  } : null;
 
   const data = {
     eventType: safeString(input.eventType || "PROGRESS", 40),
@@ -33,6 +44,7 @@ module.exports = async function handler(req, res) {
     quizCode: safeString(input.quizCode || "QUIZ", 40),
     quizTitle: safeString(input.quizTitle || "Đề thi", 120),
     currentQuestion: Math.max(0, Number(input.currentQuestion) || 0),
+    currentQuestionData,
     totalQuestions: Math.max(0, Number(input.totalQuestions) || 0),
     actionDetail: safeString(input.actionDetail || "Cập nhật tiến độ", 180),
     answeredCount: Math.max(0, Number(input.answeredCount) || 0),

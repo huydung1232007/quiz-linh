@@ -13,6 +13,8 @@ async function track(eventType,extra={}){const res={statusCode:200,setHeader(){}
 (async()=>{
   for(const event of ['ANSWER','HINT','PERIODIC','CHANGE_QUESTION']){await track(event);assert.equal(JSON.parse(stored.get('quizmaster:live:session:one')).eventType,event);}
   assert.equal(sent.length,0);
+  await track('PERIODIC',{currentQuestion:2,currentQuestionData:{number:2,text:'Question',options:['A','B'],correct:1,selected:0,explain:'Explanation'}});assert.equal(JSON.parse(stored.get('quizmaster:live:session:one')).currentQuestionData.explain,'Explanation');
+  await track('PERIODIC',{currentQuestion:3,currentQuestionData:{number:2,text:'Old',options:['A'],correct:0}});assert.equal(JSON.parse(stored.get('quizmaster:live:session:one')).currentQuestionData,null);
   await track('START');assert.equal(sent.length,1);assert(sent[0].url.endsWith('/sendMessage'));assert(sent[0].body.text.includes('BẮT ĐẦU LÀM BÀI'));assert(sent[0].body.text.includes('Linh &lt;b&gt;'));assert(sent[0].body.text.includes('Hàm &amp; module'));assert(sent[0].body.text.includes('60 phút'));assert(!sent[0].body.text.includes('BẢNG ĐÁP ÁN'));assert(sent[0].body.reply_markup.inline_keyboard[0][0].url.endsWith('/dashboard.html'));
   await track('START');assert.equal(sent.length,1);
   await track('SUBMIT');assert.equal(sent.length,2);assert(sent[1].body.text.includes('ĐÃ NỘP BÀI'));assert(sent[1].body.text.includes('6.0 / 10'));assert(sent[1].body.text.includes('Sai: <b>2</b>'));assert(sent[1].body.text.includes('Bỏ trống: <b>2</b>'));assert(sent[1].body.text.includes('02:05'));assert(sent[1].body.text.includes('Giờ Việt Nam'));

@@ -50,6 +50,7 @@ function clearDetail(){
   $('notification-send-status').textContent = ''; $('notification-ack-status').textContent = '';
   $('answer-grid').innerHTML = '<div class="empty-state">Chọn một lượt thi để xem đáp án.</div>';
   $('answer-count').textContent = '';
+  renderCurrentQuestion(null);
   dashboardChat?.poll();
 }
 function renderSessions(sessions){
@@ -76,9 +77,30 @@ function renderSessions(sessions){
   updateChatBadges();
   renderDetail(filtered.find(s => s.sessionId === selectedSessionId));
 }
+function renderCurrentQuestion(d){
+  const question=d?.currentQuestionData;
+  $('live-question-number').textContent=d ? `Câu ${d.currentQuestion || 0} / ${d.totalQuestions || 0}` : 'Chưa có câu hỏi';
+  $('live-question-caption').textContent=d?.eventType==='SUBMIT' ? 'Câu xem gần nhất trước khi nộp bài' : 'Nội dung câu học viên đang xem';
+  if(!question || question.number!==Number(d.currentQuestion) || !Array.isArray(question.options)) {
+    if($('live-question-body').dataset) $('live-question-body').dataset.renderKey='';
+    $('live-question-body').innerHTML=`<p class="empty-state">${d ? 'Lượt thi này chưa có nội dung câu hỏi. Học viên cần tải lại trang và tiếp tục bài để đồng bộ.' : 'Chọn một lượt thi để xem nội dung câu hỏi.'}</p>`;
+    return;
+  }
+  const selected=Number.isInteger(question.selected)?question.selected:null;
+  const correct=Number.isInteger(question.correct)?question.correct:null;
+  const options=question.options.map((option,index)=>{
+    const isCorrect=index===correct,isSelected=index===selected;
+    return `<li class="live-option ${isCorrect?'is-correct':''} ${isSelected?'is-selected':''}"><span class="option-letter">${String.fromCharCode(65+index)}</span><div><p>${esc(option)}</p><div class="option-tags">${isCorrect?'<span>✓ Đáp án đúng</span>':''}${isSelected?`<span class="student-choice">Học viên đã chọn${correct!==null?(isCorrect?' · Đúng':' · Sai'):''}</span>`:''}</div></div></li>`;
+  }).join('');
+  const key=JSON.stringify([d.sessionId,d.currentQuestion,question]);
+  if($('live-question-body').dataset?.renderKey===key) return;
+  $('live-question-body').innerHTML=`<div class="live-question-text">${esc(question.text)}</div><ul class="live-options">${options}</ul>${selected===null?'<p class="live-choice-note">Học viên chưa chọn đáp án cho câu này.</p>':''}<div class="live-explanation"><h3>Giải thích đáp án${correct!==null?' · '+String.fromCharCode(65+correct):''}</h3><p>${esc(question.explain || 'Đề này chưa có giải thích cho câu hỏi này.')}</p></div>`;
+  if($('live-question-body').dataset) $('live-question-body').dataset.renderKey=key;
+}
 function renderDetail(d){
   if(!d) { clearDetail(); return; }
   detailData = d;
+  renderCurrentQuestion(d);
   dashboardChat?.poll();
   if(!dashboardChat) $('send-notification-btn').disabled = sendingNotification;
   $('notification-recipient').textContent = d.playerName || 'Ẩn danh';
@@ -211,4 +233,4 @@ $('restore-hidden-sessions').addEventListener('click',restoreHiddenSessions);
 $('session-search').addEventListener('input',()=>renderSessions(cachedSessions));
 $('session-filter').addEventListener('change',()=>renderSessions(cachedSessions));
 $('answer-filter').addEventListener('change',()=>renderDetail(detailData));
-refresh(); setInterval(refresh,5000);
+refresh(); setInterval(refresh,2000);

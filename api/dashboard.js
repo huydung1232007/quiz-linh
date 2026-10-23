@@ -1,4 +1,5 @@
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
@@ -16,7 +17,7 @@ export default async function handler(req, res) {
     async function redis(command) {
       const r = await fetch(base, { method: "POST", headers, body: JSON.stringify(command) });
       const data = await r.json();
-      if (data.error) throw new Error(data.error);
+      if (!r.ok || data.error) throw new Error(data.error || 'Redis unavailable');
       return data.result;
     }
 
@@ -24,15 +25,15 @@ export default async function handler(req, res) {
     const ids = await redis(["SMEMBERS", "quizmaster:live:sessions:v2"]) || [];
     
     // Lấy dữ liệu hoạt động gần nhất
-    const latestRaw = await redis(["GET", "quizmaster:live:latest"]);
+    const keys = ids.map(id => `quizmaster:live:session:${String(id).replace(/[^a-zA-Z0-9_-]/g, '_')}`);
+    const records = await redis(['MGET', 'quizmaster:live:latest', ...keys]) || [];
+    const latestRaw = records[0];
     let latest = null;
     try { if (latestRaw) latest = JSON.parse(latestRaw); } catch(e){}
 
     // Lấy chi tiết từng lượt thi
     const sessions = [];
-    for (const id of ids) {
-        const safeId = String(id).replace(/[^a-zA-Z0-9_-]/g, '_');
-        const raw = await redis(["GET", `quizmaster:live:session:${safeId}`]);
+    for (const raw of records.slice(1)) {
         if (raw) {
             try { sessions.push(JSON.parse(raw)); } catch(e){}
         }
