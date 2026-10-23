@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+/* Explicit component typography also prevents utility preflight from shrinking headings. */
+body .course-cover .python-logo{width:120px;height:120px;object-fit:contain;align-self:center;margin:auto;mix-blend-mode:multiply}body .path-open .course-cover .python-logo{width:105px;height:105px}@media(max-width:760px){body .path-open .course-cover .python-logo{width:75px;height:75px}}@media(max-width:600px){body .course-cover .python-logo{width:74px;height:74px}}
+.course-actions{display:flex;gap:10px;flex-wrap:wrap}body .course-layout:not(.path-open){max-width:890px}body .course-layout:not(.path-open) .course-card{grid-template-columns:31% minmax(0,1fr)}body .course-layout:not(.path-open) .course-cover{min-height:265px;padding:22px}body .course-layout:not(.path-open) .course-cover strong{font-size:65px}body .course-layout:not(.path-open) .course-cover::after{width:175px;height:175px;left:calc(50% - 87px);top:48px}body .course-layout:not(.path-open) .course-info{padding:25px 28px}body .course-layout:not(.path-open) .course-info h3{font-size:24px}body .course-layout:not(.path-open) .course-info>.muted{font-size:13px;margin-bottom:12px}body .course-layout:not(.path-open) .progress-track{margin-top:15px}body .course-layout:not(.path-open) .course-features{margin:12px 0 17px;gap:12px;font-size:10px}body .course-actions .primary{padding:12px 17px;min-height:42px;font-size:12px}body .path-open .course-actions{gap:8px}body .path-open .course-actions .primary{flex:1;padding-inline:10px;white-space:nowrap}@media(max-width:600px){body .course-layout:not(.path-open) .course-card{grid-template-columns:1fr}body .course-layout:not(.path-open) .course-cover{min-height:145px;height:145px;padding:16px}body .course-layout:not(.path-open) .course-cover::after{height:100px;width:100px;left:calc(50% - 50px);top:20px}body .course-layout:not(.path-open) .course-cover strong{font-size:45px}body .course-layout:not(.path-open) .course-info{padding:22px}body .course-layout:not(.path-open) .course-info h3{font-size:22px}body .course-actions .primary{flex:1;white-space:nowrap}}
+body{--ink:#183c32;--muted:#708078;--green:#23634c;--line:#dfe7df;background:#f7f9f5;font-family:'Manrope','Segoe UI',sans-serif;font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+body header{max-width:1280px;height:94px;border-bottom:1px solid var(--line);padding-inline:38px}
+body .brand{font-family:'Manrope','Segoe UI',sans-serif;font-size:23px;letter-spacing:-.8px;font-weight:800;gap:9px}
+body .brand span{color:#9cb971}body header nav{gap:36px;font-size:14px;font-weight:600}
+body header nav a{padding:10px 0;color:var(--muted);position:relative}
+body header nav a[aria-current=page]{color:var(--green)}body header nav a[aria-current=page]::after{content:'';position:absolute;height:3px;border-radius:3px;background:var(--green);left:0;right:0;bottom:0}
+body main{max-width:1240px;padding-inline:32px}body .primary,body .secondary{font-size:13px;font-weight:700;line-height:1.5;padding:15px 22px;border-radius:11px;min-height:46px;transition:background .18s,box-shadow .18s,transform .18s}
+body .primary{box-shadow:0 5px 14px #23634c16}body .primary:hover{transform:translateY(-1px);box-shadow:0 9px 20px #23634c24}body .secondary{background:#eef3e8}
+body .eyebrow{font-size:10px;font-weight:800;letter-spacing:2.2px;line-height:1.8;margin-bottom:16px;color:#487254}
+body .muted{font-size:14px;line-height:1.85;color:var(--muted)}body .small{font-size:11px}
+body .hero{grid-template-columns:1.12fr 1fr;gap:65px;padding:85px 0 72px;min-height:520px}
+body .hero h1{font-family:'Manrope','Segoe UI',sans-serif;font-size:clamp(38px,4.1vw,54px);line-height:1.2;letter-spacing:-2.2px;font-weight:800;margin:0 0 24px;color:var(--ink)}
+body .hero h1 em{color:#719260;font-weight:500;display:inline-block;margin-top:4px}
+body .hero>div>.muted{font-size:15px;line-height:1.9;max-width:510px;margin-bottom:27px}
+body .hero .actions{gap:25px;margin:24px 0}body .hero .actions a{font-size:13px}
+body .hero .small{font-size:11px;margin-top:27px;color:#849084}
+body .code-art{border-radius:22px;transform:rotate(-2deg);box-shadow:16px 18px 0 #e6eedc,0 20px 50px #143c2912;border:1px solid #335143}
+body .code-top{padding:17px 23px;font-size:10px}body .code-art pre{font-size:12px;line-height:2.15;padding:28px 25px;margin:0;letter-spacing:0}
+body .code-bottom{font-size:10px;padding:16px 23px}
+body .stats{padding:30px 0;background:linear-gradient(90deg,#f0f4e9,transparent);border-radius:14px;border:1px solid var(--line)}
+body .stats strong{font-family:'Manrope',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1.5px}body .stats div{font-size:12px;gap:15px}
+body #courses{padding:68px 0;scroll-margin-top:24px}body .section-heading{margin-bottom:30px;align-items:flex-end}
+body #courses>.section-heading h2,body .practice-banner h2{font-family:'Manrope',sans-serif;font-size:32px;line-height:1.3;font-weight:800;letter-spacing:-1px;margin:0}
+body .pill{font-size:9px;padding:9px 14px;background:#ffffff6b;color:#52714b}
+body .course-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;align-items:start}
+body .course-card{display:grid;grid-template-columns:38% minmax(0,1fr);border-radius:22px;background:#fff;box-shadow:0 10px 35px #183c3206;border:1px solid var(--line);overflow:hidden}
+body .course-cover{height:auto;min-height:330px;background:radial-gradient(circle at 65% 30%,#edf4dc 0,transparent 60%),#dceac9;padding:30px;display:flex;position:relative;isolation:isolate}
+body .course-cover::after{content:'';position:absolute;inset:25px;border:1px solid #49683316;border-radius:50%;width:240px;height:240px;z-index:-1;left:calc(50% - 120px);top:55px}
+body .course-cover strong{font-family:'Manrope',sans-serif;font-size:88px;letter-spacing:-6px;font-weight:800;color:#41643e}
+body .course-cover small{font-size:8px;font-weight:700;letter-spacing:2px}body .course-cover .pill{background:#ffffff42}
+body .course-info{padding:36px 40px}body .course-info .eyebrow{font-size:10px;margin-bottom:13px}
+body .course-info h3{font-family:'Manrope',sans-serif;font-size:29px;line-height:1.35;font-weight:800;letter-spacing:-.9px;margin:0 0 15px}
+body .course-info h3 a:hover{color:#4c8057}body .course-info>.muted{max-width:520px;font-size:14px;margin-bottom:20px}
+body .progress-track{margin-top:24px;height:6px}body #completed-label{font-size:11px;margin:8px 0 16px}
+body .course-features{display:flex;gap:20px;flex-wrap:wrap;font-size:11px;color:#637960;margin:18px 0 24px}body .course-info .full{width:auto;min-width:230px}
+body .course-path{background:white;border:1px solid var(--line);padding:30px;border-radius:22px;box-shadow:0 12px 38px #183c3205}
+body .path-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}
+body .path-heading h3{font-size:24px;font-weight:800;line-height:1.4;letter-spacing:-.7px;margin-bottom:5px}body .path-heading .eyebrow{margin-bottom:9px}body .path-heading .muted{font-size:12px;margin:0}
+body .path-close{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#f0f4ec;font-size:22px;flex-shrink:0;color:#6b7d68}
+body .course-layout.path-open{grid-template-columns:350px minmax(0,1fr)}body .path-open .course-card{display:block;position:sticky;top:25px}
+body .path-open .course-cover{min-height:230px;height:230px;padding:24px}body .path-open .course-cover::after{width:160px;height:160px;left:calc(50% - 80px);top:35px}
+body .path-open .course-cover strong{font-size:72px}body .path-open .course-info{padding:27px}body .path-open .course-info h3{font-size:23px}
+body .path-open .course-features{gap:8px 16px}body .path-open .full{width:100%;min-width:0}
+body .group-label{font-size:11px;font-weight:700;color:#6f806b;margin:28px 0 10px;letter-spacing:.25px}
+body .lesson-row{padding:14px 10px;gap:16px;border-bottom:1px solid #edf1e8;border-radius:9px;transition:background .18s}
+body .lesson-number{min-width:36px;height:36px;font-size:11px;border-radius:10px;background:#f7f9f3}body .lesson-name{font-size:13px;line-height:1.6;font-weight:600}body .lesson-time{font-size:10px;white-space:nowrap}
+body .practice-banner{padding:38px 42px;border:1px solid #dce6d0;border-radius:20px;background:linear-gradient(110deg,#eaf1dd,#f0f5e9);margin-bottom:64px}
+body .practice-banner h2{font-size:27px}body .practice-banner .muted{font-size:13px}
+body .classroom-top{padding:30px 0;font-size:13px}body .classroom-layout{gap:38px}
+body .classroom-layout aside{padding-right:24px}body .classroom-layout aside>h3{font-size:19px;font-weight:800;margin:0 0 14px;letter-spacing:-.5px}
+body .classroom-layout aside .lesson-name{font-size:11px;font-weight:600}body .classroom-layout aside .lesson-row{padding:11px 5px;gap:10px}
+body .classroom-layout article h1{font-family:'Manrope',sans-serif;font-size:34px;line-height:1.35;font-weight:800;letter-spacing:-1px;margin-bottom:26px}
+body .theory{font-size:15px;line-height:1.95;color:#405a4e}body .theory h2{font-size:23px;line-height:1.45;font-weight:800;letter-spacing:-.55px;margin:36px 0 17px;color:var(--ink)}body .theory h3{font-size:19px;font-weight:700}
+body .theory p{margin-bottom:20px;color:#52675b}body .theory pre{font-size:13px;border-radius:13px;line-height:1.9;padding:24px;margin:22px 0}
+body .theory-table table{font-size:13px}body .tabs button{font-size:13px}body .inline-practice h2{font-size:25px;line-height:1.4;font-weight:800;letter-spacing:-.6px}
+body #exam-hub .exam-heading h1{font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;line-height:1.3;letter-spacing:-1px}
+body #exam-hub #quiz-grid h4,body .lesson-quiz-card h4{font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.4px;line-height:1.4}
+body footer{font-size:14px}body footer span{font-size:11px}
+@media(min-width:951px){body.course-open .hero,body.course-open .stats{display:none}}
+@media(max-width:1050px){body .hero{gap:30px}body .hero h1{font-size:41px}body .code-art pre{font-size:10px;padding:24px 18px}body .course-layout.path-open{grid-template-columns:310px minmax(0,1fr)}body .course-info{padding:30px}body .course-path{padding:24px}}
+@media(max-width:760px){body .course-layout.path-open{grid-template-columns:1fr}body .path-open .course-card{position:static;display:grid;grid-template-columns:32% minmax(0,1fr)}body .path-open .course-cover{height:auto;min-height:220px;padding:15px}body .path-open .course-cover .pill{display:none}body .path-open .course-cover strong{font-size:45px;letter-spacing:-3px}body .path-open .course-cover small{font-size:6px;letter-spacing:1px}body .path-open .course-cover::after{display:none}body .path-open .course-info{padding:22px}body .path-open .course-info h3{font-size:22px}body .path-open .course-features{display:none}body .path-open .course-info>.muted{font-size:12px}}
+@media(max-width:680px){body header{height:auto;padding:18px 20px;gap:18px}body .brand{font-size:21px}body header nav{font-size:13px;gap:35px}body header>.secondary{font-size:11px;padding:10px 12px;min-height:38px}body main{padding-inline:20px}body .hero{grid-template-columns:1fr;padding:44px 0 42px;gap:35px;min-height:0}body .hero h1{font-size:38px;letter-spacing:-1.6px}body .hero>div>.muted{font-size:14px}body .hero .small{font-size:10px}body .code-art{margin:0 8px 10px;box-shadow:10px 12px 0 #e6eedc}body .code-art pre{font-size:11px;padding:22px}body .stats{padding:22px 0;gap:20px}body .stats div{font-size:11px;gap:2px}body .stats strong{font-size:29px}body #courses{padding:44px 0}body #courses>.section-heading h2{font-size:28px}body .course-card{grid-template-columns:1fr}body .course-cover{min-height:215px;height:215px;padding:24px}body .course-cover strong{font-size:72px}body .course-cover::after{width:160px;height:160px;left:calc(50% - 80px);top:30px}body .course-info{padding:27px}body .course-info h3{font-size:25px}body .course-info .full{width:100%}body .course-features{gap:12px;font-size:10px}body .course-path{padding:21px 17px}body .path-heading h3{font-size:23px}body .lesson-row{gap:10px;padding:13px 5px}body .lesson-name{font-size:12px}body .lesson-time{font-size:9px}body .practice-banner{padding:28px;margin-bottom:40px}body .practice-banner h2{font-size:25px}body .classroom-layout{gap:27px}body .classroom-layout article h1{font-size:28px}body .theory{font-size:14px}body .theory h2{font-size:21px}body .theory pre{padding:19px;font-size:12px}body footer{padding:24px 20px}body .path-open .course-cover strong{font-size:39px}body .path-open .course-info h3{font-size:20px}}
+@media(prefers-reduced-motion:reduce){body .primary,body .secondary,body .lesson-row{transition:none}body .primary:hover{transform:none}}

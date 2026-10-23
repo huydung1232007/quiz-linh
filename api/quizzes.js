@@ -28,12 +28,12 @@ module.exports = (req, res) => {
                 const parsed = JSON.parse(content);
 
                 if (Array.isArray(parsed)) {
-                    allQuizzes.push(...parsed);
+                    allQuizzes.push(...parsed.map((quiz,index) => ({...quiz,id:quiz.id || `q-${file.replace('.json','')}-${index}`,sourceFile:file})));
                 } else if (parsed && typeof parsed === 'object') {
                     if (!parsed.id) {
                         parsed.id = 'q-' + file.replace('.json', '');
                     }
-                    allQuizzes.push(parsed);
+                    allQuizzes.push({...parsed,sourceFile:file});
                 }
             } catch (fileErr) {
                 console.error(`Bỏ qua file lỗi ${file}:`, fileErr.message);
