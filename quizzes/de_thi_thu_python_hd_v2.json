@@ -1,0 +1,562 @@
+[
+  {
+    "id": "q-python-mock-hd-01",
+    "code": "PY-HD-01",
+    "title": "Đề Thi Thử Python Cuối Kỳ - Mã đề HD",
+    "desc": "Đề thi thử Nhập môn lập trình Python ôn thi cuối kỳ (50 câu trắc nghiệm: cơ bản, cấu trúc dữ liệu, hàm, file, OOP, NumPy, Matplotlib).",
+    "duration": 60,
+    "createdAt": "2026-10-25",
+    "questions": [
+      {
+        "text": "Phát biểu nào mô tả đúng tính hữu hạn của thuật toán?",
+        "options": [
+          "Luôn chỉ có một bước xử lý.",
+          "Kết thúc sau hữu hạn bước với mọi đầu vào hợp lệ.",
+          "Không được chứa vòng lặp.",
+          "Luôn chạy dưới một giây."
+        ],
+        "correct": 1,
+        "explain": "Tính dừng (tính hữu hạn - finiteness) của thuật toán đòi hỏi thuật toán phải kết thúc và cho ra kết quả sau một số hữu hạn các bước thực hiện đối với mọi đầu vào hợp lệ."
+      },
+      {
+        "text": "Trong Python 3, tên biến nào sau đây hợp lệ?",
+        "options": [
+          "2diem",
+          "class",
+          "diem-tb",
+          "diem_tb2"
+        ],
+        "correct": 3,
+        "explain": "Quy tắc đặt tên biến trong Python: chỉ gồm chữ cái, chữ số và dấu gạch dưới (_); không được bắt đầu bằng số ('2diem' sai); không trùng với từ khóa của ngôn ngữ ('class' sai); không chứa dấu gạch ngang ('diem-tb' bị hiểu là phép trừ). Do đó 'diem_tb2' hợp lệ."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nprint(-7 // 2, -7 % 2, 8 / 2)",
+        "options": [
+          "-4 1 4.0",
+          "-3 -1 4",
+          "-4 -1 4.0",
+          "-3 1 4.0"
+        ],
+        "correct": 0,
+        "explain": "- Phép chia lấy nguyên '//' làm tròn xuống (floor division): -7 // 2 = -3.5 làm tròn xuống thành -4.\n- Phép chia lấy dư '%': -7 % 2 = -7 - (-4 * 2) = 1 (dấu của số dư cùng dấu với số chia là 2 > 0).\n- Phép chia thực '/' luôn trả về kiểu float: 8 / 2 = 4.0.\nKết quả: -4 1 4.0."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nprint(2 ** 3 ** 2, -2 ** 2)",
+        "options": [
+          "64 4",
+          "512 4",
+          "512 -4",
+          "64 -4"
+        ],
+        "correct": 2,
+        "explain": "- Toán tử lũy thừa '**' kết hợp từ phải sang trái: 2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512.\n- Toán tử '**' có độ ưu tiên cao hơn dấu trừ đơn ngôi '-': -2 ** 2 = -(2 ** 2) = -4.\nKết quả: 512 -4."
+      },
+      {
+        "text": "Người dùng nhập 12 rồi Enter. Kết quả của dòng print là gì?\n\ns = input()\nprint(s * 2, int(s) * 2)",
+        "options": [
+          "24 24",
+          "1212 24",
+          "1212 1212",
+          "24 1212"
+        ],
+        "correct": 1,
+        "explain": "Hàm input() trả về chuỗi s = '12'.\n- Phép nhân chuỗi với số nguyên: s * 2 = '12' * 2 = '1212'.\n- Ép kiểu sang số nguyên rồi nhân: int(s) * 2 = 12 * 2 = 24.\nKết quả: 1212 24."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na, b = 2, 5\na, b = b, a + b\nprint(a, b)",
+        "options": [
+          "5 7",
+          "5 10",
+          "2 7",
+          "2 5"
+        ],
+        "correct": 0,
+        "explain": "Phép gán đồng thời (tuple unpacking) trong Python tính toán toàn bộ biểu thức bên phải trước khi gán cho vế trái. Với a = 2, b = 5 thì vế phải (b, a + b) là (5, 2 + 5) = (5, 7). Sau đó gán a = 5 và b = 7."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nx = 7\nif x > 5:\n    print(\"A\")\nelif x > 6:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "options": [
+          "A C",
+          "B",
+          "C",
+          "A"
+        ],
+        "correct": 3,
+        "explain": "Trong cấu trúc if - elif - else, khi nhánh 'if x > 5' thỏa mãn (7 > 5 là True), chương trình in ra 'A' và bỏ qua toàn bộ các nhánh elif, else phía sau."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nx = 0\nprint(x != 0 and 10 / x > 2, bool(\"0\"))",
+        "options": [
+          "True True",
+          "False False",
+          "False True",
+          "True False"
+        ],
+        "correct": 2,
+        "explain": "- Toán tử 'and' đánh giá ngắn mạch (short-circuit): vì x = 0 nên 'x != 0' là False, biểu thức 'and' lập tức trả về False mà không tính '10 / x' (tránh được lỗi chia cho 0).\n- Hàm bool(\"0\"): mọi chuỗi khác rỗng trong Python đều có giá trị logic là True.\nKết quả: False True."
+      },
+      {
+        "text": "Quy ước dấu / trong đáp án phân cách hai dòng in liên tiếp. Kết quả là gì?\n\ntry:\n    print(int(\"3.5\"))\nexcept ValueError:\n    print(\"E\")\nfinally:\n    print(\"F\")",
+        "options": [
+          "E / F",
+          "F",
+          "3 / F",
+          "E"
+        ],
+        "correct": 0,
+        "explain": "Hàm int(\"3.5\") gây ra ngoại lệ ValueError vì chuỗi chứa dấu chấm thập phân không thể chuyển trực tiếp sang int. Khối except ValueError bắt lỗi này và in ra 'E'. Khối finally luôn luôn được thực thi dù có lỗi hay không nên in tiếp 'F' ở dòng sau."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nprint(list(range(7, 1, -2)))",
+        "options": [
+          "[7, 5, 3, 1]",
+          "[7, 5, 3]",
+          "[1, 3, 5, 7]",
+          "[]"
+        ],
+        "correct": 1,
+        "explain": "range(start=7, stop=1, step=-2) tạo dãy số bắt đầu từ 7, giảm dần mỗi bước 2 đơn vị và dừng lại trước khi chạm mốc 1 (lớn hơn 1): gồm 7, 5, 3."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\ns = 0\nfor i in range(1, 8):\n    if i == 6:\n        break\n    if i % 2 == 0:\n        continue\n    s += i\nprint(s)",
+        "options": [
+          "5",
+          "12",
+          "15",
+          "9"
+        ],
+        "correct": 3,
+        "explain": "Vòng lặp duyệt i từ 1 đến 7:\n- i = 1 (lẻ): s = 0 + 1 = 1\n- i = 2 (chẵn): continue (bỏ qua)\n- i = 3 (lẻ): s = 1 + 3 = 4\n- i = 4 (chẵn): continue\n- i = 5 (lẻ): s = 4 + 5 = 9\n- i = 6: gặp lệnh break thoát khỏi vòng lặp.\nKết quả in ra s = 9."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nfor i in range(3):\n    if i == 2:\n        break\n    print(i, end=\" \")\nelse:\n    print(\"E\")",
+        "options": [
+          "0 1",
+          "0 1 E",
+          "0 1 2 E",
+          "0 1 2"
+        ],
+        "correct": 0,
+        "explain": "Vòng lặp in ra 0 và 1. Khi i = 2, lệnh 'break' được thực thi để thoát vòng lặp. Trong Python, khối 'else' gắn với vòng lặp for/while chỉ chạy khi vòng lặp kết thúc bình thường (không bị ngắt bởi break). Vì có break nên 'E' không được in ra. Kết quả chỉ là '0 1'."
+      },
+      {
+        "text": "Điền chỗ trống để cộng các số nguyên từ 1 đến n, kể cả n, với n >= 0.\n\ns, i = 0, 1\nwhile ____:\n    s += i\n    i += 1\nprint(s)",
+        "options": [
+          "i < n",
+          "i >= n",
+          "i <= n",
+          "i == n"
+        ],
+        "correct": 2,
+        "explain": "Để cộng các số từ 1 đến cả n, biến chạy i bắt đầu từ 1 cần lặp chừng nào i còn nhỏ hơn hoặc bằng n (i <= n)."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na = [0, 1, 2, 3, 4, 5]\nprint(a[5:0:-2])",
+        "options": [
+          "[3, 4, 5]",
+          "[5, 3, 1]",
+          "[5, 4, 3]",
+          "[5, 4]"
+        ],
+        "correct": 1,
+        "explain": "Cắt danh sách (slicing) a[5:0:-2] lấy từ chỉ số 5 ngược về trước chỉ số 0 với bước nhảy -2: lấy các phần tử ở chỉ số 5, 3, 1 tương ứng là [5, 3, 1]."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na = [1, 2]\na.append([3, 4])\nb = [1, 2]\nb.extend([3, 4, 5])\nprint(len(a), len(b))",
+        "options": [
+          "3 3",
+          "4 5",
+          "3 5",
+          "4 4"
+        ],
+        "correct": 2,
+        "explain": "- Phương thức append() thêm toàn bộ đối số như một phần tử duy nhất vào cuối list: a thành [1, 2, [3, 4]] -> len(a) = 3.\n- Phương thức extend() nối từng phần tử của iterable vào list: b thành [1, 2, 3, 4, 5] -> len(b) = 5.\nKết quả: 3 5."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na = [1, 2]\nb = a\nc = a.copy()\nb[0] = 9\nprint(a, c)",
+        "options": [
+          "[9, 2] [1, 2]",
+          "[1, 2] [9, 2]",
+          "[9, 2] [9, 2]",
+          "[1, 2] [1, 2]"
+        ],
+        "correct": 0,
+        "explain": "- 'b = a' gán tham chiếu nên a và b cùng trỏ tới một danh sách. Khi sửa b[0] = 9 thì a cũng thành [9, 2].\n- 'c = a.copy()' tạo một bản sao nông (shallow copy) độc lập trước khi b[0] thay đổi, nên c vẫn giữ nguyên là [1, 2]."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na = [3, 1, 2]\nr = a.sort()\nprint(r, a)",
+        "options": [
+          "[3, 1, 2] [1, 2, 3]",
+          "None [3, 1, 2]",
+          "[1, 2, 3] [1, 2, 3]",
+          "None [1, 2, 3]"
+        ],
+        "correct": 3,
+        "explain": "Phương thức a.sort() sắp xếp danh sách a tại chỗ (in-place) thành [1, 2, 3] và trả về giá trị None. Do đó r = None và a = [1, 2, 3]."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na = [[0, 0]] * 2\na[0][1] = 8\nprint(a)",
+        "options": [
+          "[[0, 8], [0, 0]]",
+          "[[0, 8], [0, 8]]",
+          "[[8, 0], [8, 0]]",
+          "[[0, 0], [0, 8]]"
+        ],
+        "correct": 1,
+        "explain": "Phép nhân '[[0, 0]] * 2' tạo ra danh sách gồm 2 phần tử cùng tham chiếu đến một danh sách con [0, 0] duy nhất trong bộ nhớ. Khi thay đổi a[0][1] = 8, danh sách con đó thành [0, 8] nên cả hai phần tử của a đều hiển thị là [0, 8]."
+      },
+      {
+        "text": "Các số bên trái chỉ là nhãn dòng. Dòng nào đầu tiên gây lỗi khi thực thi?\n\n1  t = (1, 2)\n2  x = t[0]\n3  t[0] = 5\n4  print(x)",
+        "options": [
+          "Dòng 1",
+          "Dòng 2",
+          "Dòng 3",
+          "Dòng 4"
+        ],
+        "correct": 2,
+        "explain": "Tuple là kiểu dữ liệu bất biến (immutable), không cho phép gán lại giá trị cho phần tử. Do đó lệnh 't[0] = 5' ở dòng 3 sẽ gây lỗi TypeError."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na, *b, c = (1, 2, 3, 4)\nprint(a, b, c)",
+        "options": [
+          "1 [2, 3] 4",
+          "1 (2, 3) 4",
+          "1 2 [3, 4]",
+          "Báo lỗi ValueError"
+        ],
+        "correct": 0,
+        "explain": "Khi giải nén (unpacking) với toán tử '*', biến a nhận phần tử đầu (1), biến c nhận phần tử cuối (4), và biến *b gom tất cả các phần tử ở giữa thành một danh sách (list) là [2, 3]."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\na = {1, 2, 3}\nb = {2, 3, 4}\nprint(sorted(a ^ b))",
+        "options": [
+          "[1, 2, 3, 4]",
+          "[2, 3]",
+          "[1]",
+          "[1, 4]"
+        ],
+        "correct": 3,
+        "explain": "Toán tử '^' trên tập hợp (set) là phép hiệu đối xứng (symmetric difference), lấy các phần tử chỉ thuộc a hoặc chỉ thuộc b (không thuộc phần giao): {1, 2, 3} ^ {2, 3, 4} = {1, 4}. Hàm sorted() trả về danh sách đã sắp xếp [1, 4]."
+      },
+      {
+        "text": "Với s = {1, 2}, lệnh nào không gây lỗi và giữ nguyên nội dung của s?",
+        "options": [
+          "s.remove(9)",
+          "s.discard(9)",
+          "s[0] = 9",
+          "s.add([9])"
+        ],
+        "correct": 1,
+        "explain": "- s.remove(9) gây lỗi KeyError vì 9 không có trong tập hợp s.\n- s.discard(9) xóa phần tử 9 nếu có, nếu không có thì không làm gì và không báo lỗi.\n- s[0] = 9 gây lỗi TypeError vì set không hỗ trợ truy cập hay gán qua chỉ số.\n- s.add([9]) gây lỗi TypeError vì list [9] là kiểu khả biến (unhashable), không thể làm phần tử của set."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nd = {\"a\": 1, \"b\": 2}\nd[\"a\"] = 5\nprint(2 in d, d.get(\"c\", 0), len(d))",
+        "options": [
+          "True 0 2",
+          "False None 3",
+          "False 0 2",
+          "False 0 3"
+        ],
+        "correct": 2,
+        "explain": "- d[\"a\"] = 5 cập nhật giá trị của khóa \"a\" thành 5, số phần tử của từ điển vẫn là 2.\n- Toán tử 'in' trên dictionary kiểm tra sự tồn tại của khóa (key), không phải giá trị (value). Khóa 2 không tồn tại nên '2 in d' là False.\n- d.get(\"c\", 0) trả về giá trị mặc định 0 vì khóa \"c\" không có trong d.\n- len(d) = 2.\nKết quả: False 0 2."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nx = 3\ndef f(x, k=2):\n    x *= k\n    return x\nprint(f(x), x)",
+        "options": [
+          "6 6",
+          "6 3",
+          "3 3",
+          "3 6"
+        ],
+        "correct": 1,
+        "explain": "Biến x bên trong hàm f là biến cục bộ, nhận giá trị 3 từ đối số truyền vào, nhân với k=2 (mặc định) và trả về 6. Biến x toàn cục bên ngoài (kiểu int bất biến) không bị ảnh hưởng nên vẫn bằng 3. Kết quả in ra: 6 3."
+      },
+      {
+        "text": "Quy ước dấu / phân cách hai dòng in liên tiếp. Kết quả là gì?\n\ndef f(x):\n    print(x + 1)\nr = f(2)\nprint(r)",
+        "options": [
+          "3 / None",
+          "3 / 3",
+          "None / 3",
+          "Chỉ in một dòng 3"
+        ],
+        "correct": 0,
+        "explain": "Khi gọi f(2), lệnh print(x + 1) bên trong hàm in ra dòng đầu tiên là 3. Vì hàm f không có lệnh return nên mặc định trả về None, gán cho biến r. Dòng print(r) tiếp theo in ra None."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\ndef f(*args, **kw):\n    return sum(args) + kw.get(\"k\", 0)\nprint(f(1, 2, 3, k=4))",
+        "options": [
+          "3",
+          "12",
+          "7",
+          "10"
+        ],
+        "correct": 3,
+        "explain": "- *args gom các đối số vị trí thành tuple (1, 2, 3) -> sum(args) = 1 + 2 + 3 = 6.\n- **kw gom các đối số từ khóa thành dict {'k': 4} -> kw.get('k', 0) = 4.\nTổng trả về: 6 + 4 = 10."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\ndef handle(f, a, b):\n    return f(a, b - a)\nprint(handle(lambda u, v: u * v + 1, 3, 8))",
+        "options": [
+          "25",
+          "10",
+          "16",
+          "12"
+        ],
+        "correct": 2,
+        "explain": "Gọi handle với a = 3, b = 8 sẽ gọi hàm lambda f(3, 8 - 3) = f(3, 5). Khi đó u = 3, v = 5 -> u * v + 1 = 3 * 5 + 1 = 16."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\ndef f(n):\n    if n == 0:\n        return 1\n    return n * f(n - 1)\nprint(f(4))",
+        "options": [
+          "6",
+          "24",
+          "10",
+          "120"
+        ],
+        "correct": 1,
+        "explain": "Hàm đệ quy tính giai thừa n!: f(4) = 4 * 3 * 2 * 1 * 1 = 24."
+      },
+      {
+        "text": "Một file văn bản đã tồn tại. Mở thành công bằng open(\"data.txt\", \"w\") có tác dụng gì ngay khi mở?",
+        "options": [
+          "Giữ nội dung, ghi nối cuối.",
+          "Chỉ cho phép đọc.",
+          "Luôn báo FileExistsError.",
+          "Xóa nội dung cũ và cho phép ghi."
+        ],
+        "correct": 3,
+        "explain": "Chế độ 'w' (write) khi mở một file đã tồn tại sẽ lập tức xóa trắng (truncate) toàn bộ nội dung cũ của file đó và cho phép ghi dữ liệu mới từ đầu."
+      },
+      {
+        "text": "File data.txt chứa đúng chuỗi \"ab\\ncd\\n\". Kết quả in ra là gì?\n\nwith open(\"data.txt\", encoding=\"utf-8\") as f:\n    a = f.read(2)\n    f.readline()\n    b = f.read(1)\nprint(a, b)",
+        "options": [
+          "ab c",
+          "a b",
+          "ab cd",
+          "ab d"
+        ],
+        "correct": 0,
+        "explain": "- f.read(2) đọc 2 ký tự đầu tiên là \"ab\", con trỏ file đứng trước ký tự '\\n' của dòng 1.\n- f.readline() đọc phần còn lại của dòng đầu tiên (chính là \"\\n\"), con trỏ chuyển sang đầu dòng 2 (trước 'c').\n- f.read(1) đọc 1 ký tự tiếp theo là \"c\".\nKết quả print(a, b) in ra: ab c."
+      },
+      {
+        "text": "File n.txt chứa đúng chuỗi \"2\\n5\\n3\\n\". Kết quả in ra là gì?\n\nwith open(\"n.txt\", encoding=\"utf-8\") as f:\n    nums = [int(line) for line in f]\nprint(sum(nums))",
+        "options": [
+          "3",
+          "253",
+          "10",
+          "Báo lỗi TypeError"
+        ],
+        "correct": 2,
+        "explain": "Khi duyệt từng dòng trong file, hàm int() tự động bỏ qua khoảng trắng và ký tự xuống dòng '\\n', chuyển các dòng thành danh sách số nguyên nums = [2, 5, 3]. Tổng sum(nums) = 2 + 5 + 3 = 10."
+      },
+      {
+        "text": "File data.csv có tiêu đề ten;diem và các dòng dữ liệu ngăn bằng dấu ;. Điền chỗ trống để tách đúng cột.\n\nimport csv\nwith open(\"data.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    reader = csv.reader(f, __________)\n    next(reader)\n    total = sum(int(row[1]) for row in reader)",
+        "options": [
+          "delimiter=\",\"",
+          "delimiter=\";\"",
+          "separator=\";\"",
+          "split=\";\""
+        ],
+        "correct": 1,
+        "explain": "Trong hàm csv.reader(), tham số dùng để chỉ định ký tự phân cách giữa các cột là 'delimiter'. Vì các cột ngăn cách bởi dấu chấm phẩy nên điền delimiter=\";\"."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\ns = \"  PyThOn \\n\"\nprint(s.strip().lower())",
+        "options": [
+          "PYTHON",
+          "Python",
+          "  python",
+          "python"
+        ],
+        "correct": 3,
+        "explain": "Phương thức strip() loại bỏ toàn bộ khoảng trắng và ký tự xuống dòng ở hai đầu chuỗi (thành \"PyThOn\"), sau đó lower() chuyển tất cả các ký tự thành chữ thường (\"python\")."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\ns = \"a,b,,c\"\nprint(\"-\".join(s.split(\",\")))",
+        "options": [
+          "a-b--c",
+          "a-b-c",
+          "a,b,,c",
+          "a-b--"
+        ],
+        "correct": 0,
+        "explain": "s.split(\",\") tách chuỗi tại mỗi dấu phẩy thành danh sách 4 phần tử [\"a\", \"b\", \"\", \"c\"] (giữa hai dấu phẩy liên tiếp là chuỗi rỗng). Sau đó \"-\".join(...) nối chúng lại bằng dấu gạch ngang thành \"a-b--c\"."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\ns = \"banana\"\nprint(s.find(\"an\"), s.rfind(\"a\"))",
+        "options": [
+          "1 3",
+          "3 5",
+          "1 5",
+          "0 4"
+        ],
+        "correct": 2,
+        "explain": "Trong chuỗi \"banana\" (chỉ số từ 0 đến 5):\n- s.find(\"an\") tìm vị trí xuất hiện đầu tiên của \"an\" từ trái sang -> tại chỉ số 1.\n- s.rfind(\"a\") tìm vị trí xuất hiện đầu tiên của \"a\" từ phải sang (tức lần xuất hiện cuối cùng) -> tại chỉ số 5.\nKết quả: 1 5."
+      },
+      {
+        "text": "Các số bên trái chỉ là nhãn dòng. Dòng nào đầu tiên gây lỗi khi thực thi?\n\n1  s = \"python\"\n2  x = s[-1]\n3  s[0] = \"P\"\n4  print(x)",
+        "options": [
+          "Dòng 1",
+          "Dòng 3",
+          "Dòng 2",
+          "Dòng 4"
+        ],
+        "correct": 1,
+        "explain": "Chuỗi (str) trong Python là kiểu dữ liệu bất biến (immutable), không thể thay đổi từng ký tự qua chỉ số. Do đó lệnh 's[0] = \"P\"' ở dòng 3 gây lỗi TypeError (Đáp án B là Dòng 3)."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nclass Counter:\n    def __init__(self, n=0):\n        self.n = n\n    def add(self, k):\n        self.n += k\n        return self.n\n\na, b = Counter(2), Counter()\nprint(a.add(3), b.n)",
+        "options": [
+          "5 5",
+          "2 0",
+          "5 0",
+          "2 3"
+        ],
+        "correct": 2,
+        "explain": "- Đối tượng a được khởi tạo với a.n = 2. Gọi a.add(3) làm a.n tăng lên 2 + 3 = 5 và trả về 5.\n- Đối tượng b được khởi tạo với giá trị mặc định b.n = 0.\nKết quả in ra: 5 0."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nclass A:\n    x = 10\na, b = A(), A()\na.x = 20\nA.x = 30\nprint(a.x, b.x)",
+        "options": [
+          "20 30",
+          "30 30",
+          "20 10",
+          "30 10"
+        ],
+        "correct": 0,
+        "explain": "- Lệnh 'a.x = 20' tạo một thuộc tính thực thể (instance attribute) x riêng cho đối tượng a với giá trị 20.\n- Lệnh 'A.x = 30' thay đổi thuộc tính lớp (class attribute) x thành 30. Vì đối tượng b không có thuộc tính thực thể x riêng nên b.x sẽ tra cứu lên thuộc tính của lớp A và nhận giá trị 30.\nKết quả: 20 30."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nimport numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.shape, a.ndim, a.size)",
+        "options": [
+          "(6,) 1 6",
+          "(3, 2) 2 6",
+          "(2, 3) 3 6",
+          "(2, 3) 2 6"
+        ],
+        "correct": 3,
+        "explain": "Mảng 2 chiều a có 2 hàng và 3 cột:\n- a.shape (kích thước các chiều) = (2, 3)\n- a.ndim (số chiều) = 2\n- a.size (tổng số phần tử) = 2 * 3 = 6."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nimport numpy as np\na = np.arange(12).reshape(3, 4)\nprint(a[1, 1:4].tolist())",
+        "options": [
+          "[1, 2, 3]",
+          "[5, 6, 7]",
+          "[1, 5, 9]",
+          "[2, 6, 10]"
+        ],
+        "correct": 1,
+        "explain": "np.arange(12).reshape(3, 4) tạo mảng 3 hàng 4 cột:\nHàng 0: [0, 1, 2, 3]\nHàng 1: [4, 5, 6, 7]\nHàng 2: [8, 9, 10, 11]\na[1, 1:4] lấy hàng chỉ số 1, các cột từ 1 đến 3 -> [5, 6, 7]."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nimport numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.sum(axis=0).tolist(), a.sum(axis=1).tolist())",
+        "options": [
+          "[5, 7, 9] [6, 15]",
+          "[6, 15] [5, 7, 9]",
+          "[21] [21]",
+          "[1, 4] [3, 6]"
+        ],
+        "correct": 0,
+        "explain": "- a.sum(axis=0) tính tổng dọc theo các hàng (tức cộng theo từng cột): [1+4, 2+5, 3+6] = [5, 7, 9].\n- a.sum(axis=1) tính tổng dọc theo các cột (tức cộng theo từng hàng): [1+2+3, 4+5+6] = [6, 15]."
+      },
+      {
+        "text": "Kết quả in ra là gì?\n\nimport numpy as np\na = np.array([[1, 2], [3, 4]])\nb = np.array([10, 20])\nprint((a + b).tolist())",
+        "options": [
+          "[[11, 22], [13, 24]]",
+          "[[11, 12], [23, 24]]",
+          "[[10, 40], [30, 80]]",
+          "Báo lỗi ValueError"
+        ],
+        "correct": 0,
+        "explain": "Theo cơ chế broadcasting của NumPy, mảng 1 chiều b = [10, 20] được cộng vào từng hàng của mảng 2 chiều a:\n- Hàng 0: [1+10, 2+20] = [11, 22]\n- Hàng 1: [3+10, 4+20] = [13, 24]."
+      },
+      {
+        "text": "Các số bên trái chỉ là nhãn dòng. Dòng nào đầu tiên gây lỗi khi thực thi?\n\n1  import numpy as np\n2  a = np.arange(6)\n3  b = a.reshape(2, 4)\n4  print(b)",
+        "options": [
+          "Dòng 1",
+          "Dòng 2",
+          "Dòng 4",
+          "Dòng 3"
+        ],
+        "correct": 3,
+        "explain": "Mảng a có 6 phần tử, không thể reshape thành kích thước (2, 4) gồm 8 phần tử. Do đó dòng 3 sẽ gây lỗi ValueError (Đáp án D là Dòng 3)."
+      },
+      {
+        "text": "Ghép đúng thư viện với công dụng chính: NumPy; Matplotlib; SciPy.",
+        "options": [
+          "Vẽ biểu đồ; mảng số; xử lý văn bản.",
+          "Mảng số; vẽ biểu đồ; tính toán khoa học như tối ưu, tích phân.",
+          "Đại số ký hiệu; vẽ biểu đồ; quản lý file.",
+          "Mảng số; chạy tác vụ song song; vẽ biểu đồ."
+        ],
+        "correct": 1,
+        "explain": "- NumPy: xử lý mảng số nhiều chiều hiệu năng cao.\n- Matplotlib: vẽ biểu đồ và trực quan hóa dữ liệu.\n- SciPy: tính toán khoa học chuyên sâu (tối ưu hóa, tích phân, đại số tuyến tính, thống kê...)."
+      },
+      {
+        "text": "Ghép đúng thư viện với công dụng chính: Joblib; SymPy.",
+        "options": [
+          "Vẽ biểu đồ; đọc CSV.",
+          "Đại số ký hiệu; chạy tác vụ song song.",
+          "Chạy tác vụ song song, cache kết quả; đại số ký hiệu.",
+          "Mảng nhiều chiều; quản lý thư mục."
+        ],
+        "correct": 2,
+        "explain": "- Joblib: hỗ trợ chạy tác vụ song song (parallel computing) và lưu đệm (cache) kết quả tính toán.\n- SymPy: thư viện toán học đại số ký hiệu (symbolic mathematics)."
+      },
+      {
+        "text": "Lệnh subplot(2, 2, 3) chọn vị trí nào trong bố cục 2 hàng, 2 cột?\n\nimport matplotlib.pyplot as plt\nplt.subplot(2, 2, 3)",
+        "options": [
+          "Trên trái",
+          "Trên phải",
+          "Dưới phải",
+          "Dưới trái"
+        ],
+        "correct": 3,
+        "explain": "Trong lưới 2x2 của subplot, các ô được đánh số từ 1 đến 4 theo thứ tự từ trái sang phải, từ trên xuống dưới: 1 (trên trái), 2 (trên phải), 3 (dưới trái), 4 (dưới phải). Vậy ô số 3 là ở vị trí Dưới trái."
+      },
+      {
+        "text": "Các điểm dữ liệu có tọa độ nào được nối trong biểu đồ này?\n\nimport matplotlib.pyplot as plt\nplt.plot([2, 4, 1])\nplt.show()",
+        "options": [
+          "(0, 2), (1, 4), (2, 1)",
+          "(1, 2), (2, 4), (3, 1)",
+          "(2, 0), (4, 1), (1, 2)",
+          "Chỉ vẽ một điểm (2, 4)"
+        ],
+        "correct": 0,
+        "explain": "Khi chỉ truyền một danh sách vào plt.plot(), Matplotlib hiểu đó là các tung độ y, còn hoành độ x mặc định là chỉ số từ 0..N-1 (tức [0, 1, 2]). Do đó các điểm được vẽ là (0, 2), (1, 4), (2, 1)."
+      },
+      {
+        "text": "Điền chỗ trống để tạo biểu đồ thanh ngang.\n\nimport matplotlib.pyplot as plt\nplt.____([\"A\", \"B\"], [3, 5])\nplt.show()",
+        "options": [
+          "plot",
+          "hist",
+          "barh",
+          "bar"
+        ],
+        "correct": 2,
+        "explain": "Trong Matplotlib, plt.bar() vẽ biểu đồ cột đứng, còn plt.barh() (horizontal bar chart) vẽ biểu đồ thanh ngang."
+      },
+      {
+        "text": "Theo lưu đồ ở dưới (Khởi tạo S = 0, i = 1; Lặp khi i <= 5: S = S + i, i = i + 2; Khi i > 5 thì Xuất S), giá trị S được xuất ra là bao nhiêu?",
+        "options": [
+          "6",
+          "9",
+          "10",
+          "15"
+        ],
+        "correct": 1,
+        "explain": "Theo dõi từng bước của lưu đồ:\n- Ban đầu: S = 0, i = 1.\n- Lần lặp 1: i = 1 <= 5 (Đúng) -> S = 0 + 1 = 1; i = 1 + 2 = 3.\n- Lần lặp 2: i = 3 <= 5 (Đúng) -> S = 1 + 3 = 4; i = 3 + 2 = 5.\n- Lần lặp 3: i = 5 <= 5 (Đúng) -> S = 4 + 5 = 9; i = 5 + 2 = 7.\n- Kiểm tra i = 7 <= 5 (Sai) -> Thoát vòng lặp và xuất S = 9."
+      },
+      {
+        "text": "Bỏ qua khác biệt về phông chữ và kích thước cửa sổ. Hình nào phù hợp với đoạn code?\n\nimport matplotlib.pyplot as plt\nplt.plot([0, 1, 2], [0, 1, 4], \"ro--\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.show()",
+        "options": [
+          "Hình A (Đường nét đứt màu xanh dương, điểm tròn đi qua (0,0), (1,1), (2,4))",
+          "Hình B (Đường nét liền màu đỏ, điểm tròn đi qua (0,0), (1,1), (2,4))",
+          "Hình C (Đường nét đứt màu đỏ, điểm tròn đi qua (0,4), (1,1), (2,0))",
+          "Hình D (Đường nét đứt màu đỏ, điểm tròn đi qua (0,0), (1,1), (2,4))"
+        ],
+        "correct": 3,
+        "explain": "Chuỗi định dạng \"ro--\" quy định: 'r' (red - màu đỏ), 'o' (marker hình tròn tại các điểm dữ liệu), '--' (đường kẻ nét đứt). Đồ thị đi qua 3 điểm (0, 0), (1, 1) và (2, 4). Hình D thể hiện đúng đường nét đứt màu đỏ có chấm tròn đi lên qua (0,0), (1,1), (2,4)."
+      }
+    ]
+  }
+]
