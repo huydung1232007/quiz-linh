@@ -2,7 +2,7 @@
   {
     "id": "q-python-mock-hd1-02",
     "code": "PY-HD1-02",
-    "title": "Đề Thi Thử Python Cuối Kỳ - Mã đề HD1",
+    "title": "Đề Python Cuối Kỳ - Mã đề HD1",
     "desc": "Đề thi thử Nhập môn lập trình Python ôn thi cuối kỳ số 2 (50 câu trắc nghiệm: cơ bản, cấu trúc dữ liệu, hàm, file, JSON/XML, OOP, NumPy, SciPy/SymPy/Joblib, Matplotlib).",
     "duration": 60,
     "createdAt": "2026-10-25",
