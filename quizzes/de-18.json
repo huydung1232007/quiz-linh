@@ -2,7 +2,7 @@
   {
     "id": "q-python-mock-hd-01",
     "code": "PY-HD-01",
-    "title": "Đề Thi Thử Python Cuối Kỳ - Mã đề HD",
+    "title": "Đề Python Cuối Kỳ - Mã đề HD",
     "desc": "Đề thi thử Nhập môn lập trình Python ôn thi cuối kỳ (50 câu trắc nghiệm: cơ bản, cấu trúc dữ liệu, hàm, file, OOP, NumPy, Matplotlib).",
     "duration": 60,
     "createdAt": "2026-10-25",
